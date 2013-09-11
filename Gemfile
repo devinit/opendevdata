@@ -31,8 +31,15 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-group :test do
+group :development, :test do
   gem "rspec-rails"
+  gem "factory_girl_rails"
+end
+
+group :test do
+  gem "capybara"
+  gem "launchy"
+  gem "selenium-webdriver"
   gem "cucumber-rails", require: false
   gem "database_cleaner"
 end
