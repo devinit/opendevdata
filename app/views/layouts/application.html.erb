@@ -1,14 +1,51 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Opendataportal</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="<%= asset_path("ico/favicon.png") %>">
 
-<%= yield %>
+   <title>Open Dev Data Uganda</title>
+   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
+     <!--[if lte IE 8]>
+         <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.ie.css" />
+     <![endif]-->
+   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+   <%= csrf_meta_tags %>
 
-</body>
+  </head>
+
+  <body>
+
+    <!-- Wrap all page content here -->
+    <div id="wrap">
+      <%= render "layouts/header" %>
+      <!-- Begin page content -->
+      <div class="container">
+        <%= yield %>
+      </div>
+    </div>
+
+    <div id="footer">
+      <div class="container">
+        <p class="text-muted credit">OpenDevData</p>
+      </div>
+    </div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
+   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+   <!--[if lt IE 9]>
+     <script src="<%= asset_path('html5shiv.js') %>"></script>
+     <script src="<%= asset_path('respond.min.js')%>"></script>
+   <![endif]-->
+  </body>
 </html>
