@@ -18,10 +18,22 @@
 
       </ul>
       <ul class="nav navbar-nav pull-right">
-        <li><a href="#blog"><span class='glyphicon glyphicon-log-in'></span> Login</a></li>
-        <li><a href="#blog"><span class='glyphicon glyphicon-log-out'></span> Logout</a></li>
-        <li class='active'><a href="#blog"><span class='glyphicon glyphicon-asterisk'></span> Register</a></li>
+      <% if signed_in? %>
+        <li><a href="<%= logout_url %>"><span class='glyphicon glyphicon-log-out'></span> Logout</a></li>
+      <% else %>
+        <li><a href="<%= login_url %>"><span class='glyphicon glyphicon-log-in'></span> Login</a></li>
+        <li class='active'><a href="<%= register_url %>"><span class='glyphicon glyphicon-asterisk'></span> Register</a></li>
+      <% end %>
       </ul>
     </div><!--/.nav-collapse -->
   </div>
 </div>
+
+<% flash.each do |type, message| %>
+<div class="row">
+  <div class="alert alert-<%= define_alert_type(type) %> alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <%= message %>
+  </div>
+  </div>
+<% end %>
