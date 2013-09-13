@@ -6,5 +6,7 @@ Opendataportal::Application.routes.draw do
     get "logout", to: "devise/sessions#destroy", as: :logout
   end
 
+  match "/datasets/uploads/*path" => 'gridfs#serve'
+
   root to: 'pages#index'
 end
