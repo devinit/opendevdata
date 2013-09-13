@@ -7,6 +7,9 @@ gem 'mongoid', git: 'git://github.com/mongoid/mongoid.git'
 gem 'bson_ext'
 gem 'devise'
 gem 'simple_form'
+gem 'carrierwave'
+gem 'carrierwave-mongoid', require: 'carrierwave/mongoid'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
