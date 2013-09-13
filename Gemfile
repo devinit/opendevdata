@@ -10,6 +10,10 @@ gem 'simple_form'
 gem 'carrierwave'
 gem 'carrierwave-mongoid', require: 'carrierwave/mongoid'
 
+gem 'spreadsheet'
+gem 'axlsx'
+gem 'chartkick'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
