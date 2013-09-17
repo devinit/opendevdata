@@ -3,11 +3,12 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
-gem 'mongoid', git: 'git://github.com/mongoid/mongoid.git'
+gem 'mongoid', github: 'mongoid/mongoid'
 gem 'bson_ext'
 gem 'devise'
 gem 'simple_form'
-gem "carrierwave-mongoid"
+gem 'carrierwave'
+gem "carrierwave-mongoid", "~> 0.6.0"
 gem 'mongoid-grid_fs', github: 'ahoward/mongoid-grid_fs'
 
 gem 'spreadsheet'
