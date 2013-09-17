@@ -1,6 +1,6 @@
 class Dataset
   include Mongoid::Document
-  mount_uploader :dataset, DatasetUploader
+  mount_uploader :dataset_file, DatasetFileUploader
 
   field :name, type: String
   field :description, type: String

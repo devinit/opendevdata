@@ -1,4 +1,5 @@
 class GridfsController < ActionController::Metal
+
   def serve
     gridfs_path = env["PATH_INFO"].gsub("upload/grid/", "")
     begin
