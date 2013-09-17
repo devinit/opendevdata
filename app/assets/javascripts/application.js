@@ -14,4 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require ckeditor/init
+//= require highcharts
+//= require highcharts-more
+//= require modules/exporting
 //= require_tree .
