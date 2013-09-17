@@ -1,4 +1,8 @@
+require 'ckeditor'
+
 Opendataportal::Application.routes.draw do
+
+  mount Ckeditor::Engine => '/ckeditor'
   devise_for :users
   devise_scope :user do
     get "register", to: "devise/registrations#new", as: :register
@@ -6,7 +10,14 @@ Opendataportal::Application.routes.draw do
     get "logout", to: "devise/sessions#destroy", as: :logout
   end
 
-  match "/datasets/uploads/*path" => 'gridfs#serve'
+  match "uploads/grid/*path" => 'gridfs#serve'
 
   root to: 'pages#index'
+
+  resources :datasets
+
+  resources :posts do
+    resources :comments
+  end
+
 end
