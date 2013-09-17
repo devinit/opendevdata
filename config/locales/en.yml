@@ -20,4 +20,10 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+    ckeditor:
+        page_title: 'New Post...'
+        confirm_delete: 'Delete file?'
+        buttons:
+            cancel: 'Cancel'
+            upload: 'Upload'
+            delete: 'Delete'
