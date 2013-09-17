@@ -7,12 +7,17 @@ gem 'mongoid', git: 'git://github.com/mongoid/mongoid.git'
 gem 'bson_ext'
 gem 'devise'
 gem 'simple_form'
-gem 'carrierwave'
-gem 'carrierwave-mongoid', require: 'carrierwave/mongoid'
+gem "carrierwave-mongoid"
+gem 'mongoid-grid_fs', github: 'ahoward/mongoid-grid_fs'
 
 gem 'spreadsheet'
 gem 'axlsx'
 gem 'chartkick'
+gem "ckeditor"
+gem "sanitizer"
+gem "mini_magick"
+
+gem 'kaminari'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -43,6 +48,7 @@ end
 group :development, :test do
   gem "rspec-rails"
   gem "factory_girl_rails"
+  gem "mongoid-rspec"
 end
 
 group :test do
@@ -51,4 +57,9 @@ group :test do
   gem "selenium-webdriver"
   gem "cucumber-rails", require: false
   gem "database_cleaner"
+end
+
+
+group :development do
+  gem 'pry-rails'
 end
