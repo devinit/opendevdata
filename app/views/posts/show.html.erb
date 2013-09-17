@@ -1,0 +1,25 @@
+<h1 class="page-header"><%= @post.title %></h1>
+
+<div class='row'>
+<p><%= @post.content %></p>
+
+<% if @post.comments.size > 0 %>
+    <h2>Comments</h2>
+    <% @post.comments.each do |comment| %>
+        <p><%= sanitize comment.content %></p>
+        <span class='time'>
+            <%= comment.created_at %>
+        </span>
+    <% end %>
+<% end %>
+</div>
+
+<div class='row'>
+    <h2>New Comment</h2>
+
+    <%= simple_form_for [@post, Comment.new] do |f| %>
+        <p><%= f.input :content, rows: 10 %></p>
+
+        <%= f.button :submit %>
+    <% end %>
+</div>
