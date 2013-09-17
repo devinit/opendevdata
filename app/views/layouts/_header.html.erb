@@ -13,13 +13,19 @@
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
         <li><a href="#blog"><span class='glyphicon glyphicon-info-sign'></span> About</a></li>
-        <li><a href="#blog"><span class='glyphicon glyphicon-th-list'></span> Data</a></li>
-        <li><a href="#blog"><span class='glyphicon glyphicon-pencil'></span> Blog</a></li>
+        <li><a href="<%= datasets_url %>"><span class='glyphicon glyphicon-th-list'></span> Data</a></li>
+        <li><a href="<%= posts_url %>"><span class='glyphicon glyphicon-pencil'></span> Blog</a></li>
 
       </ul>
       <ul class="nav navbar-nav pull-right">
       <% if signed_in? %>
-        <li><a href="<%= logout_url %>"><span class='glyphicon glyphicon-log-out'></span> Logout</a></li>
+        <li>
+          <a href="<%= logout_url %>">
+            <%= image_tag(avatar_url(current_user), class: 'gravatar') %>
+            <span class='glyphicon glyphicon-log-out'></span>
+            Logout
+          </a>
+        </li>
       <% else %>
         <li><a href="<%= login_url %>"><span class='glyphicon glyphicon-log-in'></span> Login</a></li>
         <li class='active'><a href="<%= register_url %>"><span class='glyphicon glyphicon-asterisk'></span> Register</a></li>
@@ -28,12 +34,3 @@
     </div><!--/.nav-collapse -->
   </div>
 </div>
-
-<% flash.each do |type, message| %>
-<div class="row">
-  <div class="alert alert-<%= define_alert_type(type) %> alert-dismissable">
-    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    <%= message %>
-  </div>
-  </div>
-<% end %>
