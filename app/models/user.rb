@@ -43,4 +43,7 @@ class User
   # field :authentication_token, :type => String
 
   validates :first_name, :last_name, presence: true
+
+  has_many :comments, dependent: :delete
+  has_many :posts, dependent: :delete
 end
