@@ -1,11 +1,14 @@
 class Dataset
   include Mongoid::Document
-  mount_uploader :dataset_file, DatasetFileUploader
+  include Mongoid::Slug
 
   field :name, type: String
+  slug :name
   field :description, type: String
+  mount_uploader :attachment, DatasetFileUploader
 
   belongs_to :organization
 
-  validates :name, :description, presence: true
+  validates :name, :description, :attachment, presence: true
+
 end
