@@ -1,5 +1,5 @@
 <h2 class='page-header'>New Dataset</h2>
-<%= simple_form_for @dataset, html: { class: 'form-horizontal' } do |f| %>
+<%= simple_form_for @dataset, html: { class: 'form-horizontal', multipart: true } do |f| %>
 
     <%= render 'shared/error_messages', object: f.object %>
 
@@ -19,7 +19,7 @@
     <div class='form-group'>
         <div class='col-lg-offset-2 col-lg-10'>
             <span class='help-block'>You can upload a dataset Excel file.</span>
-            <%= f.file_field :dataset_file, class: 'btn btn-default' %>
+            <%= f.file_field :attachment, class: 'btn btn-default' %>
             <hr>
             <%= f.button :submit, class: 'btn btn-primary' %>
         </div>
