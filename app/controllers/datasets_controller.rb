@@ -15,6 +15,7 @@ class DatasetsController < ApplicationController
 
   def create
     @dataset = Dataset.create dataset_params
+
     if @dataset.save
       redirect_to @dataset, notice: "You have successfully uploaded a dataset"
     else
@@ -34,7 +35,7 @@ class DatasetsController < ApplicationController
 
   private
     def dataset_params
-      params.require(:dataset).permit(:name, :description)
+      params.require(:dataset).permit(:name, :description, :attachment)
     end
 
 end
