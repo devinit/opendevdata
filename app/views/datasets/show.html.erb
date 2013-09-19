@@ -1,1 +1,12 @@
 <h2 class="page-header"><%= @dataset.name %></h2>
+
+<p>
+    <% if @dataset.attachment.image? %>
+        <%= image_tag @dataset.attachment.url %>
+    <% else %>
+        <%= link_to "Download file", @dataset.attachment.url, class: 'btn btn-primary' %>
+    <% end %>
+</p>
+<p>
+    <%= link_to "Back to home page", root_path %>
+</p>
