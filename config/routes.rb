@@ -10,7 +10,7 @@ Opendataportal::Application.routes.draw do
     get "logout", to: "devise/sessions#destroy", as: :logout
   end
 
-  get "uploads/grid/*path", to: 'gridfs#serve'
+  get '/fs/uploads/:model/:field/:fid/:handle' => 'gridfs#serve', handle: /.*/
 
   root to: 'pages#index'
 
