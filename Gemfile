@@ -10,6 +10,7 @@ gem 'simple_form'
 gem 'carrierwave'
 gem "carrierwave-mongoid", "~> 0.6.0"
 gem 'mongoid-grid_fs', github: 'ahoward/mongoid-grid_fs'
+gem 'mongoid_slug'
 
 gem 'spreadsheet'
 gem 'axlsx'
