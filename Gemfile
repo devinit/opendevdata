@@ -16,6 +16,7 @@ gem "ckeditor"
 gem "sanitizer"
 gem "mini_magick"
 gem "sidekiq"
+gem "devise-async"
 
 gem 'kaminari'
 
