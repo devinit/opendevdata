@@ -19,22 +19,23 @@
 
   </head>
 
-  <body style="padding-top: 60px;">
+  <body>
 
     <!-- Wrap all page content here -->
     <div id="wrap">
       <%= render "layouts/header" %>
       <!-- Begin page content -->
-      <div class="container">
+      <div class="container"  style="padding-top: 60px;">
 
-        <div class="row">
           <% flash.each do |type, message| %>
+          <div class="row">
             <div class="alert alert-<%= define_alert_type(type) %> alert-dismissable">
               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
               <%= message %>
             </div>
+          </div>
           <% end %>
-        </div>
+
 
         <div class="row">
           <%= yield %>
