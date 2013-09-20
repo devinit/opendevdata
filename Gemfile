@@ -11,13 +11,11 @@ gem 'carrierwave'
 gem "carrierwave-mongoid", "~> 0.6.0"
 gem 'mongoid-grid_fs', github: 'ahoward/mongoid-grid_fs'
 gem 'mongoid_slug'
-
-gem 'spreadsheet'
-gem 'axlsx'
-gem 'chartkick'
+gem 'roo'
 gem "ckeditor"
 gem "sanitizer"
 gem "mini_magick"
+gem "sidekiq"
 
 gem 'kaminari'
 
