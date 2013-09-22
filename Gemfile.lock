@@ -99,8 +99,6 @@ GEM
       railties (>= 3.2.6, < 5)
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
-    devise-async (0.8.0)
-      devise (>= 2.2, < 3.2)
     diff-lcs (1.2.4)
     erubis (2.7.0)
     execjs (2.0.1)
@@ -127,8 +125,6 @@ GEM
       activesupport (>= 3.0.0)
     launchy (2.3.0)
       addressable (~> 2.3)
-    letter_opener (1.1.2)
-      launchy (~> 2.2)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -271,13 +267,11 @@ DEPENDENCIES
   cucumber-rails
   database_cleaner
   devise
-  devise-async
   factory_girl_rails
   jbuilder (~> 1.2)
   jquery-rails
   kaminari
   launchy
-  letter_opener
   mini_magick
   mongoid!
   mongoid-grid_fs!

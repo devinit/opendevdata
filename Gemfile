@@ -16,7 +16,6 @@ gem "ckeditor"
 gem "sanitizer"
 gem "mini_magick"
 gem "sidekiq"
-gem "devise-async"
 
 gem 'kaminari'
 
@@ -50,11 +49,11 @@ group :development, :test do
   gem "rspec-rails"
   gem "factory_girl_rails"
   gem "mongoid-rspec"
+  gem "launchy"
 end
 
 group :test do
   gem "capybara"
-  gem "launchy"
   gem "selenium-webdriver"
   gem "cucumber-rails", require: false
   gem "database_cleaner"
@@ -63,5 +62,4 @@ end
 
 group :development do
   gem 'pry-rails'
-  gem 'letter_opener'
 end
