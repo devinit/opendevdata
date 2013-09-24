@@ -1,8 +1,11 @@
 class Post
   include Mongoid::Document
+  include Mongoid::Slug
+
   before_save :set_date, if: Proc.new { |post| post.published_on_not_set? }
 
   field :title, type: String
+  slug :title
   field :content, type: String
   field :published_on, type: Time
 
