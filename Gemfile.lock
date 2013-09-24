@@ -104,6 +104,7 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.2.4)
     erubis (2.7.0)
+    excon (0.25.3)
     execjs (2.0.1)
     factory_girl (4.2.0)
       activesupport (>= 3.0.0)
@@ -135,6 +136,9 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    mandrill-api (1.0.47)
+      excon (>= 0.16.0, < 1.0)
+      json (>= 1.7.7, < 2.0)
     method_source (0.8.2)
     mime-types (1.24)
     mini_magick (3.6.0)
@@ -280,6 +284,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   launchy
+  mandrill-api
   mini_magick
   mongoid!
   mongoid-grid_fs!

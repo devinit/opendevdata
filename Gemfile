@@ -19,6 +19,7 @@ gem "mini_magick"
 gem "sidekiq"
 gem 'iconv'
 gem 'kaminari'
+gem 'mandrill-api'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
