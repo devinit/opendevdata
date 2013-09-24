@@ -70,3 +70,17 @@ $(function () {
 
     </script>
 
+
+<div class='row'>
+        <h3>Datasets</h3>
+        <table class='table'>
+            <% @datasets.each do |dataset| %>
+            <tr>
+                <td><%= dataset.name %></td>
+                <td><%= link_to "visit", dataset %></td>
+            </tr>
+            <% end %>
+        </table>
+        <%= paginate @datasets %>
+
+</div>
