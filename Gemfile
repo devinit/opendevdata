@@ -11,12 +11,13 @@ gem 'carrierwave'
 gem "carrierwave-mongoid", "~> 0.6.0"
 gem 'mongoid-grid_fs', github: 'ahoward/mongoid-grid_fs'
 gem 'mongoid_slug'
-gem 'roo'
+gem 'roo', '~> 1.2.3'
+gem 'iconv'
 gem "ckeditor"
 gem "sanitizer"
 gem "mini_magick"
 gem "sidekiq"
-
+gem 'iconv'
 gem 'kaminari'
 
 # Use SCSS for stylesheets
