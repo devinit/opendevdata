@@ -17,11 +17,7 @@ class Post
   paginates_per 10
 
   def published_on_not_set?
-    if published_on == nil
-      true
-    else
-      false
-    end
+    published_on == nil
   end
 
   def set_date

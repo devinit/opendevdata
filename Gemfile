@@ -1,23 +1,27 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
-gem 'mongoid', github: 'mongoid/mongoid'
 gem 'bson_ext'
 gem 'devise'
 gem 'simple_form'
 gem 'carrierwave'
 gem "carrierwave-mongoid", "~> 0.6.0"
+gem 'mongoid', github: 'mongoid/mongoid'
+gem 'mongo'
 gem 'mongoid-grid_fs', github: 'ahoward/mongoid-grid_fs'
 gem 'mongoid_slug'
 gem 'roo', '~> 1.2.3'
+gem 'spreadsheet'
 gem 'iconv'
 gem "ckeditor"
 gem "sanitizer"
 gem "mini_magick"
-gem "sidekiq"
-gem 'iconv'
+gem "smarter_csv"
+gem 'rubyzip', '~> 0.9.9'
+gem "resque", "~> 2.0.0.pre.1", github: "resque/resque"
+gem 'resque-web', require: 'resque_web'
 gem 'kaminari'
 gem 'mandrill-api'
 
@@ -35,7 +39,9 @@ gem 'coffee-rails', '~> 4.0.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-
+gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass', branch: '3'
+gem 'jquery-turbolinks'
+gem 'masonry-rails', '~> 0.2.0'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
@@ -64,4 +70,5 @@ end
 
 group :development do
   gem 'pry-rails'
+  gem 'pry-debugger'
 end

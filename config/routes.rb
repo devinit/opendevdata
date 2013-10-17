@@ -1,8 +1,11 @@
 require 'ckeditor'
+require 'resque_web'
 
 Opendataportal::Application.routes.draw do
 
   mount Ckeditor::Engine => '/ckeditor'
+  mount ResqueWeb::Engine => '/resque_web'
+
   devise_for :users
   devise_scope :user do
     get "register", to: "devise/registrations#new", as: :register
@@ -14,10 +17,8 @@ Opendataportal::Application.routes.draw do
 
   root to: 'pages#index'
 
-  resources :datasets
+  concern :sociable, Sociable
 
-  resources :posts do
-    resources :comments
-  end
-
+  resources :datasets, concerns: :sociable
+  resources :posts, concerns: :sociable
 end

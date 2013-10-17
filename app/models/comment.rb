@@ -8,6 +8,7 @@ class Comment
 
   belongs_to :post
   belongs_to :user
+  belongs_to :dataset
 
   validates :content, :user_id, :post_id, presence: true
 
