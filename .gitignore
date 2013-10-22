@@ -16,3 +16,4 @@
 /tmp
 config/mongoid.yml
 config/environments/production.rb
+public/assets/
