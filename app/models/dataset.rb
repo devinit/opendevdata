@@ -5,6 +5,7 @@ class Dataset
   field :name, type: String
   slug :name
   field :description, type: String
+  field :chart_type, type: String
   field :data_extract, type: Hash
 
   mount_uploader :attachment, DatasetFileUploader
