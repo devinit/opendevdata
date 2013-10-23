@@ -12,6 +12,7 @@ gem 'mongoid', github: 'mongoid/mongoid'
 gem 'mongo'
 gem 'mongoid-grid_fs', github: 'ahoward/mongoid-grid_fs'
 gem 'mongoid_slug'
+gem 'rb-readline'  # added just for safety
 # gem 'roo', '~> 1.2.3'
 # gem 'spreadsheet'
 gem 'iconv'
