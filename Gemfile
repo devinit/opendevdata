@@ -12,8 +12,8 @@ gem 'mongoid', github: 'mongoid/mongoid'
 gem 'mongo'
 gem 'mongoid-grid_fs', github: 'ahoward/mongoid-grid_fs'
 gem 'mongoid_slug'
-gem 'roo', '~> 1.2.3'
-gem 'spreadsheet'
+# gem 'roo', '~> 1.2.3'
+# gem 'spreadsheet'
 gem 'iconv'
 gem "ckeditor"
 gem "sanitizer"
@@ -21,9 +21,10 @@ gem "mini_magick"
 gem "smarter_csv"
 gem 'rubyzip', '~> 0.9.9'
 gem "resque", "~> 2.0.0.pre.1", github: "resque/resque"
+gem "faraday", github: 'lostisland/faraday'
+gem 'faraday-http-cache'
 gem 'resque-web', require: 'resque_web'
 gem 'kaminari'
-gem 'mandrill-api'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
