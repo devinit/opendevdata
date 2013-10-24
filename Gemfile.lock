@@ -333,6 +333,7 @@ DEPENDENCIES
   pry-rails
   rails (= 4.0.0)
   rb-readline (~> 0.4.2)
+  redis
   resque (~> 2.0.0.pre.1)!
   resque-web
   rspec-rails
