@@ -26,7 +26,7 @@ gem "redis"
 gem "foreman"
 gem "faraday", github: 'lostisland/faraday'
 gem 'faraday-http-cache'
-gem 'resque-web', require: 'resque_web'
+# gem 'resque-web', require: 'resque_web'
 gem 'kaminari'
 
 # Use SCSS for stylesheets

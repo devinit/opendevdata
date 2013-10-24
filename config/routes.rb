@@ -1,10 +1,10 @@
 require 'ckeditor'
-require 'resque_web'
+# require 'resque_web'
 
 Opendataportal::Application.routes.draw do
 
   mount Ckeditor::Engine => '/ckeditor'
-  mount ResqueWeb::Engine => '/resque_web'
+  # mount ResqueWeb::Engine => '/resque_web'
 
   devise_for :users
   devise_scope :user do
