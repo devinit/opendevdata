@@ -13,7 +13,7 @@
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
         <li><a href="#blog"><span class='glyphicon glyphicon-info-sign'></span> About</a></li>
-        <li><a href="<%= datasets_url %>"><span class='glyphicon glyphicon-th-list'></span> Data</a></li>
+        <li><a href="<%= datasets_url %>"><i class='fa fa-cloud-download'></i> Data</a></li>
         <li><a href="<%= posts_url %>"><span class='glyphicon glyphicon-pencil'></span> Blog</a></li>
 
       </ul>
@@ -21,7 +21,7 @@
       <% if signed_in? %>
         <li>
           <%= link_to edit_user_registration_path do %>
-            <span class='icon-cogs'></span>
+            <span class='fa fa-cogs'></span>
             User Settings
           <% end %>
         </li>
@@ -34,7 +34,7 @@
         </li>
       <% else %>
         <li><a href="<%= login_url %>"><span class='glyphicon glyphicon-log-in'></span> Login</a></li>
-        <li class='active'><a href="<%= register_url %>"><span class='icon-user'></span> Register</a></li>
+        <li class='active'><a href="<%= register_url %>"><span class='fa fa-user'></span> Register</a></li>
       <% end %>
       </ul>
     </div><!--/.nav-collapse -->
