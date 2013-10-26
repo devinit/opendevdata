@@ -1,37 +1,40 @@
-<ol class="breadcrumb">
-  <li><%= link_to "Home", root_path %></li>
-  <li><%= link_to "Datasets", datasets_path %></li>
-  <li class="active"><i class='fa fa-cloud-download'></i> <%= @dataset.name %></li>
-</ol>
+<div class='row'>
+    <ol class="breadcrumb">
+      <li><%= link_to "Home", root_path %></li>
+      <li><%= link_to "Datasets", datasets_path %></li>
+      <li class="active"><i class='fa fa-cloud-download'></i> <%= @dataset.name %></li>
+    </ol>
 
-<h2 class="page-header"><%= @dataset.name %></h2>
-
-<p>
-    <% if @dataset.attachment.image? %>
-        <%= image_tag @dataset.attachment.url %>
-    <% else %>
-        <%= link_to @dataset.attachment.url, class: 'btn btn-primary' do %>
-            Download file
-            <i class='fa fa-cloud-download'></i>
+    <h2 class="page-header"><%= @dataset.name %></h2>
+</div>
+<div class='row'>
+    <p class='pull-right'>
+        <% if @dataset.attachment.image? %>
+            <%= image_tag @dataset.attachment.url %>
+        <% else %>
+            <%= link_to @dataset.attachment.url, class: 'btn btn-primary' do %>
+                Download file
+                <i class='fa fa-cloud-download'></i>
+            <% end %>
         <% end %>
-    <% end %>
-</p>
-<p>
-    <%= link_to root_path, class: 'btn btn-default' do %>
-        Back to home page <span class='fa fa-home'></span>
-    <% end %>
+    </p>
+    <p class='pull-left'>
+        <%= link_to root_path, class: 'btn btn-default' do %>
+            Back to home page <span class='fa fa-home'></span>
+        <% end %>
 
-    <%= link_to "#", class: 'btn btn-info' do %>
-        Comments
-        <i class='fa fa-comments'></i>
-    <% end %>
+        <%= link_to "#", class: 'btn btn-info' do %>
+            Comments
+            <i class='fa fa-comments'></i>
+        <% end %>
 
-    <%= link_to "#", class: 'btn btn-success' do %>
-        Comment on this dataset <i class='fa fa-comment-o'></i>
-    <% end %>
-</p>
+        <%= link_to "#", class: 'btn btn-success' do %>
+            Comment on this dataset <i class='fa fa-comment-o'></i>
+        <% end %>
+    </p>
+</div>
 
-<div class='panel panel-default'>
+<div class='row panel panel-default'>
     <div class='panel-heading'>
         <h3 class='panel-title'>Visualization</h3>
     </div>
