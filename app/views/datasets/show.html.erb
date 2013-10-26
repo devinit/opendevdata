@@ -1,86 +1,110 @@
+<ol class="breadcrumb">
+  <li><%= link_to "Home", root_path %></li>
+  <li><%= link_to "Datasets", datasets_path %></li>
+  <li class="active"><i class='fa fa-cloud-download'></i> <%= @dataset.name %></li>
+</ol>
+
 <h2 class="page-header"><%= @dataset.name %></h2>
 
 <p>
     <% if @dataset.attachment.image? %>
         <%= image_tag @dataset.attachment.url %>
     <% else %>
-        <%= link_to "Download file", @dataset.attachment.url, class: 'btn btn-primary' %>
+        <%= link_to @dataset.attachment.url, class: 'btn btn-primary' do %>
+            Download file
+            <i class='fa fa-cloud-download'></i>
+        <% end %>
     <% end %>
 </p>
 <p>
-    <%= link_to root_path do %>
-        Back to home page <span class='icon-home'></span>
+    <%= link_to root_path, class: 'btn btn-default' do %>
+        Back to home page <span class='fa fa-home'></span>
+    <% end %>
+
+    <%= link_to "#", class: 'btn btn-info' do %>
+        Comments
+        <i class='fa fa-comments'></i>
+    <% end %>
+
+    <%= link_to "#", class: 'btn btn-success' do %>
+        Comment on this dataset <i class='fa fa-comment-o'></i>
     <% end %>
 </p>
 
-<h3>Visualization</h3>
+<div class='panel panel-default'>
+    <div class='panel-heading'>
+        <h3 class='panel-title'>Visualization</h3>
+    </div>
+    <div class='panel-body'>
+        <div id="container" style="height: 400px; margin: auto; min-width: 310px; max-width: 600px"></div>
+    </div>
+</div>
 
-<div id="container" style="height: 400px; margin: auto; min-width: 310px; max-width: 600px"></div>
-    <script type="text/javascript">
-$(function () {
-    $('#container').highcharts({
-        chart: {
-            type: 'spline'
-        },
-        title: {
-            text: 'Monthly Average Temperature'
-        },
-        subtitle: {
-            text: 'Source: WorldClimate.com'
-        },
-        xAxis: {
-            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-        },
-        yAxis: {
+<script type="text/javascript">
+    $(function () {
+        $('#container').highcharts({
+            chart: {
+                type: 'spline'
+            },
             title: {
-                text: 'Temperature'
+                text: 'Monthly Average Temperature'
             },
-            labels: {
-                formatter: function() {
-                    return this.value +'°'
-                }
-            }
-        },
-        tooltip: {
-            crosshairs: true,
-            shared: true
-        },
-        plotOptions: {
-            spline: {
-                marker: {
-                    radius: 4,
-                    lineColor: '#666666',
-                    lineWidth: 1
-                }
-            }
-        },
-        series: [{
-            name: 'Tokyo',
-            marker: {
-                symbol: 'square'
+            subtitle: {
+                text: 'Source: WorldClimate.com'
             },
-            data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, {
-                y: 26.5,
-                marker: {
-                    symbol: 'url(http://www.highcharts.com/demo/gfx/sun.png)'
+            xAxis: {
+                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+            },
+            yAxis: {
+                title: {
+                    text: 'Temperature'
+                },
+                labels: {
+                    formatter: function() {
+                        return this.value +'°'
+                    }
                 }
-            }, 23.3, 18.3, 13.9, 9.6]
+            },
+            tooltip: {
+                crosshairs: true,
+                shared: true
+            },
+            plotOptions: {
+                spline: {
+                    marker: {
+                        radius: 4,
+                        lineColor: '#666666',
+                        lineWidth: 1
+                    }
+                }
+            },
+            series: [{
+                name: 'Tokyo',
+                marker: {
+                    symbol: 'square'
+                },
+                data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, {
+                    y: 26.5,
+                    marker: {
+                        symbol: 'url(http://www.highcharts.com/demo/gfx/sun.png)'
+                    }
+                }, 23.3, 18.3, 13.9, 9.6]
 
-        }, {
-            name: 'London',
-            marker: {
-                symbol: 'diamond'
-            },
-            data: [{
-                y: 3.9,
+            }, {
+                name: 'London',
                 marker: {
-                    symbol: 'url(http://www.highcharts.com/demo/gfx/snow.png)'
-                }
-            }, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
-        }]
+                    symbol: 'diamond'
+                },
+                data: [{
+                    y: 3.9,
+                    marker: {
+                        symbol: 'url(http://www.highcharts.com/demo/gfx/snow.png)'
+                    }
+                }, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+            }]
+        });
     });
-});
 
 
-    </script>
+</script>
