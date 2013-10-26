@@ -29,7 +29,6 @@ class DatasetsController < ApplicationController
     if @dataset.save
       # send file for processing
       _id = @dataset.id.to_s
-      _attachment = dataset_params['attachment']
 
       Resque.enqueue(
         ExcelToJson,
