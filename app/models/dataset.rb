@@ -12,7 +12,7 @@ class Dataset
 
   belongs_to :organization
 
-  validates :name, :description, :attachment, presence: true
+  validates :name, :description, :attachment, :chart_type, presence: true
 
   has_many :comments
 
