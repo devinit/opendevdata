@@ -1,34 +1,48 @@
-<h2 class='page-header'>New Dataset</h2>
-<%= simple_form_for @dataset, html: { class: 'form-horizontal', multipart: true } do |f| %>
+<div clas='row'>
 
-    <%= render 'shared/error_messages', object: f.object %>
 
-    <div class='form-group'>
-        <%= f.label :name, class: 'col-lg-2' %>
-        <div class='col-lg-10'>
-            <%= f.input_field :name %>
-        </div>
-    </div>
-    <div class='form-group'>
-        <%= f.label :description, class: 'col-lg-2' %>
-        <div class='col-lg-10'>
-            <%= f.input_field :description %>
-        </div>
-    </div>
+    <ol class="breadcrumb">
+      <li>
+        <%= link_to root_path do%>
+            Home <i class='fa fa-home'></i>
+        <% end %>
+      </li>
 
-    <div class='form-group'>
-        <%= f.label :chart_type, class: 'col-lg-2' %>
-        <div class='col-lg-10'>
-            <%= f.select :chart_type, ['spline', 'pie'] %>
-        </div>
-    </div>
+      <li class="active">Create a new dataset</li>
+    </ol>
 
-    <div class='form-group'>
-        <div class='col-lg-offset-2 col-lg-10'>
-            <span class='help-block'>You can upload a dataset Excel file.</span>
-            <%= f.file_field :attachment, class: 'btn btn-default' %>
-            <hr>
-            <%= f.button :submit, class: 'btn btn-primary' %>
+    <h2 class='page-header'>New Dataset</h2>
+    <%= simple_form_for @dataset, html: { class: 'form-horizontal', multipart: true } do |f| %>
+
+        <%= render 'shared/error_messages', object: f.object %>
+
+        <div class='form-group'>
+            <%= f.label :name, class: 'col-lg-2' %>
+            <div class='col-lg-10'>
+                <%= f.input_field :name %>
+            </div>
         </div>
-    </div>
-<% end %>
+        <div class='form-group'>
+            <%= f.label :description, class: 'col-lg-2' %>
+            <div class='col-lg-10'>
+                <%= f.input_field :description %>
+            </div>
+        </div>
+
+        <div class='form-group'>
+            <%= f.label :chart_type, class: 'col-lg-2' %>
+            <div class='col-lg-10'>
+                <%= f.select :chart_type, ['spline', 'pie'] %>
+            </div>
+        </div>
+
+        <div class='form-group'>
+            <div class='col-lg-offset-2 col-lg-10'>
+                <span class='help-block'>You can upload a dataset Excel file.</span>
+                <%= f.file_field :attachment, class: 'btn btn-default' %>
+                <hr>
+                <%= f.button :submit, class: 'btn btn-primary' %>
+            </div>
+        </div>
+    <% end %>
+</div>
