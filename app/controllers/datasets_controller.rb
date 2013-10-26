@@ -4,6 +4,9 @@ class DatasetsController < ApplicationController
 
   def get_dataset
     @dataset = Dataset.find(slug=params[:id])  # we are using slugs!
+    rescue Mongoid::Errors::DocumentNotFound
+      flash[:alert] = "The dataset you were looking for could not be found."
+      redirect_to datasets_path
   end
 
   def index
@@ -25,9 +28,16 @@ class DatasetsController < ApplicationController
     @dataset = Dataset.create dataset_params
     if @dataset.save
       # send file for processing
-      Resque.enqueue(ExcelToJson, @dataset.id.to_s,
-        dataset_params['attachment'].tempfile,
-        dataset_params['chart_type'])
+      _id = @dataset.id.to_s
+      _attachment = dataset_params['attachment']
+
+      Resque.enqueue(
+        ExcelToJson,
+        _id,
+        dataset_params['attachment'].tempfile.path,
+        dataset_params['chart_type'],
+        @dataset.attachment.path.split("/").last)
+
       redirect_to @dataset, notice: "You have successfully uploaded a dataset"
     else
       flash[:alert] = "The dataset you have could not be uploaded."
