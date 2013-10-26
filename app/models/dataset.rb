@@ -8,6 +8,13 @@ class Dataset
   field :chart_type, type: String
   field :data_extract, type: Hash
 
+  # chart labels
+  field :x_label, type: String
+  field :y_label, type: String
+  field :title, type: String
+  field :sub_title, type: String
+  field :data_units, type: String  # suffix for tooltip
+
   mount_uploader :attachment, DatasetFileUploader
 
   belongs_to :organization
