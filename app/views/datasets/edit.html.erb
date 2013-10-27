@@ -1,0 +1,98 @@
+<div clas='row'>
+    <ol class="breadcrumb">
+      <li>
+        <%= link_to root_path do%>
+            Home <i class='fa fa-home'></i>
+        <% end %>
+      </li>
+
+      <li class="active">Edit <i class='fa fa-pencil'></i></li>
+    </ol>
+
+
+    <div class='panel panel-info'>
+        <div class='panel-heading'>
+            <h2 class='panel-title'>Edit Dataset</h2>
+        </div>
+        <div class='panel-body'>
+            <%= simple_form_for @dataset, html: { class: 'form-horizontal', multipart: true } do |f| %>
+
+                <%= render 'shared/error_messages', object: f.object %>
+
+                <div class='form-group'>
+                    <%= f.label :name, class: 'col-lg-2' %>
+                    <div class='col-lg-10'>
+                        <%= f.input_field :name, class: 'form-control' %>
+                    </div>
+                </div>
+                <div class='form-group'>
+                    <%= f.label :description, class: 'col-lg-2' %>
+                    <div class='col-lg-10'>
+                        <%= f.input_field :description, class: 'form-control' %>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class='form-group'>
+                    <%= f.label :title, class: 'col-lg-2' %>
+                    <div class='col-lg-10'>
+                        <%= f.input_field :title, class: 'form-control' %>
+                    </div>
+                </div>
+
+                <div class='form-group'>
+                    <%= f.label :sub_title, class: 'col-lg-2' %>
+                    <div class='col-lg-10'>
+                        <%= f.input_field :sub_title, class: 'form-control' %>
+                    </div>
+                </div>
+
+                <div class='form-group'>
+                    <%= f.label :x_label, class: 'col-lg-2' %>
+                    <div class='col-lg-10'>
+                        <%= f.input_field :x_label, class: 'form-control' %>
+                    </div>
+                </div>
+
+                <div class='form-group'>
+                    <%= f.label :y_label, class: 'col-lg-2' %>
+                    <div class='col-lg-10'>
+                        <%= f.input_field :y_label, class: 'form-control' %>
+                    </div>
+                </div>
+
+                <div class='form-group'>
+                    <%= f.label :data_units, class: 'col-lg-2' %>
+                    <div class='col-lg-10'>
+                        <%= f.input_field :data_units, class: 'form-control' %>
+                    </div>
+                </div>
+
+                </hr>
+
+                <div class='form-group'>
+                    <%= f.label :chart_type, class: 'col-lg-2' %>
+                    <div class='col-lg-10'>
+                        <span class='help-block'>
+                            Choose the chart type you would like. Note: remember that the datasets have to conform to a specific format.
+                        </span>
+                        <%= f.select :chart_type, ['basic_line', 'spline', 'pie', 'basic_bar', 'scatter'] %>
+                    </div>
+                </div>
+
+                <div class='form-group'>
+                    <div class='col-lg-offset-2 col-lg-10'>
+                        <span class='help-block'>You can upload a dataset Excel file.</span>
+                        <%= f.file_field :attachment %>
+                    </div>
+                </div>
+                <div class='form-group'>
+                    <div class='col-lg-offset-2 col-lg-10'>
+                        <%= f.button :submit, class: 'btn btn-primary' %>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>
