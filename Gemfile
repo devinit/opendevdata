@@ -28,6 +28,7 @@ gem "faraday", github: 'lostisland/faraday'
 gem 'faraday-http-cache'
 gem 'resque-web', require: 'resque_web'
 gem 'kaminari'
+gem 'gon'  # need rails variables in javascript
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
