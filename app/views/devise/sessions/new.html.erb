@@ -1,31 +1,27 @@
-<div class="login">
-    <h2>Login</h2>
+<div class='panel panel-info'>
+  <div class='panel-heading'><h1>Login!</h1></div>
+  <div class='panel-body'>
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
 
-    <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), html: {class: 'form-horizontal'}) do |f| %>
-      <div class="form-group">
-        <label for="inputEmail" class="col-lg-2 control-label">Email address</label>
-        <div class='col-lg-10'>
-            <%= f.email_field :email, autofocus: true, class: 'form-control' %>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="inputPassword" class='col-lg-2 control-label'>Password</label>
-        <div class='col-lg-10'>
-            <%= f.password_field :password, class: 'form-control' %>
-        </div>
+      <div class='form-group'>
+        <%= f.label :email %>
+        <%= f.email_field :email, :autofocus => true, class: 'form-control' %>
       </div>
 
-      <div class="checkbox col-lg-offset-2 col-lg-10">
-        <label>
-        <% if devise_mapping.rememberable? -%>
-            <%= f.check_box :remember_me %> <%= f.label :remember_me %>
+      <div class='form-group'>
+        <%= f.label :password %>
+        <%= f.password_field :password, class: 'form-control' %>
+      </div>
+
+      <div class='form-group'>
+        <%= content_tag :button, :type => :submit, class: 'btn btn-primary' do %>
+          Login
+          <i class='fa fa-sign-in'></i>
         <% end %>
-        </label>
-      </div>
-      <div class='col-lg-offset-2 col-lg-10'>
-        <%= f.submit "Login", class: "btn btn-default" %>
-        <br>
-        <%= render "devise/shared/links" %>
       </div>
     <% end %>
+
+    <div class='panel-footer'><%= render "devise/shared/links" %></div>
+  </div>
 </div>
