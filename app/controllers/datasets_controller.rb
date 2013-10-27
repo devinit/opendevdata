@@ -55,7 +55,16 @@ class DatasetsController < ApplicationController
 
   private
     def dataset_params
-      params.require(:dataset).permit(:name, :description, :attachment, :chart_type)
+      params.require(:dataset).permit(
+        :name,
+        :description,
+        :attachment,
+        :chart_type,
+        :x_label,
+        :y_label,
+        :sub_title,
+        :title,
+        :data_units)
     end
 
 end
