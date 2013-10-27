@@ -23,5 +23,4 @@ class Dataset
     :y_label, :sub_title, :data_units, :title, presence: true
 
   has_many :comments
-
 end
