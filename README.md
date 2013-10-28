@@ -1,9 +1,6 @@
-OpenDev Data Suite
-==================
+# OpenDev Data Suite
 
-
-Dependencies
-------------
+## Dependencies
 The open dev data stack has several dependencies
 
 Application Dependecies:
@@ -19,8 +16,7 @@ External services:
 * Fontawesome icons
 * redis
 
-Installation and Development Deployment
----------------------------------------
+## Installation and Development Deployment
 
 This application can be installed on a UNIX-based system. It has been tested on
 Ubuntu and Mac OS X.
@@ -31,13 +27,16 @@ Ubuntu and Mac OS X.
 * Run a resque worker: `rake resque:work QUEUE="*"`
 
 
-Production Deployment on Ubuntu 13.10
-=====================================
+## Production Deployment on Ubuntu 13.10
 
-Deployment the hardway
-----------------------
+### Deployment the hardway
 
 ** Running the Resque.conf as an upstart **
+
+```console
+RAILS_ENV=production bundle exec foreman export upstart /etc/init -a opendevdata -d /var/www/opendevdata/ -u www-data -c worker=3,scheduler=1
+```
+
 
 Copy the sample `resque.conf` file; edit it to match your system settings
 
