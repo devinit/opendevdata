@@ -14,10 +14,14 @@ class DatasetsController < ApplicationController
   end
 
   def show
-    # filename = @dataset.attachment.file.grid_file.as_document['filename']
-    # perform some work to strip off values from dataset
-    # DatasetWorker.perform_async(@dataset.id)
-    # TODO Rescue from error when searchable object is not found.
+    if @dataset.data_extract
+      gon.data_values = @dataset.data_extract['data_values']
+      gon.headings_gon = @dataset.data_extract['headings']
+      gon.chartTitle = @dataset.title
+      gon.subTitle = @dataset.sub_title
+      gon.yLabel = @dataset.y_label
+      gon.xLabel = @dataset.x_label
+    end
   end
 
   def new
