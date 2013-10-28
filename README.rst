@@ -1,5 +1,5 @@
-OpenDev Data Suite (Designed for Development Initiatives and DRT in Uganda)
-===========================================================================
+OpenDev Data Suite
+==================
 
 
 Dependencies
