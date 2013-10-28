@@ -31,7 +31,7 @@ Ubuntu and Mac OS X.
 
 ### Deployment the hardway
 
-#### Running the Resque.conf as an upstart **
+#### Running the Resque.conf as an upstart
 
 Copy the sample `resque.conf` file; edit it to match your system settings
 
