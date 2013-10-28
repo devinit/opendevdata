@@ -36,7 +36,7 @@ Ubuntu and Mac OS X.
 Copy the sample `resque.conf` file; edit it to match your system settings
 
 ```console
-RAILS_ENV=production bundle exec foreman export upstart /etc/init -a opendevdata -d /var/www/opendevdata/ -u www-data -c worker=3,scheduler=1
+RAILS_ENV=production bundle exec foreman export upstart /etc/init -a opendevdata -d /var/www/opendevdata/ -u root -c worker=3,scheduler=1
 ```
 
 ... that should return the following output
