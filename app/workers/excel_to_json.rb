@@ -19,7 +19,7 @@ class ExcelToJson
     response = conn.post 'http://e2j.opendevdata.ug/upload/', payload
 
     if response.status == 200  #HTTP OK
-      dataset = Dataset.find dataset_id
+      dataset = Dataset.find _id = dataset_id
       puts "#{dataset.name} processed"
       json_response = response.body
       puts "Updating dataset ***"
