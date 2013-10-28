@@ -1,5 +1,0 @@
-== README
-
-TODO ->>
-
-Evaluate what the data excel sheet should look like for a different result.
