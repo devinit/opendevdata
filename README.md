@@ -31,14 +31,32 @@ Ubuntu and Mac OS X.
 
 ### Deployment the hardway
 
-** Running the Resque.conf as an upstart **
+#### Running the Resque.conf as an upstart **
+
+Copy the sample `resque.conf` file; edit it to match your system settings
 
 ```console
 RAILS_ENV=production bundle exec foreman export upstart /etc/init -a opendevdata -d /var/www/opendevdata/ -u www-data -c worker=3,scheduler=1
 ```
 
+... that should return the following output
 
-Copy the sample `resque.conf` file; edit it to match your system settings
+```console
+eduler=1
+[foreman export] writing: opendevdata.conf
+[foreman export] writing: opendevdata-worker.conf
+[foreman export] writing: opendevdata-worker-1.conf
+[foreman export] writing: opendevdata-worker-2.conf
+[foreman export] writing: opendevdata-worker-3.conf
+[foreman export] writing: opendevdata-scheduler.conf
+[foreman export] writing: opendevdata-scheduler-1.conf
+```
 
+You can now start or stop your opendevdata resque tasks as follows:
+
+```console
+sudo service opendevdata stop
+sudo service opendevdata start
+```
 
 TODO: work on capistrano deployment recipe; work on fabfile for deployment through python.
