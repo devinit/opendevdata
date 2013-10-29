@@ -24,7 +24,6 @@ gem 'rubyzip', '~> 0.9.9'
 gem 'sidekiq'
 gem 'sinatra', require: false
 gem 'slim'
-gem
 gem "redis"
 gem "foreman"
 gem "faraday", github: 'lostisland/faraday'
