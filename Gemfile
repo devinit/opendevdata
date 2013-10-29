@@ -21,12 +21,14 @@ gem "sanitizer"
 gem "mini_magick"
 gem "smarter_csv"
 gem 'rubyzip', '~> 0.9.9'
-gem "resque", "~> 2.0.0.pre.1", github: "resque/resque", require: 'resque/server'
+gem 'sidekiq'
+gem 'sinatra', require: false
+gem 'slim'
+gem
 gem "redis"
 gem "foreman"
 gem "faraday", github: 'lostisland/faraday'
 gem 'faraday-http-cache'
-gem 'resque-web', require: 'resque_web'
 gem 'kaminari'
 gem 'gon'  # need rails variables in javascript
 
