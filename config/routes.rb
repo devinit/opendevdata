@@ -1,16 +1,16 @@
 require 'ckeditor'
-require 'resque_web'
+require 'sidekiq/web'
 
 Opendataportal::Application.routes.draw do
 
   mount Ckeditor::Engine => '/ckeditor'
 
-  resque_web_constraint = lambda  do |request|
+  sidekiq_web_constraint = lambda  do |request|
     current_user = request.env['warden'].user
     current_user.present? && current_user.respond_to?(:is_admin?) && current_user.is_admin?
   end
-  constraints resque_web_constraint do
-    mount ResqueWeb::Engine => '/resque_web'
+  constraints sidekiq_web_constraint do
+    mount Sidekiq::Web, at: '/sidekiq'
   end
 
   devise_for :users
