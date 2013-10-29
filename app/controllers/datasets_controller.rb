@@ -34,8 +34,7 @@ class DatasetsController < ApplicationController
       # send file for processing
       _id = @dataset.id.to_s
 
-      Resque.enqueue(
-        ExcelToJson,
+      ExcelToJson.perform_async(
         _id,
         dataset_params['attachment'].tempfile.path,
         dataset_params['chart_type'],
