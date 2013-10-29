@@ -2,9 +2,9 @@
 require 'faraday'
 
 class ExcelToJson
-  @queue = :excel_to_json
-
-  def self.perform dataset_id, tempfile_path, chart_type, file_name
+  include Sidekiq::Worker
+  sidekiq_options retry: false
+  def perform dataset_id, tempfile_path, chart_type, file_name
     puts "---- ***** ---- *** ---- "
     conn = Faraday.new url: 'http://e2j.opendevdata.ug/upload/' do |faraday|
       faraday.request :multipart
