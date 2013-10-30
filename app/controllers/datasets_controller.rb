@@ -54,12 +54,12 @@ class DatasetsController < ApplicationController
     if @dataset.update_attributes dataset_params
       _id = @dataset.id.to_s
       # TODO refactor and put this in dataset.rb
-      Resque.enqueue(
-        ExcelToJson,
+      ExcelToJson.perform_async(
         _id,
         dataset_params['attachment'].tempfile.path,
         dataset_params['chart_type'],
         @dataset.attachment.path.split("/").last)
+
       redirect_to @dataset, notice: "You have successfully updated this dataset."
     else
       render "edit"
