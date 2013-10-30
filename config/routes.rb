@@ -5,12 +5,8 @@ Opendataportal::Application.routes.draw do
 
   mount Ckeditor::Engine => '/ckeditor'
 
-  sidekiq_web_constraint = lambda  do |request|
-    current_user = request.env['warden'].user
-    current_user.present? && current_user.respond_to?(:is_admin?) && current_user.is_admin?
-  end
-  constraints sidekiq_web_constraint do
-    mount Sidekiq::Web, at: '/sidekiq'
+  authenticate :user, lambda { |u| u.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
   end
 
   devise_for :users
