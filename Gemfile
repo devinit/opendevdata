@@ -30,6 +30,8 @@ gem "faraday", github: 'lostisland/faraday'
 gem 'faraday-http-cache'
 gem 'kaminari'
 gem 'gon'  # need rails variables in javascript
+gem 'cancan'
+gem "rolify", "~> 3.3.0.rc4"
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
