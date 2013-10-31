@@ -29,6 +29,7 @@ gem "foreman"
 gem "faraday", github: 'lostisland/faraday'
 gem 'faraday-http-cache'
 gem 'kaminari'
+gem 'cancan'
 gem 'gon'  # need rails variables in javascript
 
 # Use SCSS for stylesheets

@@ -66,6 +66,7 @@ GEM
     bson_ext (1.9.2)
       bson (~> 1.9.2)
     builder (3.1.4)
+    cancan (1.6.10)
     capybara (2.1.0)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -310,6 +311,7 @@ PLATFORMS
 DEPENDENCIES
   bootstrap-sass!
   bson_ext
+  cancan
   capybara
   carrierwave
   carrierwave-mongoid (~> 0.6.0)
