@@ -2,7 +2,7 @@ require 'ckeditor'
 require 'sidekiq/web'
 
 Opendataportal::Application.routes.draw do
-  root 'pages#home'
+  root 'pages#index'
 
   mount Ckeditor::Engine => '/ckeditor'
 
