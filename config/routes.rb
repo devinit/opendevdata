@@ -2,6 +2,7 @@ require 'ckeditor'
 require 'sidekiq/web'
 
 Opendataportal::Application.routes.draw do
+  root 'pages#home'
 
   mount Ckeditor::Engine => '/ckeditor'
 
@@ -17,8 +18,6 @@ Opendataportal::Application.routes.draw do
   end
 
   get '/fs/uploads/:model/:field/:fid/:handle' => 'gridfs#serve', handle: /.*/
-
-  root to: 'pages#index'
 
   concern :sociable, Sociable
 
