@@ -16,3 +16,4 @@ vendor/bundle/
 config/mongoid.yml
 config/environments/production.rb
 public/assets/
+public/uploads/
