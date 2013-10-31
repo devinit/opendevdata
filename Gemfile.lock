@@ -13,6 +13,14 @@ GIT
       mongoid (>= 3.0, < 5.0)
 
 GIT
+  remote: git://github.com/digitalplaywright/mongoid-slug.git
+  revision: a1f9012e97825a84d8193790d1403f35a1053b6b
+  specs:
+    mongoid_slug (3.1.2)
+      mongoid (> 3.0)
+      stringex (~> 2.0)
+
+GIT
   remote: git://github.com/lostisland/faraday.git
   revision: 212278c33977c37e3940c52dc0dea291c75f14de
   specs:
@@ -185,9 +193,6 @@ GEM
       mongoid (>= 3.0.1)
       rake
       rspec (>= 2.14)
-    mongoid_slug (3.1.2)
-      mongoid (> 3.0)
-      stringex (~> 1.4)
     moped (2.0.0.beta3)
       bson (~> 2.0.0.rc3)
       optionable (~> 0.1.1)
@@ -292,7 +297,7 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
-    stringex (1.5.1)
+    stringex (2.1.0)
     subexec (0.2.3)
     temple (0.6.7)
     thor (0.18.1)
@@ -347,7 +352,7 @@ DEPENDENCIES
   mongoid!
   mongoid-grid_fs!
   mongoid-rspec
-  mongoid_slug
+  mongoid_slug!
   pry-debugger
   pry-rails
   rails (= 4.0.0)

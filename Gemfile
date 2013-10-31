@@ -11,7 +11,7 @@ gem "carrierwave-mongoid", "~> 0.6.0"
 gem 'mongoid', github: 'mongoid/mongoid'
 gem 'mongo'
 gem 'mongoid-grid_fs', github: 'ahoward/mongoid-grid_fs'
-gem 'mongoid_slug'
+gem 'mongoid_slug', github: 'digitalplaywright/mongoid-slug'
 gem 'rb-readline', '~> 0.4.2' # added just for safety
 # gem 'roo', '~> 1.2.3'
 # gem 'spreadsheet'
