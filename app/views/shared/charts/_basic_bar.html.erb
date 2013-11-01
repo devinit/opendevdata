@@ -1,0 +1,64 @@
+<script type='text/javascript'>
+$(document).ready(function(){
+    $(function () {
+            var seriesData = [];
+            for (var i=0; i < gon.data_values.length; i++){
+                var obj = gon.data_values[i];
+                seriesData.push(obj);
+            }
+
+            $('#container').highcharts({
+                chart: {
+                    type: 'bar'
+                },
+                title: {
+                    text: gon.chartTitle
+                },
+                subtitle: {
+                    text: gon.subTitle
+                },
+                xAxis: {
+                    categories: gon.headings_gon,
+                    title: {
+                        text: gon.xLabel
+                    }
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: gon.yLabel,
+                        align: 'high'
+                    },
+                    labels: {
+                        overflow: 'justify'
+                    }
+                },
+                tooltip: {
+                    valueSuffix: ' '+ gon.data_units
+                },
+                plotOptions: {
+                    bar: {
+                        dataLabels: {
+                            enabled: true
+                        }
+                    }
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'top',
+                    x: -40,
+                    y: 100,
+                    floating: true,
+                    borderWidth: 1,
+                    backgroundColor: '#FFFFFF',
+                    shadow: true
+                },
+                credits: {
+                    enabled: false
+                },
+                series: seriesData
+            });
+        });
+    });
+</script>
