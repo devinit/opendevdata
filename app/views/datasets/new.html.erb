@@ -79,7 +79,14 @@
                         <span class='help-block'>
                             Choose the chart type you would like. Note: remember that the datasets have to conform to a specific format.
                         </span>
-                        <%= f.select :chart_type, ['basic_line', 'spline', 'pie', 'basic_bar', 'scatter'] %>
+                        <%= f.select :chart_type, ['basic_line',
+                                                    'spline',
+                                                    'pie',
+                                                    'basic_bar',
+                                                    'stacked_bar',
+                                                    'basic_column',
+                                                    'stacked_column',
+                                                    'scatter'] %>
                     </div>
                 </div>
 
