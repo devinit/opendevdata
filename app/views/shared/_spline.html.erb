@@ -1,0 +1,51 @@
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(function () {
+            var seriesData = [];
+            for (var i=0; i < gon.data_values.length; i++){
+                var obj = gon.data_values[i];
+                seriesData.push(obj);
+            }
+            console.log(seriesData);
+
+            $('#container').highcharts({
+                chart: {
+                    type: 'spline'
+                },
+                title: {
+                    text: gon.chartTitle
+                },
+                subtitle: {
+                    text: gon.subTitle
+                },
+                xAxis: {
+                    categories: gon.headings
+                },
+                yAxis: {
+                    title: {
+                        text: gon.yLabel
+                    },
+                    labels: {
+                        formatter: function() {
+                            return this.value // +'°' (not used)
+                        }
+                    }
+                },
+                tooltip: {
+                    crosshairs: true,
+                    shared: true
+                },
+                plotOptions: {
+                    spline: {
+                        marker: {
+                            radius: 4,
+                            lineColor: '#666666',
+                            lineWidth: 1
+                        }
+                    }
+                },
+                series: seriesData
+            });
+        });
+    });
+</script>
