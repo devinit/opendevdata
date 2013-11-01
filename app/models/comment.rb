@@ -6,11 +6,11 @@ class Comment
   field :content, type: String
   field :created_at, type: Time
 
-  belongs_to :post
   belongs_to :user
-  belongs_to :dataset
+  embedded_in :dataset
+  embedded_in :post
 
-  validates :content, :user_id, :post_id, presence: true
+  validates :content, :user_id, presence: true
 
   def has_no_time?
     created_at == nil

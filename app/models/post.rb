@@ -11,7 +11,7 @@ class Post
 
   validates :title, :content, presence: true
 
-  has_many :comments
+  embeds_many :comments
   belongs_to :user
 
   paginates_per 10
