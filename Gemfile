@@ -35,6 +35,8 @@ gem 'cancan'
 # gem "rolify", "~> 3.3.0.rc4"
 gem "rolify", git: "git://github.com/EppO/rolify.git"
 
+gem 'truncate_html', github: 'miclovich/truncate_html'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
