@@ -5,6 +5,8 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 # Ignore bundler config.
+
+opendevdata-lock
 /.bundle
 vendor/bundle/
 # Ignore the default SQLite database.
