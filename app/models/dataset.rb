@@ -19,8 +19,7 @@ class Dataset
 
   belongs_to :organization
 
-  validates :name, :description, :attachment, :chart_type, :x_label,
-    :y_label, :sub_title, :data_units, :title, presence: true
+  validates :name, :description, :attachment, :chart_type, :sub_title, :title, presence: true
 
   has_many :comments
 end
