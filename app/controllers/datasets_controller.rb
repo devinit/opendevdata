@@ -15,12 +15,13 @@ class DatasetsController < ApplicationController
 
   def show
     if @dataset.data_extract
-      gon.data_values = @dataset.data_extract['data_values']
-      gon.headings_gon = @dataset.data_extract['headings']
-      gon.chartTitle = @dataset.title
-      gon.subTitle = @dataset.sub_title
-      gon.yLabel = @dataset.y_label
-      gon.xLabel = @dataset.x_label
+      gon.data_values ||= @dataset.data_extract['data_values']
+      gon.headings_gon ||= @dataset.data_extract['headings']
+      gon.chartTitle ||= @dataset.title
+      gon.subTitle ||= @dataset.sub_title
+      gon.yLabel ||= @dataset.y_label
+      gon.xLabel ||= @dataset.x_label
+      gon.data_units ||= @dataset.data_units
     end
     @chart_type ||= @dataset.chart_type
   end
