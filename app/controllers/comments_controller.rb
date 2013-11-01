@@ -1,6 +1,16 @@
 class CommentsController < ApplicationController
   before_filter :authenticate_user!
 
+
+  def new
+    if params[:dataset_id]
+      @dataset = Dataset.find slug=params[:dataset_id]
+      @comment = @dataset.comments.new
+      render "datasets/comments/new"
+    end
+  end
+
+
   def create
     @post = Post.find params[:post_id]
     @comment = @post.comments.create! comment_params

@@ -21,5 +21,5 @@ class Dataset
 
   validates :name, :description, :attachment, :chart_type, :sub_title, :title, presence: true
 
-  has_many :comments
+  embeds_many :comments
 end
