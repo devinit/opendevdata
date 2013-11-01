@@ -22,6 +22,7 @@ class DatasetsController < ApplicationController
       gon.yLabel = @dataset.y_label
       gon.xLabel = @dataset.x_label
     end
+    @chart_type ||= @dataset.chart_type
   end
 
   def new
@@ -62,6 +63,7 @@ class DatasetsController < ApplicationController
 
       redirect_to @dataset, notice: "You have successfully updated this dataset."
     else
+      flash[:alert] = "The dataset you have could not be updated."
       render "edit"
     end
   end
