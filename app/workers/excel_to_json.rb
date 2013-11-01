@@ -7,6 +7,7 @@ class ExcelToJson
   def perform dataset_id, tempfile_path, chart_type, file_name
     puts "---- ***** ---- *** ---- "
     conn = Faraday.new url: 'http://e2j.opendevdata.ug/upload/' do |faraday|
+    # conn = Faraday.new url: 'http://localhost:8000/upload/' do |faraday|
       faraday.request :multipart
       faraday.adapter :net_http
     end
