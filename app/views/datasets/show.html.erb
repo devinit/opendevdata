@@ -43,5 +43,6 @@
         <div id="container" style="height: 400px; margin: auto; min-width: 310px; max-width: 600px"></div>
     </div>
 </div>
-<%= render "shared/#{@chart_type}.html.erb" %>
-
+<% if @chart_type %>
+    <%= render "shared/charts/#{@chart_type}.html.erb" %>
+<% end %>
