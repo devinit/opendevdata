@@ -14,5 +14,16 @@ module ApplicationHelper
     { success: 'success', notice: 'success', alert: 'danger' }[type] || type.to_s
   end
 
+  def title title
+    content_for :title, title
+  end
+
+  def description descp
+    content_for :description, descp
+  end
+
+  def keywords kw
+    content_for :keywords, kw
+  end
 
 end

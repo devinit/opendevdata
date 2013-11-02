@@ -1,7 +1,7 @@
 <%
-    content_for(:title, @dataset.name)
-    content_for(:description, @dataset.description)
-    content_for(:keywords, [@dataset.name, @dataset.y_label, @dataset.x_label].join(", "))
+    title @dataset.name
+    description @dataset.description
+    keywords [@dataset.name, @dataset.y_label, @dataset.x_label].join(", ")
 %>
 <div class='row'>
     <ol class="breadcrumb">
