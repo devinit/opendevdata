@@ -61,4 +61,5 @@ sudo /etc/init.d/sidekiq stop
 
 **Note** There are some system settings to define in this sidekiq script;
 please check to make sure that this conforms to how your system appears.
+
 TODO: work on capistrano deployment recipe; work on fabfile for deployment through python.
