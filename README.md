@@ -24,40 +24,41 @@ Ubuntu and Mac OS X.
 * Clone the repository
 * run `bundle install`
 * run redis-server; on Mac, `redis-server /usr/local/etc/redis.conf`. On a linux box, this is usually an upstart script.
-* Run a resque worker: `rake resque:work QUEUE="*"`
+* Run sidekiq: `bin/sidekiq -C config/sidekiq.yml`
 
 
 ## Production Deployment on Ubuntu 13.10
 
 ### Deployment the hardway
 
-#### Running the Resque.conf as an upstart
+#### Running sidekiq as an init.d script
 
-Copy the sample `resque.conf` file; edit it to match your system settings
+There are several ways to run sidekiq. However, we'll show you the init.d way.
 
-```console
-RAILS_ENV=production bundle exec foreman export upstart /etc/init -a opendevdata -d /var/www/opendevdata/ -u www-data -c worker=3,scheduler=1
-```
-
-**Note: rbenv users might have to install https://github.com/dcarley/rbenv-sudo and follow instructions here: https://github.com/sstephenson/rbenv/issues/350
-... that should return the following output
+Copy the sidekiq script (bash) to your `/etc/init.d/` folder
 
 ```console
-eduler=1
-[foreman export] writing: opendevdata.conf
-[foreman export] writing: opendevdata-worker.conf
-[foreman export] writing: opendevdata-worker-1.conf
-[foreman export] writing: opendevdata-worker-2.conf
-[foreman export] writing: opendevdata-worker-3.conf
-[foreman export] writing: opendevdata-scheduler.conf
-[foreman export] writing: opendevdata-scheduler-1.conf
+cp /path/to/opendevdata/confs/init.d/sidekiq /etc/init.d/
 ```
 
-You can now start or stop your opendevdata resque tasks as follows:
+Change the permissions of the file (do this as root)
 
 ```console
-sudo service opendevdata stop
-sudo service opendevdata start
+sudo chmod 755 /etc/init.d/sidekiq
 ```
 
+Start the `sidekiq` script
+
+```console
+sudo /etc/init.d/sidekiq start
+```
+
+To stop sidekiq
+
+```console
+sudo /etc/init.d/sidekiq stop
+```
+
+**Note** There are some system settings to define in this sidekiq script;
+please check to make sure that this conforms to how your system appears.
 TODO: work on capistrano deployment recipe; work on fabfile for deployment through python.
