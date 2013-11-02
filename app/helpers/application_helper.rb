@@ -15,7 +15,7 @@ module ApplicationHelper
   end
 
   def title title
-    content_for :title, title
+    content_for :title, " | " + title if title
   end
 
   def description descp
