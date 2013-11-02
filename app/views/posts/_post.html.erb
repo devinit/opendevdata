@@ -13,7 +13,7 @@
                 <h1><%= post.title %></h1>
             </div>
             <div class='row'>
-                <%= truncate post.content, length: 140 %><br/>
+                <%= truncate_html(post.content, length: 140, omission: '...(continued)') %><br/>
                 <%= link_to "published "+ time_ago_in_words(post.published_on) + " ago", post %>
             </div>
         </div>
