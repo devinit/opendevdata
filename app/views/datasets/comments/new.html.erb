@@ -1,8 +1,9 @@
+<% title "New Comment" %>
 <div class='row'>
 <div class='panel panel-info'>
   <div class='panel-heading'><h1>New Comment!</h1></div>
   <div class='panel-body'>
-    <%= form_for([@dataset, @comment]) do |f| %>
+    <%= form_for([@dataset, Comment.new]) do |f| %>
 
       <div class='form-group'>
         <%= f.label :content %>
