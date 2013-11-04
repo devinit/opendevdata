@@ -16,22 +16,71 @@
             <h2 class='panel-title'>Edit Dataset</h2>
         </div>
         <div class='panel-body'>
-            <div class='info'>
                 <p class='lead'>
-                    I am lost. Help me!
+                    <a class='btn btn-large btn-success' href='javascript:void(0);' onclick="startIntro();">
+                        I am lost. Help me!
+                        <i class='fa fa-bug'></i>
+                    </a>
                 </p>
-            </div>
+                <script type="text/javascript">
+                    function startIntro(){
+                        var intro = introJs();
+                        intro.setOptions({
+                            tooltipClass: 'customDefault',
+                            steps: [
+                            {
+                                element: document.querySelector("#form_step1"),
+                                intro: 'Fill in the name of your dataset'
+                            },
+                            {
+                                element: document.querySelectorAll('#form_step2')[0],
+                                intro: 'Please provide a description of this dataset.'
+                            }
+                            {
+                                element: document.querySelector("#form_step3")[0],
+                                intro: 'You must provide a subtitle; if none, type n/a.'
+                            },
+                            {
+                                element: document.querySelector("#form_step4")[0],
+                                intro: 'The X-label defines the name of the "x" axis of your chart. It is optional.'
+                            },
+                            {
+                                element: document.querySelector("#form_step5")[0],
+                                intro: 'The Y-label defines the name of the "y" axis of your chart. It is optional.'
+                            },
+                            {
+                                element: document.querySelector("#form_step6")[0],
+                                intro: 'Data units are important; they tell us whether we are handling metrics. Use an appropriate metric such as kilos, milions, etc.'
+                            },
+                            {
+                                element: document.querySelector("#form_step7")[0],
+                                intro: 'If you are working with a chart, please choose the type of chart from this list. Refer to the manual for the excel format to use.'
+                            },
+                            {
+                                element: document.querySelector("#form_step8")[0],
+                                intro: 'Click this button to choose the location of your excel file.'
+                            },
+                            {
+                                element: document.querySelector("#form_step9")[0],
+                                intro: 'Click this button to effect the changes you are adding.'
+                            }
+                            ]
+                        });
+                        intro.start();
+                    }
+                </script>
+
             <%= simple_form_for @dataset, html: { class: 'form-horizontal', multipart: true } do |f| %>
 
                 <%= render 'shared/error_messages', object: f.object %>
 
-                <div class='form-group'>
+                <div class='form-group' id='form_step1'>
                     <%= f.label :name, class: 'col-lg-2' %>
                     <div class='col-lg-10'>
                         <%= f.input_field :name, class: 'form-control' %>
                     </div>
                 </div>
-                <div class='form-group'>
+                <div class='form-group' id='form_step2'>
                     <%= f.label :description, class: 'col-lg-2' %>
                     <div class='col-lg-10'>
                         <%= f.input_field :description, class: 'form-control' %>

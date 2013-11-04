@@ -17,9 +17,12 @@
             <h2 class='panel-title'>New Dataset</h2>
         </div>
         <div class='panel-body'>
-            <div class='info'>
+            <div class='alert alert-warning'>
                 <p class='lead'>
-                    I am lost. Help me!
+                    <%= link_to '#' do %>
+                        I am lost. Help me!
+                        <i class='fa fa-bug'></i>
+                    <% end %>
                 </p>
             </div>
             <%= simple_form_for @dataset, html: { class: 'form-horizontal', multipart: true } do |f| %>
