@@ -20,4 +20,5 @@
 //= require highcharts
 //= require highcharts-more
 //= require modules/exporting
+//= require pace.min.js
 //= require_tree .
