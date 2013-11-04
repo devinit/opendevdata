@@ -17,6 +17,11 @@
             <h2 class='panel-title'>New Dataset</h2>
         </div>
         <div class='panel-body'>
+            <div class='info'>
+                <p class='lead'>
+                    I am lost. Help me!
+                </p>
+            </div>
             <%= simple_form_for @dataset, html: { class: 'form-horizontal', multipart: true } do |f| %>
 
                 <%= render 'shared/error_messages', object: f.object %>
