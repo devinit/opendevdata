@@ -16,9 +16,9 @@
             <h2 class='panel-title'>Edit Dataset</h2>
         </div>
         <div class='panel-body'>
-                <p class='lead'>
-                    <a class='btn btn-large btn-success' href='javascript:void(0);' onclick="startIntro();">
-                        I am lost. Help me!
+                <p class='lead alert btn btn-default'>
+                    <i class='fa fa-warning'></i> <a href='javascript:void(0);' onclick="startIntro();">
+                        Are you lost? Get Help!
                         <i class='fa fa-bug'></i>
                     </a>
                 </p>
@@ -35,34 +35,39 @@
                             {
                                 element: document.querySelectorAll('#form_step2')[0],
                                 intro: 'Please provide a description of this dataset.'
-                            }
+                            },
                             {
-                                element: document.querySelector("#form_step3")[0],
+                                element: '#form_step3',
+                                intro: 'You must provide a title for your chart.'
+                            },
+                            {
+                                element: "#form_step4",
                                 intro: 'You must provide a subtitle; if none, type n/a.'
                             },
                             {
-                                element: document.querySelector("#form_step4")[0],
+                                element: "#form_step5",
                                 intro: 'The X-label defines the name of the "x" axis of your chart. It is optional.'
                             },
                             {
-                                element: document.querySelector("#form_step5")[0],
+                                element: "#form_step6",
                                 intro: 'The Y-label defines the name of the "y" axis of your chart. It is optional.'
                             },
                             {
-                                element: document.querySelector("#form_step6")[0],
+                                element: "#form_step7",
                                 intro: 'Data units are important; they tell us whether we are handling metrics. Use an appropriate metric such as kilos, milions, etc.'
                             },
                             {
-                                element: document.querySelector("#form_step7")[0],
+                                element: "#form_step8",
                                 intro: 'If you are working with a chart, please choose the type of chart from this list. Refer to the manual for the excel format to use.'
                             },
                             {
-                                element: document.querySelector("#form_step8")[0],
+                                element: "#form_step9",
                                 intro: 'Click this button to choose the location of your excel file.'
                             },
                             {
-                                element: document.querySelector("#form_step9")[0],
-                                intro: 'Click this button to effect the changes you are adding.'
+                                element: "#form_step10",
+                                intro: 'Click this button to effect the changes you are adding.',
+                                position: 'right'
                             }
                             ]
                         });
@@ -89,35 +94,35 @@
 
                 <hr>
 
-                <div class='form-group'>
+                <div class='form-group' id='form_step3'>
                     <%= f.label :title, class: 'col-lg-2' %>
                     <div class='col-lg-10'>
                         <%= f.input_field :title, class: 'form-control' %>
                     </div>
                 </div>
 
-                <div class='form-group'>
+                <div class='form-group' id='form_step4'>
                     <%= f.label :sub_title, class: 'col-lg-2' %>
                     <div class='col-lg-10'>
                         <%= f.input_field :sub_title, class: 'form-control' %>
                     </div>
                 </div>
 
-                <div class='form-group'>
+                <div class='form-group' id='form_step5'>
                     <%= f.label :x_label, class: 'col-lg-2' %>
                     <div class='col-lg-10'>
                         <%= f.input_field :x_label, class: 'form-control' %>
                     </div>
                 </div>
 
-                <div class='form-group'>
+                <div class='form-group' id='form_step6'>
                     <%= f.label :y_label, class: 'col-lg-2' %>
                     <div class='col-lg-10'>
                         <%= f.input_field :y_label, class: 'form-control' %>
                     </div>
                 </div>
 
-                <div class='form-group'>
+                <div class='form-group' id='form_step7'>
                     <%= f.label :data_units, class: 'col-lg-2' %>
                     <div class='col-lg-10'>
                         <%= f.input_field :data_units, class: 'form-control' %>
@@ -126,7 +131,7 @@
 
                 </hr>
 
-                <div class='form-group'>
+                <div class='form-group' id='form_step8'>
                     <%= f.label :chart_type, class: 'col-lg-2' %>
                     <div class='col-lg-10'>
                         <span class='help-block'>
@@ -144,7 +149,7 @@
                     </div>
                 </div>
 
-                <div class='form-group'>
+                <div class='form-group' id='form_step9'>
                     <div class='col-lg-offset-2 col-lg-10'>
                         <span class='help-block'>You can upload a dataset Excel file.</span>
                         <%= f.file_field :attachment %>
@@ -152,7 +157,7 @@
                 </div>
                 <div class='form-group'>
                     <div class='col-lg-offset-2 col-lg-10'>
-                        <%= f.button :submit, class: 'btn btn-primary' %>
+                        <%= f.button :submit, class: 'btn btn-primary', id: 'form_step10' %>
                     </div>
                 </div>
             <% end %>
