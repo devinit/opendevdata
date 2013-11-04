@@ -15,6 +15,7 @@ gem 'mongoid_slug', github: 'digitalplaywright/mongoid-slug'
 gem 'rb-readline', '~> 0.4.2' # added just for safety
 # gem 'roo', '~> 1.2.3'
 # gem 'spreadsheet'
+gem "autoprefixer-rails"
 gem 'iconv'
 gem "ckeditor"
 gem "sanitizer"
