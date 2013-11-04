@@ -1,6 +1,5 @@
+<% title('All Datasets') %>
 <div class='row'>
-
-
     <ol class="breadcrumb">
       <li>
         <%= link_to root_path do%>
@@ -16,13 +15,31 @@
         New Dataset <i class='fa fa-plus'></i>
     <% end %>
     <h3>Datasets</h3>
-    <table class='table'>
+    <div id='datasets'>
         <% @datasets.each do |dataset| %>
-        <tr>
-            <td><%= dataset.name %></td>
-            <td><%= link_to "visit", dataset %></td>
-        </tr>
+        <div class='box panel panel-default'>
+            <div class='panel-heading'>
+                <h1 class='panel-title'><%= dataset.name %></h1>
+            </div>
+            <div class='panel-body'>
+                <%= dataset.description %><br/>
+                <span class='date'><%= dataset.created_at %></span>
+            </div>
+            <div class='panel-footer'>
+                <%= link_to dataset, class: 'btn btn-default' do%>
+                    visit <i class='fa fa-eye'></i>
+                <% end %>
+                <% if signed_in? and current_user.has_role?(:admin) %>
+                    <%= link_to delete_dataset_path(dataset), class: 'btn btn-danger' do%>
+                        Delete <i class='fa fa-trash-o'></i>
+                    <% end %>
+                <% end %>
+                <%= link_to dataset.attachment.url do %>
+                    <i class='fa fa-download'></i>
+                <% end %>
+            </div>
+        </div>
         <% end %>
-    </table>
+    </div>
     <%= paginate @datasets %>
 </div>

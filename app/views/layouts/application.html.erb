@@ -19,6 +19,18 @@
      <![endif]-->
    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
    <%= csrf_meta_tags %>
+   <style>
+      .forLastStep {
+        font-weight: bold;
+      }
+      .customDefault {
+        color: gray;
+      }
+      .customDefault .introjs-skipbutton {
+        border-radius: 0;
+        color: red;
+      }
+    </style>
 
   </head>
 
