@@ -10,7 +10,7 @@ class DatasetsController < ApplicationController
   end
 
   def index
-    @datasets = Dataset.page params[:page]
+    @datasets = Dataset.desc(:created_at).page(params[:page])
   end
 
   def show
@@ -69,7 +69,18 @@ class DatasetsController < ApplicationController
     end
   end
 
+  def delete_page
+    @dataset = Dataset.find params[:id]
+  end
+
   def destroy
+    if current_user.has_role? :admin
+      @dataset.delete
+      flash[:notice] = 'Successfully deleted dataset.'
+    else
+      flash[:alert] = "Could not delete this dataset because you don't have the permission to."
+    end
+    redirect_to dataset_path
   end
 
   private
