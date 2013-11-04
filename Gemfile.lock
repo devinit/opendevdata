@@ -81,6 +81,8 @@ GEM
     addressable (2.3.5)
     arel (4.0.1)
     atomic (1.1.14)
+    autoprefixer-rails (0.8.20131020)
+      execjs
     bcrypt-ruby (3.1.2)
     bson (2.0.0.rc3)
     bson_ext (1.5.1)
@@ -330,6 +332,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  autoprefixer-rails
   bootstrap-sass!
   bson_ext
   cancan
