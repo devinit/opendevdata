@@ -34,13 +34,14 @@ class DatasetsController < ApplicationController
     @dataset = Dataset.create dataset_params
     if @dataset.save
       # send file for processing
-      _id = @dataset.id.to_s
-
-      ExcelToJson.perform_async(
-        _id,
-        dataset_params['attachment'].tempfile.path,
-        dataset_params['chart_type'],
-        @dataset.attachment.path.split("/").last)
+      if dataset_params['attachment']
+        _id = @dataset.id.to_s
+        ExcelToJson.perform_async(
+          _id,
+          dataset_params['attachment'].tempfile.path,
+          dataset_params['chart_type'],
+          @dataset.attachment.path.split("/").last)
+      end
 
       redirect_to @dataset, notice: "You have successfully uploaded a dataset"
     else
@@ -54,14 +55,15 @@ class DatasetsController < ApplicationController
 
   def update
     if @dataset.update_attributes dataset_params
-      _id = @dataset.id.to_s
-      # TODO refactor and put this in dataset.rb
-      ExcelToJson.perform_async(
-        _id,
-        dataset_params['attachment'].tempfile.path,
-        dataset_params['chart_type'],
-        @dataset.attachment.path.split("/").last)
-
+      if dataset_params['attachment']
+        _id = @dataset.id.to_s
+        # TODO refactor and put this in dataset.rb
+        ExcelToJson.perform_async(
+          _id,
+          dataset_params['attachment'].tempfile.path,
+          dataset_params['chart_type'],
+          @dataset.attachment.path.split("/").last)
+      end
       redirect_to @dataset, notice: "You have successfully updated this dataset."
     else
       flash[:alert] = "The dataset you have could not be updated."
