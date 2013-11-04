@@ -8,14 +8,15 @@
 
 opendevdata-lock
 /.bundle
-vendor/bundle/
+/vendor/bundle/
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
-config/mongoid.yml
-config/environments/production.rb
-public/assets/
-public/uploads/
+/config/mongoid.yml
+/config/environments/production.rb
+/public/assets/
+/public/uploads/
+/public/system/*
