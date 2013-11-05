@@ -8,7 +8,7 @@ gem 'devise'
 gem 'simple_form'
 gem 'carrierwave'
 gem "carrierwave-mongoid", "~> 0.6.0"
-gem 'mongoid', github: 'mongoid/mongoid'
+gem 'mongoid', '~> 4', github: 'mongoid/mongoid'
 gem 'mongo'
 gem 'mongoid-grid_fs', github: 'ahoward/mongoid-grid_fs'
 gem 'mongoid_slug', github: 'digitalplaywright/mongoid-slug'
@@ -57,7 +57,7 @@ gem 'jquery-turbolinks'
 gem 'masonry-rails', '~> 0.2.0'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
-
+gem 'figaro'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
@@ -69,19 +69,30 @@ end
 group :development, :test do
   gem "rspec-rails"
   gem "factory_girl_rails"
-  gem "mongoid-rspec"
   gem "launchy"
 end
 
 group :test do
   gem "capybara"
   gem "selenium-webdriver"
-  gem "cucumber-rails", require: false
-  gem "database_cleaner"
+  gem "database_cleaner", '1.0.1'
+  gem 'email_spec'
+  gem 'mongoid-rspec', '>= 1.6.0', github: 'evansagge/mongoid-rspec'
 end
 
 
 group :development do
   gem 'pry-rails'
+  gem 'better_errors'
+  gem 'binding_of_caller', platforms: [:mri_19, :mri_20, :rbx]
   gem 'pry-debugger'
+  gem 'guard-bundler'
+  gem 'guard-rails'
+  gem 'guard-rspec'
+  gem 'hub', require: nil
+  gem 'quiet_assets'
+  gem 'rails_layout'
+  gem 'rb-fchange', require: false
+  gem 'rb-fsevent', require: false
+  gem 'rb-inotify', require: false
 end
