@@ -52,6 +52,28 @@
     <%= render "shared/charts/#{@chart_type}.html.erb" %>
 <% end %>
 
-<div class='row' id='comments'>
-Comments
+<div class='row'>
+    <h3 class='page-header'>Comments</h3>
 </div>
+
+<div class='row' id='comment'>
+    <% @dataset.comments.desc(:created_at).each do |comment| %>
+
+        <div class='comment row'>
+            <div class='avatar'>
+                <%= image_tag(avatar_url(comment.user, size=64)) %>
+            </div>
+            <div class='main'>
+                <div class='headline'><%= full_name_of comment.user %> <%= time_ago_in_words(comment.created_at) + " ago." %></div>
+                <div class='comment_content'>
+                    <p><%= comment.content %></p>
+                </div>
+            </div>
+            <div class='clear'></div>
+        </div>
+
+    <% end %>
+
+</div>
+
+
