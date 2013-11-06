@@ -2,7 +2,7 @@ module ApplicationHelper
 
   def full_name_of user
     p user
-    "#{user.first_name} #{user.last_name}"
+    "#{user.first_name.capitalize} #{user.last_name.capitalize}"
   end
 
   def avatar_url user, size=25
