@@ -23,7 +23,12 @@
             </div>
             <div class='panel-body'>
                 <%= dataset.description %><br/>
-                <span class='date'><%= dataset.created_at %></span>
+                <% if dataset.created_at %>
+                    <hr>
+                    <span class='date'>
+                        <i class='fa fa-calendar'></i> posted <%= time_ago_in_words(dataset.created_at)+ " ago" %>
+                    </span>
+                <% end %>
             </div>
             <div class='panel-footer'>
                 <%= link_to dataset, class: 'btn btn-default' do%>
