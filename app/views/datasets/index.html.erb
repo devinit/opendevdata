@@ -10,9 +10,10 @@
       <li class="active">All Datasets</li>
     </ol>
 
-
-    <%= link_to new_dataset_path, class: 'btn btn-primary' do %>
-        New Dataset <i class='fa fa-plus'></i>
+    <% if signed_in? %>
+        <%= link_to new_dataset_path, class: 'btn btn-primary' do %>
+            New Dataset <i class='fa fa-plus'></i>
+        <% end %>
     <% end %>
     <h3>Datasets</h3>
     <div id='datasets'>
