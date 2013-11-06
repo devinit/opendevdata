@@ -27,6 +27,10 @@
                     <hr>
                     <span class='date'>
                         <i class='fa fa-calendar'></i> posted <%= time_ago_in_words(dataset.created_at)+ " ago" %>
+                    </span><br/>
+                    <span class='comments'>
+                        <i class='fa fa-comments'></i>
+                        <%= pluralize(dataset.comments.count, 'comment') %>
                     </span>
                 <% end %>
             </div>
