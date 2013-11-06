@@ -24,6 +24,7 @@ class DatasetsController < ApplicationController
       gon.data_units ||= @dataset.data_units
     end
     @chart_type ||= @dataset.chart_type
+    @comments = @dataset.comments.desc(:created_at).page(params[:page])
   end
 
   def new
