@@ -1,7 +1,6 @@
 module ApplicationHelper
 
   def full_name_of user
-    p user
     "#{user.first_name.capitalize} #{user.last_name.capitalize}"
   end
 
