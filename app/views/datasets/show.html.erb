@@ -57,7 +57,7 @@
 </div>
 
 <div class='row' id='comment'>
-    <% @dataset.comments.desc(:created_at).each do |comment| %>
+    <% @comments.each do |comment| %>
 
         <div class='comment row'>
             <div class='avatar'>
@@ -71,8 +71,8 @@
             </div>
             <div class='clear'></div>
         </div>
-
     <% end %>
+    <%= paginate @comments %>
 
 </div>
 
