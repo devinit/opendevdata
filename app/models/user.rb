@@ -5,6 +5,7 @@ class User
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable,
     :rememberable, :trackable, :validatable
+  devise :omniauthable, omniauth_providers: [:facebook, :twitter]
 
   ## More user information
   field :first_name,         type: String
@@ -42,6 +43,11 @@ class User
 
   ## Token authenticatable
   # field :authentication_token, :type => String
+
+  ## Omniauth stuff
+  field :provider, type: String
+  field :uid, type: String
+  field :name, type: String
 
   validates :first_name, :last_name, presence: true
 

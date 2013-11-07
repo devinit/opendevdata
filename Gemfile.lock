@@ -448,7 +448,6 @@ DEPENDENCIES
   rails_layout
   rb-fchange
   rb-fsevent
-  rb-inotify
   rb-readline (~> 0.4.2)
   redis
   rolify!

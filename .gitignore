@@ -5,7 +5,7 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 # Ignore bundler config.
-
+devise.rb
 opendevdata-lock
 /.bundle
 /vendor/bundle/
