@@ -5,6 +5,9 @@ gem 'rails', '4.0.0'
 
 gem 'bson_ext'
 gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
 gem 'simple_form'
 gem 'carrierwave'
 gem "carrierwave-mongoid", "~> 0.6.0"
@@ -66,6 +69,8 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+gem 'bullet', group: 'development'
+gem 'rack-insight', group: 'development'
 group :development, :test do
   gem "rspec-rails"
   gem "factory_girl_rails"
