@@ -99,5 +99,4 @@ group :development do
   gem 'rails_layout'
   gem 'rb-fchange', require: false
   gem 'rb-fsevent', require: false
-  gem 'rb-inotify', require: false
 end
