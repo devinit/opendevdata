@@ -69,8 +69,6 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-gem 'bullet', group: 'development'
-gem 'rack-insight', group: 'development'
 group :development, :test do
   gem "rspec-rails"
   gem "factory_girl_rails"
@@ -89,14 +87,5 @@ end
 group :development do
   gem 'pry-rails'
   gem 'better_errors'
-  gem 'binding_of_caller', platforms: [:mri_19, :mri_20, :rbx]
   gem 'pry-debugger'
-  gem 'guard-bundler'
-  gem 'guard-rails'
-  gem 'guard-rspec'
-  gem 'hub', require: nil
-  gem 'quiet_assets'
-  gem 'rails_layout'
-  gem 'rb-fchange', require: false
-  gem 'rb-fsevent', require: false
 end
