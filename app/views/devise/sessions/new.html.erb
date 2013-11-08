@@ -1,7 +1,7 @@
 <div class='panel panel-info'>
-  <div class='panel-heading'><h1>Login!</h1></div>
-  <div class='panel-body'>
+    <div class='panel-heading'><h1>Login!</h1></div>
     <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+    <div class='panel-body'>
       <%= devise_error_messages! %>
 
       <div class='form-group'>
@@ -22,6 +22,16 @@
       </div>
     <% end %>
 
-    <div class='panel-footer'><%= render "devise/shared/links" %></div>
-  </div>
+    <hr>
+
+    <%= link_to "#", class: 'btn btn-info' do %>
+      <i class='fa fa-facebook-square'></i> Login with Facebook
+    <% end %>
+    <%= link_to "#", class: 'btn btn-danger' do %>
+      <i class='fa fa-twitter'></i> Login with twitter
+    <% end %>
+    </div>
+    <div class='panel-footer'>
+      <%= render "devise/shared/links" %>
+    </div>
 </div>
