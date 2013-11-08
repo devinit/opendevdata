@@ -58,13 +58,14 @@
 
 <div class='row' id='comment'>
     <% @comments.each do |comment| %>
-
         <div class='comment row'>
             <div class='avatar'>
                 <%= image_tag(avatar_url(comment.user, size=64)) %>
             </div>
             <div class='main'>
-                <div class='headline'><%= full_name_of comment.user %> <%= time_ago_in_words(comment.created_at) + " ago." %></div>
+                <div class='headline'>
+                    <%= full_name_of comment.user %> commented <span style='text-align: right'><%= time_ago_in_words(comment.created_at) + " ago." %></span>
+                </div>
                 <div class='comment_content'>
                     <p><%= comment.content %></p>
                 </div>

@@ -30,7 +30,8 @@ gem 'sinatra', require: false
 gem 'slim'
 gem "redis"
 gem "foreman"
-gem "faraday", github: 'lostisland/faraday'
+# gem "faraday", github: 'lostisland/faraday'
+gem 'faraday', '<= 0.8.8'
 gem 'faraday-http-cache'
 gem 'kaminari'
 gem 'cancan'
@@ -83,7 +84,7 @@ group :test do
   gem 'mongoid-rspec', '>= 1.6.0', github: 'evansagge/mongoid-rspec'
 end
 
-
+gem 'bullet', group: :development
 group :development do
   gem 'pry-rails'
   gem 'better_errors'
