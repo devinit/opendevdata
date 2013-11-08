@@ -15,13 +15,15 @@ class ApplicationController < ActionController::Base
 
     # parameters to allow during signup
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:last_name,
-      :first_name, :email, :password, :password_confirmation)}
+      :first_name, :email, :password, :password_confirmation, :uid, :name)}
 
     # paramters to allow during an `account update`
     # URL: http://localhost:3000/users/edit
     devise_parameter_sanitizer.for(:account_update) {
                           |u| u.permit(:last_name,
                                       :first_name,
+                                      :uid,
+                                      :name,
                                       :email,
                                       :password,
                                       :password_confirmation,
