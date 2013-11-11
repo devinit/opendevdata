@@ -9,4 +9,16 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Opendataportal::Application.config.secret_key_base = '8fc86f239c7ef0252d06620a5d30dea9ecc0950df79a59411c8c9cefc9365f1e37381b0e91c3462d7fb881ffad16589cb5b64c32dd7c19147f211f85f07fbcad'
+require 'securerandom'
+
+def secure_token
+  token_file = Rails.root.join('.secret')
+  if File.exists? token_file
+    File.read(token_file).chomp
+  else
+    token = SecureRandom.hex(64)
+    File.write token_file, token
+    token
+  end
+end
+Opendataportal::Application.config.secret_key_base = secure_token
