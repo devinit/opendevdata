@@ -6,7 +6,7 @@ Opendataportal::Application.routes.draw do
 
   mount Ckeditor::Engine => '/ckeditor'
 
-  authenticate :user, lambda { |u| u.admin? } do
+  authenticate :user, lambda { |u| u.has_role? :admin } do
     mount Sidekiq::Web => '/sidekiq'
   end
 
