@@ -16,6 +16,7 @@ gem 'mongo'
 gem 'mongoid-grid_fs', github: 'ahoward/mongoid-grid_fs'
 gem 'mongoid_slug', github: 'digitalplaywright/mongoid-slug'
 gem 'rb-readline', '~> 0.4.2' # added just for safety
+gem 'rails_admin'
 # gem 'roo', '~> 1.2.3'
 # gem 'spreadsheet'
 gem "autoprefixer-rails"
