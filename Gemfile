@@ -96,7 +96,4 @@ end
 
 gem 'capistrano'
 gem 'capistrano-rbenv', github: "capistrano/rbenv"
-
-group :production do
-  gem 'unicorn'
-end
+gem 'unicorn'
