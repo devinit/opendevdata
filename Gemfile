@@ -92,8 +92,10 @@ group :development do
   gem 'pry-rails'
   gem 'better_errors'
   gem 'pry-debugger'
-  gem 'capistrano'
 end
+
+gem 'capistrano'
+gem 'capistrano-rbenv', github: "capistrano/rbenv"
 
 group :production do
   gem 'unicorn'
