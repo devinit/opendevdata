@@ -1,0 +1,22 @@
+<% title("Users") %>
+<div class='page-header'>
+    <h2>Users</h2>
+</div>
+<div class='row'>
+
+    <table class='table'>
+        <thead>
+            <th colspan=2>Name</th>
+        </thead>
+        <% @users.each do |user| %>
+            <tr>
+                <td><%= user.full_name %></td>
+                <td>
+                    <%= link_to "Ban", '#', class: 'btn btn-warning' %>
+                    <%= link_to "Delete", '#', class: 'btn btn-danger' %>
+                    <%= link_to 'Show', user, class: 'btn btn-default' %>
+                </td>
+            </tr>
+        <% end %>
+    </table>
+</div>
