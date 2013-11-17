@@ -13,7 +13,7 @@
                 <td><%= user.full_name %></td>
                 <td>
                     <%= link_to "Ban", '#', class: 'btn btn-warning' %>
-                    <%= link_to "Delete", '#', class: 'btn btn-danger' %>
+                    <%= link_to "Delete", user, method: :delete, confirm: "Are you sure?", class: 'btn btn-danger' %>
                     <%= link_to 'Show', user, class: 'btn btn-default' %>
                 </td>
             </tr>
