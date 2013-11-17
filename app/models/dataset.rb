@@ -22,6 +22,7 @@ class Dataset
   mount_uploader :attachment, DatasetFileUploader
 
   belongs_to :organization
+  belongs_to :user
 
   validates :name, :description, :chart_type, :sub_title, :title, presence: true
 
