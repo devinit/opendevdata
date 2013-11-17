@@ -32,7 +32,7 @@ class DatasetsController < ApplicationController
   end
 
   def create
-    @dataset = Dataset.create dataset_params
+    @dataset = Dataset.create(dataset_params.merge(user: current_user))
     if @dataset.save
       # send file for processing
       if dataset_params['attachment']
@@ -77,7 +77,7 @@ class DatasetsController < ApplicationController
   end
 
   def destroy
-    if current_user.has_role? :admin
+    if current_user.is_admin? or @dataset.user == current_user
       @dataset.delete
       flash[:notice] = 'Successfully deleted dataset.'
     else
