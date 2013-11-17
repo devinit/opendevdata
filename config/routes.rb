@@ -8,7 +8,7 @@ Opendataportal::Application.routes.draw do
 
   authenticate :user, lambda { |u| u.is_admin? } do
     mount Sidekiq::Web => '/sidekiq'
-    get "users", to: "users#index", as: :users
+    get "users/", to: "users#index", as: :users
     get 'user/:id', to: 'users#show', as: :user
   end
 
