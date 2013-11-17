@@ -1,6 +1,9 @@
 class User
   include Mongoid::Document
   rolify
+
+  before_save :set_name_and_case
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable,
@@ -53,6 +56,14 @@ class User
 
   has_many :posts, dependent: :delete
 
+  def is_admin?
+    self.has_role? :admin
+  end
+
+  def full_name
+    "#{self.first_name.capitalize} #{self.last_name.capitalize}"
+  end
+
   def self.find_for_facebook_oauth auth, signed_in_resource=nil
     user = User.where(provider: auth.provider, uid: auth.uid).first
     unless user
@@ -73,5 +84,12 @@ class User
       end
     end
   end
+
+  protected
+    def set_name_and_case
+      self.first_name = self.first_name.capitalize
+      self.last_name = self.last_name.capitalize
+      # self.name = full_name
+    end
 
 end
