@@ -6,8 +6,10 @@ Opendataportal::Application.routes.draw do
 
   mount Ckeditor::Engine => '/ckeditor'
 
-  authenticate :user, lambda { |u| u.has_role? :admin } do
+  authenticate :user, lambda { |u| u.is_admin? } do
     mount Sidekiq::Web => '/sidekiq'
+    get "users", to: "users#index", as: :users
+    get 'user/:id', to: 'users#show', as: :user
   end
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks'}
