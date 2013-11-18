@@ -50,7 +50,20 @@
             <li class="devider"></li>
             <li><%= link_to "Help", '#' %></li>
             <li class="devider"></li>
-            <li><%= link_to "Login", login_path %></li>
+            <li>
+                <% if signed_in? %>
+                    <%= link_to logout_path do %>
+                        <span class='fa fa-sign-out'></span>
+                        Logout
+                        <%= image_tag(avatar_url(current_user), class: 'img img-circle') %>
+                    <% end %>
+                <% else %>
+                    <%= link_to login_path do%>
+                        <span class='fa fa-sign-in'></span>
+                        Login
+                    <% end %>
+                <% end %>
+            </li>
         </ul>
     </div>
 </div><!--/top-->
@@ -153,7 +166,7 @@
             </div>
             <div class="col-md-6">
                 <a href="#">
-                    <%= image_tag("logo2-default.png", class: "pull-right", id: "logo-footer") %>
+                    <%= image_tag("devinit.jpg", class: "pull-right", id: "logo-footer", class: 'logo') %>
                 </a>
             </div>
         </div><!--/row-->
