@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="<%= yield(:description) || "Open Dev Data Uganda" %>">
+    <meta name="keywords" content="<%= yield(:keywords) || "opendata, bigdata, opendevelopment" %>">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="<%= asset_path("ico/favicon.png") %>">
+
+   <title>Open Development Data Uganda <%= yield(:title) %></title>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+   <%= include_gon %>
+   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+   <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+   <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.min.css" rel="stylesheet">
+   <!--
+   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
+   -->
+   <%= csrf_meta_tags %>
+   <style>
+      .forLastStep {
+        font-weight: bold;
+      }
+      .customDefault {
+        color: gray;
+      }
+      .customDefault .introjs-skipbutton {
+        border-radius: 0;
+        color: red;
+      }
+    </style>
+
+  </head>
+
+  <body>
+
+    <!-- Wrap all page content here -->
+    <div id="wrap">
+      <%= render "layouts/header" %>
+      <!-- Begin page content -->
+      <div class="container"  style="padding-top: 60px;">
+
+          <% flash.each do |type, message| %>
+          <div class="row">
+            <div class="alert alert-<%= define_alert_type(type) %> alert-dismissable">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <%= message %>
+            </div>
+          </div>
+          <% end %>
+
+
+        <div class="row">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+
+    <div id="footer">
+      <div class="container">
+        <p class="text-muted credit">Open Dev Data &copy; <%= Time.now.year %></p>
+      </div>
+    </div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+   <!--[if lt IE 9]>
+     <script src="<%= asset_path('html5shiv.js') %>"></script>
+     <script src="<%= asset_path('respond.min.js')%>"></script>
+   <![endif]-->
+  </body>
+</html>
