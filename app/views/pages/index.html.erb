@@ -3,20 +3,264 @@
 <% else %>
     <% title("Welcome") %>
 <% end %>
+
+<!--=== Slider ===-->
+<div id="myCarousel" class="carousel slide">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+
+    <div class="item active">
+      <img src="http://lorempixel.com/1500/600/abstract/1">
+      <div class="container">
+        <div class="carousel-caption">
+          <h1>Encourage good data journalism</h1>
+          <p class='alert alert-info'>
+           The datasets in the portal can sustain some good data journalism
+          </p>
+          <p>
+            <%= link_to "Register", register_path, class: 'btn btn-large btn-primary' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="item">
+      <img src="http://lorempixel.com/1500/600/abstract/2">
+      <div class="container">
+        <div class="carousel-caption">
+          <h1>Count developmental costs</h1>
+          <p class='alert alert-info'>
+           The datasets in the portal can sustain some good data journalism
+          </p>
+          <p>
+            <%= link_to "Register", register_path, class: 'btn btn-large btn-primary' %>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- Controls -->
+  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+    <span class="icon-prev"></span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" data-slide="next">
+    <span class="icon-next"></span>
+  </a>
+</div>
+
+
+
+<!--=== Purchase Block ===-->
+<div class="purchase">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <span>
+                    Open Development Data Uganda is a fully engaging portal
+                </span>
+                <p>encourages individuals and organizations to
+                    share data, discuss datasets, develop solutions using datasets.
+                </p>
+            </div>
+            <div class="col-md-3">
+                <%= link_to "Register Now", register_path, class: 'btn-buy hover-effect' %>
+            </div>
+        </div>
+    </div>
+</div><!--/row-->
+<!-- End Purchase Block -->
+
+<!--=== Content Part ===-->
+<div class="container">
+    <!-- Service Blocks -->
+    <div class="row">
+        <div class="col-md-4">
+            <div class="service">
+                <i class="glyphicon glyphicon-resize-small service-icon"></i>
+                <div class="desc">
+                    <h4>Fully Responsive</h4>
+                    <p>
+                        The data portal is very responsive. It should scale responsively.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="service">
+                <i class="fa fa-cogs service-icon"></i>
+                <div class="desc">
+                    <h4>HTML5 + CSS3</h4>
+                    <p>
+                        The portal works on most devices and is very mobile web friendly.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="service">
+                <i class="fa fa-plane service-icon"></i>
+                <div class="desc">
+                    <h4>Easy to Use</h4>
+                    <p>
+                        Using this portal is easy; we've designed it to have a self guidance system.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div><!--/row-->
+    <!-- End Service Blokcs -->
+
+    <!-- Recent Works -->
+    <div class="headline"><h2>Recent Works</h2></div>
+    <div class="row">
+        <div class="col-md-3 col-sm-6">
+            <div class="thumbnails thumbnail-style thumbnail-kenburn">
+                <div class="thumbnail-img">
+                    <div class="overflow-hidden">
+                        <%= image_tag("2.jpg", class: "img-responsive") %>
+                    </div>
+                    <a class="btn-more hover-effect" href="#">read more +</a>
+                </div>
+                <div class="caption">
+                    <h3><a class="hover-effect" href="#">Project One</a></h3>
+                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="thumbnails thumbnail-style thumbnail-kenburn">
+                <div class="thumbnail-img">
+                    <div class="overflow-hidden">
+                        <%= image_tag("3.jpg", class: "img-responsive") %>
+                    </div>
+                    <a class="btn-more hover-effect" href="#">read more +</a>
+                </div>
+                <div class="caption">
+                    <h3><a class="hover-effect" href="#">Project Two</a></h3>
+                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="thumbnails thumbnail-style thumbnail-kenburn">
+                <div class="thumbnail-img">
+                    <div class="overflow-hidden">
+                        <%= image_tag("9.jpg", class: 'img-responsive') %>
+                    </div>
+                    <a class="btn-more hover-effect" href="#">read more +</a>
+                </div>
+                <div class="caption">
+                    <h3><a class="hover-effect" href="#">Project Three</a></h3>
+                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="thumbnails thumbnail-style thumbnail-kenburn">
+                <div class="thumbnail-img">
+                    <div class="overflow-hidden">
+                        <%= image_tag("10.jpg", class: 'img-responsive') %>
+                    </div>
+                    <a class="btn-more hover-effect" href="#">read more +</a>
+                </div>
+                <div class="caption">
+                    <h3><a class="hover-effect" href="#">Project Four</a></h3>
+                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem.</p>
+                </div>
+            </div>
+        </div>
+    </div><!--/row-->
+    <!-- End Recent Works -->
+
+    <!-- Info Blocks -->
+    <div class="row">
+        <!-- Welcome Block -->
+        <div class="col-md-8">
+            <div class="headline"><h2>Welcome To Open Development Data Uganda</h2></div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <%= image_tag('6.jpg', class: 'img-responsive margin-bottom-20') %>
+                </div>
+                <div class="col-sm-8">
+                    <p>
+                        Open development is where organisations use information
+                        technologies, among other information
+                        sharing channels, to provide and share information.
+                        Open development enhances transparency and
+                        accountability about resources that are available to be
+                        invested in development, how those resources
+                        are invested and what results they achieve. In the end,
+                        all the stakeholders involved in this information
+                        sharing chain; the data owners and users benefit from
+                        this mutually reinforcing ecosystem.
+                    </p>
+                </div>
+            </div>
+        </div><!--/col-md-8-->
+
+        <!-- Latest Datasets -->
+        <div class="col-md-4">
+            <div class="headline"><h2>Latest Datasets</h2></div>
+            <div id="myCarousel" class="carousel slide carousel-v1">
+                <div class="carousel-inner">
+                    <div class="item">
+                        <%= image_tag('5.jpg') %>
+                        <div class="carousel-caption">
+                            <p>Facilisis odio, dapibus ac justo acilisis gestinas.</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <%= image_tag('4.jpg') %>
+                        <div class="carousel-caption">
+                            <p>Cras justo odio, dapibus ac facilisis into egestas.</p>
+                        </div>
+                        </div>
+                    <div class="item active">
+                        <%= image_tag('3.jpg') %>
+                        <div class="carousel-caption">
+                            <p>Justo cras odio apibus ac afilisis lingestas de.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-arrow">
+                    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div><!--/col-md-4-->
+    </div><!--/row-->
+    <!-- End Info Blokcs -->
+
+    <!-- Our Partners -->
+    <div id="clients-flexslider" class="flexslider home clients">
+        <div class="headline"><h2>Our Partners</h2></div>
+
+    <div class="flex-viewport" style="overflow: hidden; position: relative;">
+        <ul class="slides" style="width: 3400%; -webkit-transition: 0.6s; transition: 0.6s; -webkit-transform: translate3d(-1012.3333333333335px, 0px, 0px);">
+            <li style="width: 125.66666666666667px; float: left; display: block;">
+                <a href="http://devinit.org/">
+                    <%= image_tag("devinit.jpg") %>
+                    <%= image_tag("devinit.jpg", class: "color-img") %>
+                </a>
+            </li>
+        </ul></div></div><!--/flexslider-->
+    <!-- End Our partners -->
+
+</div><!--/container-->
+<!-- End Content Part -->
+
+
+
 <!--
-<div class='row'><div id="map"></div></div>
-<script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
-<script type="text/javascript">
-    $(document).ready(function(){
-        var map = L.map('map').setView([0.313611, 32.581111], 13);
-        L.tileLayer('http://{s}.tile.cloudmade.com/0c99e54360b9440db02fc6d58f1602e9/997/256/{z}/{x}/{y}.png',
-            {
-                attribution: 'Map Data &copy;',
-                maxZoom: 20
-            }).addTo(map);
-    });
-</script>
--->
 <% if signed_in? %>
     <div class='row'>
         <div class='jumbotron' style='text-align: center;'>
@@ -51,3 +295,4 @@
     <a class="twitter-timeline" data-theme="dark" href="https://twitter.com/search?q=%23opendata" data-widget-id="400545173387489280">Tweets about "#opendata"</a>
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 </div>
+-->
