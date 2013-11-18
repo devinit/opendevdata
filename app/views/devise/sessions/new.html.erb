@@ -1,38 +1,42 @@
-<div class='panel panel-info'>
-    <div class='panel-heading'><h1>Login!</h1></div>
-    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-    <div class='panel-body'>
-      <%= devise_error_messages! %>
+<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
 
-      <div class='form-group'>
-        <%= f.label :email %>
-        <%= f.email_field :email, :autofocus => true, class: 'form-control' %>
-      </div>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'reg-page'}) do |f| %>
+        <div class="reg-header">
+            <h2>Login to your account</h2>
+        </div>
 
-      <div class='form-group'>
-        <%= f.label :password %>
-        <%= f.password_field :password, class: 'form-control' %>
-      </div>
+        <%= devise_error_messages! %>
 
-      <div class='form-group'>
-        <%= content_tag :button, :type => :submit, class: 'btn btn-primary' do %>
-          Login
-          <i class='fa fa-sign-in'></i>
-        <% end %>
-      </div>
+        <div class="input-group margin-bottom-20">
+            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+            <%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'Email' %>
+        </div>
+        <div class="input-group margin-bottom-20">
+            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+            <%= f.password_field :password, autofocus: true, class: 'form-control', placeholder: 'Password' %>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <label class="checkbox"><input type="checkbox"> Stay signed in</label>
+            </div>
+            <div class="col-md-6">
+
+                <div class='form-group'>
+                    <%= content_tag :button, :type => :submit, class: 'btn-u pull-right' do %>
+                        Login
+                        <i class='fa fa-sign-in'></i>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <h4>Forget your Password ?</h4>
+        <p>no worries, <a class="color-green" href="http://htmlstream.com/preview/unify/page_login.html#">click here</a> to reset your password.</p>
+
+        <h4>No account?</h4>
+        <p>Just head over here and <%= link_to "register", register_path %></p>
     <% end %>
-
-    <hr>
-    <!--
-    <%= link_to user_omniauth_authorize_path(:facebook), class: 'btn btn-info' do %>
-      <i class='fa fa-facebook-square'></i> Login with Facebook
-    <% end %>
-    <%= link_to "#", class: 'btn btn-danger' do %>
-      <i class='fa fa-twitter'></i> Login with twitter
-    <% end %>
-    -->
-    </div>
-    <div class='panel-footer'>
-      <%= render "devise/shared/links" %>
-    </div>
 </div>
