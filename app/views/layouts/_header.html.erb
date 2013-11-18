@@ -15,11 +15,11 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-responsive-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown active">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
+                    <li>
+                        <%= link_to root_url do %>
+                            <span class='fa fa-home'></span>
                             Home
-                            <i class="fa fa-angle-down"></i>
-                        </a>
+                        <% end %>
                     </li>
                     <li>
                       <%= link_to datasets_path, id: 'step2' do %>
@@ -27,7 +27,7 @@
                         Datasets
                       <% end %>
                     </li>
-                    <% if current_user.is_admin? %>
+                    <% if current_user && current_user.is_admin? %>
                     <li>
                         <%= link_to users_path do%>
                             Users
