@@ -1,0 +1,38 @@
+<div class='panel panel-info'>
+    <div class='panel-heading'><h1>Login!</h1></div>
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+    <div class='panel-body'>
+      <%= devise_error_messages! %>
+
+      <div class='form-group'>
+        <%= f.label :email %>
+        <%= f.email_field :email, :autofocus => true, class: 'form-control' %>
+      </div>
+
+      <div class='form-group'>
+        <%= f.label :password %>
+        <%= f.password_field :password, class: 'form-control' %>
+      </div>
+
+      <div class='form-group'>
+        <%= content_tag :button, :type => :submit, class: 'btn btn-primary' do %>
+          Login
+          <i class='fa fa-sign-in'></i>
+        <% end %>
+      </div>
+    <% end %>
+
+    <hr>
+    <!--
+    <%= link_to user_omniauth_authorize_path(:facebook), class: 'btn btn-info' do %>
+      <i class='fa fa-facebook-square'></i> Login with Facebook
+    <% end %>
+    <%= link_to "#", class: 'btn btn-danger' do %>
+      <i class='fa fa-twitter'></i> Login with twitter
+    <% end %>
+    -->
+    </div>
+    <div class='panel-footer'>
+      <%= render "devise/shared/links" %>
+    </div>
+</div>
