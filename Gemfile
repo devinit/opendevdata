@@ -87,9 +87,9 @@ end
 gem 'cache_digests'
 gem 'dalli'
 
-gem 'bullet', group: :development
 group :development do
   gem 'pry-rails'
+  gem 'bullet'
   gem 'better_errors'
   gem 'pry-debugger'
 end

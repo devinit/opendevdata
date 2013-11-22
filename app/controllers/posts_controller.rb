@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_filter :authenticate_user!, except: [:index, :show]
 
   def index
-    @posts = Post.order_by("published_on DESC").page params[:page]
+    @posts = Post.order_by('published_on DESC').page(params[:page])
   end
 
   def new
