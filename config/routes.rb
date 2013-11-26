@@ -6,7 +6,7 @@ Opendataportal::Application.routes.draw do
   get "about", to: 'pages#about', as: :about
 
   mount Ckeditor::Engine => '/ckeditor'
-  mount Opendata::API => "/"
+  # mount Opendata::API => "/"
 
   authenticate :user, lambda { |u| u.is_admin? } do
     mount Sidekiq::Web => '/sidekiq'
