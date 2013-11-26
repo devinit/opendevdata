@@ -21,7 +21,7 @@ gem 'grape'
 # gem 'spreadsheet'
 gem "autoprefixer-rails"
 gem 'iconv'
-gem "ckeditor"
+gem "ckeditor", :git => "https://github.com/galetahub/ckeditor.git"
 gem "sanitizer"
 gem "mini_magick"
 gem "smarter_csv"
