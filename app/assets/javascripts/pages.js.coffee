@@ -1,3 +1,14 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+@startIntro = ->
+  intro = introJs()
+  intro.setOptions
+    tooltipClass: "customDefault"
+    steps: [
+      element: document.querySelector("#step1")
+      intro: "Welcome to Open Dev Data Uganda"
+    ,
+      element: document.querySelectorAll("#step2")[0]
+      intro: "To look at all the datasets, click this link"
+      position: "right"
+    ]
+
+  intro.start()
