@@ -6,3 +6,5 @@ $ ->
         $('#datasets').masonry
             itemSelector: '.box'
             isFitWidth: true
+
+

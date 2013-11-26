@@ -26,8 +26,10 @@ module Opendata
       end
       route_param :id do
         get do
-          Dataset.find params[:id]
+          Dataset.find(slug=params[:id])
         end
+        rescue Mongoid::Errors::DocumentNotFound
+          logger.info "mongo document can't be found"
       end
 
       # desc "Create a dataset"
