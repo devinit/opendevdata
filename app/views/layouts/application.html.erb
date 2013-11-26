@@ -115,6 +115,8 @@
             <div class="col-md-4 md-margin-bottom-40">
                 <div class="posts">
                     <div class="headline"><h2>Recent Blog Entries</h2></div>
+
+                    <!--
                     <dl class="dl-horizontal">
                         <dt>
                             <a href="#">
@@ -145,6 +147,23 @@
                             s</p>
                         </dd>
                     </dl>
+                    -->
+                    <% if @recent_posts %>
+                        <% @recent_posts.each do |post| %>
+                            <dl class="dl-horizontal">
+                            <dt>
+                                <a href="#">
+                                    <%= image_tag(avatar_url(post.user), alt: '') %>
+                                </a>
+                            </dt>
+                                <dd>
+                                    <p>
+                                        <%= link_to post.content, post %>
+                                    </p>
+                                </dd>
+                            </dl>
+                        <% end %>
+                    <% end %>
                 </div>
             </div><!--/col-md-4-->
 
