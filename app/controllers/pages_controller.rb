@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   def index
-    @recent_posts = Post.first
+    @recent_posts = Post.all
   end
 
 
