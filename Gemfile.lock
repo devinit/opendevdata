@@ -14,10 +14,11 @@ GIT
 
 GIT
   remote: git://github.com/capistrano/rbenv.git
-  revision: 362dbc02ef963c91425767e09b4848ff7be5132b
+  revision: 29260c6cf1380323ad282434aea8089c503e6e33
   specs:
-    capistrano-rbenv (0.0.1)
-      capistrano
+    capistrano-rbenv (0.1.0)
+      capistrano (~> 3.0)
+      sshkit (~> 1.2.0)
 
 GIT
   remote: git://github.com/digitalplaywright/mongoid-slug.git
@@ -44,7 +45,7 @@ GIT
 
 GIT
   remote: git://github.com/mongoid/mongoid.git
-  revision: e0d54e8b20ff178c8773cfb8c6b0ee293343dd28
+  revision: ec65b665430a13eab135fcd22b3b766bb8e8c8ea
   specs:
     mongoid (4.0.0)
       activemodel (~> 4.0.0)
@@ -59,6 +60,14 @@ GIT
   specs:
     bootstrap-sass (3.0.0.0)
       sass (~> 3.2)
+
+GIT
+  remote: https://github.com/galetahub/ckeditor.git
+  revision: 6ac7f1eb21cbf439fabeccc63ea804fd8589d68a
+  specs:
+    ckeditor (4.0.6)
+      mime-types
+      orm_adapter
 
 GEM
   remote: http://rubygems.org/
@@ -114,7 +123,7 @@ GEM
       i18n
       rake (>= 10.0.0)
       sshkit (>= 0.0.23)
-    capybara (2.1.0)
+    capybara (2.2.0)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
       rack (>= 1.0.0)
@@ -132,9 +141,6 @@ GEM
       timers (~> 1.1.0)
     childprocess (0.3.9)
       ffi (~> 1.0, >= 1.0.11)
-    ckeditor (4.0.6)
-      mime-types
-      orm_adapter
     coderay (1.1.0)
     coercible (0.2.0)
       backports (~> 3.0, >= 3.1.0)
@@ -155,9 +161,9 @@ GEM
       debugger-linecache (~> 1.2.0)
       debugger-ruby_core_source (~> 1.2.3)
     debugger-linecache (1.2.0)
-    debugger-ruby_core_source (1.2.3)
+    debugger-ruby_core_source (1.2.4)
     descendants_tracker (0.0.3)
-    devise (3.2.0)
+    devise (3.2.2)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
@@ -221,11 +227,11 @@ GEM
     json (1.8.1)
     jwt (0.1.8)
       multi_json (>= 1.5)
-    kaminari (0.14.1)
+    kaminari (0.15.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     kgio (2.8.1)
-    launchy (2.3.0)
+    launchy (2.4.0)
       addressable (~> 2.3)
     mail (2.5.4)
       mime-types (~> 1.16)
@@ -233,8 +239,8 @@ GEM
     masonry-rails (0.2.0)
       rails
     method_source (0.8.2)
-    mime-types (1.25)
-    mini_magick (3.6.0)
+    mime-types (1.25.1)
+    mini_magick (3.7.0)
       subexec (~> 0.2.1)
     mini_portile (0.5.2)
     minitest (4.7.5)
@@ -261,7 +267,7 @@ GEM
     omniauth (1.1.4)
       hashie (>= 1.2, < 3)
       rack
-    omniauth-facebook (1.4.1)
+    omniauth-facebook (1.5.1)
       omniauth-oauth2 (~> 1.1.0)
     omniauth-oauth (1.0.1)
       oauth
@@ -274,9 +280,9 @@ GEM
       omniauth-oauth (~> 1.0)
     optionable (0.1.1)
     origin (1.1.0)
-    orm_adapter (0.4.0)
+    orm_adapter (0.5.0)
     polyglot (0.3.3)
-    pry (0.9.12.3)
+    pry (0.9.12.4)
       coderay (~> 1.0)
       method_source (~> 0.8)
       slop (~> 3.4)
@@ -346,7 +352,7 @@ GEM
       multi_json (~> 1.0)
       rubyzip (< 1.0.0)
       websocket (~> 1.0.4)
-    sidekiq (2.16.1)
+    sidekiq (2.17.0)
       celluloid (>= 0.15.2)
       connection_pool (>= 1.0.0)
       json
@@ -362,9 +368,9 @@ GEM
     slim (2.0.2)
       temple (~> 0.6.6)
       tilt (>= 1.3.3, < 2.1)
-    slop (3.4.6)
+    slop (3.4.7)
     smarter_csv (1.0.14)
-    sprockets (2.10.0)
+    sprockets (2.10.1)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
@@ -373,11 +379,11 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
-    sshkit (1.1.0)
-      net-scp
+    sshkit (1.2.0)
+      net-scp (>= 1.1.2)
       net-ssh
       term-ansicolor
-    stringex (2.1.0)
+    stringex (2.1.2)
     subexec (0.2.3)
     temple (0.6.7)
     term-ansicolor (1.2.2)
@@ -387,11 +393,11 @@ GEM
       atomic
     tilt (1.4.1)
     timers (1.1.0)
-    tins (0.13.0)
+    tins (0.13.1)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    turbolinks (1.3.0)
+    turbolinks (1.3.1)
       coffee-rails
     tzinfo (0.3.38)
     uglifier (2.3.1)
@@ -429,7 +435,7 @@ DEPENDENCIES
   capybara
   carrierwave
   carrierwave-mongoid (~> 0.6.0)
-  ckeditor
+  ckeditor!
   coffee-rails (~> 4.0.0)
   dalli
   database_cleaner (= 1.0.1)
