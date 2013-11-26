@@ -2,18 +2,17 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
-    $('#datasets').imagesLoaded ->
-        $('#datasets').masonry
-            itemSelector: '.box'
-            isFitWidth: true
-
+  $('#datasets').imagesLoaded ->
+    $('#datasets').masonry
+      itemSelector: '.box'
+      isFitWidth: true
 
 $ ->
-    @startIntro = ->
-      intro = introJs()
-      intro.setOptions
-        tooltipClass: "customDefault"
-        steps: [
+  @startIntro = ->
+    intro = introJs()
+    intro.setOptions
+      tooltipClass: "customDefault"
+      steps: [
           element: document.querySelector("#form_step1")
           intro: "Fill in the name of your dataset"
         ,
@@ -46,4 +45,4 @@ $ ->
           position: "right"
         ]
 
-      intro.start()
+    intro.start()
