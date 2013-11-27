@@ -18,10 +18,16 @@
         <% if @dataset.attachment.image? %>
             <%= image_tag @dataset.attachment.url %>
         <% else %>
-            <%= link_to @dataset.attachment.url, class: 'btn btn-primary' do %>
-                Download file
-                <i class='fa fa-download'></i>
-            <% end %>
+            <div class="btn-group pull-right">
+              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                Download <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                <li><%= link_to "Excel", @dataset.attachment.url %></li>
+                <li><%= link_to "JSON", "#{dataset_url(@dataset)}.json" %></li>
+                <li><%= link_to "CSV", '#' %></li>
+              </ul>
+            </div>
         <% end %>
     </p>
     <p class='pull-left'>
@@ -54,27 +60,25 @@
 
 <div class='row'>
     <h3 class='page-header'>Comments</h3>
-</div>
 
-<div class='row' id='comment'>
-    <% @comments.each do |comment| %>
-        <div class='comment row'>
-            <div class='avatar'>
-                <%= image_tag(avatar_url(comment.user, size=64)) %>
-            </div>
-            <div class='main'>
-                <div class='headline'>
-                    <%= full_name_of comment.user %> commented <span style='text-align: right'><%= time_ago_in_words(comment.created_at) + " ago." %></span>
+    <div id='comment'>
+        <% @comments.each do |comment| %>
+            <div class='comment row'>
+                <div class='avatar'>
+                    <%= image_tag(avatar_url(comment.user, size=64)) %>
                 </div>
-                <div class='comment_content'>
-                    <p><%= comment.content %></p>
+                <div class='main'>
+                    <div class='headline'>
+                        <%= full_name_of comment.user %> commented <span style='text-align: right'><%= time_ago_in_words(comment.created_at) + " ago." %></span>
+                    </div>
+                    <div class='comment_content'>
+                        <p><%= comment.content %></p>
+                    </div>
                 </div>
+                <div class='clear'></div>
             </div>
-            <div class='clear'></div>
-        </div>
-    <% end %>
-    <%= paginate @comments %>
+        <% end %>
+        <%= paginate @comments %>
+    </div>
 
 </div>
-
-
