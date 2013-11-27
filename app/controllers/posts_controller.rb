@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  layout "ordinary_application"
   before_filter :authenticate_user!, except: [:index, :show]
 
   def index
