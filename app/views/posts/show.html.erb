@@ -1,11 +1,9 @@
-<%
-    title(@post.title)
- %>
-<h1 class="page-header"><%= @post.title %></h1>
+<% title(@post.title) %>
 
 <div class='row'>
-<p><%= @post.content %></p>
-
+<span class='post-meta'><%= @post.published_on %></span>
+<h1 class="post-title"><%= @post.title %></h1>
+<section class='post-content'><%= @post.content %></section>
 <% if @post.comments.size > 0 %>
     <h2>Comments</h2>
     <% @post.comments.each do |comment| %>
@@ -17,14 +15,12 @@
         </span>
     <% end %>
 <% end %>
-</div>
-
-<div class='row'>
-    <h2>New Comment</h2>
+<h2>New Comment</h2>
 
     <%= simple_form_for [@post, Comment.new] do |f| %>
         <p><%= f.input :content, rows: 10 %></p>
 
         <%= f.button :submit %>
     <% end %>
+
 </div>
