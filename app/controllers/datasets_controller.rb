@@ -10,8 +10,16 @@ class DatasetsController < ApplicationController
       redirect_to datasets_path
   end
 
+  def default_serializer_options
+    {root: false}
+  end
+
   def index
     @datasets = Dataset.desc(:created_at).page(params[:page])
+    respond_to do |format|
+      format.html
+      format.json { render json: @datasets }
+    end
   end
 
   def show
