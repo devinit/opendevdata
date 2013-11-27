@@ -1,4 +1,5 @@
 class DatasetsController < ApplicationController
+  layout "ordinary_application"
   before_filter :authenticate_user!, except: :index
   before_filter :get_dataset, only: [:edit, :show, :update, :destroy]
 
@@ -25,6 +26,12 @@ class DatasetsController < ApplicationController
     end
     @chart_type ||= @dataset.chart_type
     @comments = @dataset.comments.desc(:created_at).page(params[:page])
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @dataset }
+    end
+
   end
 
   def new
