@@ -30,90 +30,95 @@
 </head>
 
 <body style="">
-
-<!--=== Top ===-->
-<div class="top">
-    <div class="container">
-        <ul class="loginbar pull-right">
-            <li>
-                <i class="fa fa-globe icon-globe"></i>
-                <a>Languages</a>
-                <ul class="lenguages">
-                    <li class="active">
-                        <a href="#">English <i class="fa fa-check icon-ok"></i></a>
-                    </li>
-                    <li><a href="#">Spanish</a></li>
-                    <li><a href="#">Russian</a></li>
-                    <li><a href="#">German</a></li>
-                </ul>
-            </li>
-            <li class="devider"></li>
-            <li>
-                <%= link_to '#' do %>
-                    <span class='fa fa-question'></span>
-                    Help
-                <%end%>
-            </li>
-            <% if signed_in? %>
-            <li class="devider"></li>
-            <li>
-                <%= link_to edit_user_registration_path do %>
-                    <span class='fa fa-cogs'></span>
-                    Settings
-                <%end%>
-            </li>
-            <% end %>
-            <li class="devider"></li>
-            <li>
+<div id="wrapper">
+    <!--=== Top ===-->
+    <div class="top">
+        <div class="container">
+            <ul class="loginbar pull-right">
+                <li>
+                    <i class="fa fa-globe icon-globe"></i>
+                    <a>Languages</a>
+                    <ul class="lenguages">
+                        <li class="active">
+                            <a href="#">English <i class="fa fa-check icon-ok"></i></a>
+                        </li>
+                        <li><a href="#">Spanish</a></li>
+                        <li><a href="#">Russian</a></li>
+                        <li><a href="#">German</a></li>
+                    </ul>
+                </li>
+                <li class="devider"></li>
+                <li>
+                    <%= link_to '#' do %>
+                        <span class='fa fa-question'></span>
+                        Help
+                    <%end%>
+                </li>
                 <% if signed_in? %>
-                    <%= link_to logout_path do %>
-                        <span class='fa fa-sign-out'></span>
-                        Logout
-                        <%= image_tag(avatar_url(current_user), class: 'img img-circle') %>
-                    <% end %>
-                <% else %>
-                    <%= link_to login_path do%>
-                        <span class='fa fa-sign-in'></span>
-                        Login
-                    <% end %>
+                <li class="devider"></li>
+                <li>
+                    <%= link_to edit_user_registration_path do %>
+                        <span class='fa fa-cogs'></span>
+                        Settings
+                    <%end%>
+                </li>
                 <% end %>
-            </li>
-        </ul>
-    </div>
-</div><!--/top-->
-<!--=== End Top ===-->
-
-<!--=== Header ===-->
-<%= render "layouts/header" %>
-<!--=== End Header ===-->
-    <div class='container'>
-        <div class='row'>
-            <%= yield %>
+                <li class="devider"></li>
+                <li>
+                    <% if signed_in? %>
+                        <%= link_to logout_path do %>
+                            <span class='fa fa-sign-out'></span>
+                            Logout
+                            <%= image_tag(avatar_url(current_user), class: 'img img-circle') %>
+                        <% end %>
+                    <% else %>
+                        <%= link_to login_path do%>
+                            <span class='fa fa-sign-in'></span>
+                            Login
+                        <% end %>
+                    <% end %>
+                </li>
+            </ul>
         </div>
-    </div>
-<!--=== Footer ===-->
-<%#= render "layouts/ordinary_footer" %>
-<!--=== End Footer ===-->
+    </div><!--/top-->
+    <!--=== End Top ===-->
 
-<!--=== Copyright ===-->
-<div class="copyright" style='margin-top: 2px;'>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <p class="copyright-space">
-                    2013 © Open Development Data Uganda. ALL Rights Reserved.
-                    <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
-                </p>
+    <!--=== Header ===-->
+    <%= render "layouts/header" %>
+    <!--=== End Header ===-->
+        <div class='container'>
+            <div class='row'>
+                <%= yield %>
             </div>
-            <div class="col-md-6">
-                <a href="#">
-                    <%= image_tag("devinit.jpg", class: "pull-right", id: "logo-footer", class: 'logo') %>
-                </a>
-            </div>
-        </div><!--/row-->
-    </div><!--/container-->
-</div><!--/copyright-->
-<!--=== End Copyright ===-->
+        </div>
+    <!--=== Footer ===-->
+    <%#= render "layouts/ordinary_footer" %>
+    <!--=== End Footer ===-->
+
+    <!--=== Copyright ===-->
+    <div id='footer' class="copyright" style='margin-top: 2px;'>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="copyright-space">
+                        2013 © Open Development Data Uganda. ALL Rights Reserved.
+                        <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <a href="#">
+                        <%= image_tag("devinit.jpg", class: "pull-right", id: "logo-footer", class: 'logo') %>
+                    </a>
+                </div>
+            </div><!--/row-->
+        </div><!--/container-->
+    </div><!--/copyright-->
+    <!--=== End Copyright ===-->
+    <div id="topcontrol" title="Scroll Back to Top" style="position: fixed; bottom: 5px; right: 5px; opacity: 1; cursor: pointer;">
+        <%= image_tag("up.png", style: "width:51px; height:42px;") %>
+    </div>
+
+</div>
 <script type="text/javascript">
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -123,7 +128,4 @@
   ga('create', 'UA-45117059-1', 'opendevdata.ug');
   ga('send', 'pageview');
 </script>
-    <div id="topcontrol" title="Scroll Back to Top" style="position: fixed; bottom: 5px; right: 5px; opacity: 1; cursor: pointer;">
-        <%= image_tag("up.png", style: "width:51px; height:42px;") %>
-    </div>
 </body></html>
