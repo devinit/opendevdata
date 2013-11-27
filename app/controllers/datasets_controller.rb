@@ -19,8 +19,13 @@ class DatasetsController < ApplicationController
     respond_to do |format|
       format.html
       format.json { render json: @datasets }
+      format.csv { send_data @datasets.to_csv}
     end
   end
+
+  # def download_csv_all
+  #   @dataset = Dataset.to_csv
+  # end
 
   def show
     if @dataset.data_extract
