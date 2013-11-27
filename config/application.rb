@@ -8,6 +8,7 @@ require "sprockets/railtie"
 require "mongoid/railtie"
 require "mongoid-grid_fs"
 require "carrierwave/mongoid"
+require "csv"
 # require 'iconv'
 # require "rails/test_unit/railtie"
 
