@@ -1,5 +1,12 @@
 module ApplicationHelper
 
+  # json helper
+  def json_for target, options = {}
+    options[:scope] ||= self
+    options[:url_options] ||= url_options
+    target.active_model_serializer.new(target, options).to_json
+  end
+
   def full_name_of user
     "#{user.first_name.capitalize} #{user.last_name.capitalize}"
   end
