@@ -15,7 +15,6 @@ gem 'mongoid', '~> 4', github: 'mongoid/mongoid'
 gem 'mongo'
 gem 'mongoid-grid_fs', github: 'ahoward/mongoid-grid_fs'
 gem 'mongoid_slug', github: 'digitalplaywright/mongoid-slug'
-gem 'rb-readline', '~> 0.4.2' # added just for safety
 gem 'grape'
 gem 'active_model_serializers'
 # gem 'roo', '~> 1.2.3'
@@ -90,10 +89,7 @@ gem 'cache_digests'
 gem 'dalli'
 
 group :development do
-  gem 'pry-rails'
-  gem 'bullet'
   gem 'better_errors'
-  gem 'pry-debugger'
 end
 
 gem 'capistrano'
