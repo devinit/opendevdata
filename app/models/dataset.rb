@@ -28,6 +28,16 @@ class Dataset
 
   embeds_many :comments
 
+  def self.to_csv options = {}
+    column_names = self.fields.keys
+    CSV.generate(options) do |csv|
+      csv << column_names
+      all.each do |dataset|
+        csv << dataset.attributes.values_at(*column_names)
+      end
+    end
+  end
+
   protected
     def set_time
       if created_at.nil?
