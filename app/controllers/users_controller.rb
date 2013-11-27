@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  layout "ordinary_application"
+
   def index
     @users = User.page(params[:page])
   end
