@@ -21,39 +21,6 @@
             <div class="col-md-4 md-margin-bottom-40">
                 <div class="posts">
                     <div class="headline"><h2>Recent Blog Entries</h2></div>
-
-                    <!--
-                    <dl class="dl-horizontal">
-                        <dt>
-                            <a href="#">
-                                <%= image_tag("6_1.jpg") %>
-                            </a>
-                        </dt>
-                        <dd>
-                            <p><a href="#">Anim moon officia Unify is an incredibly beautiful responsive Bootstrap Template</a></p>
-                        </dd>
-                    </dl>
-                    <dl class="dl-horizontal">
-                    <dt><a href="#">
-                        <%= image_tag("10_1.jpg", alt: '') %>
-                        </a></dt>
-                        <dd>
-                            <p><a href="#">Anim moon officia Unify is an incredibly beautiful responsive Bootstrap Template</a></p>
-                        </dd>
-                    </dl>
-                    <dl class="dl-horizontal">
-                    <dt>
-                        <a href="#">
-                            <%= image_tag("11.jpg", alt: '') %>
-                        </a>
-                    </dt>
-                        <dd>
-                            <p>
-                                <a href="#">Anim moon officia Unify is an incredibly beautiful responsive Bootstrap Template</a>
-                            s</p>
-                        </dd>
-                    </dl>
-                    -->
                     <% if @recent_posts %>
                         <% @recent_posts.each do |post| %>
                             <dl class="dl-horizontal">
@@ -64,7 +31,7 @@
                             </dt>
                                 <dd>
                                     <p>
-                                        <%= link_to post.content, post %>
+                                        <%= link_to post.content.html_safe, post %>
                                     </p>
                                 </dd>
                             </dl>

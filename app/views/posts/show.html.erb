@@ -3,12 +3,12 @@
 <div class='row'>
 <span class='post-meta'><%= @post.published_on %></span>
 <h1 class="post-title"><%= @post.title %></h1>
-<section class='post-content'><%= @post.content %></section>
+<section class='post-content'><%= @post.content.html_safe %></section>
 <% if @post.comments.size > 0 %>
     <h2>Comments</h2>
     <% @post.comments.each do |comment| %>
 
-        <p><%= raw(comment.content) %></p>
+        <p><%= comment.content.html_safe %></p>
 
         <span class='time'>
             <%= comment.created_at %>
