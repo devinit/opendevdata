@@ -1,0 +1,23 @@
+<% title("Edit Blog post") %>
+
+<h1 class="page-header">Edit Blog Post</h1>
+<div class="row">
+    <%= simple_form_for @post do |f| %>
+        <%= f.input :title %>
+        <%= f.input :content,
+                    :as => :ckeditor,
+                    :input_html => { :ckeditor => {:toolbar => 'Full'} } %>
+        <hr>
+        <%= f.button :submit, class: "btn btn-primary" %>
+    <% end %>
+</div>
+
+<script type="text/javascript" charset="UTF-8">
+    $(document).ready(function(){
+        $('form[data-remote]').find("ajax:before", function(){
+            for (instance in CKEDITOR.instance){
+                CKEDITOR.instances[instance].updateElement();
+            }
+        });
+    });
+</script>
