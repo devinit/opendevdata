@@ -3,24 +3,35 @@
 <div class='row'>
 <span class='post-meta'><%= @post.published_on %></span>
 <h1 class="post-title"><%= @post.title %></h1>
-<section class='post-content'><%= @post.content.html_safe %></section>
-<% if @post.comments.size > 0 %>
-    <h2>Comments</h2>
-    <% @post.comments.each do |comment| %>
-
-        <p><%= comment.content.html_safe %></p>
-
-        <span class='time'>
-            <%= comment.created_at %>
-        </span>
+<section class='post-content'>
+    <%= @post.content.html_safe %>
+    <h2>New Comment</h2>
+        <%= simple_form_for([@post, Comment.new],
+                            defaults: { wrapper_html: { class: 'form-group' }}) do |f| %>
+            <p><%= f.input :content %></p>
+            <%= f.button :submit, class: 'btn btn-primary' %>
+        <% end %>
+</section>
+</div>
+<div class='row'>
+    <% if @post.comments.size > 0 %>
+        <h2>Comments</h2>
+        <ol class='comments'>
+            <% @post.comments.each do |comment| %>
+                <li class='comment'>
+                    <div id="">
+                        <div class='row'>
+                            <% user = comment.user %>
+                            <%= image_tag(avatar_url(user, size=64), class: 'img img-circle') %>
+                            <span class='name'><%= full_name_of(user) %></span>
+                            <span class='date'><%= comment.created_at %></span>
+                        </div>
+                        <div class='row'>
+                            <p><%= comment.content.html_safe %></p>
+                        </div>
+                    </div>
+                </li>
+            <% end %>
+        </ol>
     <% end %>
-<% end %>
-<h2>New Comment</h2>
-
-    <%= simple_form_for [@post, Comment.new] do |f| %>
-        <p><%= f.input :content, rows: 10 %></p>
-
-        <%= f.button :submit %>
-    <% end %>
-
 </div>
