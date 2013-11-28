@@ -81,3 +81,31 @@ $jumbotron-bg: white;
   float: right;
   clear:both;
 }
+
+ol.comments{
+  margin-bottom: 3.4em;
+}
+ol{
+  list-style: none;
+}
+
+ol.comments li.comment{
+  margin: 0;
+  padding: 1em 0;
+  list-style-type:none;
+  position: relative;
+  border-top: 1px solid #eceae5;
+  font-size: 1.5em;
+  font-weight: 400;
+}
+span.name{
+    font-weight: 600;
+    font-size: 1.6em;
+    line-height: 1.33em;
+    color: #ad215e;
+  }
+
+  span.date{
+    margin-bottom: 1.6em;
+    font-size: 1.5em;
+  }
