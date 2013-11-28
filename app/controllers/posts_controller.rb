@@ -1,6 +1,14 @@
 class PostsController < ApplicationController
   layout "ordinary_application"
   before_filter :authenticate_user!, except: [:index, :show]
+  before_filter :get_post, only: [:edit, :show, :update, :destroy]
+
+  def get_post
+    @post = Post.find params[:id]
+    rescue Mongoid::Errors::DocumentNotFound
+      flash[:alert] = "The post you were looking for could not be found."
+      redirect_to posts_path
+  end
 
   def index
     @posts = Post.order_by('published_on DESC').page(params[:page])
@@ -25,7 +33,9 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = current_user.posts.find params[:id]
+    if @post.user != current_user
+      redirect_to posts_path, notice: "You don't have permission to edit this post."
+    end
   end
 
   def update
@@ -38,8 +48,8 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = current_user.posts.find params[:id]
-    if @post.destroy
+    if @post.user == current or @post.user.is_admin?
+      @post.destroy
       flash[:notice] = "You have successfully deleted the post."
     else
       flash[:alert] = "You can't destroy this post."
