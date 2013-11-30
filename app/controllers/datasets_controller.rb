@@ -39,6 +39,8 @@ class DatasetsController < ApplicationController
     end
     @chart_type ||= @dataset.chart_type
     @comments = @dataset.comments.desc(:created_at).page(params[:page])
+    @dataset.view_count += 1
+    @dataset.save # save view count
 
     respond_to do |format|
       format.html
