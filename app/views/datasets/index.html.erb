@@ -27,41 +27,46 @@
     <% end %>
     <% if @datasets %>
         <h3 class='page-header'>Datasets</h3>
-        <div id='datasets'>
+        <div style="margin-bottom: 5.5em;">
             <% @datasets.each do |dataset| %>
-            <div class='box panel panel-default'>
-                <div class='panel-heading'>
-                    <h1 class='panel-title'><%= dataset.name %></h1>
-                </div>
-                <div class='panel-body'>
-                    <%= dataset.description %><br/>
-                    <% if dataset.created_at %>
-                        <hr>
-                        <span class='date'>
-                            <i class='fa fa-calendar'></i> posted <%= time_ago_in_words(dataset.created_at)+ " ago" %>
-                        </span><br/>
-                        <span class='comments'>
-                            <i class='fa fa-comments'></i>
-                            <%= pluralize(dataset.comments.count, 'comment') %>
-                        </span>
-                    <% end %>
-                </div>
-                <div class='panel-footer'>
-                    <%= link_to dataset, class: 'btn btn-default' do%>
-                        visit <i class='fa fa-eye'></i>
-                    <% end %>
-                    <% if signed_in? and current_user.has_role?(:admin) %>
-                        <%= link_to delete_dataset_path(dataset), class: 'btn btn-danger' do%>
-                            Delete <i class='fa fa-trash-o'></i>
+                <div class='panel panel-default'>
+
+                    <div class='panel-heading'>
+                        <h1 class='panel-title'><%= dataset.name %></h1>
+                    </div>
+
+                    <div class='panel-body'>
+                        <%= dataset.description %><br/>
+                        <% if dataset.created_at %>
+                            <hr>
+                            <span class='date'>
+                                <i class='fa fa-calendar'></i> posted <%= time_ago_in_words(dataset.created_at)+ " ago" %>
+                            </span><br/>
+                            <span class='comments'>
+                                <i class='fa fa-comments'></i>
+                                <%= pluralize(dataset.comments.count, 'comment') %>
+                            </span>
                         <% end %>
-                    <% end %>
-                    <%= link_to dataset.attachment.url do %>
-                        <i class='fa fa-download'></i>
-                    <% end %>
+                    </div>
+
+                    <div class='panel-footer'>
+                        <%= link_to dataset, class: 'btn btn-default' do%>
+                            visit <i class='fa fa-eye'></i>
+                        <% end %>
+                        <% if signed_in? and current_user.has_role?(:admin) %>
+                            <%= link_to delete_dataset_path(dataset), class: 'btn btn-danger' do%>
+                                Delete <i class='fa fa-trash-o'></i>
+                            <% end %>
+                        <% end %>
+                        <%= link_to dataset.attachment.url do %>
+                            <i class='fa fa-download'></i>
+                        <% end %>
+                    </div>
+
                 </div>
-            </div>
             <% end %>
+            <%= paginate @datasets %>
         </div>
-        <%= paginate @datasets %>
+
     <% end %>
 </div>
