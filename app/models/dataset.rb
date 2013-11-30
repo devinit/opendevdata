@@ -19,6 +19,8 @@ class Dataset
   field :created_at, type: Time
   field :edited_at, type: Time
 
+  field :view_count, type: Integer, default: 0
+
   mount_uploader :attachment, DatasetFileUploader
 
   belongs_to :organization
