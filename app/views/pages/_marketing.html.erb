@@ -207,37 +207,19 @@
         <!-- Latest Datasets -->
         <div class="col-md-4">
             <div class="headline"><h2>Latest Datasets</h2></div>
-            <div id="myCarousel" class="carousel slide carousel-v1">
-                <div class="carousel-inner">
-                    <div class="item">
-                        <%= image_tag('5.jpg') %>
-                        <div class="carousel-caption">
-                            <p>Facilisis odio, dapibus ac justo acilisis gestinas.</p>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <%= image_tag('4.jpg') %>
-                        <div class="carousel-caption">
-                            <p>Cras justo odio, dapibus ac facilisis into egestas.</p>
-                        </div>
-                        </div>
-                    <div class="item active">
-                        <%= image_tag('3.jpg') %>
-                        <div class="carousel-caption">
-                            <p>Justo cras odio apibus ac afilisis lingestas de.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="carousel-arrow">
-                    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                        <i class="fa fa-angle-left"></i>
-                    </a>
-                    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
-                </div>
-            </div>
+                <div class="thumbnail">
+                  <span class='fa fa-list'></span>
+                  <div class="caption">
+                    <% if @recent_datasets %>
+                        <ul>
+                        <% @recent_datasets.each do |dataset| %>
+                            <li><%= link_to dataset.name, dataset %></li>
+                        <% end %>
+                        </ul>
+                    <% end %>
+                    <%= link_to 'All datasets', datasets_path, class: 'btn btn-primary' %>
+                  </div>
+              </div>
         </div><!--/col-md-4-->
     </div><!--/row-->
     <!-- End Info Blokcs -->
