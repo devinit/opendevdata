@@ -7,7 +7,11 @@ class User
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable,
+<<<<<<< HEAD
     :rememberable, :trackable, :validatable
+=======
+    :rememberable, :trackable, :validatable, :confirmable
+>>>>>>> 0ae259b35f24a8fc337e9358894be1716ead0cd5
   devise :omniauthable, omniauth_providers: [:facebook, :twitter]
 
   ## More user information
