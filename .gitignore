@@ -20,4 +20,4 @@ opendevdata-lock
 /public/assets/
 /public/uploads/
 /public/system/*
-config/production.rb
+config/environments/production.rb
