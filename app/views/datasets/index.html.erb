@@ -46,6 +46,10 @@
                                 <i class='fa fa-comments'></i>
                                 <%= pluralize(dataset.comments.count, 'comment') %>
                             </span>
+                            <span class='views'>
+                                <i class='fa fa-eye'></i>
+                                <%= pluralize dataset.view_count, 'view' %>
+                            </span>
                         <% end %>
                     </div>
 
