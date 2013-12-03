@@ -34,7 +34,7 @@
         <hr>
 
         <h4>Forget your Password ?</h4>
-        <p>no worries, <a class="color-green" href="#">click here</a> to reset your password.</p>
+        <p>no worries, <%= link_to 'click here', new_user_password_path, class: 'color-green' %> to reset your password.</p>
 
         <h4>No account?</h4>
         <p>Just head over here and <%= link_to "register", register_path %></p>
