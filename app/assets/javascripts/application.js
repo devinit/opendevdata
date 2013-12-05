@@ -16,8 +16,7 @@
 //= require bootstrap
 //= require turbolinks
 //= require masonry/jquery.masonry
-//= require ckeditor/override
-//= require ckeditor/init
+//= require ckeditor-jquery
 //= require highcharts
 //= require highcharts-more
 //= require modules/exporting
