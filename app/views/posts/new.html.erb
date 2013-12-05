@@ -1,8 +1,8 @@
 <h1 class="page-header">New Blog Post</h1>
-<div class="row">
+<div class="row" data-no-turbolink>
     <%= simple_form_for @post do |f| %>
         <%= f.input :title %>
-        <%= f.input :content, :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => 'Full'} } %>
+        <%= f.input :content, class: 'ckeditor' %>
         <hr>
         <%= f.button :submit, class: "btn btn-primary" %>
     <% end %>
