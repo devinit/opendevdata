@@ -21,7 +21,8 @@ gem 'active_model_serializers'
 # gem 'spreadsheet'
 gem "autoprefixer-rails"
 gem 'iconv'
-gem "ckeditor", :git => "https://github.com/galetahub/ckeditor.git"
+# gem "ckeditor", :git => "https://github.com/galetahub/ckeditor.git"
+gem 'ckeditor_rails'
 gem "sanitizer"
 gem "mini_magick"
 gem "smarter_csv"
