@@ -32,4 +32,8 @@ module ApplicationHelper
     content_for :keywords, kw
   end
 
+  def is_owner_of obj, opts={}
+    obj.user == current_user or opts[:user]
+  end
+
 end
