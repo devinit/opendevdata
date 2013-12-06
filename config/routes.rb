@@ -1,11 +1,11 @@
-require 'ckeditor'
+# require 'ckeditor'
 require 'sidekiq/web'
 
 Opendataportal::Application.routes.draw do
   root 'pages#index'
   get "about", to: 'pages#about', as: :about
 
-  mount Ckeditor::Engine => '/ckeditor'
+  # mount Ckeditor::Engine => '/ckeditor'
   # mount Opendata::API => "/"
 
   authenticate :user, lambda { |u| u.is_admin? } do
