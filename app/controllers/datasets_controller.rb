@@ -99,7 +99,7 @@ class DatasetsController < ApplicationController
   end
 
   def destroy
-    if current_user.is_admin? or @dataset.user == current_user
+    if current_user.is_admin? or is_owner_of(@dataset)
       @dataset.delete
       flash[:notice] = 'Successfully deleted dataset.'
     else
