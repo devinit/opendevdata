@@ -12,5 +12,4 @@
  *= require_tree .
  *= require 'masonry/transitions'
  *= require 'pace'
- *= require 'app'
  */
