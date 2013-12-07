@@ -5,6 +5,8 @@
 <% end %>
 
 <% if signed_in? %>
+
+<!--
     <div class='row'>
         <div class='jumbotron' style='text-align: center;'>
             <p class='lead' id='step1'>New to Open Data?</p>
@@ -14,6 +16,42 @@
 <div class='row'>
     <a class="twitter-timeline" data-theme="dark" href="https://twitter.com/search?q=%23opendata" data-widget-id="400545173387489280">Tweets about "#opendata"</a>
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</div>
+-->
+<div class='row'>
+    <p>
+        <b>Open Development Uganda:</b> free data for all.
+    </p>
+</div>
+<div class='row'>
+    <div class='col-md-4'>
+        <div class='panel panel-default'>
+            <div class='panel-body'>
+            <% @recent_posts.each do |post| %>
+                <h3><%= post.title %></h3>
+                <span class='author'>
+                    <%= full_name_of post.user %>
+                </span> |
+                <span class='date'>
+                    posted on <%= ActiveSupport::TimeZone['UTC'].parse(post.published_on) %>
+                </span>
+            <% end %>
+            </div>
+        </div>
+    </div>
+    <div class='col-md-4'>
+        <div class='panel panel-default'>
+            <div class='panel-body'>
+                <h3>Find a dataset</h3>
+
+                <br/>
+                Documents
+            </div>
+        </div>
+    </div>
+    <div class='col-md-4'>
+        hello
+    </div>
 </div>
 
 <% else %>
