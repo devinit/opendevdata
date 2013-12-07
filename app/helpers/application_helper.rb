@@ -33,7 +33,13 @@ module ApplicationHelper
   end
 
   def is_owner_of obj, opts={}
-    obj.user == current_user or opts[:user]
+    if opts[:user]
+      obj.user == opts[:user]
+    elsif current_user
+        obj.user == current_user
+    else
+      false
+    end
   end
 
 end
