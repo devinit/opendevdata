@@ -28,12 +28,12 @@
         <div class='panel panel-default'>
             <div class='panel-body'>
             <% @recent_posts.each do |post| %>
-                <h3><%= post.title %></h3>
+                <h3><%= link_to post.title, post %></h3>
                 <span class='author'>
                     <%= full_name_of post.user %>
                 </span> |
-                <span class='date'>
-                    posted on <%= ActiveSupport::TimeZone['UTC'].parse(post.published_on) %>
+                <span class='date_main'>
+                    posted on <%= post.published_on.to_formatted_s(:short) %>
                 </span>
             <% end %>
             </div>
@@ -45,7 +45,7 @@
                 <h3>Find a dataset</h3>
 
                 <br/>
-                Documents
+                <%= link_to "Documents", "#" %>
             </div>
         </div>
     </div>
