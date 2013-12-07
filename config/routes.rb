@@ -1,12 +1,8 @@
-# require 'ckeditor'
 require 'sidekiq/web'
 
 Opendataportal::Application.routes.draw do
   root 'pages#index'
   get "about", to: 'pages#about', as: :about
-
-  # mount Ckeditor::Engine => '/ckeditor'
-  # mount Opendata::API => "/"
 
   authenticate :user, lambda { |u| u.is_admin? } do
     mount Sidekiq::Web => '/sidekiq'
@@ -28,5 +24,6 @@ Opendataportal::Application.routes.draw do
   resources :datasets, concerns: :sociable
   get "delete_dataset/:id", to: 'datasets#delete_page', as: 'delete_dataset'
   resources :posts, concerns: :sociable
+  resources :documents
   get "blog", to: 'posts#index', as: :blog
 end
