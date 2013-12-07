@@ -57,9 +57,11 @@
                         <%= link_to dataset, class: 'btn btn-default' do%>
                             visit <i class='fa fa-eye'></i>
                         <% end %>
-                        <% if signed_in? and current_user.has_role?(:admin) %>
-                            <%= link_to delete_dataset_path(dataset), class: 'btn btn-danger' do%>
-                                Delete <i class='fa fa-trash-o'></i>
+                        <% if current_user %>
+                            <% if is_owner_of(dataset) or current_user.has_role?(:admin) %>
+                                <%= link_to delete_dataset_path(dataset), class: 'btn btn-danger' do%>
+                                    Delete <i class='fa fa-trash-o'></i>
+                                <% end %>
                             <% end %>
                         <% end %>
                         <%= link_to dataset.attachment.url do %>
