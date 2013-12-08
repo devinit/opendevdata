@@ -1,2 +1,14 @@
-<h1>Documents#new</h1>
-<p>Find me in app/views/documents/new.html.erb</p>
+<%= simple_form_for @document, html: { class: 'form-horizontal', multipart: true } do |f| %>
+
+    <%= render 'shared/error_messages', object: f.object %>
+
+    <div class='form-group' id='form_step1'>
+        <%= f.label :name, class: 'col-lg-2' %>
+        <div class='col-lg-10'>
+            <%= f.input_field :name, class: 'form-control' %>
+        </div>
+    </div>
+
+
+
+<% end %>
