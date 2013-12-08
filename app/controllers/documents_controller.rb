@@ -13,7 +13,6 @@ class DocumentsController < ApplicationController
 
   def index
     @documents = Document.desc(:uploaded_on).page(params[:page])
-    render layout: "old"
   end
 
   def new
