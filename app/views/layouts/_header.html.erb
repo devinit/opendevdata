@@ -27,6 +27,12 @@
                         Datasets
                       <% end %>
                     </li>
+                    <li>
+                        <%= link_to documents_path do %>
+                        <span class='fa fa-book'></span>
+                        Documents
+                        <% end %>
+                    </li>
                     <% if current_user && current_user.is_admin? %>
                     <li>
                         <%= link_to users_path do%>
