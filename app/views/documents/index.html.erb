@@ -1,11 +1,18 @@
-<h1 class='page-header'>Documents</h1>
+<h1 class='page-header'>Documents (<%= Document.count %>)</h1>
 
-<ul>
-<% @documents.each do |document| %>
-    <li class='doc-list-item'>
-        <span class='doc-details'>
-            <span class='doc-title'></span>
-        </span>
-    </li>
+<% if @documents.empty? %>
+    <div class='alert alert-info'>
+        <p>There are no documents yet. Would you like to upload a document? Click <%=link_to "here", new_document_path %></p>
+    </div>
+<% else %>
+    <ul class='row'>
+    <% @documents.each do |document| %>
+        <li class='doc-list-item'>
+            <span class='doc-details'>
+                <span class='doc-title'><%= link_to document.name, document %></span>
+                <span class='doc-description'><%= link_to document.description, document %></span>
+            </span>
+        </li>
+    <% end %>
+    </ul>
 <% end %>
-</ul>
