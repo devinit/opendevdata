@@ -3,4 +3,35 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 ul li.doc-list-item{
     padding: 15px 15px 15px 15px;
+    position: relative;
+    border-bottom: 1px solid #e0e9f0;
+    box-sizing: border-box;
+    list-style-type: none;
+    min-height: 133px;
+}
+
+span.doc-details{
+    box-sizing: border-box;
+    margin-left: 0;
+    display: block;
+    margin-left: 97px;
+}
+
+.doc-details, .doc-title a, .doc-details .doc-title{
+    text-decoration: none;
+    font-size: 18px;
+    box-sizing: content-box;
+    overflow: hidden;
+    display: inline;
+    vertical-align: top;
+    font-weight: bold;
+}
+
+.doc-description{
+    color: #222;
+    a{
+        &:visited{
+            color: #98aab8;
+        }
+    }
 }
