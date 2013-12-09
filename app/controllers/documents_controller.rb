@@ -17,7 +17,6 @@ class DocumentsController < ApplicationController
 
   def new
     @document = Document.new
-    logger.debug "Document >>> #{@document}"
   end
 
   def edit
