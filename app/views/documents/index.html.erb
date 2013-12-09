@@ -1,3 +1,4 @@
+<% title "Documents" %>
 <h1 class='page-header'>Documents (<%= Document.count %>)</h1>
 
 <% if @documents.empty? %>
@@ -10,7 +11,8 @@
         <li class='doc-list-item'>
             <span class='doc-details'>
                 <span class='doc-title'><%= link_to document.name, document %></span>
-                <span class='doc-description'><%= link_to document.description, document %></span>
+                <span class='doc-description'><%= link_to document.description, document %></span><br/>
+                <span class='uploader'>Uploaded by <%= full_name_of document.user %></span>
             </span>
         </li>
     <% end %>
