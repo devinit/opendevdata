@@ -2,7 +2,7 @@
 
 
 <h3 class='page-header'>Upload new document</h3>
-<%= simple_form_for Document.new, html: { class: 'form-horizontal', multipart: true } do |f| %>
+<%= simple_form_for @document, html: { class: 'form-horizontal', multipart: true } do |f| %>
 
     <%= render 'shared/error_messages', object: f.object %>
 
