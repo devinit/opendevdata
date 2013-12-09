@@ -19,6 +19,19 @@ class DocumentsController < ApplicationController
     @document = Document.new
   end
 
+  def create
+    @document = Document.create(document_params.merge(user: current_user))
+    if @document.save
+      redirect_to @document, notice: "You have successfully uploaded the document."
+    else
+      flash[:alert] = "You could not upload the document. Something bad happened!"
+      render "new"
+    end
+  end
+
+  def show
+  end
+
   def edit
   end
 
