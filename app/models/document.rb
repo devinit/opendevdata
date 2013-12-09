@@ -5,9 +5,11 @@ class Document
   field :description, type: String
   field :uploaded_on, type: Time
 
-  validates :name, :description, presence: true
+  validates :name, :description, :user_id, presence: true
 
   mount_uploader :upload, DocumentUploader
+
+  belongs_to :user
 
   private
   def set_time
