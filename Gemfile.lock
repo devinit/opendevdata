@@ -61,6 +61,13 @@ GIT
     bootstrap-sass (3.0.0.0)
       sass (~> 3.2)
 
+GIT
+  remote: https://github.com/francisd/rails3-jquery-autocomplete
+  revision: 9884a40f2bb1a8fa3ffab445e6d2c74c3ee99a0d
+  specs:
+    rails3-jquery-autocomplete (1.0.11)
+      rails (>= 3.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -210,6 +217,8 @@ GEM
     jquery-turbolinks (2.0.1)
       railties (>= 3.1.0)
       turbolinks
+    jquery-ui-rails (4.1.0)
+      railties (>= 3.1.0)
     json (1.8.1)
     jwt (0.1.8)
       multi_json (>= 1.5)
@@ -431,6 +440,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   jquery-turbolinks
+  jquery-ui-rails
   kaminari
   launchy
   masonry-rails (~> 0.2.0)
@@ -444,6 +454,7 @@ DEPENDENCIES
   omniauth-facebook
   omniauth-twitter
   rails (= 4.0.1)
+  rails3-jquery-autocomplete!
   rails_12factor
   rb-readline (~> 0.4.2)
   redis
