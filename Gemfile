@@ -20,6 +20,8 @@ gem 'active_model_serializers'
 # gem 'roo', '~> 1.2.3'
 # gem 'spreadsheet'
 gem "autoprefixer-rails"
+# gem "rails3-jquery-autocomplete"
+gem 'rails3-jquery-autocomplete', git: 'https://github.com/francisd/rails3-jquery-autocomplete'
 gem 'iconv'
 # gem "ckeditor", :git => "https://github.com/galetahub/ckeditor.git"
 gem 'ckeditor_rails'
@@ -58,6 +60,7 @@ gem 'coffee-rails', '~> 4.0.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass', branch: '3'
 gem 'jquery-turbolinks'
 gem 'masonry-rails', '~> 0.2.0'
