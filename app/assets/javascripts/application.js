@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
+//= require jquery.ui.all
+//= require autocomplete-rails
 //= require ckeditor-jquery
 //= require bootstrap
 //= require turbolinks
