@@ -24,6 +24,8 @@
                     posted on <%= post.published_on.to_formatted_s(:short) %>
                 </span>
             <% end %>
+            <hr>
+            <%= link_to "More blog posts...", posts_path, class: "btn btn-default" %>
             </div>
         </div>
     </div>
@@ -41,6 +43,8 @@
                     <li><%= link_to document.name, document.upload.url %></li>
                     <% end %>
                 </ul>
+                <hr>
+                <%= link_to "More datasets...", datasets_path, class: 'btn btn-default', style: 'text-align:center;' %>
             </div>
         </div>
     </div>
