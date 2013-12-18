@@ -40,6 +40,12 @@ class Dataset
     end
   end
 
+  def self.search search
+    if search
+      any_of({name: /#{search}/i})
+    end
+  end
+
   protected
     def set_time
       if created_at.nil?
