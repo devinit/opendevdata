@@ -14,37 +14,45 @@
 <div class='row'>
     <div class='col-md-4'>
         <div class='panel panel-default'>
-            <div class='panel-body'>
-            <% @recent_posts.each do |post| %>
-                <h3><%= link_to post.title, post %></h3>
-                <span class='author'>
-                    <%= full_name_of post.user %>
-                </span> |
-                <span class='date_main'>
-                    posted on <%= post.published_on.to_formatted_s(:short) %>
-                </span>
-            <% end %>
-            <hr>
-            <%= link_to "More blog posts...", posts_path, class: "btn btn-default" %>
+            <div class='panel-heading'>
+                <h2>Documents</h2>
             </div>
-        </div>
-    </div>
-    <div class='col-md-4'>
-        <div class='panel panel-default'>
             <div class='panel-body'>
-                <h3>Find a dataset</h3>
-                <%= form_tag do %>
-                    <%= text_field_tag 'name', '', autocomplete: pages_autocomplete_dataset_name_path %>
-                <% end %>
-                <br/>
-                <%= link_to "Documents:", documents_path %><br/>
                 <ul>
                     <% @recent_documents.each do |document| %>
                     <li><%= link_to document.name, document.upload.url %></li>
                     <% end %>
                 </ul>
                 <hr>
-                <%= link_to "More datasets...", datasets_path, class: 'btn btn-default', style: 'text-align:center;' %>
+                <%= link_to "More Documents...", documents_path, class: 'btn btn-default', style: 'text-align:center;' %>
+            </div>
+        </div>
+    </div>
+    <div class='col-md-4'>
+        <div class='panel panel-default'>
+            <div class='panel-heading'>
+                <h2>Find a dataset</h2>
+            </div>
+            <div class='panel-body'>
+                <%= form_tag root_path, method: :get do %>
+                    <p>
+                        <%= text_field_tag :search, params[:search] %>
+                        <%= submit_tag "Search", name: nil, class: 'btn btn-default' %>
+                    </p>
+                <% end %>
+
+                <% if @datasets %>
+                    <ul>
+                        <% @datasets.each do |dataset| %>
+                        <li><%= link_to dataset.name, dataset %></li>
+                        <% end %>
+                    </ul>
+                <% else %>
+                    <div class='alert alert-danger'>
+                        <p>We could not find the dataset you are looking for</p>
+                    </div>
+                <% end %>
+
             </div>
         </div>
     </div>
