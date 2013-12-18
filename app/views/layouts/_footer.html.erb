@@ -21,22 +21,9 @@
             <div class="col-md-4 md-margin-bottom-40">
                 <div class="posts">
                     <div class="headline"><h2>Recent Blog Entries</h2></div>
-                    <% if @recent_posts %>
-                        <% @recent_posts.each do |post| %>
-                            <dl class="dl-horizontal">
-                            <dt>
-                                <a href="#">
-                                    <%= image_tag(avatar_url(post.user), alt: '') %>
-                                </a>
-                            </dt>
-                                <dd>
-                                    <p>
-                                        <%= link_to truncate_html(post.content, length: 140, omission: '...(read more)'), post %>
-                                    </p>
-                                </dd>
-                            </dl>
-                        <% end %>
-                    <% end %>
+                    <dl class="dl-horizontal">
+                    Check out <%= link_to "Blogs", "http://blog.opendevdata.ug" %>
+                    </dl>
                 </div>
             </div><!--/col-md-4-->
 
