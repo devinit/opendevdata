@@ -24,7 +24,7 @@ Opendataportal::Application.routes.draw do
 
   resources :datasets, concerns: :sociable
   get "delete_dataset/:id", to: 'datasets#delete_page', as: 'delete_dataset'
-  resources :posts, concerns: :sociable
-  resources :documents
+  # resources :posts, concerns: :sociable
+  resources :documents, concerns: :sociable
   get "blog", to: 'posts#index', as: :blog
 end
