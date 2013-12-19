@@ -20,7 +20,7 @@
             <div class='panel-body'>
                 <ul>
                     <% @recent_documents.each do |document| %>
-                    <li><%= link_to document.name, document.upload.url %></li>
+                    <li><%= link_to document.name, document.attachment.url %></li>
                     <% end %>
                 </ul>
                 <hr>
