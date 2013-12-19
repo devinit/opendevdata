@@ -54,14 +54,6 @@ GIT
       tzinfo (~> 0.3.37)
 
 GIT
-  remote: git://github.com/thomas-mcdonald/bootstrap-sass.git
-  revision: 9c6c07f74ff515cf38380b014cfede14a4f0eae4
-  branch: 3
-  specs:
-    bootstrap-sass (3.0.0.0)
-      sass (~> 3.2)
-
-GIT
   remote: https://github.com/francisd/rails3-jquery-autocomplete
   revision: 9884a40f2bb1a8fa3ffab445e6d2c74c3ee99a0d
   specs:
@@ -110,6 +102,8 @@ GEM
     better_errors (1.0.1)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
+    bootstrap-sass (3.0.3.0)
+      sass (~> 3.2)
     bson (2.0.0.rc3)
     bson_ext (1.5.1)
     builder (3.1.4)
@@ -414,7 +408,7 @@ DEPENDENCIES
   active_model_serializers
   autoprefixer-rails
   better_errors
-  bootstrap-sass!
+  bootstrap-sass (~> 3.0.3.0)
   bson_ext
   cache_digests
   cancan
