@@ -1,5 +1,12 @@
 <% title "Documents" %>
-<h1 class='page-header'>Documents (<%= Document.count %>)</h1>
+<h1 class='page-header'>
+    Documents (<%= Document.count %>)
+    <span class='pull-right'>
+        <%= link_to  new_document_path, class: 'btn btn-primary' do %>
+         Upload document <span class='fa fa-plus'></span>
+        <% end %>
+    </span>
+</h1>
 
 <% if @documents.empty? %>
     <div class='alert alert-info'>
@@ -16,5 +23,6 @@
             </span>
         </li>
     <% end %>
+    <%= paginate @documents %>
     </ul>
 <% end %>
