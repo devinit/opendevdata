@@ -1,13 +1,16 @@
 class Document
   include Mongoid::Document
+  include Mongoid::Slug
+
   before_save :set_time
   field :name, type: String
+  slug :name
   field :description, type: String
   field :uploaded_on, type: Time
 
   validates :name, :description, :user_id, presence: true
 
-  mount_uploader :upload, DocumentUploader
+  mount_uploader :attachment, DocumentUploader
 
   belongs_to :user
 
