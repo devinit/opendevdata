@@ -234,6 +234,9 @@ GEM
     minitest (4.7.5)
     mongo (1.3.1)
       bson (>= 1.3.1)
+    mongoid_taggable (1.1.1)
+      mongoid (>= 3)
+      rake
     moped (2.0.0.beta3)
       bson (~> 2.0.0.rc3)
       optionable (~> 0.1.1)
@@ -444,6 +447,7 @@ DEPENDENCIES
   mongoid-grid_fs!
   mongoid-rspec (>= 1.6.0)!
   mongoid_slug!
+  mongoid_taggable
   omniauth
   omniauth-facebook
   omniauth-twitter
