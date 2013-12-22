@@ -55,7 +55,9 @@ class User
 
   validates :first_name, :last_name, presence: true
 
-  has_many :posts, dependent: :delete
+  # has_many :posts, dependent: :delete
+  has_many :datasets, dependent: :delete
+  has_many :documents, dependent: :delete
 
   def is_admin?
     self.has_role? :admin
