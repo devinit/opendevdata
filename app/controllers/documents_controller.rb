@@ -12,7 +12,11 @@ class DocumentsController < ApplicationController
   end
 
   def index
-    @documents = Document.desc(:uploaded_on).page(params[:page])
+    if params[:search].nil?
+      @documents = Document.desc(:uploaded_on).page(params[:page])
+    else
+      @documents = Document.search(params[:search]).uniq.delete_if { |doc| doc.empty? or doc.nil? }
+    end
   end
 
   def new

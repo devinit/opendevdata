@@ -18,7 +18,7 @@ class DatasetsController < ApplicationController
     if params[:search].nil?
       @datasets = Dataset.desc(:created_at).page(params[:page])
     else
-      @datasets = Dataset.desc(:created_at).search(params[:search]).delete_if { |dataset| dataset.nil? or dataset.empty? }
+      @datasets = Dataset.search(params[:search]).uniq.delete_if { |dataset| dataset.nil? or dataset.empty? }
     end
 
     respond_to do |format|

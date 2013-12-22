@@ -7,22 +7,48 @@
         <% end %>
     </span>
 </h1>
+<div class='row'>
+    <%= form_tag documents_path, method: :get, class: 'form-inline' do %>
+        <%= text_field_tag :search, params[:search], placeholder: 'keyword, name, category' %>
+        <%= submit_tag "Search", name: nil, class: 'btn btn-primary' do %>
+            <span class='fa fa-search'></span>
+        <% end %>
+    <% end %>
+</div>
+
+<% if params[:search] %>
+
+<% end %>
 
 <% if @documents.empty? %>
     <div class='alert alert-info'>
         <p>There are no documents yet. Would you like to upload a document? Click <%=link_to "here", new_document_path %></p>
     </div>
 <% else %>
+    <% if params[:search] %>
+        <div class='alert alert-info'>
+            <p><%= pluralize(@documents.size, "search result") + " returned..." %></p>
+        </div>
+    <% end %>
     <ul class='row'>
     <% @documents.each do |document| %>
+
+        <% if document.is_a? Array %>
+            <% use_document = document[0] %>
+        <% else %>
+            <% use_document = document %>
+        <% end %>
+
         <li class='doc-list-item'>
             <span class='doc-details'>
-                <span class='doc-title'><%= link_to document.name, document %></span>
-                <span class='doc-description'><%= link_to document.description, document %></span><br/>
-                <span class='uploader'>Uploaded by <%= full_name_of document.user %></span>
+                <span class='doc-title'><%= link_to use_document.name, use_document %></span>
+                <span class='doc-description'><%= link_to use_document.description, use_document %></span><br/>
+                <span class='uploader'>Uploaded by <%= full_name_of use_document.user %></span>
             </span>
         </li>
     <% end %>
-    <%= paginate @documents %>
+    <% if params[:search].nil? %>
+        <%= paginate @documents %>
+    <% end %>
     </ul>
 <% end %>
