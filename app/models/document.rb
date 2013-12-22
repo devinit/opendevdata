@@ -9,7 +9,7 @@ class Document
   field :description, type: String
   field :uploaded_on, type: Time
 
-  validates :name, :description, :user_id, presence: true
+  validates :name, :description, :attachment, :user_id, presence: true
 
   mount_uploader :attachment, DocumentUploader
 
