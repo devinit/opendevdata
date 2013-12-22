@@ -1,6 +1,7 @@
 class Dataset
   include Mongoid::Document
   include Mongoid::Slug
+  include Mongoid::Taggable
 
   before_save :set_time
 
@@ -41,8 +42,11 @@ class Dataset
   end
 
   def self.search search
+    ret = []
     if search
-      any_of({name: /#{search}/i})
+      ret << any_of({name: /#{search}/i}).to_a
+      ret << tagged_with(/#{search}/i).to_a
+      ret
     end
   end
 
