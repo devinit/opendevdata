@@ -39,6 +39,16 @@ class DocumentsController < ApplicationController
   def edit
   end
 
+  def destroy
+    if @document.user == current_user or @document.user.is_admin?
+      @document.destroy
+      flash[:success] = "You successfully delete the document."
+    else
+      flash[:alert] = "You don't have sufficient rights to delete this document. Only the uploader can delete it."
+    end
+    redirect_to documents_path
+  end
+
   private
   def document_params
     params.require(:document).permit(:name, :description, :attachment, :tags)
