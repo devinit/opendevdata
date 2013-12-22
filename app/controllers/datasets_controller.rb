@@ -119,7 +119,8 @@ class DatasetsController < ApplicationController
         :y_label,
         :sub_title,
         :title,
-        :data_units)
+        :data_units,
+        :tags)
     end
 
 end
