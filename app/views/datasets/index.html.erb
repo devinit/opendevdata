@@ -26,52 +26,77 @@
     </div>
     <% end %>
     <% if @datasets %>
-        <h3 class='page-header'>Datasets</h3>
+
+        <div class='row'>
+            <h3 class='pull-left'>Datasets</h3>
+            <span class="pull-right">
+                <%= form_tag datasets_path, method: :get, class: 'form-inline' do %>
+                    <%= text_field_tag :search, params[:search], placeholder: 'keyword, name, category' %>
+                    <%= submit_tag "Search", name: nil, class: 'btn btn-primary' do %>
+                        <span class='fa fa-search'></span>
+                    <% end %>
+                <% end %>
+
+            </span>
+        </div>
+
         <div style="margin-bottom: 5.5em;" data-no-turbolink>
             <% @datasets.each do |dataset| %>
+
+                <% if dataset.is_a? Array %>
+                    <% use_dataset = dataset[0] %>
+                <% else %>
+                    <% use_dataset = dataset %>
+                <% end %>
+
                 <div class='panel panel-default'>
 
                     <div class='panel-heading'>
-                        <h1 class='panel-title'><%= dataset.name %></h1>
+                        <h1 class='panel-title'>
+                            <%= use_dataset.name %>
+                        </h1>
                     </div>
 
                     <div class='panel-body'>
-                        <%= dataset.description %><br/>
-                        <% if dataset.created_at %>
+                        <%= use_dataset.description %> <br/>
+
+                        <% if use_dataset.created_at %>
                             <hr>
                             <span class='date'>
-                                <i class='fa fa-calendar'></i> posted <%= time_ago_in_words(dataset.created_at)+ " ago" %>
+                                <i class='fa fa-calendar'></i> posted <%= time_ago_in_words(use_dataset.created_at)+ " ago" %>
                             </span><br/>
                             <span class='comments'>
                                 <i class='fa fa-comments'></i>
-                                <%= pluralize(dataset.comments.count, 'comment') %>
+                                <%= pluralize(use_dataset.comments.count, 'comment') %>
                             </span>
                             <span class='views'>
                                 <i class='fa fa-eye'></i>
-                                <%= pluralize dataset.view_count, 'view' %>
+                                <%= pluralize use_dataset.view_count, 'view' %>
                             </span>
                         <% end %>
                     </div>
 
                     <div class='panel-footer'>
-                        <%= link_to dataset, class: 'btn btn-default' do%>
+                        <%= link_to use_dataset, class: 'btn btn-default' do%>
                             visit <i class='fa fa-eye'></i>
                         <% end %>
                         <% if current_user %>
-                            <% if is_owner_of(dataset) or current_user.has_role?(:admin) %>
-                                <%= link_to delete_dataset_path(dataset), class: 'btn btn-danger' do%>
+                            <% if is_owner_of(use_dataset) or current_user.has_role?(:admin) %>
+                                <%= link_to delete_dataset_path(use_dataset), class: 'btn btn-danger' do%>
                                     Delete <i class='fa fa-trash-o'></i>
                                 <% end %>
                             <% end %>
                         <% end %>
-                        <%= link_to dataset.attachment.url do %>
+                        <%= link_to use_dataset.attachment.url do %>
                             <i class='fa fa-download'></i>
                         <% end %>
                     </div>
 
                 </div>
             <% end %>
-            <%= paginate @datasets %>
+            <% if params[:search].nil? %>
+                <%= paginate @datasets %>
+            <% end %>
         </div>
 
     <% end %>
