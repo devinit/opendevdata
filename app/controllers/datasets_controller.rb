@@ -15,7 +15,12 @@ class DatasetsController < ApplicationController
   end
 
   def index
-    @datasets = Dataset.desc(:created_at).page(params[:page])
+    if params[:search].nil?
+      @datasets = Dataset.desc(:created_at).page(params[:page])
+    else
+      @datasets = Dataset.desc(:created_at).search(params[:search]).delete_if { |dataset| dataset.nil? or dataset.empty? }
+    end
+
     respond_to do |format|
       format.html
       format.json { render json: @datasets }
