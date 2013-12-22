@@ -15,6 +15,18 @@ class Document
 
   belongs_to :user
 
+
+  def self.search search
+    ret = []
+    if search
+      ret << any_of({name: /#{search}/i}).to_a
+      ret << tagged_with(/#{search}/i).to_a  # search tagged documents
+      ret
+    end
+  end
+
+
+
   private
   def set_time
     self.uploaded_on = Time.now if uploaded_on.nil?
