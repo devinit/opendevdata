@@ -8,7 +8,7 @@ class PagesController < ApplicationController
     if params[:search].nil?
       @datasets = Dataset.scoped limit: 10
     else
-      @datasets = Dataset.search params[:search]
+      @datasets = Dataset.search(params[:search]).delete_if { |x| x.empty? or x.nil? }
     end
   end
 
