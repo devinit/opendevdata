@@ -1,6 +1,7 @@
 class Document
   include Mongoid::Document
   include Mongoid::Slug
+  include Mongoid::Taggable
 
   before_save :set_time
   field :name, type: String
