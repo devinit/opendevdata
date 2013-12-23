@@ -1,5 +1,6 @@
 class User
   include Mongoid::Document
+  include Mongoid::Slug
   rolify
 
   before_save :set_name_and_case
@@ -14,6 +15,8 @@ class User
   ## More user information
   field :first_name,         type: String
   field :last_name,         type: String
+  slug :last_name
+
   field :organization,         type: String, default: ""
 
   ## Database authenticatable
