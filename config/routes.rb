@@ -7,7 +7,10 @@ Opendataportal::Application.routes.draw do
   authenticate :user, lambda { |u| u.is_admin? } do
     mount Sidekiq::Web => '/sidekiq'
     get "users/", to: "users#index", as: :users
-    get 'user/:id', to: 'users#show', as: :user
+    get 'users/:id', to: 'users#show', as: :user
+    match 'users/:id/ban', to: 'users#ban', as: :ban_user, via: :post
+    match 'users/:id/unban', to: 'users#unban', as: :unban_user, via: :post
+    get 'admin/', to: 'pages#admain', as: :admin
   end
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks'}
