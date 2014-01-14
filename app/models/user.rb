@@ -19,6 +19,9 @@ class User
 
   field :organization,         type: String, default: ""
 
+  ## banned status
+  field :banned, type: Boolean, default: false
+
   ## Database authenticatable
   field :email,              :type => String, :default => ""
   field :encrypted_password, :type => String, :default => ""
@@ -66,8 +69,24 @@ class User
     self.has_role? :admin
   end
 
+  def is_banned?
+    self.banned
+  end
+
+  def ban_user!
+    self.banned = true
+  end
+
+  def unban_user!
+    self.banned = false
+  end
+
   def full_name
     "#{self.first_name.capitalize} #{self.last_name.capitalize}"
+  end
+
+  def make_admin
+
   end
 
   def self.find_for_facebook_oauth auth, signed_in_resource=nil
