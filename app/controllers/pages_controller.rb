@@ -17,7 +17,9 @@ class PagesController < ApplicationController
 
   def admin
     @dataset_count = Dataset.count
+    @dataset_view = Dataset.all.inject(0) { |result, element| result + element.view_count }
     @user_count = User.count
+    @document_count = Document.count
   end
 
   private
