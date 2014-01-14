@@ -18,7 +18,20 @@
                     <% else %>
                         <%= render partial: 'ban', locals: {user: user} %>
                     <% end %>
-                    <%= link_to "Delete", user, method: :delete, confirm: "Are you sure?", class: 'btn btn-danger' %>
+                    <% if user.is_admin? %>
+                        <%= link_to remove_admin_path(user), confirm: 'Are you sure?', method: :post, class: 'btn btn-large btn-success' do%>
+                            Remove Admin
+                        <% end %>
+                    <% else %>
+                        <%= link_to make_admin_path(user), confirm: 'Are you sure?', method: :post, class: 'btn btn-large btn-info' do%>
+                            <span class='fa fa-desktop'></span>
+                            Make Admin
+                        <% end %>
+                    <% end %>
+                    <%= link_to user, method: :delete, confirm: "Are you sure?", class: 'btn btn-danger' do %>
+                        <span class='fa fa-trash-o'></span>
+                        Delete
+                    <% end %>
                     <%= link_to 'Show', user, class: 'btn btn-default' %>
                     </div>
                 </td>

@@ -1,1 +1,4 @@
-<%= link_to "Ban", ban_user_path(user), confirm: 'Are you sure?', method: :post, class: 'btn btn-danger btn-large' %>
+<%= link_to ban_user_path(user), confirm: 'Are you sure?', method: :post, class: 'btn btn-warning btn-large' do%>
+    <span class='fa fa-ban'></span>
+    Ban
+<% end %>
