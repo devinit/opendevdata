@@ -21,4 +21,29 @@ class UsersController < ApplicationController
     end
   end
 
+  def ban
+    if current_user.is_admin?
+      @user = User.find params[:id]
+      @user.ban_user!
+      @user.save
+      respond_to do |format|
+        format.html { redirect_to users_path }
+        format.js
+      end
+    end
+  end
+
+
+  def unban
+    if current_user.is_admin?
+      @user = User.find params[:id]
+      @user.unban_user!
+      @user.save
+      respond_to do |format|
+        format.html { redirect_to users_path }
+        format.js
+      end
+    end
+  end
+
 end
