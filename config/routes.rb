@@ -10,6 +10,8 @@ Opendataportal::Application.routes.draw do
     get 'users/:id', to: 'users#show', as: :user
     match 'users/:id/ban', to: 'users#ban', as: :ban_user, via: :post
     match 'users/:id/unban', to: 'users#unban', as: :unban_user, via: :post
+    match 'users/:id/make_admin', to: 'users#make_admin', as: :make_admin, via: :post
+    match 'users/:id/remove_admin', to: 'users#remove_admin', as: :remove_admin, via: :post
     get 'admin/', to: 'pages#admin', as: :admin
   end
 
