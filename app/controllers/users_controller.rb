@@ -11,13 +11,12 @@ class UsersController < ApplicationController
 
 
   def destroy
-    if current_user.is_admin?
-      @user = User.find params[:id]
-      name = @user.full_name
+    @user = User.find params[:id]
+    if current_user.is_admin? and current_user != @user
       @user.destroy
-      redirect_to users_path, notice: "You have successfully deleted #{name}"
+      redirect_to users_path, notice: "You have successfully deleted"
     else
-      redirect_to users_path, alert: "You cannot delete this user"
+      redirect_to users_path, alert: "You cannot delete this user, no permission."
     end
   end
 
