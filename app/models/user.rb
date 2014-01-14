@@ -86,7 +86,11 @@ class User
   end
 
   def make_admin
+    self.add_role :admin
+  end
 
+  def remove_admin
+    self.remove_role :admin
   end
 
   def self.find_for_facebook_oauth auth, signed_in_resource=nil
