@@ -12,9 +12,15 @@
             <tr>
                 <td><%= user.full_name %></td>
                 <td>
-                    <%= link_to "Ban", '#', class: 'btn btn-warning' %>
+                    <div class='row pull-right'>
+                    <% if user.is_banned? %>
+                        <%= render partial: 'unban', locals: { user: user } %>
+                    <% else %>
+                        <%= render partial: 'ban', locals: {user: user} %>
+                    <% end %>
                     <%= link_to "Delete", user, method: :delete, confirm: "Are you sure?", class: 'btn btn-danger' %>
                     <%= link_to 'Show', user, class: 'btn btn-default' %>
+                    </div>
                 </td>
             </tr>
         <% end %>
