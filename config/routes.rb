@@ -10,7 +10,7 @@ Opendataportal::Application.routes.draw do
     get 'users/:id', to: 'users#show', as: :user
     match 'users/:id/ban', to: 'users#ban', as: :ban_user, via: :post
     match 'users/:id/unban', to: 'users#unban', as: :unban_user, via: :post
-    get 'admin/', to: 'pages#admain', as: :admin
+    get 'admin/', to: 'pages#admin', as: :admin
   end
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks'}
