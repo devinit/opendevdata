@@ -62,6 +62,15 @@
                         Settings
                     <%end%>
                 </li>
+                <% if current_user.is_admin? %>
+                    <li class='devider'></li>
+                    <li>
+                        <%= link_to admin_path do%>
+                            <span class='fa fa-desktop'></span>
+                            Admin
+                        <% end %>
+                    </li>
+                <% end %>
                 <% end %>
                 <li class="devider"></li>
                 <li>
