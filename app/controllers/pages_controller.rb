@@ -15,6 +15,11 @@ class PagesController < ApplicationController
   def about
   end
 
+  def admin
+    @dataset_count = Dataset.count
+    @user_count = User.count
+  end
+
   private
   def page_layout
     if signed_in?
