@@ -46,4 +46,28 @@ class UsersController < ApplicationController
     end
   end
 
+  def make_admin
+    if current_user.is_admin?
+      @user = User.find params[:id]
+      @user.make_admin
+      @user.save
+      respond_to do |format|
+        format.html { redirect_to users_path }
+        format.js
+      end
+    end
+  end
+
+  def remove_admin
+    if current_user.is_admin?
+      @user = User.find params[:id]
+      @user.remove_admin
+      @user.save
+      respond_to do |format|
+        format.html { redirect_to users_path }
+        format.js
+      end
+    end
+  end
+
 end
