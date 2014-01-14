@@ -73,6 +73,16 @@
                                 <i class='fa fa-eye'></i>
                                 <%= pluralize use_dataset.view_count, 'view' %>
                             </span>
+                            <span class='category'>
+                                <i class='fa fa-tasks'></i>
+                                <% if use_dataset.tags_array.empty? %>
+                                    No category
+                                <% else %>
+                                    <% use_dataset.tags_array.each do |tag| %>
+                                        <span><%= link_to tag, '' %> </span>
+                                    <% end %>
+                                <% end %>
+                            </span>
                         <% end %>
                     </div>
 
