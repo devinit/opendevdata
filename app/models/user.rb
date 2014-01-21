@@ -58,6 +58,7 @@ class User
   field :provider, type: String
   field :uid, type: String
   field :name, type: String
+  field :api_token, type: String
 
   validates :first_name, :last_name, presence: true
 
@@ -79,6 +80,13 @@ class User
 
   def unban_user!
     self.banned = false
+  end
+
+  def build_token
+    begin
+      token = SecureRandom.urlsafe_base64
+    end while User.exists? api_token: token
+    token
   end
 
   def full_name

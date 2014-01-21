@@ -30,4 +30,12 @@ Opendataportal::Application.routes.draw do
   get "delete_dataset/:id", to: 'datasets#delete_page', as: 'delete_dataset'
 
   resources :documents, concerns: :sociable
+
+  namespace :api do
+    namespace :v1 do
+      # API routes
+      resources :documents, only: [:index, :show]
+      resources :datasets, only: [:index, :show]
+    end
+  end
 end
