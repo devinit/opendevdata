@@ -22,6 +22,9 @@ class PagesController < ApplicationController
     @document_count = Document.count
   end
 
+  def developer
+  end
+
   private
   def page_layout
     if signed_in?
