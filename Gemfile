@@ -103,3 +103,6 @@ end
 gem 'capistrano'
 gem 'capistrano-rbenv', github: "capistrano/rbenv"
 gem 'unicorn'
+
+gem 'rabl'
+gem 'oj'
