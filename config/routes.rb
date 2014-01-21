@@ -3,6 +3,7 @@ require 'sidekiq/web'
 Opendataportal::Application.routes.draw do
   root 'pages#index'
   get "about", to: 'pages#about', as: :about
+  get "developer", to: 'pages#developer', as: :developer
 
   authenticate :user, lambda { |u| u.is_admin? } do
     mount Sidekiq::Web => '/sidekiq'
