@@ -30,30 +30,32 @@
             <p><%= pluralize(@documents.size, "search result") + " returned..." %></p>
         </div>
     <% end %>
-    <ul class='row'>
-    <% @documents.each do |document| %>
+    <div class='row' style="margin-bottom: 40px;">
+        <ul>
+        <% @documents.each do |document| %>
 
-        <% if document.is_a? Array %>
-            <% use_document = document[0] %>
-        <% else %>
-            <% use_document = document %>
-        <% end %>
+            <% if document.is_a? Array %>
+                <% use_document = document[0] %>
+            <% else %>
+                <% use_document = document %>
+            <% end %>
 
-        <li class='doc-list-item'>
-            <span class='doc-details'>
-                <span class='doc-title'><%= link_to use_document.name, use_document %></span>
-                <span class='doc-description'><%= link_to use_document.description, use_document %></span><br/>
-                <span class='uploader'>Uploaded by <%= full_name_of use_document.user %></span>
-                <% if use_document.user == current_user %>
-                    <%= link_to use_document, method: :delete, confirm: "Are you sure you want to delete this document?", class: 'btn btn-danger' do %>
-                        <span class='fa fa-trash'></span> Delete
+            <li class='doc-list-item'>
+                <span class='doc-details'>
+                    <span class='doc-title'><%= link_to use_document.name, use_document %></span>
+                    <span class='doc-description'><%= link_to use_document.description, use_document %></span><br/>
+                    <span class='uploader'>Uploaded by <%= full_name_of use_document.user %></span>
+                    <% if use_document.user == current_user %>
+                        <%= link_to use_document, method: :delete, confirm: "Are you sure you want to delete this document?", class: 'btn btn-danger' do %>
+                            <span class='fa fa-trash'></span> Delete
+                        <% end %>
                     <% end %>
-                <% end %>
-            </span>
-        </li>
-    <% end %>
-    <% if params[:search].nil? %>
-        <%= paginate @documents %>
-    <% end %>
-    </ul>
+                </span>
+            </li>
+        <% end %>
+        <% if params[:search].nil? %>
+            <%= paginate @documents %>
+        <% end %>
+        </ul>
+    </div>
 <% end %>
