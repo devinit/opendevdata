@@ -221,9 +221,9 @@
 
         <!-- Latest Datasets -->
         <div class="col-md-4">
-            <div class="headline"><h2>Latest Datasets</h2></div>
+            <div class="headline"><h2>Latest</h2></div>
                 <div class="thumbnail">
-                  <span class='fa fa-list'></span>
+                  <span class='fa fa-list'></span> <span>Datasets</span>
                   <div class="caption">
                     <% if @recent_datasets %>
                         <ul>
@@ -233,6 +233,20 @@
                         </ul>
                     <% end %>
                     <%= link_to 'All datasets', datasets_path, class: 'btn btn-primary' %>
+                  </div>
+              </div>
+
+              <div class="thumbnail">
+                  <span class='fa fa-book'></span> <span>Documents</span>
+                  <div class="caption">
+                    <% if @recent_documents %>
+                        <ul>
+                        <% @recent_documents.each do |doc| %>
+                            <li><%= link_to doc.name, doc %></li>
+                        <% end %>
+                        </ul>
+                    <% end %>
+                    <%= link_to 'All documents', documents_path, class: 'btn btn-primary' %>
                   </div>
               </div>
         </div><!--/col-md-4-->
