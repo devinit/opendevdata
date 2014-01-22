@@ -929,6 +929,8 @@ i.style-switcher-btn-option:hover {
 	overflow: hidden;
 	margin-bottom: 10px;
 	padding: 15px 15px 10px;
+   height: 280px;
+   overflow: hidden;
 }
 .service:hover {
 	background: #fcfcfc;
