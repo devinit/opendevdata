@@ -38,4 +38,9 @@ Opendataportal::Application.routes.draw do
       resources :datasets, only: [:index, :show]
     end
   end
+  # blitz.io configuration for load testing.
+  get '/mu-b561528d-fc81669a-97f856be-c3f9e24b' do
+    '42'
+  end
+
 end
