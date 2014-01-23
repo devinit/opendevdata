@@ -98,6 +98,7 @@ gem 'dalli'
 
 group :development do
   gem 'better_errors'
+  gem 'brakeman', :require => false
 end
 
 gem 'capistrano'
