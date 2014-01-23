@@ -5,7 +5,7 @@ TODO:scope APIdocs
 ## Dependencies
 The open dev data stack has several dependencies
 
-Application Dependecies:
+Application Dependencies:
 
 * Rails
 * several gems that can be found in the Gemfile
