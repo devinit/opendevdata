@@ -79,23 +79,36 @@ class DatasetsController < ApplicationController
   end
 
   def edit
+    if current_user
+      if @dataset.user == current_user or current_user.is_admin?
+        render "edit"
+      else
+        flash[:alert] =  "You can't edit this document."
+        redirect_to datasets_path
+      end
+    else
+      flash[:alert] = "You don't have the right permissions to edit this file"
+      redirect_to datasets_path
+    end
   end
 
   def update
-    if @dataset.update_attributes dataset_params
-      if dataset_params['attachment']
-        _id = @dataset.id.to_s
-        # TODO refactor and put this in dataset.rb
-        ExcelToJson.perform_async(
-          _id,
-          dataset_params['attachment'].tempfile.path,
-          dataset_params['chart_type'],
-          @dataset.attachment.path.split("/").last)
+    if @dataset.user == current_user or current_user.is_admin?
+      if @dataset.update_attributes dataset_params
+        if dataset_params['attachment']
+          _id = @dataset.id.to_s
+          # TODO refactor and put this in dataset.rb
+          ExcelToJson.perform_async(
+            _id,
+            dataset_params['attachment'].tempfile.path,
+            dataset_params['chart_type'],
+            @dataset.attachment.path.split("/").last)
+        end
+        redirect_to @dataset, notice: "You have successfully updated this dataset."
+      else
+        flash[:alert] = "The dataset you have could not be updated."
+        render "edit"
       end
-      redirect_to @dataset, notice: "You have successfully updated this dataset."
-    else
-      flash[:alert] = "The dataset you have could not be updated."
-      render "edit"
     end
   end
 
