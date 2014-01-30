@@ -153,7 +153,13 @@
   })
     $(document).ready(function(){
       $('.bxslider').bxSlider({
-        mode: 'fade', captions: true
+        mode: 'fade', captions: true,
+	minSlides: 3,
+	maxSlides: 3,
+	slideWidth: 670,
+	slideMargin: 10,
+	ticker: true,
+	speed: 10000
       });
     });
 
