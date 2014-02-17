@@ -1,4 +1,4 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
@@ -11,7 +11,7 @@ gem 'omniauth-twitter'
 gem 'simple_form'
 gem 'carrierwave'
 gem "carrierwave-mongoid", "~> 0.6.0"
-gem 'mongoid', '~> 4', github: 'mongoid/mongoid'
+gem 'mongoid', '4.0.0.beta1', github: 'mongoid/mongoid'
 gem 'mongo'
 gem 'mongoid-grid_fs', github: 'ahoward/mongoid-grid_fs'
 gem 'mongoid_slug', github: 'digitalplaywright/mongoid-slug'
@@ -90,7 +90,7 @@ group :test do
   gem "selenium-webdriver"
   gem "database_cleaner", '1.0.1'
   gem 'email_spec'
-  gem 'mongoid-rspec', '>= 1.6.0', github: 'evansagge/mongoid-rspec'
+  # gem 'mongoid-rspec', '>= 1.11.0', github: 'evansagge/mongoid-rspec'
 end
 
 gem 'cache_digests'
