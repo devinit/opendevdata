@@ -1,11 +1,7 @@
 source 'http://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-<<<<<<< HEAD
-gem 'rails', '4.0.1'
-=======
 gem 'rails', '4.0.2'
->>>>>>> d3c7784dd323dd5beeb47d45d3c3a6011cafe892
 
 gem 'bson_ext'
 gem 'devise'
