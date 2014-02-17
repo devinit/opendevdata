@@ -35,25 +35,6 @@
 <div class="top">
     <div class="container">
         <ul class="loginbar pull-right">
-            <li>
-                <i class="fa fa-globe icon-globe"></i>
-                <a>Languages</a>
-                <ul class="lenguages">
-                    <li class="active">
-                        <a href="#">English <i class="fa fa-check icon-ok"></i></a>
-                    </li>
-                    <li><a href="#">Spanish</a></li>
-                    <li><a href="#">Russian</a></li>
-                    <li><a href="#">German</a></li>
-                </ul>
-            </li>
-            <li class="devider"></li>
-            <li>
-                <%= link_to '#' do %>
-                    <span class='fa fa-question'></span>
-                    Help
-                <%end%>
-            </li>
             <% if signed_in? %>
             <li class="devider"></li>
             <li>
