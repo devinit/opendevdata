@@ -10,9 +10,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'simple_form'
 gem 'carrierwave'
-# gem "carrierwave-mongoid", "~> 0.6.0"
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
-# gem 'mongoid', '4.0.0.rc2', github: 'mongoid/mongoid'
 gem 'mongoid', "4.0.0.rc2"
 gem 'mongo'
 gem 'mongoid-grid_fs', github: 'ahoward/mongoid-grid_fs'
@@ -20,13 +18,9 @@ gem 'mongoid_slug', github: 'digitalplaywright/mongoid-slug'
 gem 'mongoid_taggable'
 gem 'grape'
 gem 'active_model_serializers'
-# gem 'roo', '~> 1.2.3'
-# gem 'spreadsheet'
 gem "autoprefixer-rails"
-# gem "rails3-jquery-autocomplete"
 gem 'rails3-jquery-autocomplete', git: 'https://github.com/francisd/rails3-jquery-autocomplete'
 gem 'iconv'
-# gem "ckeditor", :git => "https://github.com/galetahub/ckeditor.git"
 gem 'ckeditor_rails'
 gem "sanitizer"
 gem "mini_magick"
@@ -37,15 +31,12 @@ gem 'sinatra', require: false
 gem 'slim'
 gem "redis"
 gem "foreman"
-# gem "faraday", github: 'lostisland/faraday'
 gem 'faraday', '<= 0.8.8'
 gem 'faraday-http-cache'
 gem 'kaminari'
 gem 'cancan'
 gem 'gon'  # need rails variables in javascript
-# gem "rolify", "~> 3.3.0.rc4"
 gem "rolify", git: "git://github.com/EppO/rolify.git"
-
 gem 'truncate_html', github: 'miclovich/truncate_html'
 
 # Use SCSS for stylesheets
