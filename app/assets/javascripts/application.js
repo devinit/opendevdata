@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
-//= require bootstrap
+//= require foundation
 //= require turbolinks
 //= require highcharts
 //= require highcharts-more
@@ -21,3 +21,5 @@
 //= require pace.min.js
 //= require jquery.bxslider.min.js
 //= require_tree .
+
+$(function(){ $(document).foundation(); });
