@@ -1,0 +1,97 @@
+<% if signed_in? %>
+    <% title("Welcome #{current_user.first_name}") %>
+<% else %>
+    <% title("Welcome") %>
+<% end %>
+
+<% if signed_in? %>
+
+    <div class='col-md-6'>
+        <div class='panel panel-default'>
+            <div class='panel-heading'>
+                <h2>Documents</h2>
+            </div>
+            <div class='panel-body'>
+                <ul>
+                    <% @recent_documents.each do |document| %>
+                    <li><%= link_to document.name, document.attachment.url %></li>
+                    <% end %>
+                </ul>
+                <hr>
+                <%= link_to "More Documents...", documents_path, class: 'btn btn-default', style: 'text-align:center;' %>
+            </div>
+        </div>
+    </div>
+    <div class='col-md-6'>
+        <div class='panel panel-default'>
+            <div class='panel-heading'>
+                <h2>Find a dataset</h2>
+            </div>
+            <div class='panel-body'>
+                <%= form_tag root_path, method: :get, class: 'form-inline' do %>
+                    <p><div class='form-group'>
+                        <%= text_field_tag :search, params[:search], placeholder: "keyword, category, name..." %>
+                        <%= submit_tag "Search", name: nil, class: 'btn btn-primary' %>
+                        </div>
+                        <br/>
+                        <a href="#infoHelp" data-toggle="modal">
+                            <span class='fa fa-info-circle'></span> Help
+                        </a>
+
+                    <div id="infoHelp" class="modal fade">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">How to search for datasets?</h4>
+                          </div>
+                          <div class="modal-body">
+                            <p>
+                            You can search for datasets in one of the following ways:
+
+                            <ul>
+                                <li>Using a key word</li>
+                                <li>Using a category</li>
+                                <li>Using a tag</li>
+                                <li>Using the full name of the dataset</li>
+                            </ul>
+                            </p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                          </div>
+                        </div><!-- /.modal-content -->
+                      </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
+                    </p>
+                <% end %>
+
+                <% if @datasets %>
+                    <ul>
+                        <% @datasets.each do |dataset| %>
+                            <% if !dataset.nil? %>
+                                <li>
+                                    <% if dataset.is_a? Array %>
+                                        <%= link_to dataset[0].name, dataset[0] %>
+                                    <% else %>
+                                        <%= link_to dataset.name, dataset %>
+                                    <% end %>
+                                </li>
+                            <% end %>
+                        <% end %>
+                    </ul>
+                <% else %>
+                    <div class='alert alert-danger'>
+                        <p>We could not find the dataset you are looking for</p>
+                    </div>
+                <% end %>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<% else %>
+    <%= render "marketing" %>
+<% end %>
