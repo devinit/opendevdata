@@ -20,6 +20,9 @@ $footer-height: 4em;
 
 
 .colorize{
+    th{
+        color: #CBAF13;
+    }
     background-color: #127D7F;
     margin-top: 2px;
     dd a{
@@ -47,6 +50,17 @@ $footer-height: 4em;
 }
 .short-description{
     font-size: .5em;
+    span{
+        font-style: italic;
+    }
+}
+
+.short-header-table a, .short-header-table a:hover, .short-header-table a:visited{
+    font-size: .9em;
+    font-weight: bold;
+}
+.short-description-table{
+    font-size: .8em;
     span{
         font-style: italic;
     }
