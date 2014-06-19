@@ -1,0 +1,53 @@
+// Place all the styles related to the pages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+html, body { height: 100%; }
+$footer-height: 4em;
+#wrap {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto ($footer-height * -1);
+}
+
+#wrap > *:last-child{
+    padding-bottom: $footer-height;
+}
+
+#footer{
+    height: $footer-height;
+}
+
+
+.colorize{
+    background-color: #127D7F;
+    margin-top: 2px;
+    dd a{
+        color: #CBAF13;
+        &:hover{
+            color: white;
+            font-size: 1em;
+            font-style: italic;
+            line-height: .75em;
+        }
+    }
+}
+
+.fa-5{
+    font-size: 5em;
+}
+
+#map-canvas{
+    height: 150px;
+}
+
+.short-header a, .short-header a:hover, .short-header a:visited{
+    font-size: .7em;
+    font-weight: bold;
+}
+.short-description{
+    font-size: .5em;
+    span{
+        font-style: italic;
+    }
+}
