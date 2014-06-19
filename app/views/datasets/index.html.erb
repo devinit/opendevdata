@@ -1,121 +1,109 @@
 <% title('All Datasets') %>
 <div class='row'>
-    <ul class="breadcrumbs">
-      <li>
-        <%= link_to root_path do%>
-            Home <i class='fa fa-home'></i>
-        <% end %>
-      </li>
+    <div class='columns large-12'><ul class="breadcrumbs">
+          <li>
+            <%= link_to root_path do%>
+                Home <i class='fa fa-home'></i>
+            <% end %>
+          </li>
 
-      <li class="active">All Datasets</li>
-    </ul>
+          <li class="active">All Datasets</li>
+        </ul></div>
+</div>
 
     <% if signed_in? %>
     <div class='row'>
-        <%= link_to new_dataset_path, class: 'btn btn-primary' do %>
-            New Dataset <i class='fa fa-plus'></i>
-        <% end %>
+        <div class='columns large-12'>
+            <%= link_to new_dataset_path, class: 'button' do %>
+                New Dataset <i class='fa fa-plus'></i>
+            <% end %>
 
-        <div class='alert alert-info pull-right'>
-            <p class='leading'>You can download all datasets as:</p>
-            <ul>
-                <li><%= link_to "JSON", "#{datasets_url}.json" %></li>
-                <li><%= link_to "CSV", datasets_path(@datasets, format: 'csv') %></li>
-            </ul>
+            <div class='right panel callout'>
+                <p class='lead'>You can download all datasets as:</p>
+                <ul>
+                    <li><%= link_to "JSON", "#{datasets_url}.json" %></li>
+                    <li><%= link_to "CSV", datasets_path(@datasets, format: 'csv') %></li>
+                </ul>
+            </div>
         </div>
     </div>
     <% end %>
+
     <% if @datasets %>
+        <div class='row panel'>
+            <div class='large-12 columns'>
+                <h3 class='left'><i class='fa fa-database'></i> <%= Dataset.count %> Datasets</h3>
+                <hr>
+                <span>
+                    <%= form_tag datasets_path, method: :get do %>
+                        <div class='row'>
+                        <div class='large-12 columns'>
+                            <div class='row collapse'>
+                                <div class='small-8 columns'><%= text_field_tag :search, params[:search], placeholder: 'Search using a keyword, name, or category' %></div>
 
-        <div class='row'>
-            <div class='large-12 columns'><h3 class='left'>Datasets</h3>
-                        <span class="right">
-                            <%= form_tag datasets_path, method: :get do %>
-                                <div class='row'>
-                                <div class='large-12 columns'>
-                                    <div class='row collapse'>
-                                        <div class='small-7 columns'><%= text_field_tag :search, params[:search], placeholder: 'keyword, name, category' %></div>
-
-                                        <div class='small-5 columns'>
-                                        <button type='submit' class='button postfix'>
-                                            <i class='fa fa-search'></i> Search
-                                        </button></div>
-                                    </div>
-                                </div>
+                                <div class='small-4 columns'>
+                                <button type='submit' class='button postfix'>
+                                    <i class='fa fa-search'></i> Search
+                                </button></div>
                             </div>
-                            <% end %>
-                        </span>
+                        </div>
+                    </div>
+                    <% end %>
+                </span>
             </div>
         </div>
 
-        <div style="margin-bottom: 5.5em;" data-no-turbolink>
-            <% @datasets.each do |dataset| %>
-
-                <% if dataset.is_a? Array %>
-                    <% use_dataset = dataset[0] %>
-                <% else %>
-                    <% use_dataset = dataset %>
+    <div class='row'>
+        <div class='large-2 columns'>
+            <table>
+            <thead>
+                <th width="200">Sectors/Tags</th>
+            </thead>
+            <tbody>
+            <form>
+                <% @tags.each do |tag| %>
+                    <tr><td>
+                        <input type='checkbox' name='tag' value='<%= tag %>'>
+                        <%= tag %>
+                    </td></tr>
                 <% end %>
-
-                <div class='panel panel-default'>
-
-                    <div class='panel-heading'>
-                        <h1 class='panel-title'>
-                            <%= use_dataset.name %>
-                        </h1>
-                    </div>
-
-                    <div class='panel-body'>
-                        <%= use_dataset.description %> <br/>
-
-                        <% if use_dataset.created_at %>
-                            <hr>
-                            <span class='date'>
-                                <i class='fa fa-calendar'></i> posted <%= time_ago_in_words(use_dataset.created_at)+ " ago" %>
+            </tbody>
+            </form>
+            </table>
+            <button class='button alert secondary'>Apply</button>
+        </div>
+        <div class='large-10 columns'>
+        <div data-no-turbolink>
+            <table>
+                <thead class='colorize'>
+                    <th width="550">Dataset Title</th>
+                    <th width="100">Views</th>
+                    <th width="220">Release date</th>
+                </thead>
+                <tbody>
+                <% @datasets.each do |dataset| %>
+                    <% if dataset.is_a? Array %>
+                        <% use_dataset = dataset[0] %>
+                    <% else %>
+                        <% use_dataset = dataset %>
+                    <% end %>
+                    <tr>
+                        <td>
+                            <span class='short-header-table'>
+                                <%= link_to use_dataset.title, dataset_path(use_dataset)%>
                             </span><br/>
-                            <span class='comments'>
-                                <i class='fa fa-comments'></i>
-                                <%= pluralize(use_dataset.comments.count, 'comment') %>
-                            </span>
-                            <span class='views'>
-                                <i class='fa fa-eye'></i>
-                                <%= pluralize use_dataset.view_count, 'view' %>
-                            </span>
-                            <span class='category'>
-                                <i class='fa fa-tasks'></i>
-                                <% if use_dataset.tags_array.empty? %>
-                                    No category
-                                <% else %>
-                                    <% use_dataset.tags_array.each do |tag| %>
-                                        <span><%= link_to tag, '' %> </span>
-                                    <% end %>
-                                <% end %>
-                            </span>
-                        <% end %>
-                    </div>
+                            <span class='short-description-table'><%= use_dataset.description %></span>
+                        </td>
+                        <td><%= use_dataset.view_count %></td>
+                        <td><%= use_dataset.created_at %></td>
+                    </tr>
+                <% end %>
+                </tbody>
+                </table>
 
-                    <div class='panel-footer'>
-                        <%= link_to use_dataset, class: 'btn btn-default' do%>
-                            visit <i class='fa fa-eye'></i>
-                        <% end %>
-                        <% if current_user %>
-                            <% if is_owner_of(use_dataset) or current_user.has_role?(:admin) %>
-                                <%= link_to delete_dataset_path(use_dataset), class: 'btn btn-danger' do%>
-                                    Delete <i class='fa fa-trash-o'></i>
-                                <% end %>
-                            <% end %>
-                        <% end %>
-                        <%= link_to use_dataset.attachment.url do %>
-                            <i class='fa fa-download'></i>
-                        <% end %>
-                    </div>
-
-                </div>
-            <% end %>
             <% if params[:search].nil? %>
                 <%= paginate @datasets %>
             <% end %>
         </div>
-
+</div></div>
     <% end %>
-</div>
