@@ -15,6 +15,11 @@ class DatasetsController < ApplicationController
   end
 
   def index
+    @tags = []
+    Dataset.tags.each do |tag|
+      @tags << tag
+    end
+
     if params[:search].nil?
       @datasets = Dataset.desc(:created_at).page(params[:page])
     else
