@@ -1,42 +1,39 @@
-<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3" style="margin-bottom: 100px; margin-top: 10px;">
-
+<div class='row'>
+<div class='large-12 columns'>
+<div class='panel'>
+    <fieldset>
+    <legend>Login to your account</legend>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'reg-page'}) do |f| %>
-        <div class="reg-header">
-            <h2>Login to your account</h2>
-        </div>
+            <%= devise_error_messages! %>
 
-        <%= devise_error_messages! %>
-
-        <div class="input-group margin-bottom-20">
-            <span class="input-group-addon"><i class="fa fa-user"></i></span>
-            <%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'Email' %>
-        </div>
-        <div class="input-group margin-bottom-20">
-            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-            <%= f.password_field :password, autofocus: true, class: 'form-control', placeholder: 'Password' %>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">
-                <label class="checkbox"><input type="checkbox"> Stay signed in</label>
+            <div class="input-group margin-bottom-20">
+                <%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'Email' %>
             </div>
-            <div class="col-md-6">
+            <div class="input-group margin-bottom-20">
+                <%= f.password_field :password, autofocus: true, class: 'form-control', placeholder: 'Password' %>
+            </div>
 
-                <div class='form-group'>
-                    <%= content_tag :button, :type => :submit, class: 'btn-u pull-right' do %>
-                        Login
-                        <i class='fa fa-sign-in'></i>
-                    <% end %>
+            <div class="row">
+                <div class="large-6 columns">
+                    <label class="checkbox"><input type="checkbox"> Stay signed in</label>
+                </div>
+                <div class="large-6 columns">
+
+                    <div class='form-group'>
+                        <%= content_tag :button, :type => :submit, class: 'btn-u pull-right' do %>
+                            Login
+                            <i class='fa fa-sign-in'></i>
+                        <% end %>
+                    </div>
                 </div>
             </div>
-        </div>
+            <hr>
 
-        <hr>
+            <div class='panel callout'><h4>Forgot your Password ?</h4>
+                    <p>no worries, <%= link_to 'click here', new_user_password_path %> to reset your password.</p>
 
-        <h4>Forget your Password ?</h4>
-        <p>no worries, <%= link_to 'click here', new_user_password_path, class: 'color-green' %> to reset your password.</p>
-
-        <h4>No account?</h4>
-        <p>Just head over here and <%= link_to "register", register_path %></p>
-    <% end %>
+                    <h4>No account?</h4>
+                    <p>Just head over here and <%= link_to "register", register_path %></p></div>
+        <% end %>
+    </fieldset></div></div>
 </div>
