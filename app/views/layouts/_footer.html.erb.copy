@@ -1,0 +1,25 @@
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 md-margin-bottom-40">
+                <!-- About -->
+                <div class="headline"><h2>About</h2></div>
+                <p class="margin-bottom-25 md-margin-bottom-40">This site is the initiative of The Uganda Open Development Partnership, a CSO-led public initiative that brings together government, civic society, academia, citizens and development partners working on open development initiatives, such as open data, open government, open budget, open aid, among others. The partnership was a culmination of several months’ efforts by civil society organizations, to form a harmonised and coordinated partnership where information on a range of development matters can be open, available, accessible and useable for better human development outcomes</p>
+            </div><!--/col-md-4-->
+
+            <div class="col-md-4">
+                <!-- Monthly Newsletter -->
+                <div class="headline"><h2>Contact Us</h2></div>
+                <address class="md-margin-bottom-40">
+                    Uganda Open Development Data <br/>
+                    c/o Development Research & Training (DRT) Mutesasira Zone<br/>
+                    Lukka-Mayanja Lane, Plot 40, Block 254 Kansanga<br/>
+                    Tel 256 (0) 312 263629 or 256 (0) 414 269491 <br/>
+                    P.O.Box 22459, KampalaUganda <br/>
+                    Email: <a href="info@drt-ug.org" class="">info@drt-ug.org</a> <br/>
+                    Website: <a href="http://www.drt-ug.org" class="">www.drt-ug.org</a>
+                </address>
+            </div><!--/col-md-4-->
+        </div><!--/row-->
+    </div><!--/container-->
+</div><!--/footer-->
