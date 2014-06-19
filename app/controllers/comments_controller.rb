@@ -1,5 +1,4 @@
 class CommentsController < ApplicationController
-  layout "ordinary_application"
 
   before_filter :authenticate_user!
 

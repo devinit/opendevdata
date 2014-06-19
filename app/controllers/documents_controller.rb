@@ -1,6 +1,4 @@
 class DocumentsController < ApplicationController
-  layout "ordinary_application"
-
   before_filter :authenticate_user!, except: [:index, :show]
   before_filter :get_document, only: [:edit, :show, :update, :destroy]
 

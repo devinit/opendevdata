@@ -1,5 +1,4 @@
 class PagesController < ApplicationController
-  layout :page_layout
 
   def index
     @recent_datasets = Dataset.scoped limit: 3
@@ -23,15 +22,6 @@ class PagesController < ApplicationController
   end
 
   def developer
-  end
-
-  private
-  def page_layout
-    if signed_in?
-      "ordinary_application"
-    else
-      "application"
-    end
   end
 
 end
