@@ -2,26 +2,33 @@
 <h1 class='page-header'>
     Documents (<%= Document.count %>)
     <span class='pull-right'>
-        <%= link_to  new_document_path, class: 'btn btn-primary' do %>
+        <%= link_to  new_document_path, class: 'button' do %>
          Upload document <span class='fa fa-plus'></span>
         <% end %>
     </span>
 </h1>
-<div class='row'>
-    <%= form_tag documents_path, method: :get, class: 'form-inline' do %>
-        <%= text_field_tag :search, params[:search], placeholder: 'keyword, name, category' %>
-        <%= submit_tag "Search", name: nil, class: 'btn btn-primary' do %>
-            <span class='fa fa-search'></span>
-        <% end %>
-    <% end %>
-</div>
 
+<div class='row'>
+
+    <div class='large-12 columns'><%= form_tag documents_path, method: :get, class: 'form-inline' do %>
+                <div class='row'>
+                    <div class='large-8 columns'>
+                        <%= text_field_tag :search, params[:search], placeholder: 'keyword, name, category' %>
+                    </div>
+                    <div class='large-4 columns'>
+                        <%= submit_tag "Search", name: nil, class: 'button' do %>
+                            <span class='fa fa-search'></span>
+                        <% end %>
+                    </div>
+                </div>
+        <% end %></div>
+</div>
 <% if params[:search] %>
 
 <% end %>
 
 <% if @documents.empty? %>
-    <div class='alert alert-info'>
+    <div class='alert-box info'>
         <p>There are no documents yet. Would you like to upload a document? Click <%=link_to "here", new_document_path %></p>
     </div>
 <% else %>
