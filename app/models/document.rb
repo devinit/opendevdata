@@ -15,6 +15,8 @@ class Document
 
   belongs_to :user
 
+  embedded_in :organization,
+
 
   def self.search search
     ret = []
