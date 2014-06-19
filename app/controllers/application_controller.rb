@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  layout :layout_by_resource
   before_filter :configure_permited_parameters, if: :devise_controller?
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -38,15 +37,4 @@ class ApplicationController < ActionController::Base
                                       :password_confirmation,
                                       :current_password)}
   end
-
-  def layout_by_resource
-    if devise_controller?
-      "ordinary_application"
-    else
-      "application"
-    end
-  end
-
-
-
 end
