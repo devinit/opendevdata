@@ -1,29 +1,49 @@
 <div class='row'>
     <div class='large-4 columns'>
         <div class='row'>
-            <div class='large-4 columns'>
+            <div class='large-4 columns hide-for-small'>
+            <%= link_to datasets_path do %>
                 <i class='fa fa-database fa-5'></i>
+            <% end %>
             </div>
-            <div class='large-8 columns'><%= Dataset.count %> <br/>Datasets</div>
+            <div class='large-8 columns'>
+                <%= link_to datasets_path do %>
+                    <%= Dataset.count %><br/>Datasets
+                <% end %>
+            </div>
         </div>
         <hr>
     </div>
     <div class='large-4 columns'>
         <div class='row'>
-            <div class='large-4 columns'><i class='fa fa-cubes fa-5'></i></div><div class='large-8 columns'>19 <br/>Categories</div>
+            <div class='large-4 columns'>
+                <i class='fa fa-cubes fa-5'></i>
+            </div>
+            <div class='large-8 columns'>
+                19 <br/>Categories
+            </div>
         </div>
         <hr>
     </div>
     <div class='large-4 columns'>
         <div class='row'>
-            <div class='large-4 columns'><i class='fa fa-tint fa-5'></i></div>
-            <div class='large-8 columns left'>API <br/>(Application Programming Interface)</div>
+            <div class='large-4 columns hide-for-small'>
+                <%= link_to developer_path do %>
+                    <i class='fa fa-tint fa-5'></i>
+                <% end %>
+            </div>
+            <div class='large-8 columns left'>
+                <%= link_to developer_path do %>
+                API <br/>(Developers)
+                <% end %>
+            </div>
         </div>
         <hr>
     </div>
 </div>
 
 
+<% if !signed_in? %>
 <div class='row'>
     <div class='columns large-12'>
         <ul class="example-orbit" data-orbit>
@@ -49,7 +69,7 @@
         </ul>
     </div>
 </div>
-
+<% end %>
 
 <div class='row'>
 
