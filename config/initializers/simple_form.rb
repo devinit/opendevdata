@@ -133,6 +133,7 @@ SimpleForm.setup do |config|
 
   # When false, do not use translations for labels.
   # config.translate_labels = true
+  config.form_class = :nice
 
   # Automatically discover new inputs in Rails' autoload path.
   # config.inputs_discovery = true
