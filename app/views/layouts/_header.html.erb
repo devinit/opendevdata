@@ -12,7 +12,13 @@
       <li><%= link_to 'About', about_path %></li>
       <li><a href='http://blog.opendevdata.ug' target="_blank">Blog</a></li>
       <li class="has-dropdown">
-        <a href="#">Welcome</a>
+        <a href="#">
+          <% if signed_in? %>
+            Hi <%= current_user.first_name %>
+          <% else %>
+            Welcome
+          <% end %>
+        </a>
         <ul class="dropdown">
           <li>
           <% if signed_in? %>
@@ -26,7 +32,7 @@
     </ul>
 
     <!-- Left Nav Section -->
-    <ul class="left">
+    <!-- <ul class="left">
       <li class='has-form'>
           <div class='row collapse'>
               <div class='large-8 small-9 columns'>
@@ -37,7 +43,7 @@
               </div>
           </div>
       </li>
-    </ul>
+    </ul> -->
   </section>
 </nav>
 
