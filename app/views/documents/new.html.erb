@@ -1,11 +1,10 @@
 <div class='row' style='margin-top: 5px;'>
 
 
-<h3 class='page-header'>Upload new document</h3>
-<%= simple_form_for @document, html: { class: 'form-horizontal', multipart: true } do |f| %>
+<div class='large-12 columns'><h3 class='page-header'>Upload new document</h3>
+<%= simple_form_for @document, html: { multipart: true } do |f| %>
 
     <%= render 'shared/error_messages', object: f.object %>
-
     <div class='form-group'>
         <%= f.label :name, class: 'col-lg-2' %>
         <div class='col-lg-10'>
@@ -37,10 +36,10 @@
 
     <div class='form-group'>
         <div class='col-lg-offset-2 col-lg-10'>
-            <%= f.button :submit, class: 'btn btn-primary' %>
+            <%= f.button :submit, "Upload document", class: 'button success' %>
         </div>
     </div>
 
 
 <% end %>
-</div>
+</div></div>
