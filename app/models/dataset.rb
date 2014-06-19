@@ -24,11 +24,11 @@ class Dataset
 
   mount_uploader :attachment, DatasetFileUploader
 
-  # belongs_to :organization
+  belongs_to :organization
   belongs_to :user
-  embedded_in :organization
+  # embedded_in :organization
 
-  validates :name, :description, :chart_type, :sub_title, :title, presence: true
+  validates :name, :description, presence: true
 
   embeds_many :comments
 
