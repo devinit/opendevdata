@@ -191,6 +191,8 @@ GEM
       rack-accept
       rack-mount
       virtus (>= 1.0.0)
+    groupdate (2.1.1)
+      activerecord (>= 3.0.0)
     haml (4.0.5)
       tilt
     hashie (2.1.2)
@@ -453,6 +455,7 @@ DEPENDENCIES
   foundation-rails
   gon
   grape
+  groupdate
   iconv
   jbuilder (~> 2.0)
   jquery-rails

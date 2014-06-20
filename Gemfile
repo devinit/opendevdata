@@ -34,6 +34,7 @@ gem "foreman"
 gem 'faraday', '<= 0.8.8'
 gem 'faraday-http-cache'
 gem "chartkick"
+gem 'groupdate'
 gem 'kaminari'
 gem 'cancan'
 gem 'gon'  # need rails variables in javascript
