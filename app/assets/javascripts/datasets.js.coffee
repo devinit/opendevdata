@@ -2,6 +2,7 @@ $('.chart-callout').hide()
 
 $("a#show-chart-callout").on 'click', (event) ->
     # $(this).html('<a href="" id="hide-callout">Hide Extra fields</a>')
+    $('.btw').fadeOut()
     $('.wrap-link').fadeOut()
     $('.chart-callout').show()
     event.preventDefault()
