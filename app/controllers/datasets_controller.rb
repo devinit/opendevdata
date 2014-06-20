@@ -48,9 +48,19 @@ class DatasetsController < ApplicationController
       gon.data_units ||= @dataset.data_units
     end
     @chart_type ||= @dataset.chart_type
+    if @chart_type == ""
+      @chart_type = nil
+    end
     @comments = @dataset.comments.desc(:created_at).page(params[:page])
-    @dataset.view_count += 1
-    @dataset.save # save view count
+    if signed_in?
+      if @dataset.user != current_user
+        @dataset.view_count += 1
+        @dataset.save # save view count
+      end
+    else
+      @dataset.view_count += 1
+      @dataset.save # save view count
+    end
 
     respond_to do |format|
       format.html
@@ -67,7 +77,7 @@ class DatasetsController < ApplicationController
     @dataset = Dataset.create(dataset_params.merge(user: current_user))
     if @dataset.save
       # send file for processing
-      if dataset_params['attachment']
+      if !@dataset.no_viz and dataset_params['attachment']
         _id = @dataset.id.to_s
         ExcelToJson.perform_async(
           _id,
