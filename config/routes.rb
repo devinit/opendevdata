@@ -28,7 +28,7 @@ Opendataportal::Application.routes.draw do
   concern :sociable, Sociable
 
   resources :datasets, concerns: :sociable # all datasets
-  resources :organizations do
+  resources :workspaces do
     resources :datasets, concerns: :sociable
     resources :documents, concerns: :sociable
   end
@@ -42,7 +42,7 @@ Opendataportal::Application.routes.draw do
       resources :documents, only: [:index, :show]
       resources :datasets, only: [:index, :show]
 
-      resources :organizations, only: [:index, :show] do
+      resources :workspaces, only: [:index, :show] do
         resources :documents, only: [:index, :show]
         resources :datasets, only: [:index, :show]
       end
