@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
 
   def index
-    @recent_datasets = Dataset.scoped limit: 3
+    @recent_datasets = Dataset.order("created_at DESC").scoped limit: 3
     @recent_documents = Document.scoped limit: 5
 
     _tags = Dataset.all.collect(&:tags).reject!(&:empty?)
