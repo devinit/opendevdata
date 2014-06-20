@@ -62,9 +62,14 @@ class User
 
   validates :first_name, :last_name, presence: true
 
-  # has_many :posts, dependent: :delete
   has_many :datasets, dependent: :delete
   has_many :documents, dependent: :delete
+  has_many :memberships, dependent: :destroy
+
+  def workspaces
+    # get the workspaces this user belongs to
+    Workspace.in id: memberships.map(&:workspace_id)
+  end
 
   def is_admin?
     self.has_role? :admin
