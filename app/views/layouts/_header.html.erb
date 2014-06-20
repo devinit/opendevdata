@@ -11,15 +11,15 @@
     <ul class="right">
       <li><%= link_to 'About', about_path %></li>
       <li><a href='http://blog.opendevdata.ug' target="_blank">Blog</a></li>
-      <li>
         <% if signed_in? %>
           <% if current_user.has_role? :admin %>
+          <li>
           <%= link_to admin_path do %>
             Admin <i class='fa fa-laptop'></i>
           <% end %>
+          </li>
           <% end %>
         <% end %>
-      </li>
       <li class="has-dropdown">
         <a href="#">
           <% if signed_in? %>
