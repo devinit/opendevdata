@@ -28,10 +28,11 @@ Opendataportal::Application.routes.draw do
   concern :sociable, Sociable
 
   resources :datasets, concerns: :sociable # all datasets
+
   resources :workspaces do
-    resources :datasets, concerns: :sociable
-    resources :documents, concerns: :sociable
+    resources :datasets
   end
+
   get "delete_dataset/:id", to: 'datasets#delete_page', as: 'delete_dataset'
 
   resources :documents, concerns: :sociable
@@ -42,10 +43,10 @@ Opendataportal::Application.routes.draw do
       resources :documents, only: [:index, :show]
       resources :datasets, only: [:index, :show]
 
-      resources :workspaces, only: [:index, :show] do
-        resources :documents, only: [:index, :show]
-        resources :datasets, only: [:index, :show]
-      end
+      # resources :workspaces, only: [:index, :show] do
+      #   resources :documents, only: [:index, :show]
+      #   resources :datasets, only: [:index, :show]
+      # end
     end
   end
 end

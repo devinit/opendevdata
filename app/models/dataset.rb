@@ -25,7 +25,7 @@ class Dataset
 
   mount_uploader :attachment, DatasetFileUploader
 
-  belongs_to :organization
+  belongs_to :workspace
   belongs_to :user
   # embedded_in :organization
 

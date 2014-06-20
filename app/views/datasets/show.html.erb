@@ -33,8 +33,8 @@
 
             <h5>Publisher/Author</h5>
             <p>
-                <% if @dataset.organization %>
-                    <em><%= @dataset.organization %></em>
+                <% if @dataset.workspace %>
+                    <em><%= @dataset.workspace.organization_name %></em>
                 <% else %>
                 <div class='panel callout'><p>This data is not available at the moment</p></div>
                 <% end %>

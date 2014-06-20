@@ -1,6 +1,9 @@
 class Workspace
   include Mongoid::Document
+  include Mongoid::Slug
+
   field :organization_name, type: String
+  slug :organization_name
   field :location, type: String
   field :description, type: String
 

@@ -3,6 +3,10 @@ class WorkspacesController < ApplicationController
   # Note: here we'll go against the usual Rails b'se I'm tired
   # Workspace is analogous to an Organization
 
+  def index
+    @workspaces = Workspace.all
+  end
+
   def new
     @workspace = Workspace.new
   end
@@ -19,6 +23,11 @@ class WorkspacesController < ApplicationController
       render "new"
     end
   end
+
+  def show
+    @workspace = Workspace.find params[:id]
+  end
+
 
   def edit
     @workspace = Workspace.find params[:id]
@@ -40,7 +49,7 @@ class WorkspacesController < ApplicationController
 
   private
     def workspaces_params
-      params.require(:dataset).permit(:organization_name, :location)
+      params.require(:workspace).permit(:organization_name, :description, :location)
     end
 
 end
