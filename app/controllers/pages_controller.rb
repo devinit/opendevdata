@@ -4,6 +4,19 @@ class PagesController < ApplicationController
     @recent_datasets = Dataset.scoped limit: 3
     @recent_documents = Document.scoped limit: 5
 
+    _tags = Dataset.all.collect(&:tags).reject!(&:empty?)
+    # cleanup
+    @tags = []
+    _tags.each do |tag|
+      _tag_split = tag.split(',')
+      _tag_split.each do |_tagged|
+        @tags << _tagged
+      end
+    end
+
+    # sanitize (only unique tags)
+    @tags.uniq!
+
     if params[:search].nil?
       @datasets = Dataset.scoped limit: 10
     else
