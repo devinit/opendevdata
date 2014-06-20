@@ -1,10 +1,9 @@
 <% title("Users") %>
-<div class='page-header'>
-    <h2>Users</h2>
-</div>
-<div class='row' style='margin-bottom: 40px;'>
 
-    <table class='table table-striped'>
+<div class='row'>
+<div class='large-12 columns'>
+    <h2>Users</h2>
+    <table>
         <thead>
             <th colspan=2>Name</th>
         </thead>
@@ -12,30 +11,29 @@
             <tr>
                 <td><%= user.full_name %></td>
                 <td>
-                    <div class='row pull-right'>
                     <% if user.is_banned? %>
                         <%= render partial: 'unban', locals: { user: user } %>
                     <% else %>
                         <%= render partial: 'ban', locals: {user: user} %>
                     <% end %>
                     <% if user.is_admin? %>
-                        <%= link_to remove_admin_path(user), confirm: 'Are you sure?', method: :post, class: 'btn btn-large btn-success' do%>
+                        <%= link_to remove_admin_path(user), confirm: 'Are you sure?', method: :post, class: 'button success' do%>
                             Remove Admin
                         <% end %>
                     <% else %>
-                        <%= link_to make_admin_path(user), confirm: 'Are you sure?', method: :post, class: 'btn btn-large btn-info' do%>
+                        <%= link_to make_admin_path(user), confirm: 'Are you sure?', method: :post, class: 'button' do%>
                             <span class='fa fa-desktop'></span>
                             Make Admin
                         <% end %>
                     <% end %>
-                    <%= link_to user, method: :delete, confirm: "Are you sure?", class: 'btn btn-danger' do %>
+                    <%= link_to user, method: :delete, confirm: "Are you sure?", class: 'button alert' do %>
                         <span class='fa fa-trash-o'></span>
                         Delete
                     <% end %>
-                    <%= link_to 'Show', user, class: 'btn btn-default' %>
-                    </div>
+                    <%= link_to 'Show', user, class: 'button secondary' %>
+
                 </td>
             </tr>
         <% end %>
     </table>
-</div>
+</div></div>
