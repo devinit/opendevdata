@@ -7,13 +7,14 @@ class PagesController < ApplicationController
     _tags = Dataset.all.collect(&:tags).reject!(&:empty?)
     # cleanup
     @tags = []
-    _tags.each do |tag|
-      _tag_split = tag.split(',')
-      _tag_split.each do |_tagged|
-        @tags << _tagged
+    if !_tags.nil?
+      _tags.each do |tag|
+        _tag_split = tag.split(',')
+        _tag_split.each do |_tagged|
+          @tags << _tagged
+        end
       end
     end
-
     # sanitize (only unique tags)
     @tags.uniq!
 

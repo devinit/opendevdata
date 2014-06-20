@@ -11,13 +11,8 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery.turbolinks
 //= require jquery_ujs
 //= require foundation
-//= require turbolinks
-//= require highcharts
-//= require highcharts-more
-//= require modules/exporting
 //= require pace.min.js
 //= require_tree .
 

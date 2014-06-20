@@ -21,7 +21,7 @@ gem 'active_model_serializers'
 gem "autoprefixer-rails"
 gem 'rails3-jquery-autocomplete', git: 'https://github.com/francisd/rails3-jquery-autocomplete'
 gem 'iconv'
-gem 'ckeditor_rails'
+# gem 'ckeditor_rails'
 gem "sanitizer"
 gem "mini_magick"
 gem "smarter_csv"

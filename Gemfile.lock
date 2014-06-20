@@ -125,8 +125,6 @@ GEM
       timers (~> 1.1.0)
     childprocess (0.5.3)
       ffi (~> 1.0, >= 1.0.11)
-    ckeditor_rails (4.4.0)
-      railties (>= 3.0)
     coderay (1.1.0)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
@@ -440,7 +438,6 @@ DEPENDENCIES
   capybara
   carrierwave
   carrierwave-mongoid
-  ckeditor_rails
   coffee-rails (~> 4.0.0)
   dalli
   database_cleaner (= 1.0.1)
