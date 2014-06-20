@@ -1,29 +1,38 @@
-<blockquote>
-    <p>Statistics</p>
-</blockquote>
-<div class='jumbotron'>
 <div class='row'>
-    <div class='col-md-6'>
+    <div class='columns large-12'><p class='lead'>
+        The Administrator Dashboard
+    </p>
+
         <div class='row'>
-            Datasets<br/>
-            <%= @dataset_count %><br/>
-            <%= link_to "view", datasets_path %>
-        </div>
-        <hr>
-        <div class='row'>
-            Total Dataset views<br/>
-            <%= @dataset_view %>
-        </div>
-        <hr>
-        <div class='row'>
-            Documents<br/>
-            <%= link_to "#{@document_count}", documents_path %>
+            <div class='large-6 columns'>
+                <div class='row'>
+                    <div class='large-12 columns'>
+                        Datasets<br/>
+                        <%= @dataset_count %><br/>
+                        <%= link_to "view", datasets_path %></div>
+                </div>
+                <hr>
+                <div class='row'>
+                    <div class='large-12 columns'>
+                        Total Dataset views<br/>
+                        <%= @dataset_view %>
+                    </div>
+                </div>
+                <hr>
+                <div class='row'>
+                    <div class='large-12 columns'>
+                        Documents<br/>
+                        <%= link_to "#{@document_count}", documents_path %>
+                    </div>
+                </div>
+            </div>
+
+            <div class='large-6 columns'>
+                Signups (System users)<br/>
+                <%= User.count %><br/>
+                <%= link_to "view", users_path %>
+            </div>
         </div>
     </div>
-    <div class='col-md-6'>
-        Signups (System users)<br/>
-        <%= User.count %><br/>
-        <%= link_to "view", users_path %>
-    </div>
-</div>
+
 </div>
