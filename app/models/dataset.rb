@@ -19,6 +19,7 @@ class Dataset
   field :data_units, type: String  # suffix for tooltip
   field :created_at, type: Time
   field :edited_at, type: Time
+  field :no_viz, type: Boolean, default: true
 
   field :view_count, type: Integer, default: 0
 
@@ -28,7 +29,7 @@ class Dataset
   belongs_to :user
   # embedded_in :organization
 
-  validates :name, :description, presence: true
+  validates :name, :description, :sub_title, presence: true
 
   embeds_many :comments
 
