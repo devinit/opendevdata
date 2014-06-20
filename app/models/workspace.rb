@@ -4,7 +4,7 @@ class Workspace
   field :location, type: String
   field :description, type: String
 
-  has_many :memberships
+  has_many :memberships, dependent: :destroy
   has_many :datasets
 
   validates :organization_name, :location, :description, presence: true
