@@ -11,6 +11,15 @@
     <ul class="right">
       <li><%= link_to 'About', about_path %></li>
       <li><a href='http://blog.opendevdata.ug' target="_blank">Blog</a></li>
+      <li>
+        <% if signed_in? %>
+          <% if current_user.has_role? :admin %>
+          <%= link_to admin_path do %>
+            Admin <i class='fa fa-laptop'></i>
+          <% end %>
+          <% end %>
+        <% end %>
+      </li>
       <li class="has-dropdown">
         <a href="#">
           <% if signed_in? %>
@@ -20,13 +29,19 @@
           <% end %>
         </a>
         <ul class="dropdown">
+        <% if signed_in? %>
           <li>
-          <% if signed_in? %>
-              <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
-          <% else %>
-              <%= link_to "Login", new_user_session_path %>
-          <% end %>
+            <%= link_to edit_user_registration_path do%>
+             <i class='fa fa-cogs'></i> Account settings
+            <% end %>
           </li>
+          <li class='divider'></li>
+          <li>
+            <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+          </li>
+          <% else %>
+              <li><%= link_to "Login", new_user_session_path %></li>
+          <% end %>
         </ul>
       </li>
     </ul>
