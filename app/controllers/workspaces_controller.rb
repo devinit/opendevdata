@@ -8,6 +8,31 @@ class WorkspacesController < ApplicationController
     @workspaces = current_user.workspaces
   end
 
+  def apply_to_join
+    @workspace = Workspace.find params[:id]
+    @workspace.apply_to_join(current_user)
+    @workspace.save
+    respond_to do |format|
+      format.html { redirect_to @workspace }
+      format.js
+    end
+  end
+
+  def pending
+    @workspace = Workspace.find_by_slug! params[:id]
+    @memberships = @workspace.memberships.where(approved: false)
+  end
+
+  def leave_workspace
+    @workspace = Workspace.find params[:id]
+    if !@workspace.memberships.where(user: current_user, admin: true).exists?
+      @workspace.memberships.where(user: current_user).delete()
+      redirect_to @workspace
+    else
+      redirect_to root_path, alert: "You cannot remove yourself from the group. Please contact admin for a smooth migration policy"
+    end
+  end
+
   def index
     @workspaces = Workspace.all
   end
