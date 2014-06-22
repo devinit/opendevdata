@@ -1,6 +1,7 @@
 class Workspaces::DocumentsController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
   before_filter :get_workspace
+  before_filter :grant_access!, only: [:new, :create, :edit, :update, :destroy]
 
   def index
     @documents = @workspace.documents.all
@@ -38,6 +39,12 @@ class Workspaces::DocumentsController < ApplicationController
         :description,
         :attachment,
         :tags)
+    end
+
+    def grant_access!
+      if !@workspace.memberships.where(user: current_user, approved: true).exists?
+        redirect_to root_path, alert: "You don't have permission to do this"
+      end
     end
 
 end
