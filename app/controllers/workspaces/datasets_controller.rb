@@ -1,6 +1,7 @@
 class Workspaces::DatasetsController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
   before_filter :get_workspace
+  before_filter :grant_access!, only: [:new, :create, :edit, :update, :destroy]
 
   def index
     @datasets = @workspace.datasets.all
@@ -52,6 +53,13 @@ class Workspaces::DatasetsController < ApplicationController
     end
   end
 
+  def destroy
+    if has_change_access? @workspace, current_user
+      @dataset = @workspace.datasets.find params[:id]
+      @dataset.destroy
+    end
+  end
+
   private
     def get_workspace
       @workspace = Workspace.find params[:workspace_id]
@@ -70,5 +78,12 @@ class Workspaces::DatasetsController < ApplicationController
         :data_units,
         :tags)
     end
+
+    def grant_access!
+      if !@workspace.memberships.where(use_id: current_user.id, approved: true).exists?
+        redirect_to root_path, alert: "You don't have permission to do this"
+      end
+    end
+
 
 end
