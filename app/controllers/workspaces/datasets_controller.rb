@@ -7,8 +7,11 @@ class Workspaces::DatasetsController < ApplicationController
     @datasets = @workspace.datasets.all
 
     @tags = []
-    @datasets.tags.each do |tag|
-      @tags << tag
+
+    @datasets.each do |dataset|
+        dataset.tags.split(",").each do |tag|
+          @tags << tag
+        end
     end
 
     if params[:search].nil?
@@ -80,7 +83,7 @@ class Workspaces::DatasetsController < ApplicationController
     end
 
     def grant_access!
-      if !@workspace.memberships.where(use_id: current_user.id, approved: true).exists?
+      if !@workspace.memberships.where(user: current_user, approved: true).exists?
         redirect_to root_path, alert: "You don't have permission to do this"
       end
     end
