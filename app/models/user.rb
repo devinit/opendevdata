@@ -64,6 +64,7 @@ class User
 
   has_many :datasets, dependent: :delete
   has_many :documents, dependent: :delete
+
   has_many :memberships, dependent: :destroy
 
   def workspaces
