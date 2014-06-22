@@ -1,3 +1,4 @@
+
 <div class='row'>
     <div class='large-12 columns'>
         <h2>All Workspaces</h2>
@@ -15,10 +16,15 @@
                     <td><%= workspace.description %></td>
                     <td><%= workspace.location %></td>
                     <td>
-                        <% if workspace.users.where(email: current_user.email).exists? %>
+                        <% if workspace.memberships.where(user: current_user, approved: true).exists? %>
                             <%= link_to 'visit', workspace %>
+                        <% elsif workspace.memberships.where(user: current_user, approved: false).exists? %>
+                            <span class='label'>Approval pending</span>
                         <% else %>
-                            <%= link_to "Apply to Join", "", class: 'button' %>
+                            <%= link_to "Apply to Join",
+                                apply_to_join_path(workspace),
+                                confirm: 'Are you sure you want to join this workspace?',
+                                method: :post, class: 'button' %>
                         <% end %>
                     </td>
                 </tr>
