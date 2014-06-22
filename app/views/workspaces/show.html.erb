@@ -1,6 +1,26 @@
 <div class='row'>
-    <div class='large-12 columns'>
-        <h3 style='border-bottom: 2px solid red;'><%= @workspace.organization_name %></h3>
+    <div class='large-12 columns' style='border-bottom: 2px solid red; margin-bottom: 2px;'>
+        <div>
+            <h3 class='left'><%= @workspace.organization_name %></h3>
+            <% if signed_in? and has_access? @workspace, current_user %>
+            <span class='right'>
+                <a href='#' data-dropdown='settingsDrop' class='small secondary radius button dropdown'>Settings</a>
+                <ul id='settingsDrop' data-dropdown-content class='f-dropdown'>
+                    <% if has_change_access? @workspace, current_user %>
+                        <li><%= link_to 'Edit Workspace' %></li>
+                    <% end %>
+                    <li>
+                        <%= link_to 'Leave workspace', {
+                            controller: 'workspaces',
+                            action: 'leave_workspace',
+                            id: @workspace.id
+                            }, {method: :delete, confirm: "Are you sure you want to leave this workspace?"} %>
+                    </li>
+                </ul>
+            </span>
+            <% end %>
+        </div>
+
     </div>
 </div>
 
@@ -15,6 +35,15 @@
                 Upload document <i class='fa fa-upload'></i>
             <% end %>
         <% end %>
+
+        <% if has_change_access? @workspace, current_user %>
+            <br/>
+            <%= link_to pending_path(@workspace), class: 'button alert' do %>
+                <i class='fa fa-users'></i>
+                <%= pluralize @workspace.memberships.where(approved: false).count, "Pending Membership" %>
+            <% end %>
+        <% end %>
+
             <div class='right panel callout'>
                 <p class='lead'>You can download all datasets as:</p>
                 <ul>
