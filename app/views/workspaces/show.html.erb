@@ -28,7 +28,7 @@
     <% if @datasets %>
         <div class='row panel'>
             <div class='large-12 columns'>
-                <h3 class='left'><i class='fa fa-database'></i> <%= Dataset.count %> Datasets</h3>
+                <h3 class='left'><i class='fa fa-database'></i> <%= @datasets.count %> Datasets</h3>
                 <hr>
                 <span>
                     <%= form_tag datasets_path, method: :get do %>
@@ -86,7 +86,7 @@
                     <tr>
                         <td>
                             <span class='short-header-table'>
-                                <%= link_to use_dataset.name, dataset_path(use_dataset)%>
+                                <%= link_to use_dataset.name, [@workspace, use_dataset]%>
                             </span><br/>
                             <span class='short-description-table'><%= use_dataset.description %></span>
                         </td>
@@ -98,8 +98,12 @@
                 </table>
 
             <% if params[:search].nil? %>
-                <%= paginate @datasets %>
+                <%# paginate @datasets %>
             <% end %>
         </div>
 </div></div>
+    <% else %>
+    <div class='panel callout'>
+        <p class='lead'>There are no datasets in this workspace</p>
+    </div>
     <% end %>
