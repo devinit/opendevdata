@@ -14,9 +14,8 @@ class Document
   mount_uploader :attachment, DocumentUploader
 
   belongs_to :user
-
-  # embedded_in :organization,
-
+  belongs_to :workspace
+  embeds_many :comments
 
   def self.search search
     ret = []
@@ -26,8 +25,6 @@ class Document
       ret
     end
   end
-
-
 
   private
   def set_time
