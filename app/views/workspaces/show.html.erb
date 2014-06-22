@@ -10,6 +10,9 @@
             <%= link_to new_workspace_dataset_path(@workspace), class: 'button' do %>
                 New Dataset <i class='fa fa-plus'></i>
             <% end %>
+            <%= link_to new_workspace_document_path(@workspace), class: 'button success' do %>
+                Upload document <i class='fa fa-upload'></i>
+            <% end %>
 
             <div class='right panel callout'>
                 <p class='lead'>You can download all datasets as:</p>
