@@ -61,8 +61,9 @@ class WorkspacesController < ApplicationController
 
   def show
     @workspace = Workspace.find params[:id]
-    @datasets = Dataset.where workspace: @workspace
-    _tags = @datasets.collect(&:tags).reject!(&:empty?)
+    @datasets = @workspace.datasets
+    _tags = @datasets.collect(&:tags)
+    _tags.reject!(&:empty?)
     # cleanup
     @tags = []
     if !_tags.nil?
