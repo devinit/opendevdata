@@ -40,7 +40,15 @@
                 <% end %>
             </p>
             <h5>Uploaded by</h5>
-            <p><span class='label success'><%= full_name_of @dataset.user %></span></p>
+            <p>
+            <% if !@dataset.user.nil? %>
+                <span class='label success'>
+                    <%= full_name_of @dataset.user %>
+                </span>
+            <% else %>
+                    <span class='label danger'>Unassigned</span>
+            <% end %>
+            </p>
 
             <h5>Date release</h5>
             <p><span class='label secondary'><%= @dataset.created_at %></span></p>
