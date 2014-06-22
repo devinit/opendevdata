@@ -31,6 +31,7 @@ Opendataportal::Application.routes.draw do
 
   resources :workspaces do
     resources :datasets, concerns: :sociable, controller: 'workspaces/datasets'
+    resources :documents, concerns: :sociable, controller: 'workspaces/documents'
   end
 
   get "delete_dataset/:id", to: 'datasets#delete_page', as: 'delete_dataset'
