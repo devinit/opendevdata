@@ -1,0 +1,122 @@
+<%
+    title @dataset.name
+    description @dataset.description
+    keywords [@dataset.name, @dataset.y_label, @dataset.x_label].join(", ")
+%>
+<div class='row'>
+    <ul class="breadcrumbs">
+      <li><%= link_to "Home", root_path %></li>
+      <li><%= link_to "Datasets", datasets_path %></li>
+      <li class="active"><i class='fa fa-cloud-download'></i> <%= @dataset.name %></li>
+    </ul>
+
+    <h4 class='text-center'><%= @dataset.name %></h4>
+    <hr>
+    <div class='row'>
+        <div class='large-9 columns'>
+            <span class='radius secondary label'>Description</span><br/>
+            <p><%= @dataset.description %></p>
+            <strong>Tags:</strong>
+            <% if @dataset.tags != "" %>
+                <% @dataset.tags.split(",").each do |tag|%>
+                    <span class='label'><%= tag %></span>
+                <% end %>
+            <% else %>
+                    <span class='label alert'>
+                    There are no tags, sectors or categories assigned to dataset
+                    </span>
+            <% end %>
+        </div>
+        <div class='large-3 columns panel'>
+            <h5>Dataset source</h5>
+            <p><em><%= @dataset.sub_title %></em></p>
+
+            <h5>Publisher/Author</h5>
+            <p>
+                <% if @dataset.workspace %>
+                    <em><%= @dataset.workspace.organization_name %></em>
+                <% else %>
+                <div class='panel callout'><p>This data is not available at the moment</p></div>
+                <% end %>
+            </p>
+            <h5>Uploaded by</h5>
+            <p><span class='label success'><%= full_name_of @dataset.user %></span></p>
+
+            <h5>Date release</h5>
+            <p><span class='label secondary'><%= @dataset.created_at %></span></p>
+
+        </div>
+
+    </div>
+</div>
+
+<div class='row'>
+    <p class='right'>
+        <% if @dataset.attachment.image? %>
+            <%= image_tag @dataset.attachment.url %>
+        <% else %>
+            <div class="btn-group pull-right">
+              <a class="button dropdown" data-dropdown='options1'>
+                <span class="fa fa-download"></span>
+                Download
+              </a>
+              <ul id='options1' data-dropdown-content class='f-dropdown'>
+                <li><%= link_to "Excel", @dataset.attachment.url %></li>
+                <li><%= link_to "JSON", "#{dataset_url(@dataset)}.json" %></li>
+                <!-- <li><%= link_to "CSV", dataset_path(@dataset, format: 'csv') %></li> -->
+              </ul>
+            </div>
+        <% end %>
+    </p>
+    <p class='left'>
+        <%= link_to new_dataset_comment_path(@dataset), class: 'button success' do %>
+            Comment on this dataset <i class='fa fa-comment-o'></i>
+        <% end %>
+    </p>
+</div>
+
+    <% if @chart_type %>
+        <div class='row panel panel-default'>
+            <div class='panel-heading'>
+                <h3 class='panel-title'>Visualization</h3>
+            </div>
+            <div class='panel-body'>
+                <div id="container" data-no-turbolink style="height: 400px; margin: auto; min-width: 310px;"></div>
+            </div>
+        </div>
+    <% end %>
+        <% if @chart_type %>
+            <%= render "shared/charts/#{@chart_type}.html.erb" %>
+        <% end %>
+
+<div class='row'>
+    <div class='large-12 columns'>
+        <h3 class='page-header'>Comments</h3>
+        <hr>
+        <% if @comments.exists? %>
+            <div id='comment'>
+                <% @comments.each do |comment| %>
+                    <div class='row'>
+                        <div class='large-2 columns'>
+                        <%= image_tag(avatar_url(comment.user, size=64), class: 'th') %><br/>
+                        <%= full_name_of comment.user %>
+                        </div>
+                        <div class='large-10 columns'>
+                        <p><%= comment.content %></p>
+                        <span class='label default right'><%= time_ago_in_words(comment.created_at) + " ago." %></span>
+                        </div>
+                    </div>
+                    <hr>
+                <% end %>
+                <%= paginate @comments %>
+            </div>
+    <% else %>
+    <div class='panel callout'>
+        <p class='lead'>
+            There are no comments on this dataset, be the first to comment
+        </p>
+    </div>
+    <% end %>
+
+    </div>
+</div>

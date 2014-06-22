@@ -1,0 +1,21 @@
+<div class='row'>
+    <div class='large-12 columns'>
+        <h3>My Workspaces</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th width='300'>Name</th><th width='200'>Location</th><th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @workspaces.each do |workspace| %>
+                <tr>
+                    <td><%= workspace.organization_name %></td>
+                    <td><%= workspace.location %></td>
+                    <td><%= link_to 'visit', workspace %></td>
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+</div>
