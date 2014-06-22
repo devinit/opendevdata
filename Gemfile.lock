@@ -35,6 +35,13 @@ GIT
     truncate_html (0.9.2)
 
 GIT
+  remote: git://github.com/simi/mongoid-paranoia.git
+  revision: bf0ee2f3bf10770298a24a6a5a86edec8bdcfdd1
+  specs:
+    mongoid-paranoia (0.1)
+      mongoid (> 3)
+
+GIT
   remote: https://github.com/francisd/rails3-jquery-autocomplete
   revision: 9884a40f2bb1a8fa3ffab445e6d2c74c3ee99a0d
   specs:
@@ -472,6 +479,7 @@ DEPENDENCIES
   mongo
   mongoid (= 4.0.0.rc2)
   mongoid-grid_fs!
+  mongoid-paranoia!
   mongoid_slug!
   mongoid_taggable
   oj

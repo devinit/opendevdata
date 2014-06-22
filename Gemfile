@@ -15,6 +15,7 @@ gem 'mongoid', "4.0.0.rc2"
 gem 'mongo'
 gem 'mongoid-grid_fs', github: 'ahoward/mongoid-grid_fs'
 gem 'mongoid_slug', github: 'digitalplaywright/mongoid-slug'
+gem 'mongoid-paranoia', github: 'simi/mongoid-paranoia'
 gem 'mongoid_taggable'
 gem 'grape'
 gem 'active_model_serializers'
