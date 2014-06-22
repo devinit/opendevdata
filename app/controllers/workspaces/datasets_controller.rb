@@ -1,6 +1,7 @@
 class Workspaces::DatasetsController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
   before_filter :get_workspace
+
   def index
     @dataset = @workspace.datasets.all
   end
