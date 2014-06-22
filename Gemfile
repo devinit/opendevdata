@@ -95,6 +95,7 @@ gem 'cache_digests'
 gem 'dalli'
 
 group :development do
+  gem "binding_of_caller"
   gem 'better_errors'
   gem 'brakeman', :require => false
 end
