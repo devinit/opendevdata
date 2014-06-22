@@ -35,6 +35,21 @@ class WorkspacesController < ApplicationController
 
   def show
     @workspace = Workspace.find params[:id]
+    @datasets = Dataset.where workspace: @workspace
+    _tags = @datasets.collect(&:tags).reject!(&:empty?)
+    # cleanup
+    @tags = []
+    if !_tags.nil?
+      _tags.each do |tag|
+        _tag_split = tag.split(',')
+        _tag_split.each do |_tagged|
+          @tags << _tagged
+        end
+      end
+    end
+    # sanitize (only unique tags)
+    @tags.uniq!
+
   end
 
 
