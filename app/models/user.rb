@@ -17,7 +17,7 @@ class User
   field :last_name,         type: String
   slug :last_name
 
-  field :organization,         type: String, default: ""
+  # field :organization,         type: String, default: ""
 
   ## banned status
   field :banned, type: Boolean, default: false
