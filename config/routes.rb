@@ -29,6 +29,7 @@ Opendataportal::Application.routes.draw do
 
   resources :datasets, concerns: :sociable # all datasets
 
+  get 'my-workspaces', to: 'workspaces#my_workspaces', as: :my_workspaces
   resources :workspaces do
     resources :datasets, concerns: :sociable, controller: 'workspaces/datasets'
     resources :documents, concerns: :sociable, controller: 'workspaces/documents'
