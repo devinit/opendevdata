@@ -1,19 +1,20 @@
 <div class='row'>
     <div class='large-12 columns'>
-        <h3><%= @workspace.organization_name %></h3>
+        <h3 style='border-bottom: 2px solid red;'><%= @workspace.organization_name %></h3>
     </div>
 </div>
 
     <% if signed_in? %>
     <div class='row'>
         <div class='columns large-12'>
+        <% if has_access? @workspace, current_user %>
             <%= link_to new_workspace_dataset_path(@workspace), class: 'button' do %>
                 New Dataset <i class='fa fa-plus'></i>
             <% end %>
             <%= link_to new_workspace_document_path(@workspace), class: 'button success' do %>
                 Upload document <i class='fa fa-upload'></i>
             <% end %>
-
+        <% end %>
             <div class='right panel callout'>
                 <p class='lead'>You can download all datasets as:</p>
                 <ul>
