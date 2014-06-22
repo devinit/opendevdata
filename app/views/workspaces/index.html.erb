@@ -14,7 +14,13 @@
                     <td><%= link_to workspace.organization_name, workspace %></td>
                     <td><%= workspace.description %></td>
                     <td><%= workspace.location %></td>
-                    <td><%= link_to "Apply to Join", "", class: 'button' %></td>
+                    <td>
+                        <% if workspace.users.where(email: current_user.email).exists? %>
+                            <%= link_to 'visit', workspace %>
+                        <% else %>
+                            <%= link_to "Apply to Join", "", class: 'button' %>
+                        <% end %>
+                    </td>
                 </tr>
                 <% end %>
             </tbody>
