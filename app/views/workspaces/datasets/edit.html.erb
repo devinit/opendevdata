@@ -1,0 +1,63 @@
+<% title("Edit Dataset") %>
+
+<div clas='row'>
+    <div class='columns large-8'>
+        <fieldset>
+            <legend>Edit Dataset</legend>
+
+        <%= simple_form_for [@workspace, @dataset], html: { multipart: true } do |f| %>
+            <%= render 'shared/error_messages', object: f.object %>
+            <%= f.text_field :name, placeholder: 'Name' %>
+            <%= f.text_area :description, placeholder: 'Describe your dataset', rows: 10 %>
+            <%= f.text_field :sub_title, placeholder: 'Where is your data from? (source)' %>
+            <%= f.text_field :tags, placeholder: 'What sector, category or tag would you like to assign your dataset? e.g. Health, Economy, etc.' %>
+            <div class='row panel callout'>
+                <div class='large-8 columns'>
+                    You can upload a dataset Excel file (For documents, visit <%= link_to 'link', [@workspace, :documents] %>)
+                </div>
+                <div class='large-4 columns'>
+                    <%= f.file_field :attachment %>
+                </div>
+            </div>
+            <hr>
+            <p>
+                <%= f.input :no_viz, as: :radio_buttons, label: "Do you want to keep visualization off on this dataset?" %>
+                <div class='alert-box info btw'>
+                    <p class='lead'>
+                    Please note that if you select "No", visualizations for the dataset will be enabled, please make sure you click
+                    the link below to show extra fields.
+                    </p>
+                </div>
+                <br/>
+
+                <span class='wrap-link'><%= link_to "Show extra fields", '', id: 'show-chart-callout' %></span>
+            </p>
+            <div class='panel callout chart-callout'>
+                <div class='alert-box info'>
+                    <p>
+                    The information below is only filled out if you want
+                    your dataset to be visualized. Please check the
+                    documentation on the right format for arranging your
+                    data before you can upload
+                    </p>
+                </div>
+                <%= f.text_field :title, placeholder: 'What is the title for your chart?' %>
+
+                <%= f.text_field :x_label, placeholder: 'What is the label for your X-axis in your graph? (Only filled out for non-piechart data)' %>
+                <%= f.text_field :y_label, placeholder: 'What is the label for your Y-axis in your graph? (Only filled out for non-piechart data)' %>
+                <%= f.text_field :data_units, placeholder: 'What data units are you using for your data? e.g. Kg, Meters, Years, etc.' %>
+
+                <%= f.select :chart_type, ['spline',
+                                            'basic_pie',
+                                            'basic_bar',
+                                            'stacked_bar',
+                                            'basic_column',
+                                            'stacked_column',
+                                            'scatter'], {prompt: 'Please select a chart type from dropdown list'} %>
+            </div>
+            <%= f.button :submit, "Update", class: 'button success secondary' %>
+        <% end %>
+
+        </fieldset>
+    </div>
+</div>
