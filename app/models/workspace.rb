@@ -9,6 +9,7 @@ class Workspace
 
   has_many :memberships, dependent: :destroy
   has_many :datasets
+  has_many :documents
 
   validates :organization_name, :location, :description, presence: true
 
