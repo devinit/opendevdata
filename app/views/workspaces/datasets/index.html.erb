@@ -13,8 +13,10 @@
     <% if signed_in? %>
     <div class='row'>
         <div class='columns large-12'>
-            <%= link_to new_dataset_path, class: 'button' do %>
-                New Dataset <i class='fa fa-plus'></i>
+            <% if has_access? @workspace, current_user %>
+                <%= link_to new_dataset_path, class: 'button' do %>
+                    New Dataset <i class='fa fa-plus'></i>
+                <% end %>
             <% end %>
 
             <div class='right panel callout'>
