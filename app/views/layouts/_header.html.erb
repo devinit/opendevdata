@@ -31,6 +31,11 @@
         <ul class="dropdown">
         <% if signed_in? %>
           <li>
+            <%= link_to my_workspaces_path do %>
+              <i class='fa fa-users'></i> My Workspaces
+            <% end %>
+          </li>
+          <li>
             <%= link_to edit_user_registration_path do%>
              <i class='fa fa-cogs'></i> Account settings
             <% end %>
