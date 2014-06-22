@@ -51,5 +51,4 @@ class DocumentsController < ApplicationController
   def document_params
     params.require(:document).permit(:name, :description, :attachment, :tags)
   end
-
 end
