@@ -91,7 +91,11 @@
                 <h4 style="border-bottom: 1px solid red;">Latest Datasets</h4>
                 <% @recent_datasets.each do |dataset| %>
                 <h5 class='short-header'>
-                    <%= link_to dataset.title %>
+                    <% if dataset.title.nil? or dataset.title.empty? %>
+                        <%= link_to dataset.name, dataset %>
+                    <% else %>
+                        <%= link_to dataset.title, dataset %>
+                    <% end %>
                 </h5>
                 <div class='short-description'><span class='release'>Released on</span> <%= dataset.created_at %></div>
                 <hr>
