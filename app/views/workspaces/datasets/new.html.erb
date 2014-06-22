@@ -13,7 +13,7 @@
             <%= f.text_field :tags, placeholder: 'What sector, category or tag would you like to assign your dataset? e.g. Health, Economy, etc.' %>
             <div class='row panel callout'>
                 <div class='large-8 columns'>
-                    You can upload a dataset Excel file (For documents, visit <%= link_to 'link', documents_path %>)
+                    You can upload a dataset Excel file (For documents, visit <%= link_to 'link', [@workspace, :documents] %>)
                 </div>
                 <div class='large-4 columns'>
                     <%= f.file_field :attachment %>
