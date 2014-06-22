@@ -5,8 +5,8 @@
 %>
 <div class='row'>
     <ul class="breadcrumbs">
-      <li><%= link_to "Home", root_path %></li>
-      <li><%= link_to "Datasets", datasets_path %></li>
+      <li><%= link_to "Workspace", @workspace %></li>
+      <li><%= link_to "Datasets", [@workspace, :datasets] %></li>
       <li class="active"><i class='fa fa-cloud-download'></i> <%= @dataset.name %></li>
     </ul>
 
