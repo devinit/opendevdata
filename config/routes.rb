@@ -30,7 +30,18 @@ Opendataportal::Application.routes.draw do
   resources :datasets, concerns: :sociable # all datasets
 
   get 'my-workspaces', to: 'workspaces#my_workspaces', as: :my_workspaces
+
+  match 'workspaces/:id/apply-to-join', to: 'workspaces#apply_to_join', as: :apply_to_join, via: :post
+  match 'workspaces/:id/pending', to: 'workspaces#pending', as: :pending, via: :get
+  match 'leave/workspaces/:id', to: 'workspaces#leave_workspace', via: :delete, as: :leave_workspace
+
   resources :workspaces do
+    resources :memberships, only: [:show] do
+      member do
+        get 'approve'
+        post 'approve'
+      end
+    end
     resources :datasets, concerns: :sociable, controller: 'workspaces/datasets'
     resources :documents, concerns: :sociable, controller: 'workspaces/documents'
   end
