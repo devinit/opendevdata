@@ -3,6 +3,10 @@ class WorkspacesController < ApplicationController
   # Note: here we'll go against the usual Rails b'se I'm tired
   # Workspace is analogous to an Organization
 
+  def my_workspaces
+    @workspaces = current_user.workspaces
+  end
+
   def index
     @workspaces = Workspace.all
   end
@@ -13,10 +17,15 @@ class WorkspacesController < ApplicationController
 
   def create
     @workspace  = Workspace.create workspaces_params
+
     if @workspace.save
       # given that you reach stage, lets change a few things
-      m = @workspace.memberships.create user: current_user, admin: true, approved: true
-      m.save  # save this member as admin! :-)
+      if !@workspace.memberships.where(user: current_user, admin: true, approved: true).exists?
+        m = @workspace.memberships.create user: current_user, admin: true, approved: true
+        m.save  # save this member as admin! :-)
+        @workspace.save # re-save this
+      end
+
       redirect_to @workspace, notice: 'You have successfully created a workspace.'
     else
       flash[:alert] = "You cannot create a workspace. Please contact site administrator"
