@@ -1,5 +1,6 @@
 class WorkspacesController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :grant_access!, only: [:edit, :update, :destroy]
   # Note: here we'll go against the usual Rails b'se I'm tired
   # Workspace is analogous to an Organization
 
@@ -55,6 +56,9 @@ class WorkspacesController < ApplicationController
 
   def edit
     @workspace = Workspace.find params[:id]
+    if !has_access?(@workspace, current_user)
+      redirect_to root_path, alert: "You don't have permission to do this"
+    end
   end
 
   def update
@@ -68,12 +72,23 @@ class WorkspacesController < ApplicationController
 
   def destroy
     @workspace = Workspace.find params[:id]
-    @workspace.destroy
+    if has_change_access? @workspace, current_user
+      @workspace.destroy
+    else
+      redirect_to root_path, alert: "You don't have permission to do this."
+    end
   end
 
   private
     def workspaces_params
       params.require(:workspace).permit(:organization_name, :description, :location)
+    end
+
+    def grant_access!
+      @workspace = Workspace.find params[:id]
+      if !@workspace.memberships.where(use_id: current_user.id, approved: true).exists?
+        redirect_to root_path, alert: "You don't have permission to do this"
+      end
     end
 
 end
