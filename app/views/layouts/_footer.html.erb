@@ -1,9 +1,21 @@
 <footer id='footer'>
-    <div class='large-12 columns'>
     <hr>
+<div class='row'>
+    <div class='large-8 columns'>
     &copy; <%= Time.now.year %> Open Dev Data. All rights reserved
-    <p class='right'>
-    <%= link_to image_tag("devinit.jpg", alt: "Development Initiatives"), "http://devinit.org" %>
-    </p>
     </div>
+    <div class='large-2 columns'>
+        <p class='right'>
+            <a href='https://twitter.com/Opendevdataug' target='_blank'>
+                <i class='fa fa-twitter'></i>
+            </a>
+            <a href='https://twitter.com/Opendevdataug' target='_blank'>
+                <i class='fa fa-facebook'></i>
+            </a>
+        </p>
+    </div>
+    <div class='large-2 columns'>
+    <%= link_to image_tag("devinit.jpg", alt: "Development Initiatives"), "http://devinit.org" %>
+    </div>
+</div>
 </footer>

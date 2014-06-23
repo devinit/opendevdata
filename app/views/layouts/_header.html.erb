@@ -9,8 +9,8 @@
   <section class="top-bar-section">
     <!-- Right Nav Section -->
     <ul class="right">
-      <li><%= link_to 'About', about_path %></li>
-      <li><a href='http://blog.opendevdata.ug' target="_blank">Blog</a></li>
+      <!-- li><%# link_to 'About', about_path %></li> -->
+      <li><a href='http://blog.opendevdata.ug'>Blog</a></li>
         <% if signed_in? %>
           <% if current_user.has_role? :admin %>
           <li>
