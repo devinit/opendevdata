@@ -150,6 +150,7 @@ class DatasetsController < ApplicationController
         :chart_type,
         :x_label,
         :y_label,
+        :no_viz,
         :sub_title,
         :title,
         :data_units,

@@ -29,6 +29,15 @@ class Workspaces::DatasetsController < ApplicationController
     @dataset= Dataset.create dataset_params.merge(user: current_user,
                                                   workspace: @workspace)
     if @dataset.save
+      # send file for processing
+      if !@dataset.no_viz and dataset_params['attachment']
+        _id = @dataset.id.to_s
+        ExcelToJson.perform_async(
+          _id,
+          dataset_params['attachment'].tempfile.path,
+          dataset_params['chart_type'],
+          @dataset.attachment.path.split("/").last)
+      end
       # redirect_to [@workspace, @dataset], notice: "You've successfully uploaded a dataset"
       redirect_to workspace_dataset_path(@workspace, @dataset), notice: "You've successfully uploaded a dataset"
     else
@@ -76,6 +85,7 @@ class Workspaces::DatasetsController < ApplicationController
         :chart_type,
         :x_label,
         :y_label,
+        :no_viz,
         :sub_title,
         :title,
         :data_units,
