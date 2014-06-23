@@ -96,7 +96,7 @@
                             <span class='short-description-table'><%= use_dataset.description %></span>
                         </td>
                         <td><%= use_dataset.view_count %></td>
-                        <td><%= use_dataset.created_at %></td>
+                        <td><%= use_dataset.created_at.strftime("%d %B, %Y") %></td>
                     </tr>
                 <% end %>
                 </tbody>
