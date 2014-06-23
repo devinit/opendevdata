@@ -97,7 +97,7 @@
                         <%= link_to dataset.title, dataset %>
                     <% end %>
                 </h5>
-                <div class='short-description'><span class='release'>Released on</span> <%= dataset.created_at %></div>
+                <div class='short-description'><span class='release'>Released on</span> <%= dataset.created_at.strftime("%d %B, %Y") %></div>
                 <hr>
                 <% end %>
                 <%= link_to "More datasets...", datasets_path %>
