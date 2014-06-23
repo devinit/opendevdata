@@ -56,6 +56,11 @@
                     <%= @dataset.created_at.strftime("%d %B, %Y") %>
                 </span>
             </p>
+            <% if signed_in? %>
+                <% if has_access? @dataset.workspace, current_user %>
+                    <%= link_to 'Edit dataset', edit_dataset_path(@dataset) %>
+                <% end %>
+            <% end %>
         </div>
 
     </div>
