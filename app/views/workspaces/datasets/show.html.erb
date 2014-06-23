@@ -82,8 +82,17 @@
 
     <% if !@dataset.no_viz %>
         <div class='row panel callout'>
-            <div id='chart'></div>
-            <%= high_chart("chart", @chart) %>
+            <% if @chart %>
+                <div id='chart'></div>
+                <%= high_chart("chart", @chart) %>
+            <% else %>
+                <div class='alert-box warning'>
+                    <p class='lead' style='color: white;'>
+                        Your chart could not be rendered properly. Please try
+                        again or look at the manual for a proper way of preparing your datasets.
+                    </p>
+                </div>
+            <% end %>
         </div>
     <% end %>
 

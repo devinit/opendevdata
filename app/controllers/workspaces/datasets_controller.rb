@@ -49,36 +49,30 @@ class Workspaces::DatasetsController < ApplicationController
   def show
     @dataset = @workspace.datasets.find params[:id]
     @comments = @dataset.comments.all
-    data_exract = @dataset.data_extract
-    if @dataset.data_extract
-      gon.data_values ||= @dataset.data_extract['data_values']
-      gon.headings_gon ||= @dataset.data_extract['headings']
-      gon.chartTitle ||= @dataset.title
-      gon.subTitle ||= @dataset.sub_title
-      gon.yLabel ||= @dataset.y_label
-      gon.xLabel ||= @dataset.x_label
-      gon.data_units ||= @dataset.data_units
-    end
+    data_extract = @dataset.data_extract
     @chart_type ||= @dataset.chart_type
     if @chart_type == ""
       @chart_type = nil
     end
+    if !@chart_type.nil? and !data_extract.nil?
+      @chart = LazyHighCharts::HighChart.new('graph') do |f|
+        f.title(:text => @dataset.title)
+        f.xAxis(:categories => data_extract['headings'])
+        data_extract['data_values'].each do |d|
+          f.series(name: d['name'], yAxis: 0, data: d['data'])
+        end
+        f.yAxis [
+          {:title => {:text => @dataset.y_label, :margin => 70} },
+          # {:title => {:text => "Population in Millions"}, :opposite => true},
+        ]
+        f.xAxis [
+          {title: { text: @dataset.x_label, margin: 70 } },
+        ]
 
-    @chart = LazyHighCharts::HighChart.new('graph') do |f|
-      f.title(:text => @dataset.title)
-      f.xAxis(:categories => ["United States", "Japan", "China", "Germany", "France"])
-      f.series(:name => "GDP in Billions", :yAxis => 0, :data => [14119, 5068, 4985, 3339, 2656])
-      f.series(:name => "Population in Millions", :yAxis => 1, :data => [310, 127, 1340, 81, 65])
-
-      f.yAxis [
-        {:title => {:text => "GDP in Billions", :margin => 70} },
-        {:title => {:text => "Population in Millions"}, :opposite => true},
-      ]
-
-      f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, :x => -50, :layout => 'vertical',)
-      f.chart({:defaultSeriesType=>"column"})
+        f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, :x => -50, :layout => 'vertical',)
+        f.chart({:defaultSeriesType=>@chart_type})
+      end
     end
-
   end
 
   def edit
@@ -88,6 +82,16 @@ class Workspaces::DatasetsController < ApplicationController
   def update
     @dataset = @workspace.datasets.find params[:id]
     if @dataset.update_attributes dataset_params
+      if dataset_params['attachment']
+        _id = @dataset.id.to_s
+        # TODO refactor and put this in dataset.rb
+        ExcelToJson.perform_async(
+          _id,
+          dataset_params['attachment'].tempfile.path,
+          dataset_params['chart_type'],
+          @dataset.attachment.path.split("/").last)
+      end
+
       redirect_to workspace_dataset_path(@workspace, @dataset)
     else
       flash[:alert] = 'Could not update your dataset. Contact Admin'

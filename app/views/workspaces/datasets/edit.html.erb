@@ -48,11 +48,9 @@
                 <%= f.text_field :data_units, placeholder: 'What data units are you using for your data? e.g. Kg, Meters, Years, etc.' %>
 
                 <%= f.select :chart_type, ['spline',
-                                            'basic_pie',
-                                            'basic_bar',
-                                            'stacked_bar',
-                                            'basic_column',
-                                            'stacked_column',
+                                            'pie',
+                                            'bar',
+                                            'column',
                                             'scatter'], {prompt: 'Please select a chart type from dropdown list'} %>
             </div>
             <%= f.button :submit, "Update", class: 'button success secondary' %>

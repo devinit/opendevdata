@@ -38,34 +38,30 @@ class DatasetsController < ApplicationController
   # end
 
   def show
-    data_exract = @dataset.data_extract
-    if @dataset.data_extract
-      gon.data_values ||= @dataset.data_extract['data_values']
-      gon.headings_gon ||= @dataset.data_extract['headings']
-      gon.chartTitle ||= @dataset.title
-      gon.subTitle ||= @dataset.sub_title
-      gon.yLabel ||= @dataset.y_label
-      gon.xLabel ||= @dataset.x_label
-      gon.data_units ||= @dataset.data_units
-    end
+    data_extract = @dataset.data_extract
     @chart_type ||= @dataset.chart_type
     if @chart_type == ""
       @chart_type = nil
     end
 
-    @chart = LazyHighCharts::HighChart.new('graph') do |f|
-      f.title(:text => @dataset.title)
-      f.xAxis(:categories => ["United States", "Japan", "China", "Germany", "France"])
-      f.series(:name => "GDP in Billions", :yAxis => 0, :data => [14119, 5068, 4985, 3339, 2656])
-      f.series(:name => "Population in Millions", :yAxis => 1, :data => [310, 127, 1340, 81, 65])
+    if !@chart_type.nil? and !data_extract.nil?
+      @chart = LazyHighCharts::HighChart.new('graph') do |f|
+        f.title(:text => @dataset.title)
+        f.xAxis(:categories => data_extract['headings'])
+        data_extract['data_values'].each do |d|
+          f.series(name: d['name'], yAxis: 0, data: d['data'])
+        end
+        f.yAxis [
+          {:title => {:text => @dataset.y_label, :margin => 70} },
+          # {:title => {:text => "Population in Millions"}, :opposite => true},
+        ]
+        f.xAxis [
+          {title: { text: @dataset.x_label, margin: 70 } },
+        ]
 
-      f.yAxis [
-        {:title => {:text => "GDP in Billions", :margin => 70} },
-        {:title => {:text => "Population in Millions"}, :opposite => true},
-      ]
-
-      f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, :x => -50, :layout => 'vertical',)
-      f.chart({:defaultSeriesType=>"column"})
+        f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, :x => -50, :layout => 'vertical',)
+        f.chart({:defaultSeriesType=>@chart_type})
+      end
     end
 
     @comments = @dataset.comments.desc(:created_at).page(params[:page])

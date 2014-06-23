@@ -26,7 +26,7 @@ class ExcelToJson
       puts "#{dataset.name} processed"
       json_response = response.body
       puts "Updating dataset ***"
-      dataset.data_extract = JSON.parse json_response  # parse json response
+      dataset.data_extract = JSON.parse json_response
       dataset.save
     else
       puts "Failed"
