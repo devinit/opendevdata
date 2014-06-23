@@ -82,14 +82,12 @@
         <% end %>
     </p>
 </div>
-
-    <% if @chart_type %>
+    <% if !@dataset.no_viz %>
         <div class='row panel callout'>
             <div id='chart'></div>
             <%= high_chart("chart", @chart) %>
         </div>
     <% end %>
-
 <div class='row'>
     <div class='large-12 columns'>
         <h3 class='page-header'>Comments</h3>

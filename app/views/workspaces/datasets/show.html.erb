@@ -76,7 +76,7 @@
     </p>
 </div>
 
-    <% if @chart_type %>
+    <% if !@dataset.no_viz %>
         <div class='row panel callout'>
             <div id='chart'></div>
             <%= high_chart("chart", @chart) %>
