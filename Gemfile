@@ -22,7 +22,6 @@ gem 'active_model_serializers'
 gem "autoprefixer-rails"
 gem 'rails3-jquery-autocomplete', git: 'https://github.com/francisd/rails3-jquery-autocomplete'
 gem 'iconv'
-# gem 'ckeditor_rails'
 gem "sanitizer"
 gem "mini_magick"
 gem "smarter_csv"
@@ -35,6 +34,7 @@ gem "foreman"
 gem 'faraday', '<= 0.8.8'
 gem 'faraday-http-cache'
 gem "chartkick"
+gem 'lazy_high_charts'
 gem 'groupdate'
 gem 'kaminari'
 gem 'cancan'

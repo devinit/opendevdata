@@ -205,6 +205,7 @@ GEM
       activerecord (>= 3.0.0)
     haml (4.0.5)
       tilt
+    hash-deep-merge (0.1.1)
     hashie (2.1.2)
     highline (1.6.21)
     hike (1.2.3)
@@ -231,6 +232,9 @@ GEM
     kgio (2.9.2)
     launchy (2.4.2)
       addressable (~> 2.3)
+    lazy_high_charts (1.5.4)
+      bundler (>= 1.0)
+      hash-deep-merge
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -474,6 +478,7 @@ DEPENDENCIES
   jquery-ui-rails
   kaminari
   launchy
+  lazy_high_charts
   masonry-rails (~> 0.2.0)
   mini_magick
   mongo
