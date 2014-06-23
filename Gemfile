@@ -17,7 +17,6 @@ gem 'mongoid-grid_fs', github: 'ahoward/mongoid-grid_fs'
 gem 'mongoid_slug', github: 'digitalplaywright/mongoid-slug'
 gem 'mongoid-paranoia', github: 'simi/mongoid-paranoia'
 gem 'mongoid_taggable'
-gem 'grape'
 gem 'active_model_serializers'
 gem "autoprefixer-rails"
 gem 'rails3-jquery-autocomplete', git: 'https://github.com/francisd/rails3-jquery-autocomplete'
