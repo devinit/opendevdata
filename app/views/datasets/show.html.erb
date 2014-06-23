@@ -51,8 +51,11 @@
             </p>
 
             <h5>Date release</h5>
-            <p><span class='label secondary'><%= @dataset.created_at %></span></p>
-
+            <p>
+                <span class='label secondary'>
+                    <%= @dataset.created_at.strftime("%d %B, %Y") %>
+                </span>
+            </p>
         </div>
 
     </div>
