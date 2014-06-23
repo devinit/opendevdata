@@ -84,18 +84,11 @@
 </div>
 
     <% if @chart_type %>
-        <div class='row panel panel-default'>
-            <div class='panel-heading'>
-                <h3 class='panel-title'>Visualization</h3>
-            </div>
-            <div class='panel-body'>
-                <div id="chart" style="height: 400px; margin: auto; min-width: 310px;"></div>
-            </div>
+        <div class='row panel callout'>
+            <div id='chart'></div>
+            <%= high_chart("chart", @chart) %>
         </div>
     <% end %>
-        <% if @chart_type %>
-            <%= render "shared/charts/#{@chart_type}.html.erb" %>
-        <% end %>
 
 <div class='row'>
     <div class='large-12 columns'>
