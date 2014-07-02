@@ -57,8 +57,12 @@
                 </span>
             </p>
             <% if signed_in? %>
-                <% if has_access? @dataset.workspace, current_user %>
+                <% if has_access? @dataset.workspace, current_user, @dataset %>
                     <%= link_to 'Edit dataset', edit_dataset_path(@dataset) %>
+                    |
+                    <%= link_to @dataset, method: :delete, confirm: 'Are you sure you want to delete dataset?' do %>
+                    Delete <i class='fa fa-trash-o'></i>
+                    <% end %>
                 <% end %>
             <% end %>
         </div>
@@ -79,7 +83,6 @@
               <ul id='options1' data-dropdown-content class='f-dropdown'>
                 <li><%= link_to "Excel", @dataset.attachment.url %></li>
                 <li><%= link_to "JSON", "#{dataset_url(@dataset)}.json" %></li>
-                <!-- <li><%= link_to "CSV", dataset_path(@dataset, format: 'csv') %></li> -->
               </ul>
             </div>
         <% end %>
@@ -98,8 +101,14 @@
             <% else %>
                 <div class='alert-box warning'>
                     <p class='lead' style='color: white;'>
-                        Your chart could not be rendered properly. Please try
-                        again or look at the manual for a proper way of preparing your datasets.
+                        Your chart could not be rendered properly.
+                        <br/>Several things could be happening, try the following
+                        <ul>
+                          <li>Refresh this page</li>
+                          <li>if after the 3rd try, chances are high that you used an
+                            improper excel format for document/dataset uploads. See manual.
+                          </li>
+                        </ul>
                     </p>
                 </div>
             <% end %>
