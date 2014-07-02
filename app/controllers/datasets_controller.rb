@@ -4,7 +4,8 @@ class DatasetsController < ApplicationController
   before_filter :get_dataset, only: [:edit, :show, :update, :destroy]
 
   def get_dataset
-    @dataset = Dataset.find(slug=params[:id])  # we are using slugs!
+    @dataset = Dataset.find(slugs=params[:id]) # we are using slugs!
+    # @dataset = Dataset.find_by_slug! params[:id]
     rescue Mongoid::Errors::DocumentNotFound
       flash[:alert] = "The dataset you were looking for could not be found."
       redirect_to datasets_path
@@ -46,17 +47,15 @@ class DatasetsController < ApplicationController
 
     if !@chart_type.nil? and !data_extract.nil?
       @chart = LazyHighCharts::HighChart.new('graph') do |f|
+
         f.title(:text => @dataset.title)
-        f.xAxis(:categories => data_extract['headings'])
+        f.xAxis(:categories => data_extract['headings'], title:{ text: @dataset.x_label, margin: 70 })
         data_extract['data_values'].each do |d|
           f.series(name: d['name'], yAxis: 0, data: d['data'])
         end
         f.yAxis [
           {:title => {:text => @dataset.y_label, :margin => 70} },
           # {:title => {:text => "Population in Millions"}, :opposite => true},
-        ]
-        f.xAxis [
-          {title: { text: @dataset.x_label, margin: 70 } },
         ]
 
         f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, :x => -50, :layout => 'vertical',)
@@ -145,13 +144,14 @@ class DatasetsController < ApplicationController
   end
 
   def destroy
+    @dataset = Dataset.find params[:id]
     if current_user.is_admin? or is_owner_of(@dataset)
       @dataset.delete
       flash[:notice] = 'Successfully deleted dataset.'
     else
       flash[:alert] = "Could not delete this dataset because you don't have the permission to."
     end
-    redirect_to dataset_path
+    redirect_to datasets_path
   end
 
   private
