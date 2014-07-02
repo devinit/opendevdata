@@ -58,7 +58,10 @@
     <% if @datasets %>
         <div class='row panel'>
             <div class='large-12 columns'>
-                <h3 class='left'><i class='fa fa-database'></i> <%= @datasets.count %> Datasets</h3>
+              <span class='left'>
+                <h3><i class='fa fa-database'></i> <%= pluralize @datasets.count, 'dataset' %></h3>
+                <h3><i class="fa fa-file-pdf-o"></i> <%= link_to pluralize(@documents.count, 'document'), workspace_documents_path(@workspace) %></h3>
+              </span>
                 <hr>
                 <span>
                     <%= form_tag datasets_path, method: :get do %>
