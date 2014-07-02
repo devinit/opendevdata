@@ -1,5 +1,5 @@
 class WorkspacesController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, except: [:index, :show]
   before_filter :grant_access!, only: [:edit, :update, :destroy]
   # Note: here we'll go against the usual Rails b'se I'm tired
   # Workspace is analogous to an Organization
@@ -62,6 +62,8 @@ class WorkspacesController < ApplicationController
   def show
     @workspace = Workspace.find params[:id]
     @datasets = @workspace.datasets
+    @documents = @workspace.documents
+    
     _tags = @datasets.collect(&:tags)
     _tags.reject!(&:empty?)
     # cleanup
