@@ -4,7 +4,12 @@ class Workspaces::DocumentsController < ApplicationController
   before_filter :grant_access!, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    @documents = @workspace.documents.all
+    # @documents = @workspace.documents.all
+    if params[:search].nil?
+      @documents = @workspace.documents.desc(:uploaded_on).page(params[:page])
+    else
+      @documents = @workspace.documents.search(params[:search]).uniq.delete_if { |doc| doc.empty? or doc.nil? }
+    end
   end
 
   def new
