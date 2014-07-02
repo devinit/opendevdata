@@ -48,7 +48,7 @@ class Workspaces::DatasetsController < ApplicationController
 
   def show
     @dataset = @workspace.datasets.find params[:id]
-    @comments = @dataset.comments.all
+    @comments = @dataset.comments.page(params[:page])
     data_extract = @dataset.data_extract
     @chart_type ||= @dataset.chart_type
     if @chart_type == ""
@@ -57,7 +57,7 @@ class Workspaces::DatasetsController < ApplicationController
     if !@chart_type.nil? and !data_extract.nil?
       @chart = LazyHighCharts::HighChart.new('graph') do |f|
         f.title(:text => @dataset.title)
-        f.xAxis(:categories => data_extract['headings'])
+        f.xAxis(:categories => data_extract['headings'], title:{ text: @dataset.x_label, margin: 70 })
         data_extract['data_values'].each do |d|
           f.series(name: d['name'], yAxis: 0, data: d['data'])
         end
@@ -65,10 +65,6 @@ class Workspaces::DatasetsController < ApplicationController
           {:title => {:text => @dataset.y_label, :margin => 70} },
           # {:title => {:text => "Population in Millions"}, :opposite => true},
         ]
-        f.xAxis [
-          {title: { text: @dataset.x_label, margin: 70 } },
-        ]
-
         f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, :x => -50, :layout => 'vertical',)
         f.chart({:defaultSeriesType=>@chart_type})
       end
