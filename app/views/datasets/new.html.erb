@@ -20,12 +20,15 @@
                 </div>
             </div>
             <hr>
-            <p>
-                <%= f.input :no_viz, as: :radio_buttons, label: "Do you want to keep visualization off on this dataset?" %>
+
+              <p>
+                <%= f.input :no_viz, as: :radio_buttons,
+                  label: "Turn off visualization",
+                  input_html: { class: 'switch'} %>
                 <div class='alert-box info btw'>
                     <p class='lead'>
-                    Please note that if you select "No", visualizations for the dataset will be enabled, please make sure you click
-                    the link below to show extra fields.
+                    If you select "No", visualizations for the dataset will be enabled, please make sure you click
+                    the link below to show extra fields for the visualizations to work.
                     </p>
                 </div>
                 <br/>
