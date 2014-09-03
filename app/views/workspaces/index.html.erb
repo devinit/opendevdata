@@ -13,7 +13,7 @@
                 <% @workspaces.each do |workspace| %>
                 <tr>
                     <td><%= link_to workspace.organization_name, workspace %></td>
-                    <td><%= workspace.description %></td>
+                    <td><%= truncate(workspace.description, length: 140) %></td>
                     <td><%= workspace.location %></td>
                     <td>
                         <% if workspace.memberships.where(user: current_user, approved: true).exists? %>
