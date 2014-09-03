@@ -13,6 +13,8 @@ class Workspace
 
   validates :organization_name, :location, :description, presence: true
 
+  validates :description, length: { maximum: 250 }
+
   # Avoid duplicate organization names
   # validates :organization_name, uniqueness: { conditions: -> {where(deleted_at: nil)}}
   validates :organization_name, uniqueness: true
