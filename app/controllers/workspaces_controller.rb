@@ -95,6 +95,10 @@ class WorkspacesController < ApplicationController
     end
   end
 
+  def unapproved
+    @workspaces = Workspace.where approved: false
+  end
+
   def update
     @workspace = Workspace.find params[:id]
     if @workspace.has_change_access? current_user
