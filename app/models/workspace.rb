@@ -28,4 +28,8 @@ class Workspace
   def apply_to_join(user)
     self.memberships.create(user: user)
   end
+
+  def has_change_access? user
+    self.memberships.where(user: user, admin: true).exists? or user.is_admin?
+  end
 end
