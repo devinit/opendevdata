@@ -63,7 +63,7 @@ class WorkspacesController < ApplicationController
     @workspace = Workspace.find params[:id]
     @datasets = @workspace.datasets
     @documents = @workspace.documents
-    
+
     _tags = @datasets.collect(&:tags)
     _tags.reject!(&:empty?)
     # cleanup
@@ -84,9 +84,6 @@ class WorkspacesController < ApplicationController
 
   def edit
     @workspace = Workspace.find params[:id]
-    if !has_access?(@workspace, current_user)
-      redirect_to root_path, alert: "You don't have permission to do this"
-    end
   end
 
   def update
@@ -114,9 +111,23 @@ class WorkspacesController < ApplicationController
 
     def grant_access!
       @workspace = Workspace.find params[:id]
-      if !@workspace.memberships.where(use_id: current_user.id, approved: true).exists?
-        redirect_to root_path, alert: "You don't have permission to do this"
+
+      workspace_user = @workspace.users.where(id: current_user.id).first
+      is_admissable = false
+
+      if !workspace_user.nil?
+        is_admissable = workspace_user.is_workspace_admin?
+      else
+        is_admissable = current_user.is_admin?
       end
+
+      if is_admissable
+        redirect_to root_path, alert: "You don't have permission to do this | #{current_user.is_admin?}"
+      end
+
+      # if !@workspace.memberships.where(use_id: current_user.id, approved: true).exists? or !current_user.is_admin?
+      #   redirect_to root_path, alert: "You don't have permission to do this"
+      # end
     end
 
 end
