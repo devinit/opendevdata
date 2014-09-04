@@ -6,6 +6,7 @@ class Workspace
   slug :organization_name
   field :location, type: String
   field :description, type: String
+  field :approved, type: Boolean, default: false
 
   has_many :memberships, dependent: :destroy
   has_many :datasets
