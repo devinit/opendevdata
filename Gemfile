@@ -59,7 +59,6 @@ gem 'jquery-ui-rails', '~> 5.0.0'
 # gem 'bootstrap-sass', '~> 3.0.3.0'
 gem 'foundation-rails'
 gem 'jquery-turbolinks'
-gem 'masonry-rails', '~> 0.2.0'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 gem 'figaro'
@@ -67,7 +66,6 @@ gem 'figaro'
 gem 'jbuilder', '~> 2.0'
 gem 'spring', group: :development
 gem 'quiet_assets', group: :development
-gem 'rb-readline', '~> 0.4.2'
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

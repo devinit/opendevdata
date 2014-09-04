@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/EppO/rolify.git
-  revision: f2ad6cb43ee0656246d7012706dc64950dcec221
+  revision: 95456c98ef91b3f1107111ec212ee6c2541ac97d
   specs:
     rolify (3.5.0)
 
@@ -221,8 +221,6 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    masonry-rails (0.2.1)
-      rails
     mime-types (1.25.1)
     mini_magick (3.8.0)
       subexec (~> 0.2.1)
@@ -309,7 +307,6 @@ GEM
       thor (>= 0.18.1, < 2.0)
     raindrops (0.13.0)
     rake (10.3.2)
-    rb-readline (0.4.2)
     rdoc (4.1.1)
       json (~> 1.4)
     redis (3.1.0)
@@ -453,7 +450,6 @@ DEPENDENCIES
   kaminari
   launchy
   lazy_high_charts
-  masonry-rails (~> 0.2.0)
   mini_magick
   mongo
   mongoid (= 4.0.0.rc2)
@@ -470,7 +466,6 @@ DEPENDENCIES
   rails (= 4.1.5)
   rails3-jquery-autocomplete!
   rails_12factor
-  rb-readline (~> 0.4.2)
   redis
   rolify!
   rspec-rails
