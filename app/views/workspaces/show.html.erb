@@ -1,5 +1,10 @@
 <div class='row'>
     <div class='large-12 columns' style='border-bottom: 2px solid red; margin-bottom: 2px;'>
+    <% if !@workspace.approved %>
+        <div class='alert-box alert'>
+        Your workspace has not been approved by the administrator.
+        </div>
+    <% end %>
         <div>
             <h3 class='left'><%= @workspace.organization_name %></h3>
             <% if signed_in? and has_access? @workspace, current_user %>
@@ -7,7 +12,16 @@
                 <a href='#' data-dropdown='settingsDrop' class='small secondary radius button dropdown'>Settings</a>
                 <ul id='settingsDrop' data-dropdown-content class='f-dropdown'>
                     <% if has_change_access? @workspace, current_user %>
-                        <li><%= link_to 'Edit Workspace', [:edit, @workspace] %></li>
+                        <li>
+                            <%= link_to 'Edit Workspace', [:edit, @workspace] %>
+                        </li>
+                        <% if !@workspace.approved %>
+                        <li>
+                            <%= link_to approve_workspace_path(@workspace), method: :post do %>
+                                Approve Workspace
+                            <% end %>
+                        </li>
+                        <% end %>
                     <% end %>
                     <li>
                         <%= link_to 'Leave workspace', {
