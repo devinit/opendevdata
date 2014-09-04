@@ -22,6 +22,7 @@ Opendataportal::Application.routes.draw do
     match 'users/:id/make_admin', to: 'users#make_admin', as: :make_admin, via: :post
     match 'users/:id/remove_admin', to: 'users#remove_admin', as: :remove_admin, via: :post
     match 'workspaces/:id/approve', to: 'workspaces#approve', as: :approve_workspace, via: :post
+    match 'unapproved-workspaces', to: 'workspaces#unapproved', as: :unapproved_workspaces, via: :get
     get 'admin/', to: 'pages#admin', as: :admin
   end
 
