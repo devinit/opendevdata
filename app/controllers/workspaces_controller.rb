@@ -86,6 +86,15 @@ class WorkspacesController < ApplicationController
     @workspace = Workspace.find params[:id]
   end
 
+  def approve
+    @workspace = Workspace.find params[:id]
+    @workspace.approved = true
+    @workspace.save
+    respond_to do |format|
+      format.html { redirect_to @workspace }
+    end
+  end
+
   def update
     @workspace = Workspace.find params[:id]
     if @workspace.has_change_access? current_user
