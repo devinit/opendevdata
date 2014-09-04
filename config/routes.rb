@@ -16,6 +16,7 @@ Opendataportal::Application.routes.draw do
   authenticate :user, lambda { |u| u.is_admin? } do
     mount Sidekiq::Web => '/sidekiq'
     resources :users
+    resources :workspaces  # do everything
     match 'users/:id/ban', to: 'users#ban', as: :ban_user, via: :post
     match 'users/:id/unban', to: 'users#unban', as: :unban_user, via: :post
     match 'users/:id/make_admin', to: 'users#make_admin', as: :make_admin, via: :post
