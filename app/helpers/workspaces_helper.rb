@@ -19,7 +19,7 @@ module WorkspacesHelper
 
   def has_change_access? workspace, user
     # user allowed to do danger changes
-    workspace.memberships.where(user: user, admin: true).exists?
+    workspace.memberships.where(user: user, admin: true).exists? or current_user.is_admin?
   end
 
 end
