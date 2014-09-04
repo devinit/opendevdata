@@ -76,6 +76,15 @@ class User
     self.has_role? :admin
   end
 
+  # workspaces can have admins that can do stuff to them
+  def is_workspace_admin?
+    self.has_role? :workspace_admin
+  end
+
+  def make_workspace_admin!
+    self.add_role :workspace_admin
+  end
+
   def is_banned?
     self.banned
   end
