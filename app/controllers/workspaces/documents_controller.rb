@@ -1,5 +1,5 @@
 class Workspaces::DocumentsController < ApplicationController
-  before_filter :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
+  before_filter :authenticate_user!, except: [:show, :index]
   before_filter :get_workspace
   before_filter :grant_access!, only: [:new, :create, :edit, :update, :destroy]
 
