@@ -33,6 +33,7 @@ class PagesController < ApplicationController
     @dataset_view = Dataset.all.inject(0) { |result, element| result + element.view_count }
     @user_count = User.count
     @document_count = Document.count
+    @unapproved_count = Workspace.where(approved: false).count
   end
 
   def developer
