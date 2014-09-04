@@ -26,6 +26,10 @@
                                 confirm: 'Are you sure you want to join this workspace?',
                                 method: :post, class: 'button' %>
                         <% end %>
+
+                        <% if current_user.is_admin? %>
+                            | <%= link_to "Edit", edit_workspace_path(workspace) %>
+                        <% end %>
                     </td>
                 </tr>
                 <% end %>

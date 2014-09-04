@@ -7,7 +7,7 @@
                 <a href='#' data-dropdown='settingsDrop' class='small secondary radius button dropdown'>Settings</a>
                 <ul id='settingsDrop' data-dropdown-content class='f-dropdown'>
                     <% if has_change_access? @workspace, current_user %>
-                        <li><%= link_to 'Edit Workspace' %></li>
+                        <li><%= link_to 'Edit Workspace', [:edit, @workspace] %></li>
                     <% end %>
                     <li>
                         <%= link_to 'Leave workspace', {
