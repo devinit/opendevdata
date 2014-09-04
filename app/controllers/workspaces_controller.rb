@@ -34,7 +34,7 @@ class WorkspacesController < ApplicationController
   end
 
   def index
-    @workspaces = Workspace.all
+    @workspaces = Workspace.where(approved: true)
   end
 
   def new
