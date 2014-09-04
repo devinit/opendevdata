@@ -88,16 +88,20 @@ class WorkspacesController < ApplicationController
 
   def update
     @workspace = Workspace.find params[:id]
-    if @workspace.update_attributes workspaces_params
-      redirect_to @workspace, notice: "You've successfully updated your workspace."
+    if @workspace.has_change_access? current_user
+      if @workspace.update_attributes workspaces_params
+        redirect_to @workspace, notice: "You've successfully updated your workspace."
+      else
+        flash[:alert] = "You cannot update your workspace. Please contact admin."
+      end
     else
-      flash[:alert] = "You cannot update your workspace. Please contact admin."
+      redirect_to root_path, alert: "Attempted to wrongfully update workspace."
     end
   end
 
   def destroy
     @workspace = Workspace.find params[:id]
-    if has_change_access? @workspace, current_user
+    if @workspace.has_change_access? current_user
       @workspace.destroy
     else
       redirect_to root_path, alert: "You don't have permission to do this."
@@ -111,23 +115,8 @@ class WorkspacesController < ApplicationController
 
     def grant_access!
       @workspace = Workspace.find params[:id]
-
-      workspace_user = @workspace.users.where(id: current_user.id).first
-      is_admissable = false
-
-      if !workspace_user.nil?
-        is_admissable = workspace_user.is_workspace_admin?
-      else
-        is_admissable = current_user.is_admin?
+      if !@workspace.has_change_access? current_user
+        redirect_to root_path, alert: "You don't have permission to do this."
       end
-
-      if is_admissable
-        redirect_to root_path, alert: "You don't have permission to do this | #{current_user.is_admin?}"
-      end
-
-      # if !@workspace.memberships.where(use_id: current_user.id, approved: true).exists? or !current_user.is_admin?
-      #   redirect_to root_path, alert: "You don't have permission to do this"
-      # end
     end
-
 end
