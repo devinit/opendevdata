@@ -16,13 +16,13 @@ Opendataportal::Application.routes.draw do
   authenticate :user, lambda { |u| u.is_admin? } do
     mount Sidekiq::Web => '/sidekiq'
     resources :users
-    resources :workspaces  # do everything
+    resources :open_workspaces  # do everything
     match 'users/:id/ban', to: 'users#ban', as: :ban_user, via: :post
     match 'users/:id/unban', to: 'users#unban', as: :unban_user, via: :post
     match 'users/:id/make_admin', to: 'users#make_admin', as: :make_admin, via: :post
     match 'users/:id/remove_admin', to: 'users#remove_admin', as: :remove_admin, via: :post
-    match 'workspaces/:id/approve', to: 'workspaces#approve', as: :approve_workspace, via: :post
-    match 'unapproved-workspaces', to: 'workspaces#unapproved', as: :unapproved_workspaces, via: :get
+    match 'workspaces/:id/approve', to: 'open_workspaces#approve', as: :approve_workspace, via: :post
+    match 'unapproved-workspaces', to: 'open_workspaces#unapproved', as: :unapproved_workspaces, via: :get
     get 'admin/', to: 'pages#admin', as: :admin
   end
 
@@ -32,21 +32,21 @@ Opendataportal::Application.routes.draw do
 
   resources :datasets, concerns: :sociable # all datasets
 
-  get 'my-workspaces', to: 'workspaces#my_workspaces', as: :my_workspaces
+  get 'my-workspaces', to: 'open_workspaces#my_workspaces', as: :my_workspaces
 
-  match 'workspaces/:id/apply-to-join', to: 'workspaces#apply_to_join', as: :apply_to_join, via: :post
-  match 'workspaces/:id/pending', to: 'workspaces#pending', as: :pending, via: :get
-  match 'leave/workspaces/:id', to: 'workspaces#leave_workspace', via: :delete, as: :leave_workspace
+  match 'workspaces/:id/apply-to-join', to: 'open_workspaces#apply_to_join', as: :apply_to_join, via: :post
+  match 'workspaces/:id/pending', to: 'open_workspaces#pending', as: :pending, via: :get
+  match 'leave/workspaces/:id', to: 'open_workspaces#leave_workspace', via: :delete, as: :leave_workspace
 
-  resources :workspaces do
+  resources :open_workspaces do
     resources :memberships, only: [:show] do
       member do
         get 'approve'
         post 'approve'
       end
     end
-    resources :datasets, concerns: :sociable, controller: 'workspaces/datasets'
-    resources :documents, concerns: :sociable, controller: 'workspaces/documents'
+    resources :datasets, concerns: :sociable, controller: 'open_workspaces/datasets'
+    resources :documents, concerns: :sociable, controller: 'open_workspaces/documents'
   end
 
   get "delete_dataset/:id", to: 'datasets#delete_page', as: 'delete_dataset'
