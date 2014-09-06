@@ -1,0 +1,18 @@
+<% title("Edit workspace (or organization)") %>
+
+<div clas='row'>
+    <div class='columns large-8'>
+        <fieldset>
+            <legend>Edit Workspace</legend>
+
+        <%= simple_form_for @workspace do |f| %>
+            <%= render 'shared/error_messages', object: f.object %>
+            <%= f.text_field :organization_name, placeholder: "Workspace or Organization's Name" %>
+            <%= f.text_area :description, placeholder: 'Describe your workspace', rows: 10 %>
+            <%= f.text_field :location, placeholder: 'Where are you located?' %>
+            <%= f.button :submit, "Update", class: 'button success secondary' %>
+        <% end %>
+
+        </fieldset>
+    </div>
+</div>

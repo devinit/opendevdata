@@ -1,0 +1,2 @@
+module OpenWorkspaces::DatasetsHelper
+end

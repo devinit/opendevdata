@@ -1,0 +1,111 @@
+<%
+    title @document.name
+    description @document.description
+    keywords [@document.name, @document.description].join(", ")
+%>
+
+<div class='row'>
+    <ul class="breadcrumbs">
+      <li><%= link_to @workspace.organization_name, @workspace %></li>
+      <li><%= link_to "Documents", [@workspace, :documents] %></li>
+      <li class="active"><i class='fa fa-cloud-download'></i> <%= @document.name %></li>
+    </ul>
+
+    <h4 class='text-center'><%= @document.name %></h4>
+    <hr>
+    <div class='row'>
+        <div class='large-9 columns'>
+            <span class='radius secondary label'>Description</span><br/>
+            <p><%= @document.description %></p>
+            <strong>Tags:</strong>
+            <% if @document.tags != "" %>
+                <% @document.tags.split(",").each do |tag|%>
+                    <span class='label'><%= tag %></span>
+                <% end %>
+            <% else %>
+                    <span class='label alert'>
+                    There are no tags, sectors or categories assigned to dataset
+                    </span>
+            <% end %>
+        </div>
+        <div class='large-3 columns panel'>
+            <h5>Document source</h5>
+            <p><em><%= full_name_of @document.user %></em></p>
+
+            <h5>Publisher/Author</h5>
+            <p>
+                <% if @document.workspace %>
+                    <em><%= link_to @document.workspace.organization_name, @document.workspace %></em>
+                <% else %>
+                <div class='panel callout'><p>This data is not available at the moment</p></div>
+                <% end %>
+            </p>
+            <h5>Uploaded by</h5>
+            <p><span class='label success'><%= full_name_of @document.user %></span></p>
+
+            <h5>Date release</h5>
+            <p><span class='label secondary'><%= @document.uploaded_on.strftime("%d %B, %Y") %></span></p>
+
+            <% if has_access?(@workspace, current_user) %>
+                <%= link_to 'Edit document', edit_workspace_document_path(@workspace, @document) %>
+            <% end %>
+
+        </div>
+
+    </div>
+</div>
+
+<div class='row'>
+    <p class='right'>
+        <% if @document.attachment.image? %>
+            <%= image_tag @document.attachment.url %>
+        <% else %>
+            <div class="btn-group pull-right">
+              <a class="button dropdown" data-dropdown='options1'>
+                <span class="fa fa-download"></span>
+                Download
+              </a>
+              <ul id='options1' data-dropdown-content class='f-dropdown'>
+                <li><%= link_to "Get file", @document.attachment.url %></li>
+              </ul>
+            </div>
+        <% end %>
+    </p>
+    <!-- <p class='left'>
+        <%# link_to new_workspace_document_comment_path(@workspace, @document), class: 'button success' do %>
+            Comment on this document <i class='fa fa-comment-o'></i>
+        <%# end %>
+    </p> -->
+</div>
+<!--
+<div class='row'>
+    <div class='large-12 columns'>
+        <h3 class='page-header'>Comments</h3>
+        <hr>
+        <% if @comments.exists? %>
+            <div id='comment'>
+                <% @comments.each do |comment| %>
+                    <div class='row'>
+                        <div class='large-2 columns'>
+                        <%= image_tag(avatar_url(comment.user, size=64), class: 'th') %><br/>
+                        <%= full_name_of comment.user %>
+                        </div>
+                        <div class='large-10 columns'>
+                        <p><%= comment.content %></p>
+                        <span class='label default right'><%= time_ago_in_words(comment.created_at) + " ago." %></span>
+                        </div>
+                    </div>
+                    <hr>
+                <% end %>
+                <%= paginate @comments %>
+            </div>
+    <% else %>
+    <div class='panel callout'>
+        <p class='lead'>
+            There are no comments on this dataset, be the first to comment
+        </p>
+    </div>
+    <% end %>
+
+    </div>
+</div> -->

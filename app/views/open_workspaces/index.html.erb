@@ -1,0 +1,41 @@
+
+<div class='row'>
+    <div class='large-12 columns'>
+        <h2>All Workspaces</h2>
+        <table>
+            <thead>
+                <th width="200">Name</th>
+                <th width="400">Description</th>
+                <th>Location</th>
+                <th>Actions</th>
+            </thead>
+            <tbody>
+                <% @workspaces.each do |workspace| %>
+                <tr>
+                    <td><%= link_to workspace.organization_name, workspace %></td>
+                    <td><%= truncate(workspace.description, length: 140) %></td>
+                    <td><%= workspace.location %></td>
+                    <td>
+                        <% if workspace.memberships.where(user: current_user, approved: true).exists? %>
+                            <%= link_to 'visit', workspace %>
+                        <% elsif workspace.memberships.where(user: current_user, approved: false).exists? %>
+                            <span class='label'>Approval pending</span>
+                        <% else %>
+                            <%= link_to "Apply to Join",
+                                apply_to_join_path(workspace),
+                                confirm: 'Are you sure you want to join this workspace?',
+                                method: :post, class: 'button' %>
+                        <% end %>
+
+                        <% if current_user.is_admin? %>
+                            | <%= link_to "Edit", edit_open_workspace_path(workspace) %>
+                        <% end %>
+                    </td>
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+
+        <%= link_to "Create a workspace", new_open_workspace_path, class: 'button success' %>
+    </div>
+</div>

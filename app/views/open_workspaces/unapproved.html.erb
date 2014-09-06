@@ -1,0 +1,30 @@
+<%= provide :title, " | Unapproved Workspaces" %>
+
+<div class='alert-box info'>
+    Please approve or reject workspaces
+</div>
+
+    <div class='large-12 columns'>
+                <table>
+            <thead>
+                <th width="200">Name</th>
+                <th width="400">Description</th>
+                <th>Location</th>
+                <th>Actions</th>
+            </thead>
+            <tbody>
+                <% @workspaces.each do |workspace| %>
+                <tr>
+                    <td><%= link_to workspace.organization_name, workspace %></td>
+                    <td><%= truncate(workspace.description, length: 140) %></td>
+                    <td><%= workspace.location %></td>
+                    <td>
+                        <% if current_user.is_admin? %>
+                          <%= link_to "Edit", edit_open_workspace_path(workspace) %>
+                        <% end %>
+                    </td>
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
