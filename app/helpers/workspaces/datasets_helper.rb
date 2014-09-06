@@ -1,2 +1,0 @@
-module Workspaces::DatasetsHelper
-end

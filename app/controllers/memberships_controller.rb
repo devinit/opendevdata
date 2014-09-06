@@ -6,7 +6,7 @@ class MembershipsController < ApplicationController
 
     respond_to do |format|
       format.js
-      format.html { redirect_to [:workspaces, :pending], notice: "You've successfully approved #{@membership.user.first_name}'s membership." }
+      format.html { redirect_to [:open_workspaces, :pending], notice: "You've successfully approved #{@membership.user.first_name}'s membership." }
     end
   end
 end

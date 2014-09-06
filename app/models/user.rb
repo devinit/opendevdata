@@ -69,7 +69,7 @@ class User
 
   def workspaces
     # get the workspaces this user belongs to
-    Workspace.in id: memberships.map(&:workspace_id)
+    OpenWorkspace.in id: memberships.map(&:open_workspace_id)
   end
 
   def is_admin?
