@@ -5,9 +5,6 @@ gem 'rails', '4.1.5'
 
 gem 'bson_ext'
 gem 'devise'
-gem 'omniauth'
-gem 'omniauth-facebook'
-gem 'omniauth-twitter'
 gem 'simple_form'
 gem 'carrierwave'
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
@@ -92,6 +89,7 @@ end
 gem 'cache_digests'
 gem 'dalli'
 
+gem 'public_activity'
 group :development do
   gem "binding_of_caller"
   gem 'better_errors'
