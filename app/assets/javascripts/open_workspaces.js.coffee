@@ -18,3 +18,5 @@ count = ->
 
 count()
 $("textarea").on "input", count
+
+
