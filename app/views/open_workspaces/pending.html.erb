@@ -1,3 +1,4 @@
+<%= provide :title, " | Pending membership" %>
 <div class='row'>
 
     <div class='large-12 columns'>
@@ -17,7 +18,7 @@
             <tr id='<%= membership.id %>'>
                 <td><%= full_name_of membership.user %></td>
                 <td>
-                <%= link_to 'Approve', approve_workspace_membership_path(@workspace, membership), remote: true %>
+                <%= link_to 'Approve', approve_open_workspace_membership_path(@workspace, membership), remote: true %>
                 </td>
             </tr>
         <% end %>
