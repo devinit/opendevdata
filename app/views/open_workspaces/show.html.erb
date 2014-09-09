@@ -12,7 +12,11 @@
             <% if @admins %>
             <ul>
                 <% @admins.each do |admin| %>
-                    <li><%= admin.user.full_name %> | <%= link_to 'Send email', '#' %></li>
+                    <li>
+                        <%= admin.user.full_name %>
+                        |
+                        <a href='#' data-reveal-id='sendMail'>Send Email</a>
+                    </li>
                 <% end %>
             </ul>
             <% else %>
@@ -167,3 +171,10 @@
         <p class='lead'>There are no datasets in this workspace</p>
     </div>
     <% end %>
+
+
+<!-- Modal for mail -->
+<div id='sendMail' class='reveal-modal' data-reveal>
+    <%= render "email_form" %>
+    <a class="close-reveal-modal">&#215;</a>
+</div>
