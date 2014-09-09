@@ -8,13 +8,14 @@ class Document
   slug :name
   field :description, type: String
   field :uploaded_on, type: Time
+  field :approved, type: Boolean, default: false
 
   validates :name, :description, :attachment, :user_id, presence: true
 
   mount_uploader :attachment, DocumentUploader
 
   belongs_to :user
-  belongs_to :workspace
+  belongs_to :open_workspace
   embeds_many :comments
 
   def self.search search
