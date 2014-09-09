@@ -7,6 +7,17 @@
     <% end %>
         <div>
             <h3 class='left'><%= @workspace.organization_name %></h3>
+            <hr>
+            Administrators:
+            <% if @admins %>
+            <ul>
+                <% @admins.each do |admin| %>
+                    <li><%= admin.user.full_name %> | <%= link_to 'Send email', '#' %></li>
+                <% end %>
+            </ul>
+            <% else %>
+                <span style='color:red'>No Admin</span>
+            <% end %>
             <% if signed_in? and has_access? @workspace, current_user %>
             <span class='right'>
                 <a href='#' data-dropdown='settingsDrop' class='small secondary radius button dropdown'>Settings</a>
