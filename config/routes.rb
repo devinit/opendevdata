@@ -13,6 +13,10 @@ Opendataportal::Application.routes.draw do
     get "logout", to: "devise/sessions#destroy", as: :logout
   end
 
+  authenticate :user do
+    resources :messages, only: [:index, :show, :new, :create]
+  end
+
   authenticate :user, lambda { |u| u.is_admin? } do
     mount Sidekiq::Web => '/sidekiq'
     resources :users
