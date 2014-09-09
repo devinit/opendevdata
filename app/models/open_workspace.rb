@@ -11,6 +11,7 @@ class OpenWorkspace
   has_many :memberships, dependent: :destroy
   has_many :datasets
   has_many :documents
+  has_many :messages
 
   validates :organization_name, :location, :description, presence: true
 
