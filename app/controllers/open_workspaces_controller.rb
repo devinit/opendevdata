@@ -61,7 +61,7 @@ class OpenWorkspacesController < ApplicationController
 
   def show
     @workspace = OpenWorkspace.find params[:id]
-    @datasets = @workspace.datasets
+    @datasets = @workspace.datasets.where approved: true
     @documents = @workspace.documents
 
     _tags = @datasets.collect(&:tags)
@@ -78,6 +78,8 @@ class OpenWorkspacesController < ApplicationController
     end
     # sanitize (only unique tags)
     @tags.uniq!
+
+    @admins = @workspace.memberships.where(admin: true)
 
   end
 
