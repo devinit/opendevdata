@@ -20,6 +20,7 @@ class Dataset
   field :created_at, type: Time
   field :edited_at, type: Time
   field :no_viz, type: Boolean, default: true
+  field :approved, type: Boolean, default: false
 
   field :view_count, type: Integer, default: 0
 
