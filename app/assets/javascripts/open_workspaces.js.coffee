@@ -20,3 +20,16 @@ count()
 $("textarea").on "input", count
 
 
+
+$("form#sendEmail").submit (event) ->
+  formData =
+    content: $("textarea").val()
+    workspace_id: $("input#workspace").val()
+    user_id: $("input#user").val()
+
+  $.post("messages/", formData).done (data) ->
+    alert "message sent!"
+    return
+
+  event.preventDefault()
+  return
