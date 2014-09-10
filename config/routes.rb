@@ -13,9 +13,11 @@ Opendataportal::Application.routes.draw do
     get "logout", to: "devise/sessions#destroy", as: :logout
   end
 
-  authenticate :user do
-    resources :messages, only: [:index, :show, :new, :create]
-  end
+  # authenticate :user do
+  #   resources :open_workspaces, only: :show do
+  #     resources :messages, only: [:index, :show, :new, :create]
+  #   end
+  # end
 
   authenticate :user, lambda { |u| u.is_admin? } do
     mount Sidekiq::Web => '/sidekiq'
@@ -38,9 +40,11 @@ Opendataportal::Application.routes.draw do
 
   get 'my-workspaces', to: 'open_workspaces#my_workspaces', as: :my_workspaces
 
-  match 'workspaces/:id/apply-to-join', to: 'open_workspaces#apply_to_join', as: :apply_to_join, via: :post
-  match 'workspaces/:id/pending', to: 'open_workspaces#pending', as: :pending, via: :get
+  match 'open_workspaces/:id/apply-to-join', to: 'open_workspaces#apply_to_join', as: :apply_to_join, via: :post
+  match 'open_workspaces/:id/pending', to: 'open_workspaces#pending', as: :pending, via: :get
   match 'leave/workspaces/:id', to: 'open_workspaces#leave_workspace', via: :delete, as: :leave_workspace
+
+  match 'open_workspaces/messages', to: 'messages#create', via: :post
 
   resources :open_workspaces do
     resources :memberships, only: [:show] do
