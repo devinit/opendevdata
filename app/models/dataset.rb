@@ -2,6 +2,8 @@ class Dataset
   include Mongoid::Document
   include Mongoid::Slug
   include Mongoid::Taggable
+  include PublicActivity::Model
+  tracked
 
   before_save :set_time
 
