@@ -1,6 +1,8 @@
 class OpenWorkspace
   include Mongoid::Document
   include Mongoid::Slug
+  include PublicActivity::Model
+  tracked
 
   field :organization_name, type: String
   slug :organization_name
