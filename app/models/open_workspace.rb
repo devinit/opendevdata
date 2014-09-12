@@ -50,7 +50,7 @@ class OpenWorkspace
     def generate_blog_tag_id
       begin
         blg_tag_id = "#{SecureRandom.hex 2}"
-      end while OpenWorkspace.exists? blog_tag_id: blg_tag_id
+      end while OpenWorkspace.where(blog_tag_id: blg_tag_id).exists?
       self.blog_tag_id = blg_tag_id
     end
 
