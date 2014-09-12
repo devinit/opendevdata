@@ -4,7 +4,7 @@ class OpenWorkspace
   include PublicActivity::Model
   tracked
 
-  before_create :generate_blog_tag_id, if Proc.new { |open_workspace| open_workspace.new_record? }
+  before_create :generate_blog_tag_id, if: Proc.new { |open_workspace| open_workspace.new_record? }
 
   field :organization_name, type: String
   slug :organization_name
@@ -21,6 +21,8 @@ class OpenWorkspace
   validates :organization_name, :location, :description, presence: true
 
   validates :description, length: { maximum: 250 }
+
+  validates :blog_tag_id, uniqueness: true
 
   # Avoid duplicate organization names
   # validates :organization_name, uniqueness: { conditions: -> {where(deleted_at: nil)}}
@@ -39,8 +41,17 @@ class OpenWorkspace
     self.memberships.where(user: user, admin: true).exists? or user.is_admin?
   end
 
+  def update_blog_tag_id!
+    generate_blog_tag_id
+    self.save # for safety
+  end
+
   private
     def generate_blog_tag_id
-      self.blog_tag_id = "#{SecureRandom.hex 2}"
+      begin
+        blg_tag_id = "#{SecureRandom.hex 2}"
+      end while OpenWorkspace.exists? blog_tag_id: blg_tag_id
+      self.blog_tag_id = blg_tag_id
     end
+
 end
