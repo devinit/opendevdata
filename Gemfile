@@ -89,7 +89,7 @@ end
 gem 'cache_digests'
 gem 'dalli'
 
-gem 'public_activity'
+gem 'public_activity', '1.4.1'
 group :development do
   gem "binding_of_caller"
   gem 'better_errors'
