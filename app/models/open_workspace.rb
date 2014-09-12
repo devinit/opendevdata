@@ -4,6 +4,8 @@ class OpenWorkspace
   include PublicActivity::Model
   tracked
 
+  before_create :generate_blog_tag_id, if Proc.new { |open_workspace| open_workspace.new_record? }
+
   field :organization_name, type: String
   slug :organization_name
   field :location, type: String
@@ -36,4 +38,9 @@ class OpenWorkspace
   def has_change_access? user
     self.memberships.where(user: user, admin: true).exists? or user.is_admin?
   end
+
+  private
+    def generate_blog_tag_id
+      self.blog_tag_id = "#{SecureRandom.hex 2}"
+    end
 end
