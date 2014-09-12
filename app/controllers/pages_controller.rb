@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  before_action :authenticate_user!, only: :activity
 
   def index
     @recent_datasets = Dataset.order("created_at DESC").scoped limit: 3
@@ -37,6 +38,10 @@ class PagesController < ApplicationController
   end
 
   def developer
+  end
+
+  def activity
+    @activities = PublicActivity::Activity.all  # TODO -> paginate
   end
 
 end
