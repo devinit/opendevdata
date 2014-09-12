@@ -1,3 +1,3 @@
-PublicActivity.configure do |config|
-  config.orm = :mongoid
+PublicActivity::Config.set do
+  orm :mongoid
 end
