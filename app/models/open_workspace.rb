@@ -9,6 +9,7 @@ class OpenWorkspace
   field :location, type: String
   field :description, type: String
   field :approved, type: Boolean, default: false
+  field :blog_tag_id, type: String
 
   has_many :memberships, dependent: :destroy
   has_many :datasets
