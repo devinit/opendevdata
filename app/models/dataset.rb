@@ -51,8 +51,8 @@ class Dataset
     if search
       ret << any_of({name: /#{search}/i}).to_a
       ret << tagged_with(/#{search}/i).to_a
-      ret
     end
+    ret
   end
 
   protected
