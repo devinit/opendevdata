@@ -33,10 +33,18 @@
 
             <h5>Publisher/Author</h5>
             <p>
-                <% if @dataset.workspace %>
-                    <em><%= link_to @dataset.workspace.organization_name, @dataset.workspace %></em>
+                <% if @dataset.open_workspace %>
+                    <em>
+                        <%= link_to @dataset.open_workspace.organization_name,
+                                    @dataset.open_workspace %>
+                    </em>
                 <% else %>
-                <div class='panel callout'><p>This data is not available at the moment</p></div>
+                <div class='panel callout'>
+                    <p>
+                    This data is not available at the moment.
+                    <br/><strong>Dataset doesn't belong to a workspace.
+                    </p>
+                </div>
                 <% end %>
             </p>
             <h5>Uploaded by</h5>
@@ -57,7 +65,7 @@
                 </span>
             </p>
             <% if signed_in? %>
-                <% if has_access? @dataset.workspace, current_user, @dataset %>
+                <% if has_access? @dataset.open_workspace, current_user, @dataset %>
                     <%= link_to 'Edit dataset', edit_dataset_path(@dataset) %>
                     |
                     <%= link_to @dataset, method: :delete, confirm: 'Are you sure you want to delete dataset?' do %>
