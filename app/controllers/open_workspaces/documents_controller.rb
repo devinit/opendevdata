@@ -35,7 +35,7 @@ class OpenWorkspaces::DocumentsController < ApplicationController
 
   private
     def get_workspace
-      @workspace = OpenWorkspace.find params[:workspace_id]
+      @workspace = OpenWorkspace.find params[:open_workspace_id]
     end
 
     def document_params
