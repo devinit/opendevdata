@@ -27,7 +27,7 @@ class OpenWorkspaces::DatasetsController < ApplicationController
 
   def create
     @dataset= Dataset.create dataset_params.merge(user: current_user,
-                                                  workspace: @workspace)
+                                                  open_workspace: @workspace)
     if @dataset.save
       # send file for processing
       if !@dataset.no_viz and dataset_params['attachment']
