@@ -34,8 +34,8 @@
 
             <h5>Publisher/Author</h5>
             <p>
-                <% if @dataset.workspace %>
-                    <em><%= link_to @dataset.workspace.organization_name, @dataset.workspace %></em>
+                <% if @dataset.open_workspace %>
+                    <em><%= link_to @dataset.open_workspace.organization_name, @dataset.open_workspace %></em>
                 <% else %>
                 <div class='panel callout'><p>This data is not available at the moment</p></div>
                 <% end %>
@@ -47,7 +47,7 @@
             <p><span class='label secondary'><%= @dataset.created_at.strftime("%d %B, %Y") %></span></p>
 
             <% if has_access?(@workspace, current_user) %>
-                <%= link_to 'Edit dataset', edit_workspace_dataset_path(@workspace, @dataset) %>
+                <%= link_to 'Edit dataset', edit_open_workspace_dataset_path(@workspace, @dataset) %>
             <% end %>
 
         </div>
