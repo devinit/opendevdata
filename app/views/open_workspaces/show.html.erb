@@ -20,6 +20,7 @@
                 <% end %>
             </ul>
             <strong>Blog tag id: <%= @workspace.blog_tag_id %></strong>
+            <%= link_to '> Blogs', blog_path(@workspace) %>
             <% else %>
                 <span style='color:red'>No Admin</span>
             <% end %>
