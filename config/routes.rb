@@ -43,6 +43,7 @@ Opendataportal::Application.routes.draw do
   match 'open_workspaces/:id/apply-to-join', to: 'open_workspaces#apply_to_join', as: :apply_to_join, via: :post
   match 'open_workspaces/:id/pending', to: 'open_workspaces#pending', as: :pending, via: :get
   match 'leave/workspaces/:id', to: 'open_workspaces#leave_workspace', via: :delete, as: :leave_workspace
+  match 'open_workspaces/:id/blogs', to: 'open_workspaces#blogs', as: :blog, via: :get
 
   match 'open_workspaces/messages', to: 'messages#create', via: :post
 
