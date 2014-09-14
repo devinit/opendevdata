@@ -123,6 +123,10 @@ class OpenWorkspacesController < ApplicationController
     end
   end
 
+  def blogs
+    @blog_tag_id = OpenWorkspace.find(params[:id]).blog_tag_id
+  end
+
   private
     def workspaces_params
       params.require(:open_workspace).permit(:organization_name, :description, :location)
