@@ -55,7 +55,7 @@ $.ajax
     while i < length
       _post = posts[i]
       url = _post.url
-      str = "<h5 class='short-header'><a href='" + url + "' target='_blank'>" + _post.title + "</a></h5>" + "<div class='short-description'><span class='release'>Posted on </span>" + _post.date + "<br/>"+_post.content+"</div><hr>"
+      str = "<h5 class='short-header'><a href='" + url + "' target='_blank'>" + _post.title + "</a></h5>" + "<div class='short-description'><span class='release'>Posted on </span>" + _post.date + "<br/>"+_post.content.substring(0,250)+"</div><hr>"
       fullStr += str
       i += 1
     $(".workspace_posts").html fullStr
