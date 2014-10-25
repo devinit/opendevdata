@@ -13,6 +13,7 @@ class JoinedUpDataset
   # TODO -> scope out joined up data
   field :time_value, type: String
   field :time_format, type: String
+  field :value, type: BigDecimal  # convert integers to decimals too ;-)
 
   has_one :space_value # related to space_value
   has_one :data_serie # related to data series
