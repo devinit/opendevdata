@@ -17,6 +17,9 @@ class JoinedUpDataset
   has_one :space_value # related to space_value
   has_one :data_serie # related to data series
 
+  # validations
+  validates :time_format, inclusion: { in: %w(year quarter month)}
+
   protected
   def set_time
     if created_at.nil?
