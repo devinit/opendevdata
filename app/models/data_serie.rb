@@ -1,5 +1,6 @@
 class DataSerie
   include Mongoid::Document
+  include Mongoid::Timestamps
   include Mongoid::Slug
 
   field :title, type: String
@@ -7,6 +8,8 @@ class DataSerie
   field :notes, type: String
   has_one :unit_of_measure
   has_one :sector_vocabulary
+
+  vaildates :title, :description, presence: true
 
   # more fields to be added... etc.
 end
