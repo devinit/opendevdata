@@ -20,6 +20,8 @@ class JoinedUpDataset
   # validations
   validates :time_format, inclusion: { in: %w(year quarter month)}
 
+  mount_uploader :attachment, DatasetFileUploader
+
   protected
   def set_time
     if created_at.nil?
