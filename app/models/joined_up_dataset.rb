@@ -20,6 +20,9 @@ class JoinedUpDataset
   has_one :space_value # related to space_value
   has_one :data_serie # related to data series
 
+  belongs_to :open_workspace
+  belongs_to :user  # who uploaded
+
   # validations
   validates :time_value, inclusion: { in: %w(year quarter month)}
 
