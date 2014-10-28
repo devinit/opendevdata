@@ -15,6 +15,7 @@ class OpenWorkspace
 
   has_many :memberships, dependent: :destroy
   has_many :datasets
+  has_many :joined_up_datasets
   has_many :documents
   has_many :messages
 
