@@ -1,0 +1,36 @@
+<%= provide :title, " | Unapproved Datasets" %>
+
+<div class='alert-box info'>
+    Please approve or reject datasets
+</div>
+
+    <div class='large-12 columns'>
+                <table>
+            <thead>
+                <th width="200">Workspace name</th>
+                <th width="200">Dataset name</th>
+                <th width="400">Description</th>
+                <!-- <th>Actions</th> -->
+            </thead>
+            <tbody>
+                <% @datasets.each do |dataset| %>
+                <tr>
+                    <td>
+                        <% if dataset.open_workspace.nil? %>
+                            <span class='label'>[No workspace]</span>
+                        <% else %>
+                        <%= link_to dataset.open_workspace.organization_name, dataset.open_workspace %>
+                        <% end %>
+                    </td>
+                    <td><%= link_to dataset.name, dataset %></td>
+                    <td><%= truncate(dataset.description, length: 140) %></td>
+                    <!-- <td> -->
+                        <%# if current_user.is_admin? %>
+                          <%# link_to "Edit", edit_open_workspace_path(workspace) %>
+                        <%# end %>
+                    <!-- </td> -->
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
