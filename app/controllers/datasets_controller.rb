@@ -22,8 +22,9 @@ class DatasetsController < ApplicationController
     end
 
     if params[:search].nil?
-      @datasets = Dataset.desc(:created_at).page(params[:page])
+      @datasets = Dataset.where(approved: true).desc(:created_at).page(params[:page])
     else
+      #TODO query approved!
       @datasets = Dataset.search(params[:search]).uniq.delete_if { |dataset| dataset.nil? or dataset.empty? }
     end
 
@@ -152,6 +153,10 @@ class DatasetsController < ApplicationController
       flash[:alert] = "Could not delete this dataset because you don't have the permission to."
     end
     redirect_to datasets_path
+  end
+
+  def unapproved
+    @datasets = Dataset.where approved: false
   end
 
   private

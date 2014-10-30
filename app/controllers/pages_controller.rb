@@ -35,6 +35,7 @@ class PagesController < ApplicationController
     @user_count = User.count
     @document_count = Document.count
     @unapproved_count = OpenWorkspace.where(approved: false).count
+    @unapproved_datasets_count = Dataset.where(approved: false).count
   end
 
   def developer
