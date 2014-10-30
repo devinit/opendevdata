@@ -22,7 +22,7 @@ Opendataportal::Application.routes.draw do
   authenticate :user, lambda { |u| u.is_admin? } do
     mount Sidekiq::Web => '/sidekiq'
     resources :users
-    resources :open_workspaces  # do everything
+    resources :open_workspaces, except: [:index, :show]  # do everything
     match 'users/:id/ban', to: 'users#ban', as: :ban_user, via: :post
     match 'users/:id/unban', to: 'users#unban', as: :unban_user, via: :post
     match 'users/:id/make_admin', to: 'users#make_admin', as: :make_admin, via: :post
@@ -56,11 +56,12 @@ Opendataportal::Application.routes.draw do
     end
     resources :datasets, concerns: :sociable, controller: 'open_workspaces/datasets'
     resources :documents, concerns: :sociable, controller: 'open_workspaces/documents'
-    resources :joined_up_datasets, controller: 'open_workspaces/joined_up_datasets', only: [:index, :show] do
+    resources :joined_up_datasets, controller: 'open_workspaces/joined_up_datasets' do
       collection { post :import }
     end
 
     get 'joined-up-dataset/upload', to: 'open_workspaces/joined_up_datasets#upload'
+    get 'joined-up-dataset/processing', to: 'open_workspaces/joined_up_datasets#processing', as: 'processing'
   end
 
   get "delete_dataset/:id", to: 'datasets#delete_page', as: 'delete_dataset'
