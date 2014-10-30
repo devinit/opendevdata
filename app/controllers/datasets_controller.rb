@@ -159,6 +159,16 @@ class DatasetsController < ApplicationController
     @datasets = Dataset.where approved: false
   end
 
+  def approve
+    @dataset = Dataset.find params[:id]
+    @dataset.approved = true
+    @dataset.save
+    respond_to do |format|
+      format.html { redirect_to @dataset, notice: "Successfully approved dataset" }
+    end
+  end
+
+
   private
     def dataset_params
       params.require(:dataset).permit(
