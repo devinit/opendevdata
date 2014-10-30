@@ -19,10 +19,12 @@
                     </li>
                 <% end %>
             </ul>
+            <% if signed_in? && has_access?(@workspace, current_user) %>
             <tt>
                 Blog tag id: <strong style='font-size: 1.5em;'><%= @workspace.blog_tag_id %></strong>
             </tt>
-            <%= link_to '> Blogs', blog_path(@workspace) %>
+            <% end %>
+            <%= link_to '>> Blogs', blog_path(@workspace) %>
             <% else %>
                 <span style='color:red'>No Admin</span>
             <% end %>

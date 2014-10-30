@@ -27,7 +27,7 @@
                                 method: :post, class: 'button' %>
                         <% end %>
 
-                        <% if current_user.is_admin? %>
+                        <% if current_user && current_user.is_admin? %>
                             | <%= link_to "Edit", edit_open_workspace_path(workspace) %>
                         <% end %>
                     </td>

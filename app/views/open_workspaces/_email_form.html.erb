@@ -5,7 +5,13 @@
         <label for="remarks">Comments <small>required</small></label>
          <textarea id="remarks" name="remarks" placeholder="Leave your remarks here." required pattern="[a-zA-Z]+"></textarea>
          <input type='hidden' id='workspace' name='workspace_id' value="<%= @workspace.id %>"/>
+         <% if current_user.nil? %>
+         <div class='alert'>
+           You have to be logged in to send email.
+         </div>
+         <% else %>
          <input type='hidden' id='user' name='user_id' value="<%= current_user.id %>"/>
+         <% end %>
        </div>
       <button type="submit" value="send" id='emailSend'>Submit</button>
   </fieldset>
