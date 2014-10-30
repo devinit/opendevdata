@@ -58,6 +58,9 @@ $.ajax
       str = "<h5 class='short-header'><a href='" + url + "' target='_blank'>" + _post.title + "</a></h5>" + "<div class='short-description'><span class='release'>Posted on </span>" + _post.date + "<br/>"+_post.content.substring(0,250)+"</div><hr>"
       fullStr += str
       i += 1
+
+    if length == 0
+      fullStr = "<div class='alert-box info'>No blog Posts found!</div>"
     $(".workspace_posts").html fullStr
     return
 
