@@ -1,5 +1,5 @@
 class OpenWorkspacesController < ApplicationController
-  before_filter :authenticate_user!, except: [:index, :show]
+  before_filter :authenticate_user!, except: [:index, :show, :blogs]
   before_filter :grant_access!, only: [:edit, :update, :destroy]
   # Note: here we'll go against the usual Rails b'se I'm tired
   # Workspace is analogous to an Organization
