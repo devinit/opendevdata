@@ -1,4 +1,5 @@
 class JoinedUpDataset
+  require 'smarter_csv'
   include Mongoid::Document
   include Mongoid::Slug
   include Mongoid::Taggable
@@ -27,6 +28,11 @@ class JoinedUpDataset
   validates :time_value, inclusion: { in: %w(year quarter month)}
 
   mount_uploader :attachment, DatasetFileUploader
+
+  def self.import file
+    values_extracted = SmarterCSV.process(file.path)
+    logger.debug "values >> #{values_extracted.inspect}"
+  end
 
   # protected
   # def set_time
