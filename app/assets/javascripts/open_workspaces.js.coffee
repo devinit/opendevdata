@@ -60,7 +60,7 @@ $.ajax
       i += 1
 
     if length == 0
-      fullStr = "<div class='alert-box info'>No blog Posts found!<br/><a href='https://docs.google.com/document/d/1auNU8TSsEckVQ08uPlxE6dOFVhUCqYIf91Y79-EgmoY/edit?usp=sharing'>See docs</a></div>"
+      fullStr = "<div class='alert-box info'>No blog Posts found!<br/><a href='https://docs.google.com/document/d/1auNU8TSsEckVQ08uPlxE6dOFVhUCqYIf91Y79-EgmoY/edit?usp=sharing' target='_blank'>See docs</a></div>"
     $(".workspace_posts").html fullStr
     return
 
