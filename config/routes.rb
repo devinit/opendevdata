@@ -64,6 +64,7 @@ Opendataportal::Application.routes.draw do
 
     get 'joined-up-dataset/upload', to: 'open_workspaces/joined_up_datasets#upload'
     get 'joined-up-dataset/processing', to: 'open_workspaces/joined_up_datasets#processing', as: 'processing'
+    get 'joined-up-dataset/pending', to: 'open_workspaces/joined_up_datasets#pending', as: 'pending'
   end
 
   get "delete_dataset/:id", to: 'datasets#delete_page', as: 'delete_dataset'
