@@ -7,7 +7,7 @@ class OpenWorkspaces::JoinedUpDatasetsController < ApplicationController
 
   def import
     logger.debug ">>> attempting import"
-    JoinedUpDataset.import params[:file]
+    JoinedUpDataset.import params[:file], current_user, @workspace
     logger.debug "<<< COMPLETE"
     redirect_to open_workspace_processing_url
   end
