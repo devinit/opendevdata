@@ -20,6 +20,9 @@ class JoinedUpDataset
   field :data_extract, type: Hash
   field :approved, type: Boolean, default: false
 
+  # this is flagged off after sidekiq has done its magic
+  field :pending, type: Boolean, default: true
+
   has_one :time_format
   has_one :space_value # related to space_value
   has_one :data_serie # related to data series
