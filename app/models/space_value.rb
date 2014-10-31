@@ -1,5 +1,5 @@
 class SpaceValue
-  include Mongoid::Documet
+  include Mongoid::Document
   include Mongoid::Slug
 
   before_save :set_time
