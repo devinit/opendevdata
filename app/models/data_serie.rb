@@ -9,7 +9,7 @@ class DataSerie
   has_one :unit_of_measure
   has_one :sector_vocabulary
 
-  vaildates :title, :description, presence: true
+  validates :title, :description, presence: true
 
   # more fields to be added... etc.
 end
