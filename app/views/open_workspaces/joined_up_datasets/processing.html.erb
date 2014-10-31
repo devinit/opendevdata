@@ -13,7 +13,7 @@
         <div class='panel'>
           Please be patient as we process the file you've just uploaded. When complete, you'll receive an email notification. Thank you.
           <br/>
-          Visit <%= link_to 'workspace', @workspace %> where you'll see datasets that are pending your review.
+          Visit <%= link_to 'workspace', open_workspace_pending_path(@workspace) %> where you'll see datasets that are pending your review.
         </div>
     <hr>
     <div class='row'>
