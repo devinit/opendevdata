@@ -3,7 +3,7 @@
 <div class='row'>
     <ul class="breadcrumbs">
       <li><%= link_to "Home", root_path %></li>
-      <li><%= link_to "Open Workspaces", '#' %></li>
+      <li><%= link_to "Open Workspaces", @workspace %></li>
       <li class="active"><i class='fa fa-cloud-upload'></i>
           Upload
       </li>
@@ -12,6 +12,8 @@
     <h4 class='text-center'>Processing in Progress</h4>
         <div class='panel'>
           Please be patient as we process the file you've just uploaded. When complete, you'll receive an email notification. Thank you.
+          <br/>
+          Visit <%= link_to 'workspace', @workspace %> where you'll see datasets that are pending your review.
         </div>
     <hr>
     <div class='row'>
