@@ -21,7 +21,7 @@ class JoinedUpDataset
   field :approved, type: Boolean, default: false
 
   # this is flagged off after sidekiq has done its magic
-  field :pending, type: Boolean, default: true
+  field :pending, type: Boolean, default: false
 
   has_one :time_format
   has_one :space_value # related to space_value
