@@ -64,3 +64,13 @@ $.ajax
     $(".workspace_posts").html fullStr
     return
 
+$("select").change(->
+  #console.log($('option:selected').text())
+  #str = ""
+  #$("select option:selected").each ->
+  #  #str += $(this).text() + " "
+  #  console.log($('select'))
+  #  return
+  # post to API
+  return
+).change()
