@@ -11,6 +11,7 @@ class JoinedUpDataset
   field :created_at, type: Time
   field :edited_at, type: Time
 
+  field :name, type: String
 
   # TODO -> scope out joined up data
   field :time_value, type: String
@@ -21,7 +22,7 @@ class JoinedUpDataset
   field :approved, type: Boolean, default: false
 
   # this is flagged off after sidekiq has done its magic
-  field :pending, type: Boolean, default: false
+  field :pending, type: Boolean, default: true
 
   has_one :time_format
   has_one :space_value # related to space_value
@@ -37,7 +38,7 @@ class JoinedUpDataset
   mount_uploader :attachment, DatasetFileUploader
 
   def self.import file, user, open_workspace
-    values_extracted = SmarterCSV.process(file.path)
+    values_extracted = SmarterCSV.process file.path
     # headers = values_extracted[0].keys.map { |i| i.to_s } if values_extracted.size > 0
     # create a joined up dataset (with nil values + attribute it to the uploader and the workspace that sent it.)
     # TODO -> move operation to Sidekiq job
@@ -47,8 +48,16 @@ class JoinedUpDataset
     joined_up_dataset.open_workspace = open_workspace
     # logger.debug "values >> #{headers}"
     if joined_up_dataset.save
-      logger.debug "Saved pre-liminary dataset"
+      logger.debug "Saved preliminary dataset"
     end
+  end
+
+  def self.set_header_definitions values
+    # this will set the headers and their types
+    # e.g.
+    # Column A - time_value format; value of that time_value
+    # `values` is a hash as well
+    self.data_extract["header_definitions"] = values
   end
 
   # protected
