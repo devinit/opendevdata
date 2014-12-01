@@ -1,0 +1,58 @@
+<div class='panel radius'>
+    <p>The following columns have been identified</p>
+
+    <table>
+        <thead>
+            <th>Name of Column</th>
+            <th>Column letter</th>
+            <th>Select Format</th>
+        </thead>
+        <tbody>
+            <% @column_keys.each_with_index do |ck, index| %>
+            <tr>
+                <td><%= ck.first %></td>
+                <td><%= ck.last %></td>
+                <td>
+                    <select id="<%= index %>" data-judb="<%= @joined_up_dataset.id %>">
+                      <option selected="selected" value=""/>
+                      <option value="m">M (month)</option>
+                      <option value="y">Y (year)</option>
+                      <option value="q">Q (Quarter)</option>
+
+                      <option value="A0">A0 (Country)</option>
+                      <option value="A1">A1 (Region)</option>
+                      <option value="A2">A2 (District)</option>
+                      <option value="A3">A3 (County)</option>
+                      <option value="A4">A4 (Sub-county)</option>
+                      <option value="A5">A5 (Parish)</option>
+                      <option value="P1">P1 (City)</option>
+                      <option value="P2">P2 (Town)</option>
+                      <option value="P3">P3 (Village)</option>
+                      <option value="P4">P4 (Installation e.g. school or clinic)</option>
+
+                      <option value="U">Unit</option>
+                      <option value="PC">Percent</option>
+                      <option value="UGXC">Uganda Shillings (Current)</option>
+                      <option value="USDC">US Dollars (Current)</option>
+                    </select>
+                </td>
+            </tr>
+            <script>
+                $( "select#<%= index %>" ).change(function () {
+                    $( "select#<%= index %> option:selected" ).each(function()
+                    {
+                        var value = $(this).val();
+                        if (value.trim() !== ""){
+                            console.log(value);
+                            console.log($("select#<%= index %>").data("judb"));
+                        }
+                    });
+                }).change();
+            </script>
+            <% end %>
+        </tbody>
+    </table>
+</div>
+
+
+<div id='sample'></div>
