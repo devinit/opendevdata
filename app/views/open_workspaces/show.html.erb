@@ -66,6 +66,9 @@
             <%= link_to new_open_workspace_dataset_path(@workspace), class: 'button' do %>
                 New Dataset <i class='fa fa-plus'></i>
             <% end %>
+            <%= link_to open_workspace_joined_up_dataset_upload_path(@workspace), class: 'button' do %>
+                Upload Joined up Data
+            <% end %>
             <%= link_to new_open_workspace_document_path(@workspace), class: 'button success' do %>
                 Upload document <i class='fa fa-upload'></i>
             <% end %>
@@ -97,6 +100,10 @@
                 <h3><i class='fa fa-database'></i> <%= pluralize @datasets.count, 'dataset' %></h3>
                 <h3><i class="fa fa-file-pdf-o"></i>
                     <%= link_to pluralize(@documents.count, 'document'), open_workspace_documents_path(@workspace) %>
+                </h3>
+                <h3>
+                    <i class='fa fa-cogs'></i>
+                    <%= link_to pluralize(@joined_up_datasets.count, 'Joined-up dataset'), open_workspace_joined_up_datasets_path(@workspace) %>
                 </h3>
               </span>
                 <hr>
