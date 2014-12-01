@@ -1,11 +1,11 @@
-<% title "Upload"%>
+<% title "Pending Joined up Datasets"%>
 
 <div class='row'>
     <ul class="breadcrumbs">
       <li><%= link_to "Home", root_path %></li>
       <li><%= link_to "Open Workspaces", @workspace %></li>
-      <li class="active"><i class='fa fa-cloud-upload'></i>
-          Upload
+      <li class="active"><i class='fa fa-clock-o'></i>
+          Pending
       </li>
     </ul>
 
@@ -24,6 +24,18 @@
             <th>Review</th>
           </tr>
         </thead>
+
+        <tbody>
+          <% @pending.each do |dataset| %>
+          <tr>
+            <td><%= dataset.user.full_name %></td>
+            <td>
+            <%= dataset.created_at %>
+            </td>
+            <td><%= link_to "review", open_workspace_prepare_path(@workspace, dataset.id) %></td>
+          </tr>
+          <% end %>
+        </tbody>
 
       </table>
     </div>
