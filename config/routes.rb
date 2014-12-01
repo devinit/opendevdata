@@ -58,13 +58,14 @@ Opendataportal::Application.routes.draw do
     end
     resources :datasets, concerns: :sociable, controller: 'open_workspaces/datasets'
     resources :documents, concerns: :sociable, controller: 'open_workspaces/documents'
-    resources :joined_up_datasets, controller: 'open_workspaces/joined_up_datasets' do
+    resources :joined_up_datasets, controller: 'open_workspaces/joined_up_datasets', except: [:new] do
       collection { post :import }
     end
 
     get 'joined-up-dataset/upload', to: 'open_workspaces/joined_up_datasets#upload'
     get 'joined-up-dataset/processing', to: 'open_workspaces/joined_up_datasets#processing', as: 'processing'
-    get 'joined-up-dataset/pending', to: 'open_workspaces/joined_up_datasets#pending', as: 'pending'
+    get 'joined-up-datasets/pending', to: 'open_workspaces/joined_up_datasets#pending', as: 'pending'
+    get 'joined-up-datasets/:id/prepare-joined-up-dataset', to: 'open_workspaces/joined_up_datasets#prepare', as: 'prepare'
   end
 
   get "delete_dataset/:id", to: 'datasets#delete_page', as: 'delete_dataset'
@@ -77,11 +78,6 @@ Opendataportal::Application.routes.draw do
       # API routes
       resources :documents, only: [:index, :show]
       resources :datasets, only: [:index, :show]
-
-      # resources :workspaces, only: [:index, :show] do
-      #   resources :documents, only: [:index, :show]
-      #   resources :datasets, only: [:index, :show]
-      # end
     end
   end
 end
