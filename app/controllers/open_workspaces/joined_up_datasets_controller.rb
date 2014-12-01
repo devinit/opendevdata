@@ -1,5 +1,5 @@
 class OpenWorkspaces::JoinedUpDatasetsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:show, :index]
   before_action :get_workspace
 
   # Some differences with how we are working with REST
@@ -20,6 +20,24 @@ class OpenWorkspaces::JoinedUpDatasetsController < ApplicationController
 
   def pending
     @pending = JoinedUpDataset.where pending: true
+  end
+
+  def prepare
+    @workspace = OpenWorkspace.find params[:open_workspace_id]
+    @joined_up_dataset = @workspace.joined_up_datasets.find params[:id]
+    # keys are where we store the unique columns that the system
+    # identifies in the dataset
+    @keys = []
+    @joined_up_dataset.data_extract['value_extract'].each do |val|
+      val.keys().each do |_key|
+        @keys << _key if !@keys.include?(_key)
+      end
+    end
+    @column_keys = []
+    @keys.each_with_index do |key, index|
+      @column_keys << [key, ('A'..'Z').to_a[index]]
+    end
+
   end
 
   def show
