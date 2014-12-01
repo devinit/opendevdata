@@ -63,6 +63,7 @@ class OpenWorkspacesController < ApplicationController
     @workspace = OpenWorkspace.find params[:id]
     @datasets = @workspace.datasets.where approved: true
     @documents = @workspace.documents
+    @joined_up_datasets = @workspace.joined_up_datasets.where pending: false
 
     _tags = @datasets.collect(&:tags)
     _tags.reject!(&:empty?)
