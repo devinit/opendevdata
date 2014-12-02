@@ -22,7 +22,7 @@ gem "sanitizer"
 gem "mini_magick"
 gem "smarter_csv"
 gem 'rubyzip', '~> 0.9.9'
-gem 'sidekiq'
+gem 'sidekiq', '~> 3.2.6'
 gem 'sinatra', require: false
 gem 'slim'
 gem "redis"
