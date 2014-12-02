@@ -24,7 +24,7 @@
                             <%= link_to "Apply to Join",
                                 apply_to_join_path(workspace),
                                 confirm: 'Are you sure you want to join this workspace?',
-                                method: :post, class: 'button' %>
+                                method: :post %>
                         <% end %>
 
                         <% if current_user && current_user.is_admin? %>
@@ -36,6 +36,6 @@
             </tbody>
         </table>
 
-        <%= link_to "Create a workspace", new_open_workspace_path, class: 'button success' %>
+        <%= link_to "Create a workspace >>", new_open_workspace_path %>
     </div>
 </div>
