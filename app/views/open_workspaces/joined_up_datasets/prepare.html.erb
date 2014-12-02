@@ -1,11 +1,11 @@
-<div class='panel radius'>
+<div class='large-12 columns'>
     <p>The following columns have been identified</p>
 
-    <table>
+    <table >
         <thead>
-            <th>Name of Column</th>
-            <th>Column letter</th>
-            <th>Select Format</th>
+           <tr> <th>Name of Column</th>
+                       <th>Column letter</th>
+                       <th>Select Format</th></tr>
         </thead>
         <tbody>
             <% @column_keys.each_with_index do |ck, index| %>
@@ -53,6 +53,3 @@
         </tbody>
     </table>
 </div>
-
-
-<div id='sample'></div>
