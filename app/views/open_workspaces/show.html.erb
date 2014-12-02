@@ -63,20 +63,22 @@
     <div class='row'>
         <div class='columns large-12'>
         <% if has_access? @workspace, current_user %>
-            <%= link_to new_open_workspace_dataset_path(@workspace), class: 'button' do %>
+            <%= link_to new_open_workspace_dataset_path(@workspace) do %>
                 New Dataset <i class='fa fa-plus'></i>
             <% end %>
-            <%= link_to open_workspace_joined_up_dataset_upload_path(@workspace), class: 'button' do %>
+            |
+            <%= link_to open_workspace_joined_up_dataset_upload_path(@workspace) do %>
                 Upload Joined up Data
             <% end %>
-            <%= link_to new_open_workspace_document_path(@workspace), class: 'button success' do %>
+            |
+            <%= link_to new_open_workspace_document_path(@workspace) do %>
                 Upload document <i class='fa fa-upload'></i>
             <% end %>
         <% end %>
 
         <% if has_change_access? @workspace, current_user %>
-            <br/>
-            <%= link_to pending_path(@workspace), class: 'button alert' do %>
+            <hr/>
+            <%= link_to pending_path(@workspace) do %>
                 <i class='fa fa-users'></i>
                 <%= pluralize @workspace.memberships.where(approved: false).count, "Pending Membership" %>
             <% end %>
