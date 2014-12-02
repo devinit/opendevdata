@@ -42,8 +42,21 @@ class JoinedUpDataset
     # headers = values_extracted[0].keys.map { |i| i.to_s } if values_extracted.size > 0
     # create a joined up dataset (with nil values + attribute it to the uploader and the workspace that sent it.)
     # TODO -> move operation to Sidekiq job
+
+    keys = []
+    values_extracted.each do |val|
+      val.keys().each do |_key|
+        keys << _key if !keys.include?(_key)
+      end
+    end
+
+    column_keys = []
+    keys.each_with_index do |key, index|
+      column_keys << {key: key, column: ('A'..'Z').to_a[index], format_type: nil }
+    end
+
     joined_up_dataset = JoinedUpDataset.new
-    joined_up_dataset.data_extract = { value_extract: values_extracted }
+    joined_up_dataset.data_extract = { value_extract: values_extracted, header_definitions: column_keys }
     joined_up_dataset.user = user
     joined_up_dataset.open_workspace = open_workspace
     # logger.debug "values >> #{headers}"
