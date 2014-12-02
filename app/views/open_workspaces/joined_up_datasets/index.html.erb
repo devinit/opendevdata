@@ -1,0 +1,7 @@
+<% if @joined_up_datasets.exists? %>
+
+<% else %>
+<div class='panel'>
+    There are still some Joinedup datasets pending review. <%= link_to 'click here', open_workspace_pending_path(@workspace) %>
+</div>
+<% end %>
