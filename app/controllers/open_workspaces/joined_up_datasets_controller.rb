@@ -45,7 +45,7 @@ class OpenWorkspaces::JoinedUpDatasetsController < ApplicationController
   end
 
   def index
-    @joined_up_datasets = JoinedUpDataset.all
+    @joined_up_datasets = @workspace.joined_up_datasets.where pending: false
   end
 
   def destroy
