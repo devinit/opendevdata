@@ -102,3 +102,4 @@ gem 'unicorn'
 
 gem 'rabl'
 gem 'oj'
+gem 'wicked'
