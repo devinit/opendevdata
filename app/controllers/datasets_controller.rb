@@ -16,10 +16,7 @@ class DatasetsController < ApplicationController
   end
 
   def index
-    @tags = []
-    Dataset.tags.each do |tag|
-      @tags << tag
-    end
+    @tags = Dataset.tags
 
     if params[:search].nil?
       @datasets = Dataset.where(approved: true).desc(:created_at).page(params[:page])
