@@ -25,7 +25,7 @@ class DatasetsController < ApplicationController
       @datasets = Dataset.where(approved: true).desc(:created_at).page(params[:page])
     else
       #TODO query approved!
-      @datasets = Dataset.search(params[:search]).uniq.delete_if { |dataset| dataset.nil? or dataset.empty? }
+      @datasets = Dataset.where(approved: true).search(params[:search]).uniq.delete_if { |dataset| dataset.nil? or dataset.empty? }
     end
 
     respond_to do |format|
