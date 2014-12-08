@@ -30,7 +30,7 @@
 
 <% if @datasets %>
 <div class='large-12 columns'>
-    <h3 class='left'><i class='fa fa-database'></i> <%= Dataset.count %> Datasets</h3>
+    <h3 class='left'><i class='fa fa-database'></i> <%= @datasets.count %> Datasets</h3>
     <hr>
     <span>
         <%= form_tag datasets_path, method: :get do %>
