@@ -11,5 +11,7 @@ class DataSerie
 
   validates :title, :description, presence: true
 
+  has_many :joined_up_datasets
+
   # more fields to be added... etc.
 end
