@@ -64,13 +64,19 @@ class JoinedUpDataset
     end
   end
 
-  def self.set_header_definitions values
+  def set_time_column
+  end
+
+  def set_space_column
+  end
+
+  # def self.set_header_definitions values
     # this will set the headers and their types
     # e.g.
     # Column A - time_value format; value of that time_value
     # `values` is a hash as well
-    self.data_extract["header_definitions"] = values
-  end
+    # self.data_extract["header_definitions"] = values
+  # end
 
   # protected
   # def set_time
