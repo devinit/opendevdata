@@ -1,0 +1,2 @@
+module OpenWorkspaces::JoinedUpDatasetsHelper
+end
