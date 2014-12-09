@@ -26,10 +26,10 @@ class JoinedUpDataset
 
   has_one :time_format
   has_one :space_value # related to space_value
-  has_one :data_serie # related to data series
 
   belongs_to :open_workspace
   belongs_to :user  # who uploaded
+  belongs_to :data_serie
 
   # TODO -> do post save validations
   # validates :time_value, inclusion: { in: %w(year quarter month)}
@@ -37,7 +37,7 @@ class JoinedUpDataset
   # Attachment that will be produced is something that is in the JoinedUpData format
   mount_uploader :attachment, DatasetFileUploader
 
-  def self.import file, user, open_workspace
+  def import file, user, open_workspace
     values_extracted = SmarterCSV.process file.path
     # headers = values_extracted[0].keys.map { |i| i.to_s } if values_extracted.size > 0
     # create a joined up dataset (with nil values + attribute it to the uploader and the workspace that sent it.)
@@ -55,12 +55,11 @@ class JoinedUpDataset
       column_keys << {key: key, column: ('A'..'Z').to_a[index], format_type: nil }
     end
 
-    joined_up_dataset = JoinedUpDataset.new
-    joined_up_dataset.data_extract = { value_extract: values_extracted, header_definitions: column_keys }
-    joined_up_dataset.user = user
-    joined_up_dataset.open_workspace = open_workspace
+    self.data_extract = { value_extract: values_extracted, header_definitions: column_keys }
+    self.user = user
+    self.open_workspace = open_workspace
     # logger.debug "values >> #{headers}"
-    if joined_up_dataset.save
+    if self.save
       logger.debug "Saved preliminary dataset"
     end
   end
