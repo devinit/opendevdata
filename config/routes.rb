@@ -53,12 +53,14 @@ Opendataportal::Application.routes.draw do
   # resources :joined_up_dataset_steps
   resources :open_workspaces do
     resources :joined_up_dataset_steps, controller: 'open_workspaces/joined_up_dataset_steps'
+
     resources :memberships, only: [:show] do
       member do
         get 'approve'
         post 'approve'
       end
     end
+
     resources :datasets, concerns: :sociable, controller: 'open_workspaces/datasets'
     resources :documents, concerns: :sociable, controller: 'open_workspaces/documents'
     resources :joined_up_datasets, controller: 'open_workspaces/joined_up_datasets', except: [:new] do
@@ -69,6 +71,9 @@ Opendataportal::Application.routes.draw do
     get 'joined-up-dataset/processing', to: 'open_workspaces/joined_up_datasets#processing', as: 'processing'
     get 'joined-up-datasets/pending', to: 'open_workspaces/joined_up_datasets#pending', as: 'pending'
     get 'joined-up-datasets/:id/prepare-joined-up-dataset', to: 'open_workspaces/joined_up_datasets#prepare', as: 'prepare'
+
+    # process ajax POSTs
+    post 'joined-up-datasets/:id/process-update', to: 'open_workspaces/joined_up_datasets#process_update', as: :process_update
   end
 
   get "delete_dataset/:id", to: 'datasets#delete_page', as: 'delete_dataset'
