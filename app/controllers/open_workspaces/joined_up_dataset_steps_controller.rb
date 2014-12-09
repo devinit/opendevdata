@@ -1,5 +1,6 @@
 class OpenWorkspaces::JoinedUpDatasetStepsController < ApplicationController
-  before_action :find_workspace, only: [:show,:update]
+  before_action :authenticate_user!
+  before_action :find_workspace
   before_action :current_joined_up_dataset
 
   include Wicked::Wizard
@@ -11,9 +12,11 @@ class OpenWorkspaces::JoinedUpDatasetStepsController < ApplicationController
 
   def update
     case step
+
     when :data_series_choice
       @joined_up_dataset.update_attributes joined_up_dataset_params
     end
+
     render_wizard @joined_up_dataset
   end
 
