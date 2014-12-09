@@ -28,12 +28,33 @@ class OpenWorkspaces::JoinedUpDatasetsController < ApplicationController
   def processing
   end
 
+  def process_types_of_data
+    @joined_up_dataset = @workspace.joined_up_datasets.find_by id: params[:id]
+    logger.info "Params #{params}"
+    choice_value = params[:choice_value]
+    column = params[:column]
+    search_index = nil
+
+    @joined_up_dataset.data_extract[:header_definitions].each_with_index do |key, index|
+      search_index = index if key[:column] == column
+    end
+
+    @joined_up_dataset.data_extract[:header_definitions][search_index][:types_of_data] = choice_value
+    # header_definition_array = @joined_up_dataset.data_extract[:header_definitions].select { |header_definition| header_definition[:column] == column }
+
+    # pick off first! Ideally, all columns are strictly UNIQUE
+    # header_definition = header_definition_array.first if !header_definition_array.nil?
+    # header_definition[:type_of_data] = choice_value
+    @joined_up_dataset.save
+
+    render @joined_up_dataset
+  end
+
   def pending
     @pending = JoinedUpDataset.where pending: true
   end
 
   def prepare
-    @workspace = OpenWorkspace.find params[:open_workspace_id]
     @joined_up_dataset = @workspace.joined_up_datasets.find params[:id]
     # keys are where we store the unique columns that the system
     # identifies in the dataset
