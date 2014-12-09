@@ -73,7 +73,7 @@ Opendataportal::Application.routes.draw do
     get 'joined-up-datasets/:id/prepare-joined-up-dataset', to: 'open_workspaces/joined_up_datasets#prepare', as: 'prepare'
 
     # process ajax POSTs
-    post 'joined-up-datasets/:id/process-update', to: 'open_workspaces/joined_up_datasets#process_update', as: :process_update
+    post 'joined-up-datasets/:id/process-types-of-data', to: 'open_workspaces/joined_up_datasets#process_types_of_data', as: :process_types_of_data
   end
 
   get "delete_dataset/:id", to: 'datasets#delete_page', as: 'delete_dataset'
