@@ -9,7 +9,7 @@
     </div>
     <p>The following columns have been identified</p>
 
-    <%= form_for @joined_up_dataset, url: wizard_path do |f| %>
+    <%= simple_form_for @joined_up_dataset, url: wizard_path do |f| %>
     <table>
         <thead>
            <tr>
@@ -27,7 +27,7 @@
                     <% if column_key[:format_type].nil? %>
                     <span class='label alert'>Undefined</span>
                     <% end %>
-                    <select id="<%= index %>" data-judb="<%= @joined_up_dataset.id %>">
+                    <select id="<%= index %>" data-judb="<%= @joined_up_dataset.id %>" data-workspace="<%= @workspace.slug %>">
                       <option selected="selected" value=""/>
                       <option value="time">Time</option>
                       <option value="space">Space</option>
@@ -35,6 +35,22 @@
                     </select>
                 </td>
             </tr>
+            <script>
+                $( "select#<%= index %>" ).change(function () {
+                    $( "select#<%= index %> option:selected" ).each(function()
+                    {
+                        var value = $(this).val();
+                        var url = "<%=  open_workspace_process_types_of_data_url(@workspace, @joined_up_dataset.id) %>";
+                        // console.log(url);
+                        if (value.trim() !== ""){
+                            $.post(url, {column: '<%= column_key[:column] %>', choice_value: value}, function(result){
+                                console.log('done!');
+                            });
+                        }
+                    });
+                }).change();
+            </script>
+
             <% end %>
         </tbody>
     </table>
