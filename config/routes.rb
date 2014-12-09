@@ -49,7 +49,10 @@ Opendataportal::Application.routes.draw do
 
   match 'open_workspaces/messages', to: 'messages#create', via: :post
 
+  resources :data_series
+  # resources :joined_up_dataset_steps
   resources :open_workspaces do
+    resources :joined_up_dataset_steps, controller: 'open_workspaces/joined_up_dataset_steps'
     resources :memberships, only: [:show] do
       member do
         get 'approve'
