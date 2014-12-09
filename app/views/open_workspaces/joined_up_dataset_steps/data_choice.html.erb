@@ -1,1 +1,47 @@
-choose the data
+<div class='large-12 columns'>
+    <div class='panel callout radius'>
+        Please use the form below to help us identify columns with data on:
+        <ul>
+            <li>Time</li>
+            <li>Space</li>
+            <li>data series</li>
+        </ul>
+    </div>
+    <p>The following columns have been identified</p>
+
+    <%= form_for @joined_up_dataset, url: wizard_path do |f| %>
+    <table>
+        <thead>
+           <tr>
+               <th>Name of Column</th>
+               <th>Column letter</th>
+               <th>Select Format</th>
+           </tr>
+        </thead>
+        <tbody>
+            <% @joined_up_dataset.data_extract[:header_definitions].each_with_index do |column_key, index| %>
+            <tr>
+                <td><%= column_key[:key] %></td>
+                <td><%= column_key[:column] %></td>
+                <td>
+                    <% if column_key[:format_type].nil? %>
+                    <span class='label alert'>Undefined</span>
+                    <% end %>
+                    <select id="<%= index %>" data-judb="<%= @joined_up_dataset.id %>">
+                      <option selected="selected" value=""/>
+                      <option value="time">Time</option>
+                      <option value="space">Space</option>
+                      <option value="data_series">Data series</option>
+                    </select>
+                </td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+
+    <div class='actions'>
+        <%= f.submit "Continue" %>
+        or <%= link_to "skip this step", next_wizard_path %>
+    </div>
+    <% end %>
+</div>
