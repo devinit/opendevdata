@@ -10,9 +10,19 @@ class OpenWorkspaces::JoinedUpDatasetsController < ApplicationController
   def upload
   end
 
+  def update
+    logger.info "YOu are at update #{params}"
+  end
+
   def import
-    JoinedUpDataset.import params[:file], current_user, @workspace
-    redirect_to open_workspace_processing_url(@workspace)
+    # TODO -> setup conditional validations
+    joined_up_dataset = JoinedUpDataset.new
+    # precautionary save
+    joined_up_dataset.save
+    set_joined_up_dataset_id(joined_up_dataset)
+    joined_up_dataset.import params[:file], current_user, @workspace
+    # redirect_to open_workspace_processing_url(@workspace)
+    redirect_to open_workspace_joined_up_dataset_steps_path(@workspace)
   end
 
   def processing
@@ -57,6 +67,14 @@ class OpenWorkspaces::JoinedUpDatasetsController < ApplicationController
   private
     def get_workspace
       @workspace = OpenWorkspace.find params[:open_workspace_id]
+    end
+
+    def set_joined_up_dataset_id joined_up_dataset
+      session[:joined_up_dataset_id] = joined_up_dataset.id
+    end
+
+    def current_joined_up_dataset
+      @joined_up_dataset ||= JoinedUpDataset.find_by id: session[:joined_up_dataset_id]
     end
 
 end
