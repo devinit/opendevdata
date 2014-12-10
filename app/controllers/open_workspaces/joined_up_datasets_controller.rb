@@ -30,7 +30,6 @@ class OpenWorkspaces::JoinedUpDatasetsController < ApplicationController
 
   def process_types_of_data
     @joined_up_dataset = @workspace.joined_up_datasets.find_by id: params[:id]
-    logger.info "Params #{params}"
     choice_value = params[:choice_value]
     column = params[:column]
     search_index = nil
@@ -39,15 +38,27 @@ class OpenWorkspaces::JoinedUpDatasetsController < ApplicationController
       search_index = index if key[:column] == column
     end
 
-    @joined_up_dataset.data_extract[:header_definitions][search_index][:types_of_data] = choice_value
-    # header_definition_array = @joined_up_dataset.data_extract[:header_definitions].select { |header_definition| header_definition[:column] == column }
-
-    # pick off first! Ideally, all columns are strictly UNIQUE
-    # header_definition = header_definition_array.first if !header_definition_array.nil?
-    # header_definition[:type_of_data] = choice_value
+    @joined_up_dataset.data_extract[:header_definitions][search_index][:types_of_data] = choice_value if !search_index.nil?
     @joined_up_dataset.save
 
-    render @joined_up_dataset
+    render json: @joined_up_dataset
+  end
+
+  def process_formats_of_data
+    @joined_up_dataset = @workspace.joined_up_datasets.find_by id: params[:id]
+    choice_value = params[:choice_value]
+    column = params[:column]
+    search_index = nil
+
+    @joined_up_dataset.data_extract[:header_definitions].each_with_index do |key, index|
+      search_index = index if key[:column] == column
+    end
+
+    @joined_up_dataset.data_extract[:header_definitions][search_index][:format_type] = choice_value if !search_index.nil?
+
+    @joined_up_dataset.save
+
+    render json: @joined_up_dataset
   end
 
   def pending
