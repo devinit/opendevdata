@@ -6,6 +6,32 @@
     data to it.
     </div>
 
+<%= form_for @joined_up_dataset, url: wizard_path do |f| %>
+    <table id="data_series">
+        <thead><tr>
+                    <th>Data series name</th>
+                    <th>Description</th>
+                    <th>Date created</th>
+                    <th>Select</th>
+                </tr></thead>
 
+        <tbody>
+        <% DataSerie.all.each do |data_serie| %>
+            <tr>
+                <td><%= data_serie.name %></td>
+                <td><%= data_serie.description %></td>
+                <td><%= data_serie.created_at.strftime("%B %e, %Y") %></td>
+                <td>
+                    <input type='radio'/>
+                </td>
+            </tr>
+        <% end %>
+        </tbody>
+    </table>
+<div class='actions'>
+        <%= f.submit "Submit", class: 'button success' %>
+        or <%= link_to "Previous", previous_wizard_path %>
+    </div>
+<% end %>
 
 </div>
