@@ -27,14 +27,18 @@
                     <td>
                         <% if column_key[:format_type].nil? %>
                         <span class='label alert'>Undefined</span>
+                        <% else %>
+                        <span class='label'><%= column_key[:format_type] %></span>
+                        <hr>
+                        <em>You can choose another option below</em>
                         <% end %>
                         <select id="<%= index %>" data-judb="<%= @joined_up_dataset.id %>" data-workspace="<%= @workspace.slug %>">
                           <option selected="selected" value=""/>
 
                         <% if column_key[:types_of_data] == 'time' %>
-                          <option value="m">M (month)</option>
-                          <option value="y">Y (year)</option>
-                          <option value="q">Q (Quarter)</option>
+                          <option value="M">M (month)</option>
+                          <option value="Y">Y (year)</option>
+                          <option value="Q">Q (Quarter)</option>
                         <% elsif column_key[:types_of_data] == 'space' %>
                           <option value="A0">A0 (Country)</option>
                           <option value="A1">A1 (Region)</option>
