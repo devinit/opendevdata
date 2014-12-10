@@ -13,5 +13,6 @@
 
  *= require_tree .
  *= require jquery-ui
+ *= require dataTables/jquery.dataTables.foundation
  *= require 'pace'
  */
