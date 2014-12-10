@@ -24,8 +24,13 @@
                 <td><%= column_key[:key] %></td>
                 <td><%= column_key[:column] %></td>
                 <td>
-                    <% if column_key[:format_type].nil? %>
-                    <span class='label alert'>Undefined</span>
+                    <% if column_key[:types_of_data].nil? %>
+                        <span class='label alert'>Undefined</span>
+                    <% else %>
+                        <span class='label' id='column-<%= index %>'>
+                            <%= column_key[:types_of_data] %>
+                        </span>
+                        <hr>
                     <% end %>
                     <select id="<%= index %>" data-judb="<%= @joined_up_dataset.id %>" data-workspace="<%= @workspace.slug %>">
                       <option selected="selected" value=""/>
@@ -57,7 +62,7 @@
 
     <div class='actions'>
         <%= f.submit "Continue" %>
-        or <%= link_to "skip this step", next_wizard_path %>
+        <%# link_to "skip this step", next_wizard_path %>
     </div>
     <% end %>
 </div>
