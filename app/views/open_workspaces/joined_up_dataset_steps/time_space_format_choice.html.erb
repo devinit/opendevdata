@@ -9,6 +9,73 @@
     <p>The following columns have been identified</p>
 
     <%= form_for @joined_up_dataset, url: wizard_path do |f| %>
+
+    <table>
+        <thead>
+           <tr>
+               <th>Name of Column</th>
+               <th>Column letter</th>
+               <th>Select Time/Space Formats</th>
+           </tr>
+        </thead>
+        <tbody>
+            <% @joined_up_dataset.data_extract[:header_definitions].each_with_index do |column_key, index| %>
+            <% if column_key[:types_of_data] == 'time' or column_key[:types_of_data] == 'space' %>
+                <tr>
+                    <td><%= column_key[:key] %></td>
+                    <td><%= column_key[:column] %></td>
+                    <td>
+                        <% if column_key[:format_type].nil? %>
+                        <span class='label alert'>Undefined</span>
+                        <% end %>
+                        <select id="<%= index %>" data-judb="<%= @joined_up_dataset.id %>" data-workspace="<%= @workspace.slug %>">
+                          <option selected="selected" value=""/>
+
+                        <% if column_key[:types_of_data] == 'time' %>
+                          <option value="m">M (month)</option>
+                          <option value="y">Y (year)</option>
+                          <option value="q">Q (Quarter)</option>
+                        <% elsif column_key[:types_of_data] == 'space' %>
+                          <option value="A0">A0 (Country)</option>
+                          <option value="A1">A1 (Region)</option>
+                          <option value="A2">A2 (District)</option>
+                          <option value="A3">A3 (County)</option>
+                          <option value="A4">A4 (Sub-county)</option>
+                          <option value="A5">A5 (Parish)</option>
+                          <option value="P1">P1 (City)</option>
+                          <option value="P2">P2 (Town)</option>
+                          <option value="P3">P3 (Village)</option>
+                          <option value="P4">P4 (Installation e.g. school or clinic)</option>
+
+                        <% end %>
+                        </select>
+                    </td>
+                </tr>
+            <% end %>
+            <script>
+                $( "select#<%= index %>" ).change(function () {
+                    $( "select#<%= index %> option:selected" ).each(function()
+                    {
+                        var value = $(this).val();
+                        var url = "<%=  open_workspace_process_formats_of_data_url(@workspace, @joined_up_dataset.id) %>";
+                        // console.log(url);
+                        if (value.trim() !== ""){
+                            $.post(url, {column: '<%= column_key[:column] %>', choice_value: value}, function(result){
+                                console.log('done!');
+                            });
+                        }
+                    });
+                }).change();
+            </script>
+
+            <% end %>
+        </tbody>
+    </table>
+
+    <div class='actions'>
+        <%= f.submit "Continue", class: 'button success' %>
+        or <%= link_to "Previous", previous_wizard_path %>
+    </div>
     <% end %>
 
 </div>
