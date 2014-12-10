@@ -31,6 +31,7 @@
                             <%= column_key[:types_of_data] %>
                         </span>
                         <hr>
+                        <em>You can choose another option below</em>
                     <% end %>
                     <select id="<%= index %>" data-judb="<%= @joined_up_dataset.id %>" data-workspace="<%= @workspace.slug %>">
                       <option selected="selected" value=""/>
@@ -61,7 +62,7 @@
     </table>
 
     <div class='actions'>
-        <%= f.submit "Continue" %>
+        <%= f.submit "Continue", class: 'button success' %>
         <%# link_to "skip this step", next_wizard_path %>
     </div>
     <% end %>
