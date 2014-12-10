@@ -12,11 +12,12 @@ gem 'mongoid', "4.0.0.rc2"
 gem 'mongo'
 gem 'mongoid-grid_fs', github: 'ahoward/mongoid-grid_fs'
 gem 'mongoid_slug', github: 'digitalplaywright/mongoid-slug'
-gem 'mongoid-paranoia', github: 'simi/mongoid-paranoia'
+# gem 'mongoid-paranoia', github: 'simi/mongoid-paranoia'
+gem "mongoid_paranoia"
 gem 'mongoid_taggable'
 gem 'active_model_serializers'
 gem "autoprefixer-rails"
-gem 'rails3-jquery-autocomplete', git: 'https://github.com/francisd/rails3-jquery-autocomplete'
+gem 'jquery-datatables-rails', '~> 3.1.1'
 gem 'iconv'
 gem "sanitizer"
 gem "mini_magick"
