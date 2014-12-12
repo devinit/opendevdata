@@ -47,21 +47,22 @@ $.ajax
     posts = data.posts
     fullStr = ""
     i = 0
-    length = posts.length
-    # only displaying 3 posts! Minimal stuff
-    if posts.length >= 3
-      length = 3
+    if posts != undefined
+      length = posts.length if posts
+      # only displaying 3 posts! Minimal stuff
+      if posts.length >= 3
+        length = 3
 
-    while i < length
-      _post = posts[i]
-      url = _post.url
-      str = "<h5 class='short-header'><a href='" + url + "' target='_blank'>" + _post.title + "</a></h5>" + "<div class='short-description'><span class='release'>Posted on </span>" + _post.date + "<br/>"+_post.content.substring(0,250)+"</div><hr>"
-      fullStr += str
-      i += 1
+      while i < length
+        _post = posts[i]
+        url = _post.url
+        str = "<h5 class='short-header'><a href='" + url + "' target='_blank'>" + _post.title + "</a></h5>" + "<div class='short-description'><span class='release'>Posted on </span>" + _post.date + "<br/>"+_post.content.substring(0,250)+"</div><hr>"
+        fullStr += str
+        i += 1
 
-    if length == 0
-      fullStr = "<div class='alert-box info'>No blog Posts found!<br/><a href='https://docs.google.com/document/d/1auNU8TSsEckVQ08uPlxE6dOFVhUCqYIf91Y79-EgmoY/edit?usp=sharing' target='_blank'>See docs</a></div>"
-    $(".workspace_posts").html fullStr
+      if length == 0
+        fullStr = "<div class='alert-box info'>No blog Posts found!<br/><a href='https://docs.google.com/document/d/1auNU8TSsEckVQ08uPlxE6dOFVhUCqYIf91Y79-EgmoY/edit?usp=sharing' target='_blank'>See docs</a></div>"
+      $(".workspace_posts").html fullStr
     return
 
 $("select").change(->
