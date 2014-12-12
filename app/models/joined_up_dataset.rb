@@ -12,6 +12,7 @@ class JoinedUpDataset
   field :edited_at, type: Time
 
   field :name, type: String
+  field :source_of_data, type: String
 
   # TODO -> scope out joined up data
   field :time_value, type: String
