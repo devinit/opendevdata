@@ -1,0 +1,17 @@
+<div class='large-12 columns'>
+    <div class='panel callout radius'>
+    Congratulations for reaching the final step!
+
+    Please provide a name for this Joined up dataset
+    </div>
+
+<%= simple_form_for @joined_up_dataset, url: wizard_path do |f| %>
+    <%= f.input :name %>
+    <hr>
+<div class='actions'>
+        <%= f.submit "Submit", class: 'button success' %>
+        or <%= link_to "Previous", previous_wizard_path %>
+    </div>
+<% end %>
+
+</div>
