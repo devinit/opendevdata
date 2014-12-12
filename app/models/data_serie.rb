@@ -7,8 +7,9 @@ class DataSerie
   field :name, type: String
   field :description, type: String
   field :notes, type: String
-  has_one :unit_of_measure
-  has_one :sector_vocabulary
+
+  # has_one :unit_of_measure
+  # has_one :sector_vocabulary
 
   validates :name, :description, presence: true
 
