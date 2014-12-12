@@ -15,7 +15,7 @@ class OpenWorkspaces::JoinedUpDatasetStepsController < ApplicationController
 
     when :name_of_joined_up_dataset
       @joined_up_dataset.update_attributes joined_up_dataset_params.merge({pending: false})
-      session[:joined_up_dataset_id] = nil  # flash out joined up dataset
+      # session[:joined_up_dataset_id] = nil  # flash out joined up dataset
     end
 
     render_wizard @joined_up_dataset
