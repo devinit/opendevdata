@@ -29,9 +29,6 @@ class OpenWorkspaces::JoinedUpDatasetsController < ApplicationController
   end
 
   def process_final_stage_of_upload
-
-    logger.info("Params #{params}")
-
     @joined_up_dataset = current_joined_up_dataset
 
     data_serie_id = params[:data_series_id]
