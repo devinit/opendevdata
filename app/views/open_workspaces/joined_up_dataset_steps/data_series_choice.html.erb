@@ -22,12 +22,20 @@
                 <td><%= data_serie.description %></td>
                 <td><%= data_serie.created_at.strftime("%B %e, %Y") %></td>
                 <td>
-                    <input id="<%= data_serie.id %>" name='data_serie' type='radio'/>
+                    <input id="<%= data_serie.id %>" value="<%= data_serie.id %>" name='data_serie' type='radio'/>
                 </td>
             </tr>
             <script>
               $("#<%= data_serie.id %>").on("click", function(){
-                console.log("Clicked radio button <%= data_serie.id %>");
+                var url = "<%= root_url %>"+"open_workspaces/<%= @workspace.slug %>/joined-up-datasets/"+
+                    $(this).val()+
+                    "/process-data-series";
+
+                $.post(url, {
+                    data_series_id: $(this).val()
+                }, function(result){
+                    console.log("Attached data serie to joined data!");
+                });
               });
             </script>
         <% end %>
