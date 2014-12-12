@@ -28,6 +28,26 @@ class OpenWorkspaces::JoinedUpDatasetsController < ApplicationController
   def processing
   end
 
+  def process_final_stage_of_upload
+
+    logger.info("Params #{params}")
+
+    @joined_up_dataset = current_joined_up_dataset
+
+    data_serie_id = params[:data_series_id]
+    if !data_serie_id.nil?
+      @joined_up_dataset.data_serie = DataSerie.find_by id: data_serie_id
+      @joined_up_dataset.save
+      render json: @joined_up_dataset
+    else
+      payload = {
+          error: "You sent an erroneous data series ID",
+          status: 400
+            }
+      render :json => payload, :status => :bad_request
+    end
+  end
+
   def process_types_of_data
     @joined_up_dataset = @workspace.joined_up_datasets.find_by id: params[:id]
     choice_value = params[:choice_value]
@@ -45,7 +65,7 @@ class OpenWorkspaces::JoinedUpDatasetsController < ApplicationController
   end
 
   def process_formats_of_data
-    @joined_up_dataset = @workspace.joined_up_datasets.find_by id: params[:id]
+    @joined_up_dataset = current_joined_up_dataset
     choice_value = params[:choice_value]
     column = params[:column]
     search_index = nil
