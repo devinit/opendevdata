@@ -41,12 +41,49 @@
         <% end %>
         </tbody>
     </table>
-    <p>Missing a data serie? | <%= link_to "Create one >>>" %></p>
+    <p>
+        Missing a data serie? | <a href="#" data-reveal-id="dataSeriesModal">Create one</a>
+
+
+    </p>
     <hr>
-<div class='actions'>
+    <div class='actions'>
         <%= f.submit "Continue", class: 'button success' %>
         or <%= link_to "Previous", previous_wizard_path %>
     </div>
 <% end %>
-
 </div>
+
+<!-- form modal -->
+<div id="dataSeriesModal" class="reveal-modal small" data-reveal>
+  <h3>Create a New Dataseries</h3>
+  <form class="custom">
+      <fieldset>
+          <input type="text" id="name" placeholder="Name">
+          <input type="text" id="description" rows=3 placeholder="Description">
+          <button type="submit" id="data-series" class="small button">Create</button>
+      </fieldset>
+  </form>
+  <a class="close-reveal-modal">&#215;</a>
+</div>
+<script>
+  $('button#data-series').on('click', function(){
+    // prepare data
+    var name = $("input#name").val();
+    var description = $("input#description").val();
+
+    if ((name.trim() !== "") && (description.trim() !== "")){
+        var url = "<%= root_url %>" + "";
+        $.post(url, {name: name, description: description}, function(result){
+            console.log("Sent request");
+            // TODO -> fix this! Need more elaborate design
+        });
+        $("#dataSeriesModal").foundation('reveal', 'close');
+        alert('The Dataseries has just been created!' + name + " " + description);
+    } else {
+        // TODO -> fix validation
+        alert("Try again! You forgot to type in either name or description; both a required!");
+    }
+
+  })
+  </script>
