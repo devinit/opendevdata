@@ -4,7 +4,7 @@ class OpenWorkspaces::JoinedUpDatasetStepsController < ApplicationController
   before_action :current_joined_up_dataset
 
   include Wicked::Wizard
-  steps :data_choice, :time_space_format_choice, :data_series_choice
+  steps :data_choice, :time_space_format_choice, :data_series_choice, :name_of_joined_up_dataset
 
   def show
     render_wizard
@@ -13,7 +13,7 @@ class OpenWorkspaces::JoinedUpDatasetStepsController < ApplicationController
   def update
     case step
 
-    when :data_series_choice
+    when :name_of_joined_up_dataset
       @joined_up_dataset.update_attributes joined_up_dataset_params
     end
 
@@ -22,7 +22,7 @@ class OpenWorkspaces::JoinedUpDatasetStepsController < ApplicationController
 
   private
     def joined_up_dataset_params
-      params.require(:joined_up_dataset).permit(:data_series_id)
+      params.require(:joined_up_dataset).permit(:name)
     end
 
     def find_workspace
