@@ -73,13 +73,13 @@
     var description = $("input#description").val();
 
     if ((name.trim() !== "") && (description.trim() !== "")){
-        var url = "<%= root_url %>" + "";
+        var url = "<%= root_url %>" + "data_series.json";
         $.post(url, {name: name, description: description}, function(result){
             console.log("Sent request");
             // TODO -> fix this! Need more elaborate design
         });
         $("#dataSeriesModal").foundation('reveal', 'close');
-        alert('The Dataseries has just been created!' + name + " " + description);
+        // alert('The Dataseries has just been created!' + name + " " + description);
     } else {
         // TODO -> fix validation
         alert("Try again! You forgot to type in either name or description; both a required!");
