@@ -14,6 +14,19 @@ class DataSeriesController < ApplicationController
     @data_serie = DataSerie.new
   end
 
+  def create_endpoint
+    name = params[:name]
+    description = params[:description]
+    @data_serie = DataSerie.new
+    @data_serie.name = name
+    @data_serie.description = description
+    if @data_serie.save
+      render json: @data_serie, status: :created, location: @data_serie
+    else
+      render json: @data_serie.errors, status: :unprocessable_entity
+    end
+  end
+
   def create
     @data_serie = DataSerie.create data_series_params
 
