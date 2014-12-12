@@ -50,6 +50,9 @@ Opendataportal::Application.routes.draw do
   match 'open_workspaces/messages', to: 'messages#create', via: :post
 
   resources :data_series
+  # data series endpoint for jquery
+  post 'data-series', to: 'data_series#create_endpoint', as: :create_endpoint
+
   # resources :joined_up_dataset_steps
   resources :open_workspaces do
     resources :joined_up_dataset_steps, controller: 'open_workspaces/joined_up_dataset_steps'
