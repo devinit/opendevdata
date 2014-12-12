@@ -23,7 +23,7 @@ class OpenWorkspaces::JoinedUpDatasetStepsController < ApplicationController
 
   private
     def joined_up_dataset_params
-      params.require(:joined_up_dataset).permit(:name)
+      params.require(:joined_up_dataset).permit(:name, :source_of_data)
     end
 
     def find_workspace
