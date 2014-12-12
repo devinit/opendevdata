@@ -50,7 +50,6 @@
                         // console.log(url);
                         if (value.trim() !== ""){
                             $.post(url, {column: '<%= column_key[:column] %>', choice_value: value}, function(result){
-                                console.log('done!');
                             });
                         }
                     });
