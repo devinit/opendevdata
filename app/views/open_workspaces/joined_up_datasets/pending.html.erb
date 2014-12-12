@@ -34,7 +34,9 @@
             <td>
             <%= dataset.created_at %>
             </td>
-            <td><%= link_to "review", open_workspace_prepare_path(@workspace, dataset.id) %></td>
+            <td>
+              <%= link_to "visit", open_workspace_joined_up_dataset_path(@workspace, dataset.id) %>
+              <%# link_to "review", open_workspace_prepare_path(@workspace, dataset.id) %></td>
           </tr>
           <% end %>
         </tbody>
