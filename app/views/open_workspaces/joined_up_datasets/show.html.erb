@@ -1,0 +1,119 @@
+<%
+    title @joined_up_dataset.name
+    keywords [@joined_up_dataset.name, @joined_up_dataset.user.full_name].join(", ")
+%>
+<div class='row'>
+    <ul class="breadcrumbs">
+      <li><%= link_to "Workspace", root_path %></li>
+      <li><%= link_to "Joined Up Datasets", open_workspace_joined_up_datasets_path(@workspace) %></li>
+      <li class="active">
+          <i class='fa fa-cloud-download'></i> <%= @joined_up_dataset.name %>
+      </li>
+    </ul>
+
+    <% if !current_user.nil? and current_user.is_admin?%>
+    <p>
+        <h4 class='text-center' style='float:left;'><%= @joined_up_dataset.name %></h4>
+        <span style='float: right;'><button href="#" data-dropdown="drop1" aria-controls="drop1" aria-expanded="false" class="button dropdown">Admin Tasks</button><br/>
+                <ul id="drop1" data-dropdown-content class="f-dropdown" aria-hidden="true" tabindex="-1">
+                <% if !@joined_up_dataset.approved or @joined_up_dataset.nil? %>
+                  <li>
+                  <%# link_to approve_dataset_path(@dataset), method: :post do %>
+                    <a href="">Approve Dataset (coming soon)</a>
+                            <%# end %>
+                  </li>
+                <% end %>
+                  <li><a href="#">Delete</a></li>
+                </ul></span>
+    </p>
+    <% else %>
+        <h4 class='text-center' style='float:left;'><%= @joined_up_dataset.name %></h4>
+    <% end %>
+    <hr>
+    <div class='row'>
+        <div class='large-9 columns'>
+            <span class='radius secondary label'>Description</span><br/>
+            <p><%= @joined_up_dataset.data_serie.description %></p>
+            <strong>Tags:</strong>
+            <% if @joined_up_dataset.data_serie.tags != "" %>
+                <% @joined_up_dataset.data_serie.tags.split(",").each do |tag|%>
+                    <span class='label'><%= tag %></span>
+                <% end %>
+            <% else %>
+                    <span class='label alert'>
+                    There are no tags, sectors or categories assigned to dataset
+                    </span>
+            <% end %>
+        </div>
+        <div class='large-3 columns panel'>
+            <h5>Dataset source</h5>
+            <p><em><%= @joined_up_dataset.source_of_data %></em></p>
+
+            <h5>Publisher/Author</h5>
+            <p>
+                <% if @joined_up_dataset.open_workspace %>
+                    <em>
+                        <%= link_to @joined_up_dataset.open_workspace.organization_name,
+                                    @joined_up_dataset.open_workspace %>
+                    </em>
+                <% else %>
+                <div class='panel callout'>
+                    <p>
+                        This data is not available at the moment.
+                        <br/>
+                        <strong>Dataset doesn't belong to a workspace.</strong>
+                    </p>
+                </div>
+                <% end %>
+            </p>
+            <h5>Uploaded by</h5>
+            <p>
+            <% if !@joined_up_dataset.user.nil? %>
+                <span class='label success'>
+                    <%= full_name_of @joined_up_dataset.user %>
+                </span>
+            <% else %>
+                    <span class='label danger'>Unassigned</span>
+            <% end %>
+            </p>
+
+            <h5>Date release</h5>
+            <p>
+                <span class='label secondary'>
+                    <%= @joined_up_dataset.created_at.strftime("%d %B, %Y") %>
+                </span>
+            </p>
+            <% if signed_in? %>
+                <% if has_access? @joined_up_dataset.open_workspace, current_user, @joined_up_dataset %>
+                    <%= link_to @dataset, method: :delete, confirm: 'Are you sure you want to delete dataset?' do %>
+                    Delete <i class='fa fa-trash-o'></i>
+                    <% end %>
+                <% end %>
+            <% end %>
+        </div>
+
+    </div>
+</div>
+
+<div class='row'>
+    <p class='right'>
+        <% if @joined_up_dataset.attachment.image? %>
+            <%= image_tag @joined_up_dataset.attachment.url %>
+        <% else %>
+            <div class="btn-group pull-right">
+              <a class="button dropdown" data-dropdown='options1'>
+                <span class="fa fa-download"></span>
+                Download
+              </a>
+              <ul id='options1' data-dropdown-content class='f-dropdown'>
+                <li><%= link_to "Excel/CSV (coming soon)" %></li>
+                <li>
+                    <%= link_to "JSON (coming soon)" %>
+                    <%# link_to "JSON", "#{dataset_url(@dataset)}.json" %>
+                </li>
+              </ul>
+            </div>
+        <% end %>
+    </p>
+
+</div>
