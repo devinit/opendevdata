@@ -103,7 +103,7 @@ class OpenWorkspaces::JoinedUpDatasetsController < ApplicationController
   end
 
   def show
-    @joined_up_dataset = JoinedUpDataset.find params[:id]
+    @joined_up_dataset = @workspace.joined_up_datasets.find params[:id]
   end
 
   def index
