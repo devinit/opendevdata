@@ -20,6 +20,7 @@
         <thead>
           <tr>
             <th>Uploaded by</th>
+            <th>Name</th>
             <th>Date</th>
             <th>Review</th>
           </tr>
@@ -29,6 +30,7 @@
           <% @pending.each do |dataset| %>
           <tr>
             <td><%= dataset.user.full_name %></td>
+            <td><%= dataset.name if !dataset.name.nil? %></td>
             <td>
             <%= dataset.created_at %>
             </td>
