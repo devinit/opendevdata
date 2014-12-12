@@ -22,16 +22,21 @@
                 <td><%= data_serie.description %></td>
                 <td><%= data_serie.created_at.strftime("%B %e, %Y") %></td>
                 <td>
-                    <input type='radio'/>
+                    <input id="<%= data_serie.id %>" name='data_serie' type='radio'/>
                 </td>
             </tr>
+            <script>
+              $("#<%= data_serie.id %>").on("click", function(){
+                console.log("Clicked radio button <%= data_serie.id %>");
+              });
+            </script>
         <% end %>
         </tbody>
     </table>
     <p>Missing a data serie? | <%= link_to "Create one >>>" %></p>
     <hr>
 <div class='actions'>
-        <%= f.submit "Submit", class: 'button success' %>
+        <%= f.submit "Continue", class: 'button success' %>
         or <%= link_to "Previous", previous_wizard_path %>
     </div>
 <% end %>
