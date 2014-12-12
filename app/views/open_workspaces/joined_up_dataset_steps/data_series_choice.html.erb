@@ -22,7 +22,7 @@
                 <td><%= data_serie.description %></td>
                 <td><%= data_serie.created_at.strftime("%B %e, %Y") %></td>
                 <td>
-                    <input id="<%= data_serie.id %>" value="<%= data_serie.id %>" name='data_serie' type='radio'/>
+                    <input id="<%= data_serie.id %>" value="<%= data_serie.id %>" name='data_serie' type='radio' <% if @joined_up_dataset.data_serie == data_serie %>checked="true" <% end %>/>
                 </td>
             </tr>
             <script>
@@ -73,7 +73,7 @@
     var description = $("input#description").val();
 
     if ((name.trim() !== "") && (description.trim() !== "")){
-        var url = "<%= root_url %>" + "data_series.json";
+        var url = "<%= create_endpoint_url %>";
         $.post(url, {name: name, description: description}, function(result){
             console.log("Sent request");
             // TODO -> fix this! Need more elaborate design
