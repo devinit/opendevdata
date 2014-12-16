@@ -15,7 +15,6 @@ class OpenWorkspaces::JoinedUpDatasetStepsController < ApplicationController
 
     when :name_of_joined_up_dataset
       @joined_up_dataset.update_attributes joined_up_dataset_params.merge({pending: false})
-      # session[:joined_up_dataset_id] = nil  # flash out joined up dataset
     end
 
     render_wizard @joined_up_dataset
@@ -27,7 +26,10 @@ class OpenWorkspaces::JoinedUpDatasetStepsController < ApplicationController
 
   private
     def joined_up_dataset_params
-      params.require(:joined_up_dataset).permit(:name, :source_of_data)
+      # cleaning things up
+      params[:joined_up_dataset][:status] = step.to_s
+      params[:joined_up_dataset][:status] = 'all_fields' if step == steps.last
+      params.require(:joined_up_dataset).permit(:name, :source_of_data, :status)
     end
 
     def find_workspace
