@@ -16,6 +16,19 @@
     </div>
 
 <%= simple_form_for @joined_up_dataset, url: wizard_path do |f| %>
+
+    <% if @joined_up_dataset.errors.any? %>
+    <div class='alert-box alert'>
+        The following errors have prohibited your dataset from being saved:
+        <ul>
+            <% @joined_up_dataset.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+            <% end %>
+        </ul>
+        Please review all the stages of this upload wizard (you may have to
+        revisit previous stages and look at pointers or tips on uploading joined up data)
+    </div>
+    <% end %>
     <%= f.input :name %>
     <%= f.input :source_of_data %>
     <hr>
