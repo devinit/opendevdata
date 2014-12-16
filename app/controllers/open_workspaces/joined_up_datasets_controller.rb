@@ -34,6 +34,7 @@ class OpenWorkspaces::JoinedUpDatasetsController < ApplicationController
     data_serie_id = params[:data_series_id]
     if !data_serie_id.nil?
       @joined_up_dataset.data_serie = DataSerie.find_by id: data_serie_id
+      @joined_up_dataset.data_series_selected = true # Is there a better way??//querying existings of data_series?
       @joined_up_dataset.save
       render json: @joined_up_dataset
     else
@@ -56,6 +57,7 @@ class OpenWorkspaces::JoinedUpDatasetsController < ApplicationController
     end
 
     @joined_up_dataset.data_extract[:header_definitions][search_index][:types_of_data] = choice_value if !search_index.nil?
+    @joined_up_dataset.data_choice_made = true
     @joined_up_dataset.save
 
     render json: @joined_up_dataset
@@ -65,17 +67,25 @@ class OpenWorkspaces::JoinedUpDatasetsController < ApplicationController
     @joined_up_dataset = current_joined_up_dataset
     choice_value = params[:choice_value]
     column = params[:column]
-    search_index = nil
 
-    @joined_up_dataset.data_extract[:header_definitions].each_with_index do |key, index|
-      search_index = index if key[:column] == column
+    if choice_value == column
+      # TODO -> provide error on same page if possible before click "continue"
+      render json: {error: "You can't have two columns with the same value!", status: 400}, status: :bad_request
+    else
+      search_index = nil
+
+      @joined_up_dataset.data_extract[:header_definitions].each_with_index do |key, index|
+        search_index = index if key[:column] == column
+      end
+
+      @joined_up_dataset.data_extract[:header_definitions][search_index][:format_type] = choice_value if !search_index.nil?
+
+      @joined_up_dataset.space_time_format_selected = true
+
+      @joined_up_dataset.save
+
+      render json: @joined_up_dataset
     end
-
-    @joined_up_dataset.data_extract[:header_definitions][search_index][:format_type] = choice_value if !search_index.nil?
-
-    @joined_up_dataset.save
-
-    render json: @joined_up_dataset
   end
 
   def pending
