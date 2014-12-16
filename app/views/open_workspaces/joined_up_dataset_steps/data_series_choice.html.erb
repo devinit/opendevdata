@@ -85,10 +85,7 @@
 
     if ((name.trim() !== "") && (description.trim() !== "")){
         var url = "<%= create_endpoint_url %>";
-        $.post(url, {name: name, description: description}, function(result){
-            console.log("Sent request");
-            // TODO -> fix this! Need more elaborate design
-        });
+        $.post(url, {name: name, description: description});
         $("#dataSeriesModal").foundation('reveal', 'close');
         // alert('The Dataseries has just been created!' + name + " " + description);
     } else {
