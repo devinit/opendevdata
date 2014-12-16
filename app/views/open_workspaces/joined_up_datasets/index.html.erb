@@ -1,5 +1,11 @@
 <% if @joined_up_datasets.exists? %>
 
+    <div class='panel panel-default'>
+        <p>
+            Joined Up Data exists, we are currently developing a series of visualizations. Please check back in January 2015.
+        </p>
+    </div>
+
 <% else %>
 <div class='panel'>
     There are still some Joinedup datasets pending review. <%= link_to 'click here', open_workspace_pending_path(@workspace) %>
