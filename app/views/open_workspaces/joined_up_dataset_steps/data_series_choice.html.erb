@@ -54,8 +54,6 @@
     </table>
     <p>
         Missing a data serie? | <a href="#" data-reveal-id="dataSeriesModal">Create one</a>
-
-
     </p>
     <hr>
     <div class='actions'>
@@ -77,21 +75,3 @@
   </form>
   <a class="close-reveal-modal">&#215;</a>
 </div>
-<script>
-  $('button#data-series').on('click', function(){
-    // prepare data
-    var name = $("input#name").val();
-    var description = $("input#description").val();
-
-    if ((name.trim() !== "") && (description.trim() !== "")){
-        var url = "<%= create_endpoint_url %>";
-        $.post(url, {name: name, description: description});
-        $("#dataSeriesModal").foundation('reveal', 'close');
-        // alert('The Dataseries has just been created!' + name + " " + description);
-    } else {
-        // TODO -> fix validation
-        alert("Try again! You forgot to type in either name or description; both a required!");
-    }
-
-  })
-  </script>
