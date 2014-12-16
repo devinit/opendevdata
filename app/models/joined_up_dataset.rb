@@ -32,18 +32,17 @@ class JoinedUpDataset
   belongs_to :user  # who uploaded
   belongs_to :data_serie
 
-  # TODO -> do post save validations
-  # validates :time_value, inclusion: { in: %w(year quarter month)}
+  # Basic Validations
+  field :status, type: String
+  field :data_choice_made, type: Boolean # default is nil! We don't want whiny nils! :D
+  field :space_time_format_selected, type: Boolean
+  field :data_series_selected, type: Boolean
 
   # Attachment that will be produced is something that is in the JoinedUpData format
   mount_uploader :attachment, DatasetFileUploader
 
   def import file, user, open_workspace
     values_extracted = SmarterCSV.process file.path
-    # headers = values_extracted[0].keys.map { |i| i.to_s } if values_extracted.size > 0
-    # create a joined up dataset (with nil values + attribute it to the uploader and the workspace that sent it.)
-    # TODO -> move operation to Sidekiq job
-
     keys = []
     values_extracted.each do |val|
       val.keys().each do |_key|
@@ -65,27 +64,31 @@ class JoinedUpDataset
     end
   end
 
-  def set_time_column
+  validates :name, presence: true, if: :correct_or_name?
+  validates :source_of_data, presence: true, if: :correct_or_name?
+  validates :data_choice_made, presence: true, if: :correct_or_data_choice?
+  validates :space_time_format_selected, presence: true, if: :correct_or_time_space_format_choices?
+  validates :data_series_selected, presence: true, if: :correct_or_dataseries?
+
+  def correct?
+    # this checks that all fields have properly been added
+    status == 'all_fields'
   end
 
-  def set_space_column
+  def correct_or_name?
+    status  == 'name_of_joined_up_dataset' || correct?
   end
 
-  # def self.set_header_definitions values
-    # this will set the headers and their types
-    # e.g.
-    # Column A - time_value format; value of that time_value
-    # `values` is a hash as well
-    # self.data_extract["header_definitions"] = values
-  # end
+  def correct_or_data_choice?
+    status == 'data_choice' || correct?
+  end
 
-  # protected
-  # def set_time
-  #   if created_at.nil?
-  #     self.created_at = Time.now
-  #   else
-  #     self.edited_at = Time.now  # update the edited time
-  #   end
-  # end
+  def correct_or_dataseries?
+    status == 'data_series_choice' || correct?
+  end
+
+  def correct_or_time_space_format_choices?
+    status == 'time_space_format_choice' || correct?
+  end
 
 end
