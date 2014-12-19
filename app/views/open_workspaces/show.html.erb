@@ -36,6 +36,11 @@
                         <li>
                             <%= link_to 'Edit Workspace', [:edit, @workspace] %>
                         </li>
+                        <li>
+                            <%= link_to @workspace, method: :delete, confirm: "Are you sure?" do %>
+                            Delete <span class='fa fa-warning'></span>
+                            <% end %>
+                        </li>
                         <% if !@workspace.approved %>
                         <li>
                             <%= link_to approve_workspace_path(@workspace), method: :post do %>
