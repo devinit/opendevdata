@@ -119,6 +119,7 @@ class OpenWorkspacesController < ApplicationController
     @workspace = OpenWorkspace.find params[:id]
     if @workspace.has_change_access? current_user
       @workspace.destroy
+      redirect_to root_path, notification: "You have successfully deleted this workspace"
     else
       redirect_to root_path, alert: "You don't have permission to do this."
     end
