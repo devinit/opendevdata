@@ -13,7 +13,7 @@ class OpenWorkspace
   field :approved, type: Boolean, default: false
   field :blog_tag_id, type: String
 
-  has_many :memberships, dependent: :destroy
+  has_many :memberships
   has_many :datasets
   has_many :joined_up_datasets
   has_many :documents
