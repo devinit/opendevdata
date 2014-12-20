@@ -86,6 +86,9 @@ Opendataportal::Application.routes.draw do
   resources :documents, concerns: :sociable
   get 'activity', to: 'pages#activities', as: 'activity'
 
+
+  # API Stuff
+  resource :api_token
   namespace :api do
     namespace :v1 do
       # API routes
