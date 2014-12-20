@@ -4,11 +4,12 @@ class User
   rolify
 
   before_save :set_name_and_case
+  before_save :ensure_authentication_token
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable,
-    :rememberable, :trackable, :validatable, :confirmable
+    :rememberable, :trackable, :validatable, :confirmable, :token_authenticatable
 
   # devise :omniauthable, omniauth_providers: [:facebook, :twitter]
 
@@ -52,7 +53,7 @@ class User
   # field :locked_at,       :type => Time
 
   ## Token authenticatable
-  # field :authentication_token, :type => String
+  field :authentication_token, :type => String
 
   ## Omniauth stuff
   field :provider, type: String
