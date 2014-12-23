@@ -41,7 +41,8 @@ module Opendataportal
     end
     config.paths.add "app/api", glob: "**/*.rb"
 
-    config.autoload_paths += %W(#{config.root}/app/models/ckeditor )
+    # config.autoload_paths += %W(#{config.root}/app/models/ckeditor )
+    config.autoload_paths += %W(\#{config.root}/lib)
     # config.autoload_paths += Dir["#{Rails.root}/app/api/*"]
   end
 end
