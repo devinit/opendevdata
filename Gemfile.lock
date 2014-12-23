@@ -159,6 +159,7 @@ GEM
     faraday-http-cache (0.4.2)
       faraday (~> 0.8)
     fastercsv (1.5.5)
+    ffaker (1.25.0)
     ffi (1.9.6)
     figaro (1.0.0)
       thor (~> 0.14)
@@ -409,6 +410,7 @@ DEPENDENCIES
   factory_girl_rails
   faraday (<= 0.8.8)
   faraday-http-cache
+  ffaker
   figaro
   foreman
   foundation-rails
