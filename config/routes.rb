@@ -1,4 +1,5 @@
 require 'sidekiq/web'
+require 'api_constraints'
 
 Opendataportal::Application.routes.draw do
   root 'pages#index'
