@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe User do
+RSpec.describe User, :type => :model do
   before { @user = FactoryGirl.build :user }
   subject { @user }
 
