@@ -91,7 +91,7 @@ Opendataportal::Application.routes.draw do
   # API Stuff
   resource :api_token
   namespace :api, defaults: { format: :json }, constraints: { subdomain: 'api' }, path: '/' do
-    scope module: :v1 do
+    scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
       # API routes
       resources :documents, only: [:index, :show]
       resources :datasets, only: [:index, :show]
