@@ -9,7 +9,7 @@ module Api
       end
 
       def show
-        respond_with Dataset.find params[:id]
+        respond_with @dataset
       end
 
       private
