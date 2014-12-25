@@ -65,3 +65,12 @@ sudo /etc/init.d/sidekiq stop
 please check to make sure that this conforms to how your system appears.
 
 TODO: work on capistrano deployment recipe; work on fabfile for deployment through python.
+
+
+### Interacting with the API
+
+Example
+
+```console
+curl -H 'Accept: application/vnd.opendevdata.v1' http://api.opendevdata.dev/open_workspaces/53a7350073636934c2070000/joined_up_datasets/548acfa36c6f63044c2b0000
+```
