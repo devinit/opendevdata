@@ -14,11 +14,23 @@ Opendataportal::Application.routes.draw do
     get "logout", to: "devise/sessions#destroy", as: :logout
   end
 
-  # authenticate :user do
-  #   resources :open_workspaces, only: :show do
-  #     resources :messages, only: [:index, :show, :new, :create]
-  #   end
-  # end
+
+  # API Stuff
+  resource :api_token
+  namespace :api, defaults: { format: :json }, constraints: { subdomain: 'api' }, path: '/' do
+    scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
+      # API routes
+      resources :documents, only: [:index, :show]
+      resources :datasets, only: [:index, :show]
+
+      resources :open_workspaces, only: [:index, :show] do
+        resources :joined_up_datasets, only: [:index, :show ]
+        resources :datasets, only: [:index, :show]
+      end
+    end
+  end
+
+
 
   authenticate :user, lambda { |u| u.is_admin? } do
     mount Sidekiq::Web => '/sidekiq'
@@ -87,19 +99,4 @@ Opendataportal::Application.routes.draw do
   resources :documents, concerns: :sociable
   get 'activity', to: 'pages#activities', as: 'activity'
 
-
-  # API Stuff
-  resource :api_token
-  namespace :api, defaults: { format: :json }, constraints: { subdomain: 'api' }, path: '/' do
-    scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
-      # API routes
-      resources :documents, only: [:index, :show]
-      resources :datasets, only: [:index, :show]
-
-      resources :open_workspaces, only: [:index, :show] do
-        resources :joined_up_datasets, only: [:index, :show ]
-        resources :datasets, only: [:index, :show]
-      end
-    end
-  end
 end
