@@ -24,7 +24,7 @@ Opendataportal::Application.routes.draw do
       resources :datasets, only: [:index, :show]
 
       resources :open_workspaces, only: [:index, :show] do
-        resources :joined_up_datasets, only: [:index, :show ]
+        resources :joined_up_datasets, only: [:index, :show ], controller: 'open_workspaces/joined_up_datasets'
         resources :datasets, only: [:index, :show]
       end
     end
