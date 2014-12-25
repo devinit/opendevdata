@@ -85,9 +85,8 @@ group :test do
   gem "selenium-webdriver"
   gem "database_cleaner", '1.0.1'
   gem 'email_spec'
-  # gem 'mongoid-rspec', '>= 1.11.0', github: 'evansagge/mongoid-rspec'
   gem 'ffaker'
-  gem "shoulda-matchers"
+  # gem "shoulda-matchers"
 end
 
 gem 'cache_digests'

@@ -334,8 +334,6 @@ GEM
       rubyzip (< 1.0.0)
       websocket (~> 1.0.4)
     sexp_processor (4.4.4)
-    shoulda-matchers (2.7.0)
-      activesupport (>= 3.0.0)
     sidekiq (3.2.6)
       celluloid (= 0.15.2)
       connection_pool (>= 2.0.0)
@@ -457,7 +455,6 @@ DEPENDENCIES
   sass-rails (~> 4.0.3)
   sdoc
   selenium-webdriver
-  shoulda-matchers
   sidekiq (~> 3.2.6)
   simple_form
   sinatra
