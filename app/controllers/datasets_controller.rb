@@ -27,7 +27,6 @@ class DatasetsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render json: @datasets }
       format.csv { send_data @datasets.to_csv}
     end
   end
