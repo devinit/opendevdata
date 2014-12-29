@@ -5,7 +5,7 @@ module Api
       respond_to :json
 
       def index
-        respond_with OpenWorkspace.all
+        respond_with OpenWorkspace.page params[:page]
       end
 
       def show
