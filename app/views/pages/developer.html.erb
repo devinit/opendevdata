@@ -1,14 +1,16 @@
 <div class='page-header'><h1>Developer Documentation</h1></div>
-<div class='row'>
-
-    <% if signed_in? %>
+<% if signed_in? %>
     <div class='panel'>
         Your Authentication token is <pre><code><%= current_user.authentication_token %></code></pre>
 
         <br/>
         <%= link_to "Reset token", api_token_path, method: :post %>
     </div>
-
+<% else %>
+    <code>\\To see your Authentication token, you need to be signed in.</code>
     <% end %>
-    <p></p>
+    <p>
+        A lot of our documentation can be found on our wiki by clicking <a href="https://github.com/devinit/opendevdata/wiki/API-Documentation" target="_blank">here</a>
+    </p>
+
 </div>
