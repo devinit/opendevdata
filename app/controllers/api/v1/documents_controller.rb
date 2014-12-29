@@ -4,7 +4,7 @@ module Api
       respond_to :json
 
       def index
-        respond_with Document.all
+        respond_with Document.page params[:page]
       end
 
       def show
