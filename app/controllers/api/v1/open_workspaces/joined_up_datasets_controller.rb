@@ -6,7 +6,7 @@ module Api
         respond_to :json
 
         def index
-          respond_with @workspace.joined_up_datasets
+          respond_with @workspace.joined_up_datasets.page params[:page]
         end
 
         def show
