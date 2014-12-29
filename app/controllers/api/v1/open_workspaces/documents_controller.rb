@@ -6,7 +6,7 @@ module Api
         respond_to :json
 
         def index
-          respond_with @workspace.documents
+          respond_with @workspace.documents.page params[:page]
         end
 
         def show
