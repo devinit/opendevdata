@@ -26,8 +26,6 @@ gem 'rubyzip', '~> 0.9.9'
 gem 'georuby', github: 'nofxx/georuby'
 gem 'rgeo'
 gem 'rgeo-shapefile'
-gem 'rails-api'
-gem 'api-pagination'
 gem 'sidekiq', '~> 3.2.6'
 gem 'sinatra', require: false
 gem 'slim'

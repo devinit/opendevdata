@@ -72,7 +72,6 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     addressable (2.3.6)
-    api-pagination (3.1.0)
     arel (5.0.1.20140414130214)
     autoprefixer-rails (4.0.1.1)
       execjs
@@ -280,9 +279,6 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.1.8)
       sprockets-rails (~> 2.0)
-    rails-api (0.3.1)
-      actionpack (>= 3.2.11)
-      railties (>= 3.2.11)
     rails_12factor (0.0.3)
       rails_serve_static_assets
       rails_stdout_logging
@@ -412,7 +408,6 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers
-  api-pagination
   autoprefixer-rails
   better_errors
   binding_of_caller
@@ -464,7 +459,6 @@ DEPENDENCIES
   quiet_assets
   rabl
   rails (= 4.1.8)
-  rails-api
   rails_12factor
   redis
   rgeo
