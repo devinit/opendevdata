@@ -39,12 +39,12 @@
     <% end %>
     <div class='row' style="margin-bottom: 40px;">
 
-        <table>
+        <table id='documents-datatables'>
           <thead>
-            <th width='400'>Title/Name</th>
-            <th>Date uploaded</th>
-            <th>Uploaded by</th>
-            <% if signed_in? %><th>Actions</th><% end %>
+            <tr><th width='400'>Title/Name</th>
+                        <th>Date uploaded</th>
+                        <th>Uploaded by</th>
+                        <% if signed_in? %><th>Actions</th><% end %></tr>
           </thead>
           <tbody>
           <% @documents.each do |document| %>
