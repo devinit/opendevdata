@@ -2,7 +2,7 @@
 <h1 class='page-header'>
     Documents (<%= @documents.count %>)
     <span class='pull-right'>
-        <%= link_to  new_workspace_document_path(@workspace), class: 'button' do %>
+        <%= link_to  new_open_workspace_document_path(@workspace), class: 'button' do %>
          Upload document <span class='fa fa-plus'></span>
         <% end %>
     </span>
@@ -72,7 +72,7 @@
           <% end %>
           </tbody>
         </table>
-        
+
         <% if params[:search].nil? %>
             <%= paginate @documents %>
         <% end %>
