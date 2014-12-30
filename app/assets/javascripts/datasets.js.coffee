@@ -14,3 +14,6 @@ $("a#hide-callout").on 'click', (event) ->
     $(this).html('<a href="" id="show-chart-callout">Show Extra fields</a>')
     $('.chart-callout').hide()
     event.preventDefault()
+
+$ ->
+  $("#datasets-datatables").dataTable()
