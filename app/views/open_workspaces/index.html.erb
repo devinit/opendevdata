@@ -2,12 +2,13 @@
 <div class='row'>
     <div class='large-12 columns'>
         <h2>All Workspaces</h2>
-        <table>
+        <table id='open_workspaces'>
             <thead>
+                <tr>
                 <th width="200">Name</th>
-                <th width="400">Description</th>
-                <th>Location</th>
-                <th>Actions</th>
+                                <th width="400">Description</th>
+                                <th>Location</th>
+                                <th>Actions</th></tr>
             </thead>
             <tbody>
                 <% @workspaces.each do |workspace| %>
