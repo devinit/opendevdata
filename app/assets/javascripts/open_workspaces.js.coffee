@@ -75,3 +75,6 @@ $("select").change(->
   # post to API
   return
 ).change()
+
+$ ->
+  $("#open_workspaces").dataTable()
