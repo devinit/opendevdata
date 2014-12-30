@@ -154,11 +154,11 @@
         </div>
         <div class='large-10 columns'>
         <div data-no-turbolink>
-            <table>
+            <table id="workspace-datasets">
                 <thead class='colorize'>
-                    <th width="550">Dataset Title</th>
-                    <th width="100">Views</th>
-                    <th width="220">Release date</th>
+                    <tr><th width="550">Dataset Title</th>
+                                        <th width="100">Views</th>
+                                        <th width="220">Release date</th></tr>
                 </thead>
                 <tbody>
                 <% @datasets.each do |dataset| %>

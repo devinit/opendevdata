@@ -78,3 +78,6 @@ $("select").change(->
 
 $ ->
   $("#open_workspaces").dataTable()
+
+$ ->
+  $("#workspace-datasets").dataTable()
