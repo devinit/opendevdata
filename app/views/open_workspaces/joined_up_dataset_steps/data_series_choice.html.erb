@@ -22,6 +22,7 @@
         <thead><tr>
                     <th>Data series name | Indicator</th>
                     <th>Description</th>
+                    <th>Data Chosen in Step 1</th>
                     <th>Date created</th>
                     <th>Select</th>
                 </tr></thead>
@@ -31,6 +32,12 @@
             <tr>
                 <td><%= data_serie.name %></td>
                 <td><%= data_serie.description %></td>
+                <td>
+                     <select>
+                      <option value="volvo">Anc1st visit</option>
+                      <option value="saab">Anc4th visit</option>
+                    </select>
+                </td>
                 <td><%= data_serie.created_at.strftime("%B %e, %Y") %></td>
                 <td>
                     <input id="<%= data_serie.id %>" value="<%= data_serie.id %>" name='data_serie' type='radio' <% if @joined_up_dataset.data_serie == data_serie %>checked="true" <% end %>/>
