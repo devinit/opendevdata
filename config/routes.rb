@@ -45,6 +45,8 @@ Opendataportal::Application.routes.draw do
     match 'unapproved-workspaces', to: 'open_workspaces#unapproved', as: :unapproved_workspaces, via: :get
     match 'unapproved-datasets', to: 'datasets#unapproved', as: :unapproved_datasets, via: :get
     match 'datasets/:id/approve', to: 'datasets#approve', as: :approve_dataset, via: :post
+    match 'joinedup-datasets/:id/approve', to: 'datasets#approve', as: :approve_joined_up_dataset, via: :post
+
     get 'admin/', to: 'pages#admin', as: :admin
   end
 
