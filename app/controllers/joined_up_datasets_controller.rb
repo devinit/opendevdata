@@ -1,0 +1,2 @@
+class JoinedUpDatasetsController < ApplicationController
+end
