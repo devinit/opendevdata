@@ -19,17 +19,40 @@
 
 <%= form_for @joined_up_dataset, url: wizard_path do |f| %>
     <table id="data_series">
-        <thead><tr>
-                    <th>Data series name | Indicator</th>
-                    <th>Description</th>
+        <thead>
+            <tr>
                     <th>Data Chosen in Step 1</th>
-                    <th>Date created</th>
-                    <th>Select</th>
+                    <th>Data series name | Indicator</th>
+                    <!-- <th>Description</th> -->
+                    <!-- <th>Date created</th> -->
+                    <!-- <th>Select</th> -->
                 </tr></thead>
 
         <tbody>
+        <tr>
+            <td>Anc1st visit</td>
+            <td>
+                     <select>
+                      <option value="volvo">data serie 1</option>
+                      <option value="saab">data serie 2</option>
+                    </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Anc4th visit</td>
+            <td>
+                     <select>
+                      <option value="volvo">data serie 1</option>
+                      <option value="saab">data serie 2</option>
+                    </select>
+            </td>
+        </tr>
+        <!--
         <% DataSerie.all.each do |data_serie| %>
             <tr>
+                <td>
+                    ANC1st visit
+                </td>
                 <td><%= data_serie.name %></td>
                 <td><%= data_serie.description %></td>
                 <td>
@@ -37,7 +60,12 @@
                       <option value="volvo">Anc1st visit</option>
                       <option value="saab">Anc4th visit</option>
                     </select>
-                </td>
+                <td>
+                     <select>
+                      <option value="volvo">Anc1st visit</option>
+                      <option value="saab">Anc4th visit</option>
+                    </select>
+            </td>
                 <td><%= data_serie.created_at.strftime("%B %e, %Y") %></td>
                 <td>
                     <input id="<%= data_serie.id %>" value="<%= data_serie.id %>" name='data_serie' type='radio' <% if @joined_up_dataset.data_serie == data_serie %>checked="true" <% end %>/>
@@ -57,6 +85,7 @@
               });
             </script>
         <% end %>
+        -->
         </tbody>
     </table>
     <p>
