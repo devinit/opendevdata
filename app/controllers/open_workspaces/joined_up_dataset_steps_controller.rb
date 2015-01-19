@@ -4,7 +4,7 @@ class OpenWorkspaces::JoinedUpDatasetStepsController < ApplicationController
   before_action :current_joined_up_dataset
 
   include Wicked::Wizard
-  steps :data_choice, :time_space_format_choice, :data_series_choice, :name_of_joined_up_dataset
+  steps :name_of_joined_up_dataset, :data_choice, :time_space_format_choice, :data_series_choice
 
   def show
     render_wizard
