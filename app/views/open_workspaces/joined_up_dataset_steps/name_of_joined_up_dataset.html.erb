@@ -1,10 +1,11 @@
 <div class='large-12 columns'>
 
 <div class="wizard">
-    <a><span class="badge">1</span> Select Type of Data</a>
-    <a><span class="badge">2</span> Select a time or space format</a>
-    <a><span class="badge badge-inverse">3</span> Attach joined data to a Data series</a>
-    <a class='current'><span class="badge">4</span> Add Name and Source of data</a>
+    <a class='current'><span class="badge">1</span> Add Name and Source of data
+    <a><span class="badge">2</span> Select Type of Data</a>
+    <a><span class="badge">3</span> Select a time or space format</a>
+    <a><span class="badge badge-inverse">4</span> Attach joined data to a Data series</a>
+    </a>
 </div>
 <br/>
 
@@ -33,7 +34,7 @@
     <%= f.input :source_of_data %>
     <hr>
 <div class='actions'>
-        <%= f.submit "Submit", class: 'button success' %>
+        <%= f.submit "Continue", class: 'button success' %>
         or <%= link_to "Previous", previous_wizard_path %>
     </div>
 <% end %>
