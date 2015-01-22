@@ -18,82 +18,33 @@
     </div>
 
 <%= form_for @joined_up_dataset, url: wizard_path do |f| %>
-    <table id="data_series">
+    <table>
         <thead>
             <tr>
-                    <th>Data Chosen in Step 1</th>
+                    <th>Data Chosen in Step 2</th>
                     <th>Data series name | Indicator</th>
-                    <!-- <th>Description</th> -->
-                    <!-- <th>Date created</th> -->
-                    <!-- <th>Select</th> -->
                 </tr></thead>
 
         <tbody>
-        <tr>
-            <td>Anc1st visit</td>
-            <td>
-                     <select>
-                      <option value="volvo">data serie 1</option>
-                      <option value="saab">data serie 2</option>
-                    </select>
-            </td>
-        </tr>
-        <tr>
-            <td>Anc4th visit</td>
-            <td>
-                     <select>
-                      <option value="volvo">data serie 1</option>
-                      <option value="saab">data serie 2</option>
-                    </select>
-            </td>
-        </tr>
-        <!--
-        <% DataSerie.all.each do |data_serie| %>
-            <tr>
-                <td>
-                    ANC1st visit
-                </td>
-                <td><%= data_serie.name %></td>
-                <td><%= data_serie.description %></td>
-                <td>
-                     <select>
-                      <option value="volvo">Anc1st visit</option>
-                      <option value="saab">Anc4th visit</option>
-                    </select>
-                <td>
-                     <select>
-                      <option value="volvo">Anc1st visit</option>
-                      <option value="saab">Anc4th visit</option>
-                    </select>
-            </td>
-                <td><%= data_serie.created_at.strftime("%B %e, %Y") %></td>
-                <td>
-                    <input id="<%= data_serie.id %>" value="<%= data_serie.id %>" name='data_serie' type='radio' <% if @joined_up_dataset.data_serie == data_serie %>checked="true" <% end %>/>
-                </td>
-            </tr>
-            <script>
-              $("#<%= data_serie.id %>").on("click", function(){
-                var url = "<%= root_url %>"+"open_workspaces/<%= @workspace.slug %>/joined-up-datasets/"+
-                    $(this).val()+
-                    "/process-data-series";
 
-                $.post(url, {
-                    data_series_id: $(this).val()
-                }, function(result){
-                    console.log("Attached data serie to joined data!");
-                });
-              });
-            </script>
+        <% @joined_up_dataset['data_extract']['header_definitions'].each do |hdef| %>
+            <% if hdef['types_of_data'] == 'data_series' %>
+              <tr>
+                <td><%= hdef['key'] %></td>
+                <td>
+                  <form><input type='text' name='dataserie'/></form>
+                </td>
+              </tr>
+            <% end %>
         <% end %>
-        -->
-        </tbody>
+    </tbody>
     </table>
     <p>
         Missing a data serie? | <a href="#" data-reveal-id="dataSeriesModal">Create one</a>
     </p>
     <hr>
     <div class='actions'>
-        <%= f.submit "Continue", class: 'button success' %>
+        <%= f.submit "Submit", class: 'button success' %>
         or <%= link_to "Previous", previous_wizard_path %>
     </div>
 <% end %>
