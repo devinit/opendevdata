@@ -20,19 +20,88 @@
 <%= form_for @joined_up_dataset, url: wizard_path do |f| %>
     <table>
         <thead>
-            <tr>
-                    <th>Data Chosen in Step 2</th>
-                    <th>Data series name | Indicator</th>
-                </tr></thead>
-
+          <tr>
+            <th width='300'>Data Chosen in Step 2</th>
+            <th width='600'>Data series name | Indicator</th>
+          </tr>
+        </thead>
         <tbody>
-
         <% @joined_up_dataset['data_extract']['header_definitions'].each do |hdef| %>
             <% if hdef['types_of_data'] == 'data_series' %>
+              <% key = hdef['key'] %>
               <tr>
-                <td><%= hdef['key'] %></td>
+                <td><%= key %></td>
                 <td>
-                  <form><input type='text' name='dataserie'/></form>
+                  <form>
+                    <input id='<%=key%>' type='text' name='data_serie' placeholder='Start typing data serie name'/>
+                    <input type='submit' id='<%= key %>-sub' value='submit'>
+                    <script type='text/javascript'>
+                      $(document).ready(function(){
+                      var substringMatcher = function(strs) {
+                        return function findMatches(q, cb) {
+                          var matches, substringRegex;
+
+                          // an array that will be populated with substring matches
+                          matches = [];
+
+                          // regex used to determine if a string contains the substring `q`
+                          substrRegex = new RegExp(q, 'i');
+
+                          // iterate through the pool of strings and for any string that
+                          // contains the substring `q`, add it to the `matches` array
+                          $.each(strs, function(i, str) {
+                            if (substrRegex.test(str)) {
+                              // the typeahead jQuery plugin expects suggestions to a
+                              // JavaScript object, refer to typeahead docs for more info
+                              matches.push({ value: str });
+                            }
+                          });
+
+                          cb(matches);
+                        };
+                      };
+
+                      // var dataseries = ['Audi', 'BMW', 'Bugatti', 'Ferrari', 'Ford', 'Lamborghini', 'Mercedes Benz', 'Porsche', 'Rolls-Royce', 'Volkswagen'];
+                      // var dataseries = [<%= DataSerie.pluck :name %>];
+                      var dataseries = [];
+
+                      $.getJSON('<%= data_series_index_url + ".json" %>', function(data){
+                        // c.log(data['data_series'])
+                        $.each(data, function(key, val){
+                          dataseries = val;
+                          console.log(dataseries);
+                          // dataseries.push(val);
+                          $('#<%= key %>').typeahead({
+                            hint: true,
+                            highlight: true,
+                            minLength: 1
+                            },
+                            {
+                              name: 'states',
+                              displayKey: 'value',
+                              source: substringMatcher(dataseries)
+                              // source: dataseries.ttAdapter()
+                          });
+                        });
+                      });
+
+                      // console.log(dataseries);
+
+                      // $('#<%= key %>').typeahead({
+                      //   hint: true,
+                      //   highlight: true,
+                      //   minLength: 1
+                      // },
+                      // {
+                      //   name: 'states',
+                      //   displayKey: 'value',
+                      //   source: substringMatcher(dataseries)
+                      //   // source: dataseries.ttAdapter()
+                      // });
+                    });
+                    </script>
+
+                  </form>
                 </td>
               </tr>
             <% end %>
