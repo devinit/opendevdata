@@ -11,9 +11,9 @@
 // about supported directives.
 //
 //= require jquery
+//= require typeahead.bundle.min
 //= require jquery_ujs
 //= require foundation
-//= require pace.min.js
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.foundation
 //= require_tree .
