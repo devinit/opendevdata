@@ -64,6 +64,7 @@ class OpenWorkspaces::JoinedUpDatasetsController < ApplicationController
   end
 
   def process_formats_of_data
+    # This method processes the format of data
     @joined_up_dataset = current_joined_up_dataset
     choice_value = params[:choice_value]
     column = params[:column]
