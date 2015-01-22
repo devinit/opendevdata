@@ -1,7 +1,12 @@
 class DataSeriesController < ApplicationController
-  before_action :authenticate_user!, except: :create_endpoint
+  before_action :authenticate_user!, except: [:create_endpoint, :index]
 
   def index
+    @data_series = DataSerie.all
+    respond_to do |format|
+      format.html
+      format.json { render json: DataSerie.pluck(:name) }
+    end
   end
 
   def show
