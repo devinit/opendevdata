@@ -61,10 +61,7 @@
                         };
                       };
 
-                      // var dataseries = ['Audi', 'BMW', 'Bugatti', 'Ferrari', 'Ford', 'Lamborghini', 'Mercedes Benz', 'Porsche', 'Rolls-Royce', 'Volkswagen'];
-                      // var dataseries = [<%= DataSerie.pluck :name %>];
                       var dataseries = [];
-
                       $.getJSON('<%= data_series_index_url + ".json" %>', function(data){
                         // c.log(data['data_series'])
                         $.each(data, function(key, val){
@@ -77,27 +74,13 @@
                             minLength: 1
                             },
                             {
-                              name: 'states',
+                              name: 'data_series',
                               displayKey: 'value',
                               source: substringMatcher(dataseries)
                               // source: dataseries.ttAdapter()
                           });
                         });
                       });
-
-                      // console.log(dataseries);
-
-                      // $('#<%= key %>').typeahead({
-                      //   hint: true,
-                      //   highlight: true,
-                      //   minLength: 1
-                      // },
-                      // {
-                      //   name: 'states',
-                      //   displayKey: 'value',
-                      //   source: substringMatcher(dataseries)
-                      //   // source: dataseries.ttAdapter()
-                      // });
                     });
                     </script>
 
