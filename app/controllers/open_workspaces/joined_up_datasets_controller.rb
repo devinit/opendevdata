@@ -33,7 +33,7 @@ class OpenWorkspaces::JoinedUpDatasetsController < ApplicationController
 
     data_serie_id = params[:data_series_id]
     if !data_serie_id.nil?
-      @joined_up_dataset.data_serie = DataSerie.find_by id: data_serie_id
+      # @joined_up_dataset.data_serie = DataSerie.find_by id: data_serie_id
       @joined_up_dataset.data_series_selected = true # Is there a better way??//querying existings of data_series?
       @joined_up_dataset.save
       render json: @joined_up_dataset
@@ -61,6 +61,39 @@ class OpenWorkspaces::JoinedUpDatasetsController < ApplicationController
     @joined_up_dataset.save
 
     render json: @joined_up_dataset
+  end
+
+  def add_data_series
+    name = params[:name]
+    key = params[:key]
+    judu = JoinedUpDataset.find params[:id]
+
+    #process key
+    search_index = nil
+    judu.data_extract[:header_definitions].each_with_index do |k, index|
+      search_index = index if k[:key] == key.to_sym # we have to change string to symbol
+    end
+
+    if !search_index.nil?
+      to_name = nil
+      name_that = DataSerie.where(name: name).first
+      if name_that.slug.nil?
+        to_name = name
+      else
+        to_name = name_that.slug
+      end
+
+      judu.data_extract[:header_definitions][search_index][:data_serie_slug] = to_name
+      judu.data_series_selected = true
+      if judu.save
+        render json: { ok: "You have attached a data serie to a joined up data set column", status: 200}
+      else
+        render json: {error: "Sorry, something went horibly wrong! Review your dataset", status: 400}, status: :bad_request
+      end
+      # not a classy solution (TODO -> fix)
+    else
+      render json: {error: "Sorry, something went horibly wrong! Review your dataset", status: 400}, status: :bad_request
+    end
   end
 
   def process_formats_of_data
