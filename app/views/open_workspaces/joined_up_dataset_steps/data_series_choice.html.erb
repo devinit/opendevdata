@@ -32,9 +32,43 @@
               <tr>
                 <td><%= key %></td>
                 <td>
-                  <form>
-                    <input id='<%=key%>' type='text' name='data_serie' placeholder='Start typing data serie name'/>
-                    <input type='submit' id='<%= key %>-sub' value='submit'>
+                  <form action='#' method='POST' onSubmit="return false;">
+                    <div class='row'>
+                      <div class='large-8 columns'>
+                        <input id='<%=key%>' type='text' name='data_serie' placeholder='Start typing data serie name' style='width: 350px;'/>
+                        <div id='notify-<%= key %>'>
+                          You selected: <span class='label' id='label-<%= key %>'></span>
+                        </div>
+                        <br/>
+                        <% dss = hdef[:data_serie_slug] %>
+                        <% if !dss.nil? %>
+                          <div class='selection-<%= key %>'>You selected: <span class='label'><%= dss %></span></div>
+                        <% end %>
+                      </div>
+
+                      <div class='large-4 columns'>
+                        <button id='<%= key %>-add' type="button"><span class='fa fa-plus-square' data-tooltip aria-haspopup="true" class="has-tip" title="Click to attach data serie to this data column!">
+                        </span> Connect</button>
+                      </div>
+                    </div>
+                  </form>
+                  <script type='text/javascript'>
+                  $(document).ready(function(){
+                    $('div#notify-<%= key %>').hide();
+                    $('button#<%= key %>-add').click(function(event){
+                      // $(this).slideUp();
+                      // $('#<%= key %>').slideUp();
+                      var data_serie_name = $('input#<%= key %>').val();
+                      // post data serie so it is added (data serie slug)
+                      var url = "<%= open_workspace_add_data_series_url(@workspace, @joined_up_dataset.id) %>";
+                      $('span#label-<%= key %>').text(data_serie_name);
+                      $('div#notify-<%= key %>').show();
+                      $('div.selection-<%= key %>').hide();
+                      $.post(url, { name: data_serie_name, key: "<%= key %>" }, function(result){});
+                      event.preventDefault();
+                    });
+                  });
+                  </script>
                     <script type='text/javascript'>
                       $(document).ready(function(){
                       var substringMatcher = function(strs) {
@@ -66,8 +100,7 @@
                         // c.log(data['data_series'])
                         $.each(data, function(key, val){
                           dataseries = val;
-                          console.log(dataseries);
-                          // dataseries.push(val);
+                          // TODO -> use a slug; assume names are unique
                           $('#<%= key %>').typeahead({
                             hint: true,
                             highlight: true,
@@ -83,8 +116,6 @@
                       });
                     });
                     </script>
-
-                  </form>
                 </td>
               </tr>
             <% end %>
