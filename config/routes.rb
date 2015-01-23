@@ -95,6 +95,7 @@ Opendataportal::Application.routes.draw do
     # process ajax POSTs
     post 'joined-up-datasets/:id/process-types-of-data', to: 'open_workspaces/joined_up_datasets#process_types_of_data', as: :process_types_of_data
     post 'joined-up-datasets/:id/process-formats-of-data', to: 'open_workspaces/joined_up_datasets#process_formats_of_data', as: :process_formats_of_data
+    post 'joined-up-datasets/:id/add-data-series', to: 'open_workspaces/joined_up_datasets#add_data_series', as: :add_data_series
     post 'joined-up-datasets/:data_series_id/process-data-series', to: 'open_workspaces/joined_up_datasets#process_final_stage_of_upload'
   end
 
