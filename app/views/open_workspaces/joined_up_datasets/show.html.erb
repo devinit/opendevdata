@@ -33,17 +33,20 @@
     <div class='row'>
         <div class='large-9 columns'>
             <span class='radius secondary label'>Description</span><br/>
-            <p><%= @joined_up_dataset.data_serie.description %></p>
+            <p>
+                <%# @joined_up_dataset.data_serie.description %>
+                <%= @joined_up_dataset.description %>
+            </p>
             <strong>Tags:</strong>
-            <% if @joined_up_dataset.data_serie.tags != "" %>
-                <% @joined_up_dataset.data_serie.tags.split(",").each do |tag|%>
-                    <span class='label'><%= tag %></span>
-                <% end %>
-            <% else %>
+            <%# if @joined_up_dataset.data_serie.tags != "" %>
+                <%# @joined_up_dataset.data_serie.tags.split(",").each do |tag|%>
+                    <!-- <span class='label'><%# tag %></span> -->
+                <%# end %>
+            <%# else %>
                     <span class='label alert'>
                     There are no tags, sectors or categories assigned to dataset
                     </span>
-            <% end %>
+            <%# end %>
         </div>
         <div class='large-3 columns panel'>
             <h5>Dataset source</h5>
@@ -85,7 +88,7 @@
             </p>
             <% if signed_in? %>
                 <% if has_access? @joined_up_dataset.open_workspace, current_user, @joined_up_dataset %>
-                    <%= link_to @dataset, method: :delete, confirm: 'Are you sure you want to delete dataset?' do %>
+                    <%= link_to @joined_up_dataset, method: :delete, confirm: 'Are you sure you want to delete dataset?' do %>
                     Delete <i class='fa fa-trash-o'></i>
                     <% end %>
                 <% end %>
