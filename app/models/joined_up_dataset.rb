@@ -30,7 +30,7 @@ class JoinedUpDataset
 
   belongs_to :open_workspace
   belongs_to :user  # who uploaded
-  belongs_to :data_serie
+  # belongs_to :data_serie
 
   # Basic Validations
   field :status, type: String
@@ -52,7 +52,7 @@ class JoinedUpDataset
 
     column_keys = []
     keys.each_with_index do |key, index|
-      column_keys << {key: key, column: ('A'..'Z').to_a[index], format_type: nil, types_of_data: nil }
+      column_keys << {key: key, column: ('A'..'Z').to_a[index], format_type: nil, types_of_data: nil, data_serie_slug: nil }
     end
 
     self.data_extract = { value_extract: values_extracted, header_definitions: column_keys }
