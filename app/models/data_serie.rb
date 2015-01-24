@@ -9,7 +9,9 @@ class DataSerie
   field :notes, type: String
   slug :name
   has_one :unit_of_measure
-  has_one :sector_vocabulary
+  belongs_to :sector
+
+  # field :
 
   validates :name, :description, presence: true
 
