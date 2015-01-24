@@ -88,9 +88,9 @@
             </p>
             <% if signed_in? %>
                 <% if has_access? @joined_up_dataset.open_workspace, current_user, @joined_up_dataset %>
-                    <%= link_to @joined_up_dataset, method: :delete, confirm: 'Are you sure you want to delete dataset?' do %>
+                    <%# link_to [@workspace, @joined_up_dataset], method: :delete, confirm: 'Are you sure you want to delete dataset?' do %>
                     Delete <i class='fa fa-trash-o'></i>
-                    <% end %>
+                    <%# end %>
                 <% end %>
             <% end %>
         </div>
