@@ -13,6 +13,8 @@ class JoinedUpDataset
 
   field :name, type: String
   field :source_of_data, type: String
+  field :description, type: String
+  field :note, type: String
 
   # TODO -> scope out joined up data
   field :time_value, type: String
