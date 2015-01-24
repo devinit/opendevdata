@@ -84,6 +84,8 @@ class OpenWorkspaces::JoinedUpDatasetsController < ApplicationController
       end
 
       judu.data_extract[:header_definitions][search_index][:data_serie_slug] = to_name
+      judu.data_series_array << to_name if !name_that.slug.nil?
+      # TODO -> remove duplicates in case a human wants to change mind
       judu.data_series_selected = true
       if judu.save
         render json: { ok: "You have attached a data serie to a joined up data set column", status: 200}
