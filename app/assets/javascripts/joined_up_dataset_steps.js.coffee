@@ -4,17 +4,24 @@
 jQuery ->
   $("#data_series").dataTable()
 
-
 $("button#data-series").on "click", ->
 
   # prepare data
   name = $("input#name").val()
   description = $("input#description").val()
-  if (name.trim() isnt "") and (description.trim() isnt "")
+  sector = $("input#sector").val()
+  notes = $("input#notes").val()
+  var unit_of_measure = "";
+  $("select option:selected").each ->
+    unit_of_measure = $(this).val().trim();
+  if (name.trim() isnt "") and (description.trim() isnt "") and (unit_of_measure isnt "")
     url = window.location.protocol + "//" + window.location.host + "/data-series"
     $.post url,
       name: name
       description: description
+      unit_of_measure: unit_of_measure
+      sector: sector
+      notes: notes
 
     $("#dataSeriesModal").foundation "reveal", "close"
 
