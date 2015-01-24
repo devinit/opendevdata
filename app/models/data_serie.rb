@@ -13,7 +13,7 @@ class DataSerie
 
   # field :
 
-  validates :name, :description, presence: true
+  validates :name, :description, :sector_id, presence: true
 
   # has_many :joined_up_datasets
 
