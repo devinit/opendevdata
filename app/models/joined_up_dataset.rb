@@ -40,6 +40,9 @@ class JoinedUpDataset
   field :space_time_format_selected, type: Boolean
   field :data_series_selected, type: Boolean
 
+  # data-series related or that are generated from this "joined up data"
+  field :data_series_array, type: Array, default: []
+
   # Attachment that will be produced is something that is in the JoinedUpData format
   mount_uploader :attachment, DatasetFileUploader
 
