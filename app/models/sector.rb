@@ -8,7 +8,7 @@ class Sector
   validates :code, presence: true, uniqueness: true
   validates :description, presence: true
 
-  has_many :data_series
+  # has_many :data_series
   # Some possible values (Admin should input this)
   # ==============================================
   # Code | Description
