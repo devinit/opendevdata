@@ -11,7 +11,7 @@ $("button#data-series").on "click", ->
   description = $("input#description").val()
   sector = $("input#sector").val()
   notes = $("input#notes").val()
-  var unit_of_measure = "";
+  unit_of_measure = "";
   $("select option:selected").each ->
     unit_of_measure = $(this).val().trim();
   if (name.trim() isnt "") and (description.trim() isnt "") and (unit_of_measure isnt "")
