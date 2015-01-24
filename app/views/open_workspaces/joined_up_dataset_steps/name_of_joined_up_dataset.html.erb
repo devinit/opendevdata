@@ -8,14 +8,6 @@
     </a>
 </div>
 <br/>
-
-
-    <div class='panel callout radius'>
-    Congratulations for reaching the final step!
-
-    Please provide a name for this Joined up dataset
-    </div>
-
 <%= simple_form_for @joined_up_dataset, url: wizard_path do |f| %>
 
     <% if @joined_up_dataset.errors.any? %>
