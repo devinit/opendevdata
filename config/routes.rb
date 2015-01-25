@@ -66,6 +66,7 @@ Opendataportal::Application.routes.draw do
   match 'open_workspaces/messages', to: 'messages#create', via: :post
 
   resources :data_series
+  post 'generate-csv', to: 'data_series#generate_csv'
 
   # data series endpoint for jquery
   post 'data-series', to: 'data_series#create_endpoint', as: :create_endpoint
