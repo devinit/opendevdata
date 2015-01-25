@@ -4,7 +4,7 @@
 %>
 <div class='row'>
     <ul class="breadcrumbs">
-      <li><%= link_to "Workspace", root_path %></li>
+      <li><%= link_to "Workspace", @workspace %></li>
       <li><%= link_to "Joined Up Datasets", open_workspace_joined_up_datasets_path(@workspace) %></li>
       <li class="active">
           <i class='fa fa-cloud-download'></i> <%= @joined_up_dataset.name %>
