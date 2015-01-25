@@ -8,7 +8,7 @@ class DataSerie
   field :description, type: String
   field :notes, type: String
   slug :name
-  has_one :unit_of_measure
+  has_one :unit_of_measure, class_name: "UnitOfMeasure", inverse_of: :measureable_unit
   belongs_to :sector
 
   # field :

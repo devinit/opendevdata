@@ -9,6 +9,8 @@ class UnitOfMeasure
   validates :code, presence: true, uniqueness: true
   validates :description, presence: true
 
+  belongs_to :measureable_unit, class_name: "DataSerie", inverse_of: :unit_of_measure
+
   # Some possible values (Admin should input this)
   # ==============================================
   # Code | Description
