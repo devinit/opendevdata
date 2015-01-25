@@ -24,15 +24,17 @@ class DataSeriesController < ApplicationController
       name = params[:name]
       description = params[:description]
       unit_of_measure_id = params[:unit_of_measure]
-      notes = params[:notes]
+      note = params[:note]
       sector_id = params[:sector]
+      tags = params[:tags]
 
       @data_serie = DataSerie.new
       @data_serie.name = name
       @data_serie.description = description
       @data_serie.unit_of_measure = UnitOfMeasure.where(id: unit_of_measure_id).first
       @data_serie.sector = Sector.where(id: sector_id).first
-      @data_serie.notes = notes
+      @data_serie.note = note
+      @data_serie.tags = tags
 
 
       if @data_serie.save
