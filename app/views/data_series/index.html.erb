@@ -31,54 +31,38 @@
 
     <div class='panel'>
         <h4>Available Data belonging to Data Series</h4>
-        <%= @decompressed_array.size %>
+        <%= @display_attributes.size %>
     </div>
 
     <h5>Filter Data from Data series</h5>
-
     <%= form_tag :controller => "data_series", :action => 'generate_csv', :method => 'get' do %>
-        <label>Time</label>
-        <%= select_tag "time", options_for_select(["month", "year", "quarter"]) %>
-          <!-- <select id='time'>
-              <option value="M">M (month)</option>
-              <option value="Y">Y (year)</option>
-              <option value="Q">Q (Quarter)</option>
-          </select> -->
+    <table>
+    <thead>
+        <tr>
+            <th>Select</th>
+            <th>Display Title</th>
+            <th>Space Format</th>
+            <th>Time Format</th>
+            <th>No. of Records</th>
+        </tr>
+    </thead>
+    <tbody>
 
-          <label>Sector</label>
-          <%= select_tag "sector", options_from_collection_for_select(Sector.all, "id", "description"), include_blank: true %>
-          <!-- <select id='sector'>
-              <% Sector.all.each do |sector| %>
-              <option value="<%= sector.id %>"><%= "#{sector.code} - #{sector.description}" %>
-              <% end %>
-          </select> -->
 
-          <label>Space | Location type</label>
-          <%= select_tag "space", options_for_select(["Country", "Region", "District", "County", "Sub-county", "Parish", "Village"]) %>
-          <!-- <select id='space'>
-              <option value="A0">A0 (Country)</option>
-              <option value="A1">A1 (Region)</option>
-              <option value="A2">A2 (District)</option>
-              <option value="A3">A3 (County)</option>
-              <option value="A4">A4 (Sub-county)</option>
-              <option value="A5">A5 (Parish)</option>
-              <option value="A6">A6 (Village)</option>
-           </select> -->
+        <% @display_attributes.each do |da| %>
+            <tr>
+                <td></td>
+                <td><%= da[:display_title] %></td>
+                <td><%= da[:space_format] %></td>
+                <td><%= da[:time_format] %></td>
+                <td><%= da[:records_number] %></td>
+            </tr>
+        <% end %>
 
-           <label>Data Series (choose one or more)</label>
-           <% @data_serie_slugs.each do |ds| %>
-               <% data_serie = DataSerie.where(slugs: [ds]) %>
-               <% if !data_serie.empty? %>
-                   <% data_serie_instance = data_serie.first %>
-                   <%= check_box_tag "#{'data_serie-' + data_serie_instance.slug}".to_sym %>
-                   <%= label_tag data_serie_instance.name.to_sym, data_serie_instance.name %>
-                   <!-- <input type="checkbox" name="<%= ds %>" value="<%= ds %>">
-                       <%# data_serie.first.name %>
-                   </input> -->
-               <% end %>
-           <% end %>
-    <br/>
-           <%= submit_tag "Generate", name: nil, class: 'button' %>
+    </tbody>
+    </table>
+    <%= submit_tag "Generate", name: nil, class: 'button' %>
     <% end %>
     </div>
 </div>
+
