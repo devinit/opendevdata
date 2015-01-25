@@ -6,14 +6,16 @@ class DataSerie
 
   field :name, type: String
   field :description, type: String
-  field :notes, type: String
+  field :note, type: String
+  field :sources, type: String
+
   slug :name
   has_one :unit_of_measure, class_name: "UnitOfMeasure", inverse_of: :measureable_unit
   belongs_to :sector
 
   # field :
 
-  validates :name, :description, :sector_id, presence: true
+  validates :name, :description, :sector_id, :unit_of_measure, presence: true
 
   # has_many :joined_up_datasets
 
