@@ -66,10 +66,17 @@ class DataSeriesController < ApplicationController
     space = params["space"]
 
     data_serie_slug_array = []
+
+    # we keep the titles of the "newly generate data series"
+    display_title_array = []
+
     params.keys.each do |key|
       # TODO -> genaralize eventually
-      data_serie_slug_array << key.split("data_serie-")[1] if params[key] == "1"
+      data_serie_slug_array << key.split("data_serie-")[1] if params[key] == "1" and key.start_with? "data_serie-"
+      display_title_array << key.split("display_title-")[1] if params[key] == "1" and key.start_with? "display_title-"
+
     end
+
     # logger.info "PARAMS #{time} #{sector} #{data_serie_slug_array}"
 
     # get a bunch of judus with params that match the headers + dataa serie slugs
@@ -79,7 +86,6 @@ class DataSeriesController < ApplicationController
     # test creation
     csv_string = CsvShaper.encode do |csv|
       csv.headers :name, :email
-
       csv.rows User.all do |_csv, user|
         _csv.cells :name, :email
       end
