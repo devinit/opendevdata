@@ -1,12 +1,56 @@
 class DataSeriesController < ApplicationController
   before_action :authenticate_user!, except: [:create_endpoint, :index]
+  respond_to :html, :csv
 
   def index
+    data_point_count = 0
+
+    # individual slugs
+    @decompressed_array = []
+
+    # some magic
+    data_series_array_of_arrays = JoinedUpDataset.pluck :data_series_array
+
+    data_series_array_of_arrays.each do |arr|
+      arr.each do |ar|
+        @decompressed_array << ar
+      end
+    end
+    @data_serie_slugs = @decompressed_array.uniq
+
     @data_series = DataSerie.all
     respond_to do |format|
       format.html
       format.json { render json: DataSerie.pluck(:name) }
     end
+  end
+
+  def generate_csv
+
+    time = params["time"]
+    sector = params["sector"]
+    space = params["space"]
+
+    data_serie_slug_array = []
+    params.keys.each do |key|
+      # TODO -> genaralize eventually
+      data_serie_slug_array << key.split("data_serie-")[1] if params[key] == "1"
+    end
+    # logger.info "PARAMS #{time} #{sector} #{data_serie_slug_array}"
+
+    # get a bunch of judus with params that match the headers + dataa serie slugs
+
+    @users = User.all
+    @filename = "test.csv"
+    # test creation
+    csv_string = CsvShaper.encode do |csv|
+      csv.headers :name, :email
+
+      csv.rows User.all do |_csv, user|
+        _csv.cells :name, :email
+      end
+    end
+    send_data csv_string, type: 'text/csv; charset=iso-8859-1; header=present', dispotion: "attachment; filename=#{@filename}"
   end
 
   def show
