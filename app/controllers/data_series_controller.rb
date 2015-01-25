@@ -23,10 +23,17 @@ class DataSeriesController < ApplicationController
     if signed_in?
       name = params[:name]
       description = params[:description]
-      logger.info "OVER HERE"
+      unit_of_measure_id = params[:unit_of_measure]
+      notes = params[:notes]
+
       @data_serie = DataSerie.new
       @data_serie.name = name
       @data_serie.description = description
+      @data_serie.unit_of_measure = UnitOfMeasure.where(id: unit_of_measure_id).first
+      @data_serie.sector = Sector.where(id: sector_id).first
+      @data_serie.notes = notes
+
+
       if @data_serie.save
         render json: @data_serie, status: :created, location: @data_serie
       else
@@ -54,7 +61,7 @@ class DataSeriesController < ApplicationController
 
   private
     def data_series_params
-      params.require(:data_serie).permit(:name, :description)
+      params.require(:data_serie).permit(:name, :description, :notes, :sector_id, :unit_of_measure_id)
     end
 
 end
