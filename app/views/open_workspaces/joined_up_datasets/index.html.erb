@@ -1,12 +1,30 @@
 <% if @joined_up_datasets.exists? %>
 
-    <div class='panel panel-default'>
+    <!-- <div class='panel panel-default'>
         <p>
             Joined Up Data exists, we are currently developing a series of visualizations. Please check back in January 2015.
         </p>
-    </div>
+    </div> -->
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @joined_up_datasets.each do |judu| %>
+            <tr>
+                <td><%= link_to judu.name, open_workspace_joined_up_dataset_path(@workspace.id, judu.id) %></td>
+                <td><%= judu.description %></td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
 
 <% else %>
+
 <div class='panel'>
     There are still some Joinedup datasets pending review. <%= link_to 'click here', open_workspace_pending_path(@workspace) %>
 </div>
