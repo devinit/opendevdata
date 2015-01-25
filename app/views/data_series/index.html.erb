@@ -1,28 +1,84 @@
-<h1>Data Series</h1>
+<div class='row'>
+    <div class='large-12 columns'>
+    <h1>Data Series</h1>
 
-<table>
-    <thead>
-        <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Unit of Measure</th>
-            <th>Sector</th>
-            <th>Keywords</th>
-            <th>Sources</th>
-            <th>Note</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% @data_series.each do |data_serie| %>
-        <tr>
-            <td><%= data_serie.name %></td>
-            <td><%= data_serie.description %></td>
-            <td><%= data_serie.unit_of_measure.description if !data_serie.unit_of_measure.nil?%></td>
-            <td><%= data_serie.sector.description if !data_serie.sector.nil?%></td>
-            <td><%= data_serie.tags %></td>
-            <td><%= data_serie.sources %></td>
-            <td><%= data_serie.note %></td>
-        </tr>
-        <% end %>
-    </tbody>
-</table>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Unit of Measure</th>
+                <th>Sector</th>
+                <th>Keywords</th>
+                <th>Sources</th>
+                <th>Note</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @data_series.each do |data_serie| %>
+            <tr>
+                <td><%= data_serie.name %></td>
+                <td><%= data_serie.description %></td>
+                <td><%= data_serie.unit_of_measure.description if !data_serie.unit_of_measure.nil?%></td>
+                <td><%= data_serie.sector.description if !data_serie.sector.nil?%></td>
+                <td><%= data_serie.tags %></td>
+                <td><%= data_serie.sources %></td>
+                <td><%= data_serie.note %></td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+
+    <div class='panel'>
+        <h4>Available Data belonging to Data Series</h4>
+        <%= @decompressed_array.size %>
+    </div>
+
+    <h5>Filter Data from Data series</h5>
+
+    <%= form_tag :controller => "data_series", :action => 'generate_csv', :method => 'get' do %>
+        <label>Time</label>
+        <%= select_tag "time", options_for_select(["month", "year", "quarter"]) %>
+          <!-- <select id='time'>
+              <option value="M">M (month)</option>
+              <option value="Y">Y (year)</option>
+              <option value="Q">Q (Quarter)</option>
+          </select> -->
+
+          <label>Sector</label>
+          <%= select_tag "sector", options_from_collection_for_select(Sector.all, "id", "description"), include_blank: true %>
+          <!-- <select id='sector'>
+              <% Sector.all.each do |sector| %>
+              <option value="<%= sector.id %>"><%= "#{sector.code} - #{sector.description}" %>
+              <% end %>
+          </select> -->
+
+          <label>Space | Location type</label>
+          <%= select_tag "space", options_for_select(["Country", "Region", "District", "County", "Sub-county", "Parish", "Village"]) %>
+          <!-- <select id='space'>
+              <option value="A0">A0 (Country)</option>
+              <option value="A1">A1 (Region)</option>
+              <option value="A2">A2 (District)</option>
+              <option value="A3">A3 (County)</option>
+              <option value="A4">A4 (Sub-county)</option>
+              <option value="A5">A5 (Parish)</option>
+              <option value="A6">A6 (Village)</option>
+           </select> -->
+
+           <label>Data Series (choose one or more)</label>
+           <% @data_serie_slugs.each do |ds| %>
+               <% data_serie = DataSerie.where(slugs: [ds]) %>
+               <% if !data_serie.empty? %>
+                   <% data_serie_instance = data_serie.first %>
+                   <%= check_box_tag "#{'data_serie-' + data_serie_instance.slug}".to_sym %>
+                   <%= label_tag data_serie_instance.name.to_sym, data_serie_instance.name %>
+                   <!-- <input type="checkbox" name="<%= ds %>" value="<%= ds %>">
+                       <%# data_serie.first.name %>
+                   </input> -->
+               <% end %>
+           <% end %>
+    <br/>
+           <%= submit_tag "Generate", name: nil, class: 'button' %>
+    <% end %>
+    </div>
+</div>
