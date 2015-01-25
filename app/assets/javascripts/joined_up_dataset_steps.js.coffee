@@ -10,7 +10,9 @@ $("button#data-series").on "click", ->
   name = $("input#name").val()
   description = $("textarea#description").val()
   sector = ""
-  notes = $("textarea#notes").val()
+  sources = $("input#sources").val()
+  tags = $("input#tags").val()
+  note = $("textarea#note").val()
   unit_of_measure = ""
 
   $("select#unit_of_measure option:selected").each ->
@@ -26,7 +28,9 @@ $("button#data-series").on "click", ->
       description: description
       unit_of_measure: unit_of_measure
       sector: sector
-      notes: notes
+      sources: sources
+      note: note
+      tags: tags
 
     $("#dataSeriesModal").foundation "reveal", "close"
 
