@@ -19,10 +19,13 @@ class DataSeriesController < ApplicationController
       header_definitions = jup[1]["header_definitions"]
       space_format = nil
       time_format = nil
+      slug = nil
 
       header_definitions.each do |hd|
         temp_holder = {}
-        if !hd["data_serie_slug"].nil?
+
+        if !hd["data_serie_slug"].nil? and !hd["key"].nil?
+          slug = hd["data_serie_slug"]
           temp_holder[:display_title] = hd["key"]
         end
         if hd["types_of_data"] == "space" and !hd["format_type"].nil?
@@ -36,6 +39,7 @@ class DataSeriesController < ApplicationController
         temp_holder[:space_format] = space_format
         temp_holder[:time_format] = time_format
         temp_holder[:records_number] = jup[1]["value_extract"].size
+        temp_holder[:data_serie_slug] = slug
         temp_holder[:id] = jup[0]
         @display_attributes << temp_holder if !temp_holder[:display_title].nil?
       end
