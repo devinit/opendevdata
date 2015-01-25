@@ -22,6 +22,7 @@ gem 'iconv'
 gem "sanitizer"
 gem "mini_magick"
 gem "smarter_csv"
+gem 'csv_shaper'
 gem 'rubyzip', '~> 0.9.9'
 gem 'georuby', github: 'nofxx/georuby'
 gem 'rgeo'
