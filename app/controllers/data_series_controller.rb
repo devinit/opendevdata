@@ -25,6 +25,7 @@ class DataSeriesController < ApplicationController
       description = params[:description]
       unit_of_measure_id = params[:unit_of_measure]
       notes = params[:notes]
+      sector_id = params[:sector]
 
       @data_serie = DataSerie.new
       @data_serie.name = name
