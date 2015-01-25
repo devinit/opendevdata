@@ -8,12 +8,17 @@ $("button#data-series").on "click", ->
 
   # prepare data
   name = $("input#name").val()
-  description = $("input#description").val()
-  sector = $("input#sector").val()
-  notes = $("input#notes").val()
-  unit_of_measure = "";
-  $("select option:selected").each ->
-    unit_of_measure = $(this).val().trim();
+  description = $("textarea#description").val()
+  sector = ""
+  notes = $("textarea#notes").val()
+  unit_of_measure = ""
+
+  $("select#unit_of_measure option:selected").each ->
+    unit_of_measure = $(this).val().trim()
+
+  $("select#sector option:selected").each ->
+    sector = $(this).val().trim()
+
   if (name.trim() isnt "") and (description.trim() isnt "") and (unit_of_measure isnt "")
     url = window.location.protocol + "//" + window.location.host + "/data-series"
     $.post url,
