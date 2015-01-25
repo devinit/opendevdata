@@ -44,6 +44,7 @@
             <th>Space Format</th>
             <th>Time Format</th>
             <th>No. of Records</th>
+            <th>Data Serie Association</th>
         </tr>
     </thead>
     <tbody>
@@ -56,6 +57,8 @@
                 <td><%= da[:space_format] %></td>
                 <td><%= da[:time_format] %></td>
                 <td><%= da[:records_number] %></td>
+                <!-- TODO -> should be able to link to a data serie directly -->
+                <td><%= da[:data_serie_slug] %></td>
             </tr>
         <% end %>
 
