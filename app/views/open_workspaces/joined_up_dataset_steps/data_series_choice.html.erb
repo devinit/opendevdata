@@ -139,17 +139,24 @@
   <form class="custom">
       <fieldset>
           <input type="text" id="name" placeholder="Name">
-          <input type="text" id="description" rows=3 placeholder="Description">
-          <input type="text" id="sector" rows=3 placeholder="Sector">
-          <input type="text" id="notes" rows=2 placeholder="Notes">
-          <legend>Unit of Mesasure</legend>
-          <!-- <input type="text" id="unit_of_measure" rows=3 placeholder="Unit of Measure"> -->
-          <select>
-            <% UnitOfMeasure.all.each do |uom|%>
-              <option value="<%= uom.code %>"><%= uom.description %></option>
+          <label>Description</label>
+          <textarea id="description" rows=3></textarea>
+          <label>Sector</label>
+          <select id='sector'>
+            <% Sector.all.each do |sector| %>
+            <option value="<%= sector.id %>"><%= sector.description %></option>
             <% end %>
           </select>
-          <input type="text" id="tags" rows=3 placeholder="Keywords">
+          <label>Unit of Mesasure</label>
+          <!-- <input type="text" id="unit_of_measure" rows=3 placeholder="Unit of Measure"> -->
+          <select id='unit_of_measure'>
+            <% UnitOfMeasure.all.each do |uom|%>
+              <option value="<%= uom.id %>"><%= uom.description %></option>
+            <% end %>
+          </select>
+          <label>Notes</label>
+          <textarea type="text" id="notes" rows=4></textarea>
+          <input type="text" id="tags" placeholder="Keywords">
           <button type="submit" id="data-series" class="small button">Create</button>
       </fieldset>
   </form>
