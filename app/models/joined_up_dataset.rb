@@ -69,8 +69,7 @@ class JoinedUpDataset
     end
   end
 
-  validates :name, presence: true, if: :correct_or_name?
-  validates :source_of_data, presence: true, if: :correct_or_name?
+  validates :name, :description, :source_of_data, presence: true, if: :correct_or_name?
   validates :data_choice_made, presence: true, if: :correct_or_data_choice?
   validates :space_time_format_selected, presence: true, if: :correct_or_time_space_format_choices?
   validates :data_series_selected, presence: true, if: :correct_or_dataseries?
