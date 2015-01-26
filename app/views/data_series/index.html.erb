@@ -8,7 +8,7 @@
                 <th>Title</th>
                 <th>Description</th>
                 <th>Unit of Measure</th>
-                <th>Sector</th>
+                <!-- <th>Sector</th> -->
                 <th>Keywords</th>
                 <th>Sources</th>
                 <th>Note</th>
@@ -20,7 +20,7 @@
                 <td><%= data_serie.name %></td>
                 <td><%= data_serie.description %></td>
                 <td><%= data_serie.unit_of_measure.description if !data_serie.unit_of_measure.nil?%></td>
-                <td><%= data_serie.sector.description if !data_serie.sector.nil?%></td>
+                <!-- <td><%# data_serie.sector.description if !data_serie.sector.nil?%></td> -->
                 <td><%= data_serie.tags %></td>
                 <td><%= data_serie.sources %></td>
                 <td><%= data_serie.note %></td>
