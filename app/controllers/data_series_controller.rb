@@ -45,6 +45,8 @@ class DataSeriesController < ApplicationController
       end
     end
 
+    logger.debug "DISPLAY ATTRIBUTES #{@display_attributes}"
+
     data_series_array_of_arrays.each do |arr|
       arr.each do |ar|
         @decompressed_array << ar
