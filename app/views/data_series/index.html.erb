@@ -52,7 +52,7 @@
 
         <% @display_attributes.each do |da| %>
             <tr>
-                <td><%= check_box_tag "display_title-#{da[:display_title]}".to_sym %></td>
+                <td><%= check_box_tag "display_title-#{da[:display_title].to_s}".to_sym %></td>
                 <td><%= da[:display_title] %></td>
                 <td><%= da[:space_format] %></td>
                 <td><%= da[:time_format] %></td>
