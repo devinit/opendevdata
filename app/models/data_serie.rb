@@ -11,7 +11,7 @@ class DataSerie
 
   slug :name
   has_one :unit_of_measure, class_name: "UnitOfMeasure", inverse_of: :measureable_unit
-  belongs_to :sector
+  # belongs_to :sector
 
   # field :
 
