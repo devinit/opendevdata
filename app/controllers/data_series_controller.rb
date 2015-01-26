@@ -109,7 +109,7 @@ class DataSeriesController < ApplicationController
       description = params[:description]
       unit_of_measure_id = params[:unit_of_measure]
       note = params[:note]
-      sector_id = params[:sector]
+      # sector_id = params[:sector]
       tags = params[:tags]
 
       @data_serie = DataSerie.new
