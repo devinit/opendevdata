@@ -116,7 +116,7 @@ class DataSeriesController < ApplicationController
       @data_serie.name = name
       @data_serie.description = description
       @data_serie.unit_of_measure = UnitOfMeasure.where(id: unit_of_measure_id).first
-      @data_serie.sector = Sector.where(id: sector_id).first
+      # @data_serie.sector = Sector.where(id: sector_id).first
       @data_serie.note = note
       @data_serie.tags = tags
 
