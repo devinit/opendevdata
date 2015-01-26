@@ -15,7 +15,8 @@ class DataSerie
 
   # field :
 
-  validates :name, :description, :sector_id, :unit_of_measure, presence: true
+  validates :name, :description, :unit_of_measure, presence: true
+  #validates :sector_id, presence: true
 
   # has_many :joined_up_datasets
 
