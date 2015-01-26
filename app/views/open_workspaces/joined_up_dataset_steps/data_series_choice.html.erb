@@ -141,12 +141,12 @@
           <input type="text" id="name" placeholder="Name">
           <label>Description</label>
           <textarea id="description" rows=3></textarea>
-          <label>Sector</label>
-          <select id='sector'>
-            <% Sector.all.each do |sector| %>
-            <option value="<%= sector.id %>"><%= sector.description %></option>
-            <% end %>
-          </select>
+          <!-- <label>Sector</label> -->
+          <!-- <select id='sector'>
+            <%# Sector.all.each do |sector| %>
+            <option value="<%# sector.id %>"><%# sector.description %></option>
+            <%# end %>
+          </select> -->
           <label>Unit of Mesasure</label>
           <!-- <input type="text" id="unit_of_measure" rows=3 placeholder="Unit of Measure"> -->
           <select id='unit_of_measure'>
