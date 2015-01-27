@@ -1,2 +1,11 @@
-<h1>DataSeries#edit</h1>
-<p>Find me in app/views/data_series/edit.html.erb</p>
+<% title("Edit Data Series") %>
+<div class='row'><div class='large-12 columns'><h1>Edit DataSeries</h1>
+
+<%= simple_form_for @data_serie do |f| %>
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.input :note %>
+    <%= f.input :sources %>
+    <%= f.submit %>
+<% end %>
+</div></div>
