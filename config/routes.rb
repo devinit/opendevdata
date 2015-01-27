@@ -54,7 +54,7 @@ Opendataportal::Application.routes.draw do
 
   concern :sociable, Sociable
 
-  resources :datasets, concerns: :sociable # all datasets
+  resources :datasets, concerns: :sociable, path: 'standalone-datasets' # all datasets
 
   get 'my-workspaces', to: 'open_workspaces#my_workspaces', as: :my_workspaces
 
@@ -82,7 +82,7 @@ Opendataportal::Application.routes.draw do
       end
     end
 
-    resources :datasets, concerns: :sociable, controller: 'open_workspaces/datasets'
+    resources :datasets, concerns: :sociable, controller: 'open_workspaces/datasets', path: 'standalone-datasets'
     resources :documents, concerns: :sociable, controller: 'open_workspaces/documents'
     resources :joined_up_datasets, controller: 'open_workspaces/joined_up_datasets', except: [:new] do
       collection { post :import }
