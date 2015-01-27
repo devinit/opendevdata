@@ -1,4 +1,6 @@
 <% title(@data_serie.name) %>
 <h1><%= @data_serie.name %></h1>
 
-<%= link_to "Edit data serie", edit_data_series_path(@data_serie) %>
+<%= link_to edit_data_series_path(@data_serie) do %>
+    Edit data serie <span class='fa fa-cog'></span>
+<% end %>
