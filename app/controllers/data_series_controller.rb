@@ -94,9 +94,11 @@ class DataSeriesController < ApplicationController
   end
 
   def show
+    @data_serie = DataSerie.find params[:id]
   end
 
   def edit
+    @data_serie = DataSerie.find params[:id]
   end
 
   def new
