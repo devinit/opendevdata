@@ -104,7 +104,7 @@
         <div class='row panel'>
             <div class='large-12 columns'>
               <span class='left'>
-                <h3><i class='fa fa-database'></i> <%= pluralize @datasets.count, 'dataset' %></h3>
+                <h3><i class='fa fa-database'></i> <%= pluralize @datasets.count, 'Standalone dataset' %></h3>
                 <h3><i class="fa fa-file-pdf-o"></i>
                     <%= link_to pluralize(@documents.count, 'document'), open_workspace_documents_path(@workspace) %>
                 </h3>
