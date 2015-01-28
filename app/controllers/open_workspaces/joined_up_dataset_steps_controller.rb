@@ -29,7 +29,7 @@ class OpenWorkspaces::JoinedUpDatasetStepsController < ApplicationController
       # cleaning things up
       params[:joined_up_dataset][:status] = step.to_s
       params[:joined_up_dataset][:status] = 'all_fields' if step == steps.last
-      params.require(:joined_up_dataset).permit(:name, :source_of_data, :status, :description, :note)
+      params.require(:joined_up_dataset).permit(:name, :source_of_data, :status, :description, :note, :tags)
     end
 
     def find_workspace
