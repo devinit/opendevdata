@@ -14,6 +14,7 @@ $("button#data-series-edit").on "click", ->
   sector = ""
   sources = $("input#sources").val()
   tags = $("input#tags").val()
+  data_serie_id = $("input#data_serie_id").val()
   note = $("textarea#note").val()
   unit_of_measure = ""
 
@@ -33,6 +34,7 @@ $("button#data-series-edit").on "click", ->
       sources: sources
       note: note
       tags: tags
+      data_serie_id: data_serie_id
 
     $("#dataSeriesModal").foundation "reveal", "close"
 
