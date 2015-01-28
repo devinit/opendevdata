@@ -2,6 +2,11 @@
 <div class='row'><div class='large-12 columns'><h1>Edit DataSeries</h1>
 
 <%= simple_form_for @data_serie do |f| %>
+    <% if @data_serie.errors %>
+    <% @data_serie.errors.full_messages.each do |msg| %>
+        <%= msg %>
+    <% end %>
+    <% end %>
     <%= f.input :name %>
     <%= f.input :description %>
     <%= f.input :note %>
