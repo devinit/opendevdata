@@ -1,5 +1,5 @@
 class DataSeriesController < ApplicationController
-  before_action :authenticate_user!, except: [:create_endpoint, :index, :show]
+  before_action :authenticate_user!, except: [:create_endpoint, :edit_endpoint, :index, :show]
   respond_to :html, :csv
 
   def index
@@ -188,7 +188,7 @@ class DataSeriesController < ApplicationController
       # sector_id = params[:sector]
       tags = params[:tags]
 
-      @data_serie = DataSerie.new
+      @data_serie = DataSerie.find params[:data_serie_id]
       @data_serie.name = name
       @data_serie.description = description
       @data_serie.unit_of_measure = UnitOfMeasure.where(id: unit_of_measure_id).first
