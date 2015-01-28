@@ -46,15 +46,13 @@
     <%= submit_tag "Generate", name: nil, class: 'button' %>
     <% end %>
 
-<div data-alert class="alert-box info radius">
-  There are <%= pluralize(@display_attributes.size, 'data serie') %>
-  <a href="#" class="close">&times;</a>
-</div>
-<!-- <div class='panel'>
-        <h4>Available Data belonging to Data Series</h4>
-        <%= @display_attributes.size %>
+    <div data-alert class="alert-box info radius">
+      There are <%= pluralize(@display_attributes.size, 'data serie') %>
+      <br/>
+      This has been generated from 2 different sources
+      <a href="#" class="close">&times;</a>
     </div>
- --></div>
+</div>
 </div>
 
 <div id="dataSeriesEditModal" class="reveal-modal small" data-reveal>
