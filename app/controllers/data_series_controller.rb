@@ -1,57 +1,8 @@
 class DataSeriesController < ApplicationController
-  before_action :authenticate_user!, except: [:create_endpoint, :index]
+  before_action :authenticate_user!, except: [:create_endpoint, :index, :show]
   respond_to :html, :csv
 
   def index
-    data_point_count = 0
-
-    # individual slugs
-    @decompressed_array = []
-
-    # some magic
-    data_series_array_of_arrays = JoinedUpDataset.pluck :data_series_array
-
-    jumbled_up = JoinedUpDataset.pluck(:id, :data_extract, :data_series_array)
-    @display_attributes = []
-
-    jumbled_up.each do |jup|
-
-      header_definitions = jup[1]["header_definitions"]
-      space_format = nil
-      time_format = nil
-      slug = nil
-
-      header_definitions.each do |hd|
-        temp_holder = {}
-
-        if !hd["data_serie_slug"].nil? and !hd["key"].nil?
-          slug = hd["data_serie_slug"]
-          temp_holder[:display_title] = hd["key"]
-        end
-        if hd["types_of_data"] == "space" and !hd["format_type"].nil?
-          space_format = hd["format_type"]
-        end
-
-        if hd["types_of_data"] == "time" and !hd["format_type"].nil?
-          time_format = hd["format_type"]
-        end
-
-        temp_holder[:space_format] = space_format
-        temp_holder[:time_format] = time_format
-        temp_holder[:records_number] = jup[1]["value_extract"].size
-        temp_holder[:data_serie_slug] = slug
-        temp_holder[:id] = jup[0]
-        @display_attributes << temp_holder if !temp_holder[:display_title].nil?
-      end
-    end
-
-    data_series_array_of_arrays.each do |arr|
-      arr.each do |ar|
-        @decompressed_array << ar
-      end
-    end
-    @data_serie_slugs = @decompressed_array.uniq
-
     @data_series = DataSerie.all
     respond_to do |format|
       format.html
@@ -95,6 +46,53 @@ class DataSeriesController < ApplicationController
 
   def show
     @data_serie = DataSerie.find params[:id]
+    # data_point_count = 0
+    # individual slugs
+    @decompressed_array = []
+    # some magic
+    # data_series_array_of_arrays = JoinedUpDataset.pluck :data_series_array
+    jumbled_up = JoinedUpDataset.pluck(:id, :data_extract, :data_series_array)
+    @display_attributes = []
+
+    jumbled_up.each do |jup|
+
+      header_definitions = jup[1]["header_definitions"]
+      space_format = nil
+      time_format = nil
+      slug = nil
+
+      header_definitions.each do |hd|
+        temp_holder = {}
+
+        if !hd["data_serie_slug"].nil? and !hd["key"].nil?
+          next if hd['data_serie_slug'] != @data_serie.slug
+          slug = hd["data_serie_slug"]
+          temp_holder[:display_title] = hd["key"]
+        end
+        if hd["types_of_data"] == "space" and !hd["format_type"].nil?
+          space_format = hd["format_type"]
+        end
+
+        if hd["types_of_data"] == "time" and !hd["format_type"].nil?
+          time_format = hd["format_type"]
+        end
+
+        temp_holder[:space_format] = space_format
+        temp_holder[:time_format] = time_format
+        temp_holder[:records_number] = jup[1]["value_extract"].size
+        temp_holder[:data_serie_slug] = slug
+        temp_holder[:id] = jup[0]
+        @display_attributes << temp_holder if !temp_holder[:display_title].nil?
+      end
+    end
+
+    # data_series_array_of_arrays.each do |arr|
+    #   arr.each do |ar|
+    #     @decompressed_array << ar
+    #   end
+    # end
+    # @data_serie_slugs = @decompressed_array.uniq
+
   end
 
   def edit
