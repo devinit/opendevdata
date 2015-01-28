@@ -1,6 +1,8 @@
 <% if @joined_up_datasets.exists? %>
-
-    <table>
+<div class='row'>
+<div class='large-12 columns'>
+<div data-no-turbolink>
+    <table id='joined_up_data'>
         <thead>
             <tr>
                 <th>Name</th>
@@ -22,7 +24,9 @@
             <% end %>
         </tbody>
     </table>
-
+</div>
+</div>
+</div>
 <% else %>
 
 <div class='panel'>
