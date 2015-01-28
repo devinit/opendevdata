@@ -1,6 +1,49 @@
 <% title(@data_serie.name) %>
+<div class='row'><div class='large-12 columns'>
 <h1><%= @data_serie.name %></h1>
 
 <%= link_to edit_data_series_path(@data_serie) do %>
     Edit data serie <span class='fa fa-cog'></span>
 <% end %>
+
+
+    <div class='panel'><h5>Data Query</h5></div>
+    <%= form_tag :controller => "data_series", :action => 'generate_csv', :method => 'get' do %>
+    <table>
+    <thead>
+        <tr>
+            <th>Select</th>
+            <th>Display Title</th>
+            <th>Space Format</th>
+            <th>Time Format</th>
+            <th>No. of Records</th>
+<!--             <th>Data Serie Association</th> -->
+        </tr>
+    </thead>
+    <tbody>
+
+
+        <% @display_attributes.each do |da| %>
+            <tr>
+                <td><%= check_box_tag "display_title-#{da[:display_title].to_s}".to_sym %></td>
+                <td><%= da[:display_title] %></td>
+                <td><%= da[:space_format] %></td>
+                <td><%= da[:time_format] %></td>
+                <td><%= da[:records_number] %></td>
+                <!-- TODO -> should be able to link to a data serie directly -->
+                <!-- <td><%# da[:data_serie_slug] %></td> -->
+            </tr>
+        <% end %>
+
+    </tbody>
+    </table>
+    <%= submit_tag "Generate", name: nil, class: 'button' %>
+    <% end %>
+
+
+<div class='panel'>
+        <h4>Available Data belonging to Data Series</h4>
+        <%= @display_attributes.size %>
+    </div>
+</div>
+</div>
