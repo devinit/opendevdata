@@ -1,3 +1,4 @@
+<% title("#{@workspace.organization_name}") %>
 <div class='row'>
     <div class='large-12 columns' style='border-bottom: 2px solid red; margin-bottom: 2px;'>
     <% if !@workspace.approved %>
@@ -185,6 +186,35 @@
                 <%# paginate @datasets %>
             <% end %>
         </div>
+
+        <div data-no-turbolink>
+            <table id="workspace-joined-updatasets">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Tags</th>
+                    <th>Dates created</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @joined_up_datasets.each do |judu| %>
+                <tr>
+                    <td><%= link_to judu.name, open_workspace_joined_up_dataset_path(judu.open_workspace.id, judu.id) %></td>
+                    <td><%= judu.description %></td>
+                    <td>
+                        <% judu.tags_array.each do |tag| %>
+                            <span class='label'><%= tag %></span>
+                        <% end %>
+                    </td>
+                    <td><%= judu.created_at.strftime("%d %B, %Y") %></td>
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+
+        </div>
+
 </div></div>
     <% else %>
     <div class='panel callout'>
