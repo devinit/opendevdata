@@ -5,6 +5,7 @@
             <tr>
                 <th>Name</th>
                 <th>Description</th>
+                <th>Tags</th>
             </tr>
         </thead>
         <tbody>
@@ -12,6 +13,11 @@
             <tr>
                 <td><%= link_to judu.name, open_workspace_joined_up_dataset_path(judu.open_workspace.id, judu.id) %></td>
                 <td><%= judu.description %></td>
+                <td>
+                    <% judu.tags_array.each do |tag| %>
+                        <span class='label'><%= tag %></span>
+                    <% end %>
+                </td>
             </tr>
             <% end %>
         </tbody>
