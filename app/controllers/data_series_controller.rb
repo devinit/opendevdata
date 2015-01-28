@@ -3,7 +3,7 @@ class DataSeriesController < ApplicationController
   respond_to :html, :csv
 
   def index
-    @data_series = DataSerie.all
+    @data_series = DataSerie.desc(:created_at)
     respond_to do |format|
       format.html
       format.json { render json: DataSerie.pluck(:name) }
