@@ -5,6 +5,9 @@
     <%= f.input :name %>
     <%= f.input :description %>
     <%= f.input :note %>
+    <%= f.simple_fields_for :unit_of_measure do |uom|%>
+        <%= uom.input :code, label: 'Unit of Measure' %>
+    <% end %>
     <%= f.input :sources %>
     <%= f.submit %>
 <% end %>
