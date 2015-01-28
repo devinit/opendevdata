@@ -8,9 +8,9 @@
       <li class="active"><i class='fa fa-cloud-download'></i> <%= @data_serie.name %></li>
 </ul>
 
-<%= link_to edit_data_series_path(@data_serie) do %>
+<a href="#" data-reveal-id="dataSeriesEditModal">
     Edit data serie <span class='fa fa-cog'></span>
-<% end %>
+</a>
 
 
     <div class='panel'><h5>Data Query</h5></div>
@@ -29,7 +29,7 @@
     <tbody>
 
 
-        <% @display_attributes.each do |da| %>
+        <% @clean_display_attributes.each do |da| %>
             <tr>
                 <td><%= check_box_tag "display_title-#{da[:display_title].to_s}".to_sym %></td>
                 <td><%= da[:display_title] %></td>
@@ -52,4 +52,38 @@
         <%= @display_attributes.size %>
     </div>
 </div>
+</div>
+
+<div id="dataSeriesEditModal" class="reveal-modal small" data-reveal>
+  <h3>Edit Dataseries</h3>
+  <form class="custom">
+      <fieldset>
+          <input type="text" id="name" placeholder="Name" value="<%= @data_serie.name %>">
+          <label>Description</label>
+          <textarea id="description" rows=3><%= @data_serie.description %></textarea>
+          <!-- <label>Sector</label> -->
+          <!-- <select id='sector'>
+            <%# Sector.all.each do |sector| %>
+            <option value="<%# sector.id %>"><%# sector.description %></option>
+            <%# end %>
+          </select> -->
+          <label>Unit of Mesasure</label>
+          <!-- <input type="text" id="unit_of_measure" rows=3 placeholder="Unit of Measure"> -->
+          <select id='unit_of_measure'>
+            <option value='wrong'>Please pick a unit of measure</option>
+            <% UnitOfMeasure.all.each do |uom|%>
+              <% selected = @data_serie.unit_of_measure.id == uom.id if !@data_serie.unit_of_measure.nil?%>
+              <option value="<%= uom.id %>" <% if selected %>selected<% end %>><%= uom.description %></option>
+            <% end %>
+          </select>
+          <label>Notes</label>
+          <textarea type="text" id="note" rows=4><%= @data_serie.note %></textarea>
+          <label>Sources</label>
+          <input type="text" id="sources" value="<%= @data_serie.sources %>">
+          <label>Keywords or tags</label>
+          <input type="text" id="tags" placeholder="Keywords" value="<%= @data_serie.tags_array.join(', ') %>">
+          <button type="submit" id="data-series-edit" class="small button">Create</button>
+      </fieldset>
+  </form>
+  <a class="close-reveal-modal">&#215;</a>
 </div>
