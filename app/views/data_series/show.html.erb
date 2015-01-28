@@ -1,6 +1,12 @@
 <% title(@data_serie.name) %>
 <div class='row'><div class='large-12 columns'>
+
 <h1><%= @data_serie.name %></h1>
+
+<ul class="breadcrumbs">
+      <li><%= link_to "Data Series", data_series_index_path %></li>
+      <li class="active"><i class='fa fa-cloud-download'></i> <%= @data_serie.name %></li>
+</ul>
 
 <%= link_to edit_data_series_path(@data_serie) do %>
     Edit data serie <span class='fa fa-cog'></span>
