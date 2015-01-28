@@ -6,7 +6,7 @@
     <%= f.input :description %>
     <%= f.input :note %>
     <%= f.simple_fields_for :unit_of_measure do |uom|%>
-        <%= uom.input :code, label: 'Unit of Measure' %>
+        <%= uom.input :code, label: 'Unit of Measure', collection: UnitOfMeasure.pluck(:code) %>
     <% end %>
     <%= f.input :sources %>
     <%= f.submit %>
