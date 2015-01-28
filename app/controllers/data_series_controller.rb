@@ -127,6 +127,7 @@ class DataSeriesController < ApplicationController
       end
     end
     @clean_display_attributes = @dups_out + @non_dups
+    @clean_display_attributes.uniq! { |da| da[:display_title]}
 
   end
 
