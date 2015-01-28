@@ -1,0 +1,25 @@
+<% if @joined_up_datasets.exists? %>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @joined_up_datasets.each do |judu| %>
+            <tr>
+                <td><%= link_to judu.name, open_workspace_joined_up_dataset_path(judu.open_workspace.id, judu.id) %></td>
+                <td><%= judu.description %></td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+
+<% else %>
+
+<div class='panel'>
+    There are still some Joinedup datasets pending review.
+</div>
+<% end %>
