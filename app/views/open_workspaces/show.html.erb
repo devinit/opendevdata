@@ -70,7 +70,7 @@
         <div class='columns large-12'>
         <% if has_access? @workspace, current_user %>
             <%= link_to new_open_workspace_dataset_path(@workspace) do %>
-                New Dataset <i class='fa fa-plus'></i>
+                Upload Standalone dataset <i class='fa fa-plus'></i>
             <% end %>
             |
             <%= link_to open_workspace_joined_up_dataset_upload_path(@workspace) do %>
