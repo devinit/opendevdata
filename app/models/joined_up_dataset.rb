@@ -1,3 +1,63 @@
+class TimeValidator < ActiveModel::Validator
+  def validate record
+
+    # get headers for record
+    header_definitions = record.data_extract[:header_definitions]
+    format_type_of_data = nil
+    _index = nil
+    header_definitions.each_with_index do |key, index|
+      if key['types_of_data'] == 'time'
+        format_type_of_data = key['format_type']
+        _index = index
+      end
+    end
+
+
+    correct_data = true
+
+    if !_index.nil?
+      record.data_extract[:value_extract].each do |value_extract|
+        # NOTE:  This works for only ruby version 1.9+
+        value = "#{value_extract[value_extract.keys[_index]]}"
+        # check value for validity with rules. If one thing is not accurate, repeat!
+        # Github Issue #82
+        case format_type_of_data
+        when "Y"
+          # if format_type_of_data == 'Y'
+          # check that the record actually is right
+          #ISO8601 would have been better :-(
+            #YYYY
+          correct_data = /^\d{4}$/ === value
+          if !correct_data then
+            record.errors[:data_extract] << "One of your time values is incorrect. Please use YYYY format!"
+            break
+          end
+        when "M"
+          correct_data = /^\d{4}$/ === value
+          if !correct_data then
+            record.errors[:data_extract] << "One of your time values is incorrect. Please use MM/YYYY"
+            break
+          end
+        when "Q"
+          #1) Q1/2014, Q2/2015
+          #2) YYYYQ e.g. 20151
+
+          correct_data = /^Q\d{1}\/\d{4}$/ === value or /^\d{5}$/ === value
+          if !correct_data then
+            record.errors[:data_extract] << "One of your time value is incorrect. To use Quarters, YYYYQ (e.g. 20151 for 1st quarter 2015)"
+            break
+          end
+        else
+          puts "All good!"
+        end
+      end
+    end
+  end
+end
+
+
+
+
 class JoinedUpDataset
   require 'smarter_csv'
   include Mongoid::Document
@@ -5,6 +65,7 @@ class JoinedUpDataset
   include Mongoid::Taggable
   include Mongoid::Timestamps
   include PublicActivity::Model
+  include ActiveModel::Validations
   tracked
   # before_save :set_time
 
@@ -73,6 +134,8 @@ class JoinedUpDataset
   validates :data_choice_made, presence: true, if: :correct_or_data_choice?
   validates :space_time_format_selected, presence: true, if: :correct_or_time_space_format_choices?
   validates :data_series_selected, presence: true, if: :correct_or_dataseries?
+
+  validates_with TimeValidator
 
   def correct?
     # this checks that all fields have properly been added
