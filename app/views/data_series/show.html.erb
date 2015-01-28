@@ -7,10 +7,11 @@
       <li><%= link_to "Data Series", data_series_index_path %></li>
       <li class="active"><i class='fa fa-cloud-download'></i> <%= @data_serie.name %></li>
 </ul>
-
+<% if signed_in? %>
 <a href="#" data-reveal-id="dataSeriesEditModal">
     Edit data serie <span class='fa fa-cog'></span>
 </a>
+<% end %>
 
 
     <div class='panel'><h5>Data Query</h5></div>
@@ -54,12 +55,13 @@
     </div>
 </div>
 </div>
-
+<% if signed_in? %>
 <div id="dataSeriesEditModal" class="reveal-modal small" data-reveal>
   <h3>Edit Dataseries</h3>
   <form class="custom">
       <fieldset>
           <input type="text" id="name" placeholder="Name" value="<%= @data_serie.name %>">
+          <input type='hidden' name='data_serie_id' id='data_serie_id' value='<%= @data_serie.id %>'/>
           <label>Description</label>
           <textarea id="description" rows=3><%= @data_serie.description %></textarea>
           <!-- <label>Sector</label> -->
@@ -88,3 +90,4 @@
   </form>
   <a class="close-reveal-modal">&#215;</a>
 </div>
+<% end %>
