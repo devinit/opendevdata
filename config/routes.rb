@@ -73,6 +73,7 @@ Opendataportal::Application.routes.draw do
   post 'data-series', to: 'data_series#create_endpoint', as: :create_endpoint
 
   # resources :joined_up_dataset_steps
+  get 'joined-up-datasets', to: 'joined_up_datasets#index', as: :judus
   resources :open_workspaces do
     resources :joined_up_dataset_steps, controller: 'open_workspaces/joined_up_dataset_steps'
 
