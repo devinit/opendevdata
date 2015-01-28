@@ -81,3 +81,6 @@ $ ->
 
 $ ->
   $("#workspace-datasets").dataTable()
+
+$ ->
+  $("#workspace-joined-updatasets").dataTable()
