@@ -8,6 +8,7 @@
                 <th>Name</th>
                 <th>Description</th>
                 <th>Tags</th>
+                <th>Dates created</th>
             </tr>
         </thead>
         <tbody>
@@ -20,6 +21,7 @@
                         <span class='label'><%= tag %></span>
                     <% end %>
                 </td>
+                <td><%= judu.created_at.strftime("%d %B, %Y") %></td>
             </tr>
             <% end %>
         </tbody>
