@@ -71,6 +71,7 @@ Opendataportal::Application.routes.draw do
 
   # data series endpoint for jquery
   post 'data-series', to: 'data_series#create_endpoint', as: :create_endpoint
+  post 'data-series-edit', to: 'data_series#edit_endpoint', as: :edit_endpoint
 
   # resources :joined_up_dataset_steps
   get 'joined-up-datasets', to: 'joined_up_datasets#index', as: :judus
