@@ -177,6 +177,37 @@ class DataSeriesController < ApplicationController
     end
   end
 
+
+  def edit_endpoint
+    if signed_in?
+      name = params[:name]
+      description = params[:description]
+      unit_of_measure_id = params[:unit_of_measure]
+      note = params[:note]
+      # sector_id = params[:sector]
+      tags = params[:tags]
+
+      @data_serie = DataSerie.new
+      @data_serie.name = name
+      @data_serie.description = description
+      @data_serie.unit_of_measure = UnitOfMeasure.where(id: unit_of_measure_id).first
+      # @data_serie.sector = Sector.where(id: sector_id).first
+      @data_serie.note = note
+      @data_serie.tags = tags
+
+
+      if @data_serie.save
+        render json: @data_serie, status: :updated, location: @data_serie
+      else
+        render json: @data_serie.errors, status: :unprocessable_entity
+      end
+    else
+      render json: {error: "You can't POST here unless you have signed in!"}
+    end
+  end
+
+
+
   def create
     @data_serie = DataSerie.create data_series_params
 
