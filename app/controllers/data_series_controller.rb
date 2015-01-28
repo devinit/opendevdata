@@ -93,10 +93,56 @@ class DataSeriesController < ApplicationController
     # end
     # @data_serie_slugs = @decompressed_array.uniq
 
+    # cleanup display attributes (remove duplicates with label or play merge game)
+    @clean_display_attributes = []
+    @display_title_count = {}
+    @display_attributes.each do |da|
+      if @display_title_count.has_key? da[:display_title]
+        @display_title_count[da[:display_title]][:count] +=1
+        @display_title_count[da[:display_title]][:records_number] += da[:records_number]
+      else
+        @display_title_count[da[:display_title]] = {}
+        @display_title_count[da[:display_title]][:count] = 1
+        @display_title_count[da[:display_title]][:records_number] = da[:records_number]
+      end
+    end
+
+    @dups_out = []
+    @non_dups = []
+    # time to merge or clean things up
+    @display_attributes.each do |dda|
+      temp = @display_title_count.assoc dda[:display_title]
+      if temp[1][:count] > 1
+        # get dups
+        # dups = @display_attributes.select { |attr| attr[:display_title] == temp[:display_title] }
+        dups = @display_attributes.select { |attr| attr[:display_title] == temp[0] }
+        get_first = dups.first
+        # dda[:records_number] = temp[:records_number]
+        get_first[:records_number] = temp[1][:records_number]
+        @dups_out << get_first
+      elsif temp[1][:count] == 1
+        # less count (just append to clean_display_attributes)
+        # others = @display_attributes.select { |attr| attr[:display_title] != temp[:display_title] }
+        @non_dups << dda
+      end
+    end
+    @clean_display_attributes = @dups_out + @non_dups
+
   end
 
   def edit
     @data_serie = DataSerie.find params[:id]
+  end
+
+  def update
+    @data_serie = DataSerie.find params[:id]
+
+    if @data_serie.update_attributes data_series_params
+      redirect_to @data_serie, notice: 'Update successful'
+    else
+      flash[:alert] = 'failed to update data serie'
+      render 'edit'
+    end
   end
 
   def new
