@@ -11,7 +11,7 @@ gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 gem 'mongoid', "4.0.0.rc2"
 gem 'mongo'
 gem 'mongoid-grid_fs', github: 'ahoward/mongoid-grid_fs'
-gem 'mongoid_slug', github: 'digitalplaywright/mongoid-slug'
+gem 'mongoid-slug', github: 'digitalplaywright/mongoid-slug'
 # gem 'ajax-datatables-rails', '0.1.2' #TODO --> ajaxify mongoid version
 gem "mongoid_paranoia"
 gem 'mongoid_taggable'
