@@ -1,53 +1,66 @@
-
 <div class='row'>
-    <div class='columns large-12'><p class='lead'>
+    <div class='columns large-12'>
+
+    <p class='lead'>
         The Administrator Dashboard
     </p>
+    </div>
+
+</div>
+
+
+
+<div class='row'>
+    <div class='large-6 columns'>
+        <div class='row'>
+            <div class='large-12 columns'>
+                Datasets<br/>
+                <%= @dataset_count %><br/>
+                <%= link_to "view", datasets_path %></div>
+        </div>
+        <hr>
+        <div class='row'>
+            <div class='large-12 columns'>
+                Total Dataset views<br/>
+                <%= @dataset_view %>
+            </div>
+        </div>
+        <hr>
+        <div class='row'>
+            <div class='large-12 columns'>
+                Documents<br/>
+                <%= link_to "#{@document_count}", documents_path %>
+            </div>
+        </div>
+        <hr>
+        <div class='row'>
+            <div class='large-12 columns'>
+                Unapproved Workspaces <br/>
+                <%= link_to "#{@unapproved_count}", unapproved_workspaces_path %>
+            </div>
+        </div>
 
         <div class='row'>
-            <div class='large-6 columns'>
-                <div class='row'>
-                    <div class='large-12 columns'>
-                        Datasets<br/>
-                        <%= @dataset_count %><br/>
-                        <%= link_to "view", datasets_path %></div>
-                </div>
-                <hr>
-                <div class='row'>
-                    <div class='large-12 columns'>
-                        Total Dataset views<br/>
-                        <%= @dataset_view %>
-                    </div>
-                </div>
-                <hr>
-                <div class='row'>
-                    <div class='large-12 columns'>
-                        Documents<br/>
-                        <%= link_to "#{@document_count}", documents_path %>
-                    </div>
-                </div>
-                <hr>
-                <div class='row'>
-                    <div class='large-12 columns'>
-                        Unapproved Workspaces <br/>
-                        <%= link_to "#{@unapproved_count}", unapproved_workspaces_path %>
-                    </div>
-                </div>
-
-                <div class='row'>
-                    <div class='large-12 columns'>
-                        Unapproved Datasets <br/>
-                        <%= link_to "#{@unapproved_datasets_count}", unapproved_datasets_path %>
-                    </div>
-                </div>
-            </div>
-
-            <div class='large-6 columns'>
-                Signups (System users)<br/>
-                <%= User.count %><br/>
-                <%= link_to "view", users_path %>
+            <div class='large-12 columns'>
+                Unapproved Datasets <br/>
+                <%= link_to "#{@unapproved_datasets_count}", unapproved_datasets_path %>
             </div>
         </div>
     </div>
 
+    <div class='large-6 columns'>
+        Signups (System users)<br/>
+        <%= User.count %><br/>
+        <%= link_to "view", users_path %>
+    </div>
+</div>
+
+<div class='row'>
+    <hr>
+
+    <div class='alert-box info'>
+        The actions below are dangerous. Please use them if you must and only on consulting developer.
+    </div>
+
+    <%= link_to "Generate Records for Location", generate_geo_records_path, method: :post, class: 'button success' %>
 </div>
