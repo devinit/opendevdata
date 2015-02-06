@@ -3,6 +3,8 @@
 class Locator
 	include Mongoid::Document
 	include Mongoid::Geospatial
+  include Mongoid::Timestamps
+
 
 	field :name, type: String
 
@@ -13,6 +15,5 @@ class Locator
 	# field :route, type: Linestring #TOFIX -> Linestring unrecognizable
 	field :area, type: Polygon
 
-	
-
+	embeds_one :location_type
 end
