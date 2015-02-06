@@ -14,6 +14,5 @@ class Locator
 
 	# field :route, type: Linestring #TOFIX -> Linestring unrecognizable
 	field :area, type: Polygon
-
-	embeds_one :location_type
+	belongs_to :location_type	
 end
