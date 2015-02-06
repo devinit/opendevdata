@@ -10,7 +10,7 @@ class Locator
 	# field :location, type: Point
 	geo_field :location # indexes too
 
-	field :route, type: Linestring
+	# field :route, type: Linestring #TOFIX -> Linestring unrecognizable
 	field :area, type: Polygon
 
 	
