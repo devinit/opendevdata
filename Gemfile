@@ -26,6 +26,7 @@ gem 'csv_shaper'
 gem 'rubyzip', '~> 0.9.9'
 gem 'georuby', github: 'nofxx/georuby'
 gem 'rgeo'
+gem 'mongoid-geospatial'
 gem 'rgeo-shapefile'
 gem 'sidekiq', '~> 3.2.6'
 gem 'sinatra', require: false
