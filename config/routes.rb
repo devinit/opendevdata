@@ -46,6 +46,7 @@ Opendataportal::Application.routes.draw do
     match 'unapproved-datasets', to: 'datasets#unapproved', as: :unapproved_datasets, via: :get
     match 'datasets/:id/approve', to: 'datasets#approve', as: :approve_dataset, via: :post
     match 'joinedup-datasets/:id/approve', to: 'datasets#approve', as: :approve_joined_up_dataset, via: :post
+    post 'locators/generate-geo-records', to: 'locators#generate_geo_records', as: :generate_geo_records
 
     get 'admin/', to: 'pages#admin', as: :admin
   end
