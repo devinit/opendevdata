@@ -8,8 +8,6 @@ class GenerateGeoData
     # path to folder with geo data csv files
     file_path = "#{Rails.root.to_s}/public/geo_data/"
 
-    logger.info "FILE_NAME #{file_path}"
-
     file_names.each do |file_name|
       # 'district', 'parish', 'region', 'subcounty', 'village'
       location_type = LocationType.find_or_create_by name: file_name
@@ -61,12 +59,11 @@ class GenerateGeoData
           # we don't have any "formal county data", but this will create it
           # _location_type = LocationType.find_or_create name:
         else
-          puts "viola!"
+          logger.info 'done!'
         end
         loc.save if !loc.nil?
       end
 
-      puts "end #{file_name} processing"
     end
   end
 
