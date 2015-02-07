@@ -17,6 +17,8 @@ class Locator
 	field :subcounty_code, type: String
 	field :district, type: String
 	field :district_code, type: String
+	field :region_code, type: String
+	field :region, type: String
 
 	# geometry type
 	# field :location, type: Point
