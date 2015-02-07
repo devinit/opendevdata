@@ -111,3 +111,4 @@ gem 'rabl'
 gem 'oj'
 gem 'wicked'
 gem 'devise-token_authenticatable'
+gem 'pry-rails', :group => :development
