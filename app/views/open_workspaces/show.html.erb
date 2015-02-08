@@ -154,68 +154,69 @@
             <button class='button alert secondary'>Apply</button>
         </div>
         <div class='large-10 columns'>
-        <div data-no-turbolink>
-            <table id="workspace-datasets">
-                <thead class='colorize'>
-                    <tr><th width="550">Dataset Title</th>
-                                        <th width="100">Views</th>
-                                        <th width="220">Release date</th></tr>
-                </thead>
-                <tbody>
-                <% @datasets.each do |dataset| %>
-                    <% if dataset.is_a? Array %>
-                        <% use_dataset = dataset[0] %>
-                    <% else %>
-                        <% use_dataset = dataset %>
-                    <% end %>
-                    <tr>
-                        <td>
-                            <span class='short-header-table'>
-                                <%= link_to use_dataset.name, [@workspace, use_dataset]%>
-                            </span><br/>
-                            <span class='short-description-table'><%= use_dataset.description %></span>
-                        </td>
-                        <td><%= use_dataset.view_count %></td>
-                        <td><%= use_dataset.created_at.strftime("%B %d, %Y") %></td>
-                    </tr>
-                <% end %>
-                </tbody>
-                </table>
+          <span class='label'>Joinedup datasets</span>
+          <div data-no-turbolink>
+              <table id="workspace-joined-updatasets">
+                  <thead>
+                  <tr>
+                      <th>Name</th>
+                      <th>Description</th>
+                      <th>Tags</th>
+                      <th>Dates created</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <% @joined_up_datasets.each do |judu| %>
+                  <tr>
+                      <td><%= link_to judu.name, open_workspace_joined_up_dataset_path(judu.open_workspace.id, judu.id) %></td>
+                      <td><%= judu.description %></td>
+                      <td>
+                          <% judu.tags_array.each do |tag| %>
+                              <span class='label'><%= tag %></span>
+                          <% end %>
+                      </td>
+                      <td><%= judu.created_at.strftime("%d %B, %Y") %></td>
+                  </tr>
+                  <% end %>
+              </tbody>
+          </table>
 
-            <% if params[:search].nil? %>
-                <%# paginate @datasets %>
-            <% end %>
+          </div>
+          <span class='label'>Standalone datasets</span>
+          <div data-no-turbolink>
+              <table id="workspace-datasets">
+                  <thead class='colorize'>
+                      <tr><th width="550">Dataset Title</th>
+                                          <th width="100">Views</th>
+                                          <th width="220">Release date</th></tr>
+                  </thead>
+                  <tbody>
+                  <% @datasets.each do |dataset| %>
+                      <% if dataset.is_a? Array %>
+                          <% use_dataset = dataset[0] %>
+                      <% else %>
+                          <% use_dataset = dataset %>
+                      <% end %>
+                      <tr>
+                          <td>
+                              <span class='short-header-table'>
+                                  <%= link_to use_dataset.name, [@workspace, use_dataset]%>
+                              </span><br/>
+                              <span class='short-description-table'><%= use_dataset.description %></span>
+                          </td>
+                          <td><%= use_dataset.view_count %></td>
+                          <td><%= use_dataset.created_at.strftime("%B %d, %Y") %></td>
+                      </tr>
+                  <% end %>
+                  </tbody>
+                  </table>
+
+              <% if params[:search].nil? %>
+                  <%# paginate @datasets %>
+              <% end %>
+          </div>
         </div>
-
-        <div data-no-turbolink>
-            <table id="workspace-joined-updatasets">
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Tags</th>
-                    <th>Dates created</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% @joined_up_datasets.each do |judu| %>
-                <tr>
-                    <td><%= link_to judu.name, open_workspace_joined_up_dataset_path(judu.open_workspace.id, judu.id) %></td>
-                    <td><%= judu.description %></td>
-                    <td>
-                        <% judu.tags_array.each do |tag| %>
-                            <span class='label'><%= tag %></span>
-                        <% end %>
-                    </td>
-                    <td><%= judu.created_at.strftime("%d %B, %Y") %></td>
-                </tr>
-                <% end %>
-            </tbody>
-        </table>
-
-        </div>
-
-</div></div>
+      </div>
     <% else %>
     <div class='panel callout'>
         <p class='lead'>There are no datasets in this workspace</p>
