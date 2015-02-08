@@ -83,10 +83,6 @@ class SpaceValidator < ActiveModel::Validator
             break
           end
         end
-
-
-      rescue Mongoid::Errors::DocumentNotFound
-        logger.info "Could not find document!"
       else
         puts "failed"
       end
