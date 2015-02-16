@@ -1,4 +1,7 @@
 class DataSeriesController < ApplicationController
+
+  # TODO -> fix permissions on who can edit this!!!!!
+
   before_action :authenticate_user!, except: [:create_endpoint, :edit_endpoint, :index, :show]
   respond_to :html, :csv
 
