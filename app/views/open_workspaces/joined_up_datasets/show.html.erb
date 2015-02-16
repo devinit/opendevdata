@@ -89,7 +89,9 @@
             </p>
             <% if signed_in? %>
                 <% if has_change_access?(@joined_up_dataset.open_workspace, current_user) %>
-                    <%= link_to "Delete", open_workspace_joined_up_dataset_path(@workspace, @joined_up_dataset.id), method: :delete, data: { confirm: "Are you sure?"} %>
+                    <%= link_to "Delete",
+                      open_workspace_joined_up_dataset_path(@workspace, @joined_up_dataset.id),
+                      method: :delete, data: { confirm: "Are you sure?"} %>
                 <% end %>
             <% end %>
         </div>
