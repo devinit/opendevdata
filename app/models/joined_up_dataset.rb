@@ -100,6 +100,7 @@ class JoinedUpDataset
   include Mongoid::Timestamps
   include PublicActivity::Model
   include ActiveModel::Validations
+  include Mongoid::Paranoia
   tracked
   # before_save :set_time
 
