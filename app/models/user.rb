@@ -1,6 +1,7 @@
 class User
   include Mongoid::Document
   include Mongoid::Slug
+  include Mongoid::Paranoia
   rolify
 
   before_save :set_name_and_case
