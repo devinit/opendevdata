@@ -149,11 +149,21 @@ class OpenWorkspaces::JoinedUpDatasetsController < ApplicationController
     @joined_up_dataset = @workspace.joined_up_datasets.find params[:id]
   end
 
-  def index
-    @joined_up_datasets = @workspace.joined_up_datasets.where pending: false
-  end
 
   def destroy
+    @joined_up_dataset = @workspace.joined_up_datasets.find params[:id]
+    if current_user.is_admin? or @workspace.has_change_access? current_user
+      # perform a soft delete
+      @joined_up_dataset.delete
+      redirect_to @workspace, notice: "You've successfully deleted the Joined Up dataset"
+    else
+      redirect_to  open_workspace_joined_up_dataset_path(@workspace, @joined_up_dataset.id),
+        alert: "You don't have the permission to delete this dataset. Contact Administrator"
+    end
+  end
+
+  def index
+    @joined_up_datasets = @workspace.joined_up_datasets.where pending: false
   end
 
   def update
