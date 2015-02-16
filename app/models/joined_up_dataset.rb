@@ -90,7 +90,55 @@ class SpaceValidator < ActiveModel::Validator
   end
 end
 
+# override String class
+class String
+  def is_numeric?
+    return true if self =~ /^\d+$/
+    true if Float(self) rescue false
+  end
+end
 
+class NumericValidator
+  def validate record
+    # get headers for record
+    header_definitions = record.data_extract[:header_definitions]
+    format_type_of_data = nil
+
+    # hold the column letters in this array
+    _indices = []
+
+    header_definitions.each_with_index do |key, index|
+      if key['types_of_data'] == "data_series"
+        # format_type_of_data = key['format_type']
+        _index << index
+      end
+    end
+
+    counts = 0
+
+    # code_book = ['A1','A2','A3','A4','A5','A6','00']
+    if !_indices.empty?
+
+      # Loop through all data searching for that nasty value!!!!
+      case format_type_of_data
+      when 'A5'
+        location_type = LocationType.find_by name: 'parish'
+        # use parish_code
+        record.data_extract[:value_extract].each do |value_extract|
+          # NOTE:  This works for only ruby version 1.9+
+          value = "#{value_extract[value_extract.keys[_index]]}"
+          # check whether it exists
+          if !Locator.where(location_type: location_type, parish_code: value).exists?
+            record.errors[:data_extract] << "Your location cannot be found, parish code wrong!"
+            break
+          end
+        end
+      else
+        puts "failed"
+      end
+    end
+  end
+end
 
 class JoinedUpDataset
   require 'smarter_csv'
