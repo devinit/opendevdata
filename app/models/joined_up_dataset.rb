@@ -74,6 +74,7 @@ class SpaceValidator < ActiveModel::Validator
       when 'A5'
         location_type = LocationType.find_by name: 'parish'
         # use parish_code
+        # TODO -> refactor duplicate
         record.data_extract[:value_extract].each do |value_extract|
           # NOTE:  This works for only ruby version 1.9+
           value = "#{value_extract[value_extract.keys[_index]]}"
@@ -83,6 +84,72 @@ class SpaceValidator < ActiveModel::Validator
             break
           end
         end
+      when 'A6'
+        location_type = LocationType.find_by name: 'village'
+        # TODO -> refactor duplicate
+        record.data_extract[:value_extract].each do |value_extract|
+          # NOTE:  This works for only ruby version 1.9+
+          value = "#{value_extract[value_extract.keys[_index]]}"
+          # check whether it exists
+          if !Locator.where(location_type: location_type, village_code: value).exists?
+            record.errors[:data_extract] << "Your location cannot be found, village code wrong!"
+            break
+          end
+        end
+
+      when 'A4'
+        location_type = LocationType.find_by name: 'subcounty'
+        # TODO -> refactor duplicate
+        record.data_extract[:value_extract].each do |value_extract|
+          # NOTE:  This works for only ruby version 1.9+
+          value = "#{value_extract[value_extract.keys[_index]]}"
+          # check whether it exists
+          if !Locator.where(location_type: location_type, subcounty_code: value).exists?
+            record.errors[:data_extract] << "Your location cannot be found, subcounty code wrong!"
+            break
+          end
+        end
+
+      when 'A3'
+        location_type = LocationType.find_by name: 'county'
+        # TODO -> refactor duplicate
+        record.data_extract[:value_extract].each do |value_extract|
+          # NOTE:  This works for only ruby version 1.9+
+          value = "#{value_extract[value_extract.keys[_index]]}"
+          # check whether it exists
+          if !Locator.where(location_type: location_type, county_code: value).exists?
+            record.errors[:data_extract] << "Your location cannot be found, county code wrong!"
+            break
+          end
+        end
+
+      when 'A2'
+        location_type = LocationType.find_by name: 'district'
+        # TODO -> refactor duplicate
+        record.data_extract[:value_extract].each do |value_extract|
+          # NOTE:  This works for only ruby version 1.9+
+          value = "#{value_extract[value_extract.keys[_index]]}"
+          # check whether it exists
+          if !Locator.where(location_type: location_type, district_code: value).exists?
+            record.errors[:data_extract] << "Your location cannot be found, district code wrong!"
+            break
+          end
+        end
+
+      when 'A1'
+        location_type = LocationType.find_by name: 'region'
+        # TODO -> refactor duplicate
+        record.data_extract[:value_extract].each do |value_extract|
+          # NOTE:  This works for only ruby version 1.9+
+          value = "#{value_extract[value_extract.keys[_index]]}"
+          # check whether it exists
+          if !Locator.where(location_type: location_type, region_code: value).exists?
+            record.errors[:data_extract] << "Your location cannot be found, region code wrong!"
+            break
+          end
+        end
+
+
       else
         puts "failed"
       end
@@ -116,26 +183,8 @@ class NumericValidator
 
     counts = 0
 
-    # code_book = ['A1','A2','A3','A4','A5','A6','00']
     if !_indices.empty?
-
-      # Loop through all data searching for that nasty value!!!!
-      case format_type_of_data
-      when 'A5'
-        location_type = LocationType.find_by name: 'parish'
-        # use parish_code
-        record.data_extract[:value_extract].each do |value_extract|
-          # NOTE:  This works for only ruby version 1.9+
-          value = "#{value_extract[value_extract.keys[_index]]}"
-          # check whether it exists
-          if !Locator.where(location_type: location_type, parish_code: value).exists?
-            record.errors[:data_extract] << "Your location cannot be found, parish code wrong!"
-            break
-          end
-        end
-      else
-        puts "failed"
-      end
+      # TODO -> go through every item, check whether numeric
     end
   end
 end
