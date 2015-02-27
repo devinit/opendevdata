@@ -25,7 +25,7 @@ $("button#data-series-edit").on "click", ->
     sector = $(this).val().trim()
 
   if (name.trim() isnt "") and (description.trim() isnt "") and (unit_of_measure isnt "")
-    url = window.location.protocol + "//" + window.location.host + "/data-series-edit"
+    url = window.location.protocol + "//" + window.location.host + "/data-series"
     $.post url,
       name: name
       description: description
