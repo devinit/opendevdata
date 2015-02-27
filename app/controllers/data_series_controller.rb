@@ -231,7 +231,7 @@ class DataSeriesController < ApplicationController
 
   private
     def data_series_params
-      params.require(:data_serie).permit(:name, :description, :notes, :sector_id, :unit_of_measure_id)
+      params.require(:data_serie).permit(:name, :description, :notes, :sector_id, :unit_of_measure_id, :sources)
     end
 
 end
