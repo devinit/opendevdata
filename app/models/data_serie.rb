@@ -10,7 +10,8 @@ class DataSerie
   field :sources, type: String
 
   slug :name
-  has_one :unit_of_measure, class_name: "UnitOfMeasure", inverse_of: :measureable_unit
+  # has_many :units_of_measure, class_name: "UnitOfMeasure", inverse_of: :measureable_unit
+  embeds_one :unit_of_measure
   # belongs_to :sector
 
   # field :
