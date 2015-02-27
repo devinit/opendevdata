@@ -159,6 +159,7 @@ class DataSeriesController < ApplicationController
       description = params[:description]
       unit_of_measure_id = params[:unit_of_measure]
       note = params[:note]
+      sources = params[:sources]
       # sector_id = params[:sector]
       tags = params[:tags]
 
@@ -169,6 +170,7 @@ class DataSeriesController < ApplicationController
       # @data_serie.sector = Sector.where(id: sector_id).first
       @data_serie.note = note
       @data_serie.tags = tags
+      @data_serie.sources = sources
 
 
       if @data_serie.save
