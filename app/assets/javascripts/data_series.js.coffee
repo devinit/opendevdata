@@ -16,6 +16,7 @@ $("button#data-series-edit").on "click", ->
   tags = $("input#tags").val()
   data_serie_id = $("input#data_serie_id").val()
   note = $("textarea#note").val()
+
   unit_of_measure = ""
 
   $("select#unit_of_measure option:selected").each ->
@@ -25,7 +26,7 @@ $("button#data-series-edit").on "click", ->
     sector = $(this).val().trim()
 
   if (name.trim() isnt "") and (description.trim() isnt "") and (unit_of_measure isnt "")
-    url = window.location.protocol + "//" + window.location.host + "/data-series"
+    url = window.location.protocol + "//" + window.location.host + "/data-series-edit"
     $.post url,
       name: name
       description: description
