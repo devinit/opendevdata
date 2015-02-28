@@ -11,12 +11,13 @@ class DataSerie
 
   slug :name
   # has_many :units_of_measure, class_name: "UnitOfMeasure", inverse_of: :measureable_unit
-  embeds_one :unit_of_measure
+  # embeds_one :unit_of_measure
+  has_many :units_of_measure, class_name: "UnitOfMeasure"
   # belongs_to :sector
 
   # field :
 
-  validates :name, :description, :unit_of_measure, presence: true
+  validates :name, :description, presence: true
   #validates :sector_id, presence: true
 
   # has_many :joined_up_datasets

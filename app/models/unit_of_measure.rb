@@ -10,8 +10,8 @@ class UnitOfMeasure
   validates :description, presence: true
 
   # belongs_to :measureable_unit, class_name: "DataSerie", inverse_of: :unit_of_measure
-  # belongs_to :data_serie
-  embedded_in :data_serie
+  belongs_to :data_serie
+  # embedded_in :data_serie
 
   # Some possible values (Admin should input this)
   # ==============================================
