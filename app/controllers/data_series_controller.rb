@@ -166,7 +166,9 @@ class DataSeriesController < ApplicationController
       @data_serie = DataSerie.new
       @data_serie.name = name
       @data_serie.description = description
-      @data_serie.unit_of_measure = UnitOfMeasure.where(id: unit_of_measure_id).first
+      # TODO make sure to get rid of other units of measure when not in use
+      # We always need one!
+      @data_serie.units_of_measure << UnitOfMeasure.find(unit_of_measure_id) if unit_of_measure_id != "wrong"
       # @data_serie.sector = Sector.where(id: sector_id).first
       @data_serie.note = note
       @data_serie.tags = tags
@@ -185,22 +187,32 @@ class DataSeriesController < ApplicationController
 
 
   def edit_endpoint
+
+    # This method is used to as an Endpoint for Ajax calls to it
+    # you can use it to update the Data series through a modal, for example
+
     if signed_in?
       name = params[:name]
       description = params[:description]
       unit_of_measure_id = params[:unit_of_measure]
       note = params[:note]
-      # sector_id = params[:sector]
       tags = params[:tags]
+      sources = params[:sources]
 
       @data_serie = DataSerie.find params[:data_serie_id]
       @data_serie.name = name
       @data_serie.description = description
-      @data_serie.unit_of_measure = UnitOfMeasure.where(id: unit_of_measure_id).first
+
+      if unit_of_measure_id != "wrong"
+
+        @data_serie.units_of_measure << UnitOfMeasure.find(unit_of_measure_id)
+
+      end
+
       # @data_serie.sector = Sector.where(id: sector_id).first
       @data_serie.note = note
       @data_serie.tags = tags
-
+      @data_serie.sources = sources
 
       if @data_serie.save
         render json: @data_serie, status: :updated, location: @data_serie
