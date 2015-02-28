@@ -61,8 +61,10 @@
   <form class="custom">
       <fieldset>
           <input type="text" id="name" placeholder="Name" value="<%= @data_serie.name %>">
-          <input type='hidden' name='data_serie_id' id='data_serie_id' value='<%= @data_serie.id %>'/>
+          <% data_serie_id = params[:id] %>
+          <input type='hidden' name='data_serie_id' id='data_serie_id' value='<%# @data_serie.id %><%= data_serie_id %>'/>
           <label>Description</label>
+
           <textarea id="description" rows=3><%= @data_serie.description %></textarea>
           <!-- <label>Sector</label> -->
           <!-- <select id='sector'>
@@ -71,21 +73,22 @@
             <%# end %>
           </select> -->
           <label>Unit of Mesasure</label>
-          <!-- <input type="text" id="unit_of_measure" rows=3 placeholder="Unit of Measure"> -->
           <select id='unit_of_measure'>
             <option value='wrong'>Please pick a unit of measure</option>
             <% UnitOfMeasure.all.each do |uom|%>
               <% selected = @data_serie.unit_of_measure.id == uom.id if !@data_serie.unit_of_measure.nil?%>
               <option value="<%= uom.id %>" <% if selected %>selected<% end %>><%= uom.description %></option>
             <% end %>
-          </select>
+
+        </select>
+        
           <label>Notes</label>
           <textarea type="text" id="note" rows=4><%= @data_serie.note %></textarea>
           <label>Sources</label>
           <input type="text" id="sources" value="<%= @data_serie.sources %>">
           <label>Keywords or tags</label>
           <input type="text" id="tags" placeholder="Keywords" value="<%= @data_serie.tags_array.join(', ') %>">
-          <button type="submit" id="data-series-edit" class="small button">Create</button>
+          <button type="submit" id="data-series-edit" class="small button">Update</button>
       </fieldset>
   </form>
   <a class="close-reveal-modal">&#215;</a>

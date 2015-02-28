@@ -20,8 +20,13 @@
             <tr>
                 <td><%= link_to data_serie.name, data_serie %></td>
                 <td><%= data_serie.description %></td>
-                <td><%= data_serie.unit_of_measure.description if !data_serie.unit_of_measure.nil?%></td>
-                <!-- <td><%# data_serie.sector.description if !data_serie.sector.nil?%></td> -->
+                <td>
+                  <% if data_serie.units_of_measure.exists? %>
+                    <%= data_serie.units_of_measure.first.description %>
+                  <% else %>
+                    None
+                  <% end %>
+                </td>
                 <td><%= data_serie.tags %></td>
                 <td><%= data_serie.sources %></td>
                 <td><%= data_serie.note %></td>
