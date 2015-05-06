@@ -47,7 +47,7 @@
             <p><span class='label secondary'><%= @document.uploaded_on.strftime("%d %B, %Y") %></span></p>
 
             <% if has_access?(@workspace, current_user) %>
-                <%= link_to 'Edit document', edit_open_workspace_document_path(@workspace, @document) %>
+                <%# link_to 'Edit document', edit_open_workspace_document_path(@workspace, @document) %>
             <% end %>
 
         </div>
