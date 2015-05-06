@@ -18,7 +18,7 @@ class OpenWorkspaces::DocumentsController < ApplicationController
 
   def create
     @document = Document.create document_params.merge(user: current_user,
-                                                  workspace: @workspace)
+                                                  open_workspace: @workspace)
     if @document.save
       # redirect_to [@workspace, @dataset], notice: "You've successfully uploaded a dataset"
       redirect_to open_workspace_document_path(@workspace, @document), notice: "You've successfully uploaded a document"
