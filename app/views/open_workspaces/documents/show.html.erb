@@ -34,8 +34,8 @@
 
             <h5>Publisher/Author</h5>
             <p>
-                <% if @document.workspace %>
-                    <em><%= link_to @document.workspace.organization_name, @document.workspace %></em>
+                <% if !@document.open_workspace.nil? %>
+                    <em><%= link_to @document.open_workspace.organization_name, @document.open_workspace %></em>
                 <% else %>
                 <div class='panel callout'><p>This data is not available at the moment</p></div>
                 <% end %>
@@ -47,7 +47,7 @@
             <p><span class='label secondary'><%= @document.uploaded_on.strftime("%d %B, %Y") %></span></p>
 
             <% if has_access?(@workspace, current_user) %>
-                <%= link_to 'Edit document', edit_workspace_document_path(@workspace, @document) %>
+                <%= link_to 'Edit document', edit_open_workspace_document_path(@workspace, @document) %>
             <% end %>
 
         </div>
