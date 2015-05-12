@@ -18,6 +18,7 @@ class OpenWorkspace
   has_many :joined_up_datasets
   has_many :documents
   has_many :messages
+  has_many :feedbacks
 
   validates :organization_name, :location, :description, presence: true
 
