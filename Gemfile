@@ -112,3 +112,5 @@ gem 'oj'
 gem 'wicked'
 gem 'devise-token_authenticatable'
 gem 'pry-rails', :group => :development
+gem 'simple_enum', "~> 2.0.0", require: "simple_enum/mongoid"
+gem "recaptcha", :require => "recaptcha/rails"
