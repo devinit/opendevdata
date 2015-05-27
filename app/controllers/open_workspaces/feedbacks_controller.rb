@@ -24,6 +24,7 @@ class OpenWorkspaces::FeedbacksController < ApplicationController
     @feedback.last_name = last_name
     @feedback.remarks = remarks
     @feedback.gender = gender
+    @feedback.open_workspace = @workspace
 
     if @feedback.save
       render json: @feedback, status: :created, location: [@workspace, @feedback]
