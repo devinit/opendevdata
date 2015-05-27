@@ -277,7 +277,13 @@
         gender: gender,
         workspace_id: workspace_id
       }
-      $.post(url, obj);
+      $.post(url, obj)
+        .done(function(data){
+          if (data){
+            console.log('done!');
+            // TODO -> hide modal after
+          }
+        });
       event.preventDefault();
     })
   })
