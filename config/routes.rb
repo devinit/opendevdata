@@ -27,7 +27,6 @@ Opendataportal::Application.routes.draw do
         resources :joined_up_datasets, only: [:index, :show ], controller: 'open_workspaces/joined_up_datasets'
         resources :datasets, only: [:index, :show], controller: 'open_workspaces/datasets'
         resources :documents, only: [:index, :show], controller: 'open_workspaces/documents'
-        resources :feedback
       end
     end
   end
@@ -79,7 +78,7 @@ Opendataportal::Application.routes.draw do
   get 'joined-up-datasets', to: 'joined_up_datasets#index', as: :judus
   resources :open_workspaces do
     resources :joined_up_dataset_steps, controller: 'open_workspaces/joined_up_dataset_steps'
-
+    resources :feedbacks, controller: 'open_workspaces/feedbacks'
     resources :memberships, only: [:show] do
       member do
         get 'approve'
