@@ -64,7 +64,6 @@
 
     </div>
 </div>
-
     <% if signed_in? %>
     <div class='row'>
         <div class='columns large-12'>
@@ -100,6 +99,15 @@
         </div>
     </div>
     <% end %>
+
+    <div class='row'>
+      <p>How important is this data to you?
+      <a href="#" data-reveal-id="feedbackModal">
+        <%= image_tag "feedback-icon.png", alt: "Feedback" %>
+      </a>
+      </p>
+    </div>
+
 
     <% if @datasets %>
         <div class='row panel'>
@@ -229,3 +237,48 @@
     <%= render "email_form" %>
     <a class="close-reveal-modal">&#215;</a>
 </div>
+
+<div id='feedbackModal' class='reveal-modal small' data-reveal>
+  <h3>Why is this data important to you?</h3>
+  <form class="custom">
+      <fieldset>
+          <input type="text" id="first_name" placeholder="First Name">
+          <input type="text" id="last_name" placeholder="Last Name">
+          <label>Remarks</label>
+          <textarea id="feedback-remarks" rows=3></textarea>
+
+          <label>Gender</label>
+          <select id='gender'>
+            <option value='f'>Female</option>
+            <option value='m'>Male</option>
+          </select>
+          <input type="hidden" value="<%= @workspace.id %>" id='workspace_id'>
+
+          <button type="submit" id="feedback" class="small button">Submit Feedback</button>
+      </fieldset>
+  </form>
+  <a class="close-reveal-modal">&#215;</a>
+</div>
+
+
+<script>
+  $(document).ready(function(){
+    $('button#feedback').click(function(event){
+      var url = "<%= open_workspace_feedbacks_url(@workspace) %>";
+      var first_name = $('input#first_name').val();
+      var last_name = $('input#last_name').val();
+      var remarks = $('textarea#feedback-remarks').val();
+      var gender = $('select#gender option:selected').val();
+      var workspace_id = $('input#workspace_id').val();
+      var obj = {
+        first_name: first_name,
+        last_name: last_name,
+        remarks: remarks,
+        gender: gender,
+        workspace_id: workspace_id
+      }
+      $.post(url, obj);
+      event.preventDefault();
+    })
+  })
+</script>
