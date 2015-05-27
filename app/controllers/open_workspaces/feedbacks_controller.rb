@@ -5,8 +5,31 @@ class OpenWorkspaces::FeedbacksController < ApplicationController
     @feedback = Feedback.new
   end
 
+  def show
+    @feedback = @workspace.feedbacks.find params[:id]
+
+    render json: @feedback
+  end
+
   def create
-    @feedback = Feedback.create feedback_params.merge(open_workspace: @workspace)
+    first_name = params[:first_name]
+    last_name = params[:last_name]
+    remarks = params[:remarks]
+    gender = params[:gender]
+    workspace_id = params[:workspace_id]
+    @workspace = OpenWorkspace.find_by id: workspace_id
+    @feedback = Feedback.new
+
+    @feedback.first_name = first_name
+    @feedback.last_name = last_name
+    @feedback.remarks = remarks
+    @feedback.gender = gender
+
+    if @feedback.save
+      render json: @feedback, status: :created, location: [@workspace, @feedback]
+    else
+      render json: @feedback.errors, status: :unprocessable_entity
+    end
   end
 
   private
