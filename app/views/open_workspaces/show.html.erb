@@ -92,25 +92,21 @@
             <% end %>
         <% end %>
 
-            <div class='right panel callout'>
+        <p class='right panel callout'>
+        <a href="#" data-reveal-id="feedbackModal">
+          <%= image_tag "feedback-icon.png", alt: "Feedback" %>
+        </a>
+        </p>
+            <!-- <div class='right panel callout'>
                 <p class='lead'>You can download all datasets as:</p>
                 <ul>
-                    <li><%= link_to "JSON", "#{datasets_url}.json" %></li>
-                    <li><%= link_to "CSV", datasets_path(@datasets, format: 'csv') %></li>
+                    <li><%# link_to "JSON", "#{datasets_url}.json" %></li>
+                    <li><%# link_to "CSV", datasets_path(@datasets, format: 'csv') %></li>
                 </ul>
-            </div>
+            </div> -->
         </div>
     </div>
     <% end %>
-
-    <div class='row'>
-      <p>How important is this data to you?
-      <a href="#" data-reveal-id="feedbackModal">
-        <%= image_tag "feedback-icon.png", alt: "Feedback" %>
-      </a>
-      </p>
-    </div>
-
 
     <% if @datasets %>
         <div class='row panel'>
