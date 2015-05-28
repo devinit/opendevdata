@@ -2,7 +2,7 @@ class OpenWorkspaces::FeedbacksController < ApplicationController
   before_filter :get_workspace
 
   def index
-    @feedbacks = @workspace.feedbacks.all 
+    @feedbacks = @workspace.feedbacks.all
   end
 
   def new
@@ -27,6 +27,11 @@ class OpenWorkspaces::FeedbacksController < ApplicationController
     @feedback.first_name = first_name
     @feedback.last_name = last_name
     @feedback.remarks = remarks
+    if gender == 'f'
+      gender = :female
+    elsif gender == 'm'
+      gender = :male
+    end
     @feedback.gender = gender
     @feedback.open_workspace = @workspace
 
