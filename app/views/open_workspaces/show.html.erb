@@ -38,6 +38,9 @@
                             <%= link_to 'Edit Workspace', [:edit, @workspace] %>
                         </li>
                         <li>
+                          <%= link_to "Show Feedback", open_workspace_feedbacks_path(@workspace) %>
+                        </li>
+                        <li>
                             <%= link_to @workspace, method: :delete, confirm: "Are you sure?" do %>
                             Delete <span class='fa fa-warning'></span>
                             <% end %>
