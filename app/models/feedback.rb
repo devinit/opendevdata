@@ -1,4 +1,5 @@
 class Feedback
+  #TODO -> GEOIP to track IP address and location
   include Mongoid::Document
   include SimpleEnum::Mongoid
   field :country, type: String
