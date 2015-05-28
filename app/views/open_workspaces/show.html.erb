@@ -281,7 +281,7 @@
         .done(function(data){
           if (data){
             console.log('done!');
-            // TODO -> hide modal after
+            $('#feedbackModal').foundation('reveal', 'close');
           }
         });
       event.preventDefault();
