@@ -1,6 +1,10 @@
 class OpenWorkspaces::FeedbacksController < ApplicationController
   before_filter :get_workspace
 
+  def index
+    @feedbacks = @workspace.feedbacks.all 
+  end
+
   def new
     @feedback = Feedback.new
   end
