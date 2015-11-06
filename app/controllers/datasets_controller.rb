@@ -5,6 +5,7 @@ class DatasetsController < ApplicationController
 
   def get_dataset
     @dataset = Dataset.find(slugs=params[:id]) # we are using slugs!
+
     # @dataset = Dataset.find_by_slug! params[:id]
     rescue Mongoid::Errors::DocumentNotFound
       flash[:alert] = "The dataset you were looking for could not be found."
@@ -64,10 +65,12 @@ class DatasetsController < ApplicationController
     if signed_in?
       if @dataset.user != current_user
         @dataset.view_count += 1
+        @dataset.download_count +=1
         @dataset.save # save view count
       end
     else
       @dataset.view_count += 1
+      @dataset.download_count +=1
       @dataset.save # save view count
     end
 

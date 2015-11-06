@@ -2,6 +2,9 @@ require 'sidekiq/web'
 require 'api_constraints'
 
 Opendataportal::Application.routes.draw do
+
+  get 'analytics/index'
+
   root 'pages#index'
   get "about", to: 'pages#about', as: :about
   get "developer", to: 'pages#developer', as: :developer

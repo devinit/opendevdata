@@ -79,6 +79,7 @@
                 <thead class='colorize'>
                     <th width="550">Dataset Title</th>
                     <th width="100">Views</th>
+                    <th width="100">Downloads</th>
                     <th width="220">Release date</th>
                 </thead>
                 <tbody>
@@ -96,6 +97,7 @@
                             <span class='short-description-table'><%= use_dataset.description %></span>
                         </td>
                         <td><%= use_dataset.view_count %></td>
+                        <td><%= use_dataset.download_count %></td>
                         <td><%= use_dataset.created_at.strftime("%d %B, %Y") %></td>
                     </tr>
                 <% end %>
