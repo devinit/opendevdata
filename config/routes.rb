@@ -60,6 +60,11 @@ Opendataportal::Application.routes.draw do
 
   resources :datasets, concerns: :sociable, path: 'standalone-datasets' # all datasets
 
+  match 'datasets/download/:id', to: 'datasets#download', via: :get,as: :download
+
+
+
+
   get 'my-workspaces', to: 'open_workspaces#my_workspaces', as: :my_workspaces
 
   match 'open_workspaces/:id/apply-to-join', to: 'open_workspaces#apply_to_join', as: :apply_to_join, via: :post
@@ -108,6 +113,8 @@ Opendataportal::Application.routes.draw do
   end
 
   get "delete_dataset/:id", to: 'datasets#delete_page', as: 'delete_dataset'
+
+
 
   resources :documents, concerns: :sociable
   get 'activity', to: 'pages#activities', as: 'activity'

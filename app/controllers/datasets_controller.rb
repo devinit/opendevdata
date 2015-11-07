@@ -36,6 +36,18 @@ class DatasetsController < ApplicationController
   #   @dataset = Dataset.to_csv
   # end
 
+  def download
+    @dataset = Dataset.find(slugs=params[:id]) # we are using slugs!
+    @dataset.download_count +=1
+    @dataset.save # save download count
+    puts  "format #{params[:format]}"
+    if params[:format] == 'json'
+      redirect_to "#{dataset_url(@dataset)}.json"
+    else
+      redirect_to @dataset.attachment.url
+    end
+  end
+
   def show
     data_extract = @dataset.data_extract
     @chart_type ||= @dataset.chart_type

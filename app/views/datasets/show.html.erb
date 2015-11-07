@@ -107,9 +107,9 @@
                 Download
               </a>
               <ul id='options1' data-dropdown-content class='f-dropdown'>
-                <li><%= link_to "Excel", @dataset.attachment.url %></li>
-                <li><%= link_to "JSON", "#{dataset_url(@dataset)}.json" %></li>
-              </ul>
+                <li><a href="/datasets/download/<%= @dataset.id %>?format=csv" >Excel</a></li>
+                <li><a href="/datasets/download/<%= @dataset.id %>?format=json" >JSON</a></li>
+            </ul>
             </div>
         <% end %>
     </p>
