@@ -23,6 +23,7 @@
                   </li>
                 <% end %>
                   <li><a href="#">Delete</a></li>
+                  <li><a href="#">View FeedBack</a></li>
                 </ul></span>
     </p>
     <% else %>
@@ -109,6 +110,8 @@
               <ul id='options1' data-dropdown-content class='f-dropdown'>
                 <li><a href="/datasets/download/<%= @dataset.id %>?format=csv" >Excel</a></li>
                 <li><a href="/datasets/download/<%= @dataset.id %>?format=json" >JSON</a></li>
+                <li><a href="#" id ="feedback-link" data-reveal-id="feedbackModal">Feed back</a></li>
+
             </ul>
             </div>
         <% end %>
@@ -171,3 +174,58 @@
 
     </div>
 </div>
+<div id='feedbackModal' class='reveal-modal small' data-reveal>
+  <h3>Why is this data important to you?</h3>
+  <form class="custom">
+      <fieldset>
+          <input type="text" id="first_name" placeholder="First Name">
+          <input type="text" id="last_name" placeholder="Last Name">
+          <label>Remarks</label>
+          <textarea id="feedback-remarks" rows=3></textarea>
+
+          <label>Gender</label>
+          <select id='gender'>
+            <option value='f'>Female</option>
+            <option value='m'>Male</option>
+          </select>
+          <button type="submit" id="feedback" class="small button">Submit Feedback</button>
+      </fieldset>
+  </form>
+  <a class="close-reveal-modal">&#215;</a>
+</div>
+
+
+<script>
+  $(document).ready(function(){
+    $('#feedback').click(function(event){
+      var url = "http://" + window.location.host+"<%= download_path %>";
+      console.log(url)
+      var first_name = $('input#first_name').val();
+      var last_name = $('input#last_name').val();
+      var remarks = $('textarea#feedback-remarks').val();
+      var gender = $('select#gender option:selected').val();
+      var obj = {
+        first_name: first_name,
+        last_name: last_name,
+        remarks: remarks,
+        gender: gender,
+        format: "json",
+        id:'545897446f70650f9b480000'
+      }
+      $.post(url, obj)
+        .done(function(data){
+          if (data){
+
+            $('#feedbackModal').foundation('reveal', 'close');
+            console.log(data.url)
+            //window.open(data.url);
+            window.location.href = data.url;
+
+          }
+        }).fail(function(error){
+            alert(error)
+        });
+      event.preventDefault();
+    })
+  })
+</script>

@@ -23,7 +23,6 @@ class OpenWorkspaces::FeedbacksController < ApplicationController
     workspace_id = params[:workspace_id]
     @workspace = OpenWorkspace.find_by id: workspace_id
     @feedback = Feedback.new
-
     @feedback.first_name = first_name
     @feedback.last_name = last_name
     @feedback.remarks = remarks

@@ -60,7 +60,10 @@ Opendataportal::Application.routes.draw do
 
   resources :datasets, concerns: :sociable, path: 'standalone-datasets' # all datasets
 
-  match 'datasets/download/:id', to: 'datasets#download', via: :get,as: :download
+  match 'datasets/download', to: 'datasets#download', via: :post,as: :download
+
+  match 'datasets/feedbacks', to: 'datasets#feedbacks', via: :get,as: :feedbacks
+
 
 
 

@@ -40,11 +40,33 @@ class DatasetsController < ApplicationController
     @dataset = Dataset.find(slugs=params[:id]) # we are using slugs!
     @dataset.download_count +=1
     @dataset.save # save download count
-    puts  "format #{params[:format]}"
-    if params[:format] == 'json'
-      redirect_to "#{dataset_url(@dataset)}.json"
+
+    first_name = params[:first_name]
+    last_name = params[:last_name]
+    remarks = params[:remarks]
+    gender = params[:gender]
+    @feedback = Feedback.new
+
+    @feedback.first_name = first_name
+    @feedback.last_name = last_name
+    @feedback.remarks = remarks
+    @feedback.dataset = @dataset
+
+    if gender == 'f'
+      gender = :female
+    elsif gender == 'm'
+      gender = :male
+    end
+    @feedback.gender = gender
+
+    if @feedback.save
+      if params[:format] == 'json'
+        render json: { 'url' => dataset_url(@dataset)+".json"}
+      else
+        render json: { 'url' => @dataset.attachment.url}
+      end
     else
-      redirect_to @dataset.attachment.url
+      render json: { 'error' => false}
     end
   end
 

@@ -8,6 +8,6 @@ class Feedback
   field :last_name, type: String
   # field :gender, type: String
   as_enum :gender, female: 1, male: 0
-
   belongs_to :open_workspace
+  belongs_to :dataset
 end

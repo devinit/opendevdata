@@ -4,7 +4,7 @@ class Dataset
   include Mongoid::Taggable
   include PublicActivity::Model
   tracked
-
+  has_many :feedbacks
   before_save :set_time
 
   field :name, type: String
