@@ -109,9 +109,10 @@
                 Download
               </a>
               <ul id='options1' data-dropdown-content class='f-dropdown'>
-                <li><a href="/datasets/download/<%= @dataset.id %>?format=csv" >Excel</a></li>
-                <li><a href="/datasets/download/<%= @dataset.id %>?format=json" >JSON</a></li>
-                <li><a href="#<%= @dataset.id %>" id="feedback_link"  data-reveal-id="feedbackModal">Feed back</a></li>
+
+                 <li><a href="#<%= @dataset.id %>" class ="feedback_link" format="csv"  data-reveal-id="feedbackModal">Excel</a></li>
+
+                <li><a href="#<%= @dataset.id %>" class="feedback_link" format="json"  data-reveal-id="feedbackModal">JSON</a></li>
 
             </ul>
             </div>
@@ -179,16 +180,10 @@
   <h3>Why is this data important to you?</h3>
   <form class="custom">
       <fieldset>
-          <input type="text" id="first_name" placeholder="First Name">
-          <input type="text" id="last_name" placeholder="Last Name">
-          <label>Remarks</label>
-          <textarea id="feedback-remarks" rows=3></textarea>
-
-          <label>Gender</label>
-          <select id='gender'>
-            <option value='f'>Female</option>
-            <option value='m'>Male</option>
-          </select>
+          <input type="email" id="feedback-email" placeholder="email">
+          <input type="text" id="feedback-organisation" placeholder="organisation">
+          <label>Reason</label>
+          <textarea id="feedback-reason" rows=3></textarea>
           <button type="submit" id="feedback" class="small button">Submit Feedback</button>
       </fieldset>
   </form>
@@ -198,28 +193,34 @@
 
 <script>
   $(document).ready(function(){
+
+    var id = null;
+    var format = null;
+
+
+    $(".feedback_link").click(function(e){
+        id = $(this).attr("href").substring(1);
+        format =$(this).attr("format");
+        e.preventDefault();
+    });
+
     $('#feedback').click(function(event){
       var url = "http://" + window.location.host+"<%= download_path %>";
-      console.log(url)
-      var first_name = $('input#first_name').val();
-      var last_name = $('input#last_name').val();
-      var remarks = $('textarea#feedback-remarks').val();
-      var gender = $('select#gender option:selected').val();
-      var id = $("#feedback_link").attr("href").substring(1);
+      var email = $('input#feedback-email').val();
+      var organisation = $('input#feedback-organisation').val();
+      var remarks = $('textarea#feedback-reason').val();
 
       var obj = {
-        first_name: first_name,
-        last_name: last_name,
         remarks: remarks,
-        gender: gender,
-        format: "json",
+        organisation: organisation,
+        format: format,
+        email:email,
         id: id
       }
-      console.log(id)
+      console.log(obj)
       $.post(url, obj)
         .done(function(data){
           if (data){
-
             $('#feedbackModal').foundation('reveal', 'close');
             console.log(data.url)
             //window.open(data.url);
@@ -229,7 +230,8 @@
         }).fail(function(error){
             console.log(error)
         });
-      event.preventDefault();
-    })
+        event.preventDefault();
+      });
+
   })
 </script>

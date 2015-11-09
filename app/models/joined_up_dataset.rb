@@ -1,4 +1,4 @@
-class TimeValidator < ActiveModel::Validator
+aclass TimeValidator < ActiveModel::Validator
   def validate record
 
     # get headers for record

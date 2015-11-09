@@ -40,25 +40,11 @@ class DatasetsController < ApplicationController
     @dataset = Dataset.find(slugs=params[:id]) # we are using slugs!
     @dataset.download_count +=1
     @dataset.save # save download count
-
-    first_name = params[:first_name]
-    last_name = params[:last_name]
-    remarks = params[:remarks]
-    gender = params[:gender]
     @feedback = Feedback.new
-
-    @feedback.first_name = first_name
-    @feedback.last_name = last_name
-    @feedback.remarks = remarks
-
+    @feedback.email = params[:email]
+    @feedback.organisation = params[:organisation]
+    @feedback.remarks =  params[:remarks]
     @feedback.dataset = @dataset
-
-    if gender == 'f'
-      gender = :female
-    elsif gender == 'm'
-      gender = :male
-    end
-    @feedback.gender = gender
 
     if @feedback.save
       if params[:format] == 'json'

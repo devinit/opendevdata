@@ -4,16 +4,13 @@
     <thead>
       <tr>
         <th>
-          First Name
+          Organisation
         </th>
         <th>
-          Last Name
+          Email
         </th>
         <th>
-          Gender
-        </th>
-        <th>
-          Remark
+          Reason
         </th>
       </tr>
     </thead>
@@ -21,13 +18,10 @@
       <% @feedbacks.each do |feedback| %>
       <tr>
         <td>
-          <%= feedback.first_name %>
+          <%= feedback.Organisation %>
         </td>
         <td>
-          <%= feedback.last_name %>
-        </td>
-        <td>
-          <%= feedback.gender.to_s %>
+          <%= feedback.email %>
         </td>
         <td>
           <%= feedback.remarks %>
