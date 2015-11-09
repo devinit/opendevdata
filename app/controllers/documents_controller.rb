@@ -55,7 +55,7 @@ class DocumentsController < ApplicationController
 
   def ensure_has_access
     if !@document.user.nil? or !@document.workspace.nil?
-      if !(@document.user == current_user) or !@document.workspace.memberships.where(user: current_user).exists()
+      if !(@document.user == current_user)
         redirect_to root_path, alert: "You don't have permission to do this. You have to either belong to workspace or be owner of document to make such a change"
       end
     end

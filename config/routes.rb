@@ -3,7 +3,10 @@ require 'api_constraints'
 
 Opendataportal::Application.routes.draw do
 
-  get 'analytics/index'
+
+  post 'send_mail', to: 'contact#send_mail', as: 'email_send'
+
+  get 'index',to: 'analytics#index',as: 'analytics'
 
   root 'pages#index'
   get "about", to: 'pages#about', as: :about
@@ -62,7 +65,9 @@ Opendataportal::Application.routes.draw do
 
   match 'datasets/download', to: 'datasets#download', via: :post,as: :download
 
-  match 'datasets/feedbacks', to: 'datasets#feedbacks', via: :get,as: :feedbacks
+  match 'datasets/feedbacks/:id', to: 'datasets#feedbacks', via: :get,as: :feedbacks
+
+  get "delete_dataset/:id", to: 'datasets#delete_page', as: 'delete_dataset'
 
 
 
@@ -115,7 +120,7 @@ Opendataportal::Application.routes.draw do
     post 'joined-up-datasets/:data_series_id/process-data-series', to: 'open_workspaces/joined_up_datasets#process_final_stage_of_upload'
   end
 
-  get "delete_dataset/:id", to: 'datasets#delete_page', as: 'delete_dataset'
+
 
 
 

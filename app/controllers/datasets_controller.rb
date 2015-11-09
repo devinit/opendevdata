@@ -50,6 +50,7 @@ class DatasetsController < ApplicationController
     @feedback.first_name = first_name
     @feedback.last_name = last_name
     @feedback.remarks = remarks
+
     @feedback.dataset = @dataset
 
     if gender == 'f'
@@ -68,6 +69,15 @@ class DatasetsController < ApplicationController
     else
       render json: { 'error' => false}
     end
+  end
+
+
+  def feedbacks
+    id = params[:id]
+    puts "dataset id: #{id}"
+    @feedbacks = Feedback.where(dataset_id:id)
+    puts "Boolean : #{Feedback.where(dataset_id:id).exists?}"
+    # render json: @feedbacks
   end
 
   def show
@@ -174,11 +184,7 @@ class DatasetsController < ApplicationController
   end
 
   def delete_page
-    @dataset = Dataset.find params[:id]
-  end
-
-  def destroy
-    @dataset = Dataset.find params[:id]
+   @dataset = Dataset.find params[:id]
     if current_user.is_admin? or is_owner_of(@dataset)
       @dataset.delete
       flash[:notice] = 'Successfully deleted dataset.'
@@ -186,6 +192,10 @@ class DatasetsController < ApplicationController
       flash[:alert] = "Could not delete this dataset because you don't have the permission to."
     end
     redirect_to datasets_path
+  end
+
+  def destroy
+
   end
 
   def unapproved
