@@ -40,13 +40,15 @@
                     <i class='fa fa-cogs'></i> Account settings
                 <% end %>
               </li>
-              <li>
+              <% if current_user.has_role? :admin %>
+                <li>
+                  <%= link_to analytics_path do %>
+                      <i class='fa fa-line-chart'></i> Analytics
+                  <% end %>
 
-                <!--  <i class='fa fa-bar-chart'></i> Analytics -->
-
-              </li>
-
-              <li class='divider'></li>
+                </li>
+              <% end %>
+            <li class='divider'></li>
               <li>
                 <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
               </li>

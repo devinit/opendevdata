@@ -1,4 +1,4 @@
-<h1>Analytics#index</h1>
+<h3>Analytics</h3>
   <script>
           (function(w,d,s,g,js,fjs){
         g=w.gapi||(w.gapi={});g.analytics={q:[],ready:function(cb){this.q.push(cb)}};
@@ -7,59 +7,20 @@
         fjs.parentNode.insertBefore(js,fjs);js.onload=function(){g.load('analytics')};
       }(window,document,'script'));
     </script>
-<!-- Step 1: Create the containing elements. -->
-<section id="auth-button"></section>
-<section id="view-selector"></section>
-<section id="timeline"></section>
-<script>
+<!-- This demo uses the Chart.js graphing library and Moment.js to do date
+     formatting and manipulation. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
 
-gapi.analytics.ready(function() {
+<div id="embed-api-auth-container"></div>
+<div id="view-selector-container"></div>
+<div id="active-users-container"></div>
+<div id="chart-1-container"></div>
+<div id="legend-1-container"></div>
+<div id="chart-2-container"></div>
+<div id="legend-2-container"></div>
+<div id="chart-3-container"></div>
+<div id="legend-3-container"></div>
+<div id="chart-4-container"></div>
+<div id="legend-4-container"></div>
 
-  // Step 3: Authorize the user.
-
-  var CLIENT_ID = '234938918280-nimcc64pmik65e05s003na432ttsi6bt.apps.googleusercontent.com';
-
-  gapi.analytics.auth.authorize({
-    container: 'auth-button',
-    clientid: CLIENT_ID,
-  });
-
-  // Step 4: Create the view selector.
-
-  var viewSelector = new gapi.analytics.ViewSelector({
-    container: 'view-selector'
-  });
-
-  // Step 5: Create the timeline chart.
-
-  var timeline = new gapi.analytics.googleCharts.DataChart({
-    reportType: 'ga',
-    query: {
-      'dimensions': 'ga:date',
-      'metrics': 'ga:sessions',
-      'start-date': '30daysAgo',
-      'end-date': 'yesterday',
-    },
-    chart: {
-      type: 'LINE',
-      container: 'timeline'
-    }
-  });
-
-  // Step 6: Hook up the components to work together.
-
-  gapi.analytics.auth.on('success', function(response) {
-    viewSelector.execute();
-  });
-
-  viewSelector.on('change', function(ids) {
-    var newIds = {
-      query: {
-        ids: ids
-      }
-    }
-    timeline.set(newIds).execute();
-  });
-});
-
-</script>
