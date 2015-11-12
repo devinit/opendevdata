@@ -21,9 +21,9 @@ class AnalyticsController < ApplicationController
   end
 
   def data
-    this_week = weekly((Date.today - 1).strftime('%Y-%m-%d'), (Date.today - 7).strftime('%Y-%m-%d'))
-    last_week = weekly((Date.today - 1).strftime('%Y-%m-%d'), Date.today.strftime('%Y-%m-%d'))
-    views = stats((Date.today - 30).strftime('%Y-%m-%d'), 'pageviews')
+    this_week = weekly((Date.today - 6).strftime('%Y-%m-%d'), Date.today.strftime('%Y-%m-%d'))
+    last_week = weekly((Date.today - 7).strftime('%Y-%m-%d'), (Date.today - 15).strftime('%Y-%m-%d'))
+    views = stats('pageviews')
     render json: {'thisWeek' => this_week, 'lastWeek' => last_week, 'views' => views}
   end
 
@@ -40,10 +40,10 @@ class AnalyticsController < ApplicationController
     return results.data.rows
   end
 
-  def stats(start_date, metrics)
+  def stats(metrics)
     parameters = {
         'ids' => @id,
-        'metrics' => 'ga:#{metrics}',
+        'metrics' => "ga:#{metrics}",
         'start-date' => (Date.today - 30).strftime('%Y-%m-%d'),
         'end-date' => Date.today.strftime('%Y-%m-%d')
     }

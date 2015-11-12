@@ -55,6 +55,7 @@ gapi.analytics.ready(function() {
             'end-date': moment(now).format('YYYY-MM-DD')
         });
         Promise.all([thisWeek, lastWeek, pageViews]).then(function(results) {
+            console.log(results)
             var data1 = results[0].rows.map(function(row) {
                 return +row[2];
             });
