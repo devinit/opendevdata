@@ -1,3 +1,867 @@
 // Place all the styles related to the analytics controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+audio,canvas,progress,video {
+  display: inline-block; /* 1 */
+  vertical-align: baseline; /* 2 */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+Copyright 2015 Google Inc. All rights reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+
+/**
+ * Styles for gapi analytics table.
+ */
+
+.gapi-analytics-data-chart {
+  margin-bottom:1.5em;
+}
+
+.gapi-analytics-data-chart .gapi-analytics-data-chart-styles-table-tr-odd {
+  background: hsl(30,15%,96.7%)!important;
+}
+
+.gapi-analytics-data-chart .gapi-analytics-data-chart-styles-table-tr-over {
+  background: hsl(30,15%,93.3%)!important;
+}
+
+/* Components. */
+/*
+Copyright 2014 Google Inc. All rights reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+
+
+/*
+Copyright 2014 Google Inc. All rights reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+
+/*
+Copyright 2014 Google Inc. All rights reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+
+/*
+Copyright 2014 Google Inc. All rights reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+.Site {
+  background:hsl(30,10%,95%);
+  min-height: 100%;
+  min-width:260px;
+}
+
+.Site-sidebar {
+  background:#444;
+  bottom: 0;
+  box-shadow:0 0 1.5em rgba(0, 0, 0, 0);
+  left:-260px;
+  max-width: 100%;
+  min-width:260px;
+  overflow-y: auto;
+  position: fixed;
+  top: 0;
+  -webkit-transform: translate3d(0,0,0);
+          transform: translate3d(0,0,0);
+  -webkit-transition: -webkit-transform .3s cubic-bezier(.4,0,.2,1);
+          transition: transform .3s cubic-bezier(.4,0,.2,1);
+  width:260px;
+  z-index: 1;
+}
+
+.Site.is-expanded {
+  overflow: hidden;
+}
+
+.Site.is-expanded .Site-sidebar {
+  box-shadow:0 0 1.5em rgba(0, 0, 0, 0.5);
+  -webkit-transform:translate3d(260px,0,0);
+          transform:translate3d(260px,0,0);
+}
+
+
+.Site-main {
+  /* TODO(philipwalton): fallback for non-flexbox.
+  min-height: 100%;
+  */
+}
+
+@media (min-width: 570px) {
+  .Site {
+    /* TODO(philipwalton): remove this once Query Explorer is responsive. */
+    /* min-width: 768px; */
+  }
+  .Site-sidebar {
+    left:-280px;
+    min-width:280px;
+    width:280px;
+  }
+  .Site.is-expanded .Site-sidebar {
+    -webkit-transform:translate3d(280px,0,0);
+            transform:translate3d(280px,0,0);
+  }
+}
+
+@media (min-width: 1024px) {
+  .Site {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+
+    /* TODO(philipwalton): add fallback for non-supporting browsers; */
+    /* TODO(philipwalton): Two column, equal height hack for fallback.
+    background-image: linear-gradient(
+      to right,
+      var(--bg-color-dark-faded) 0%,
+      var(--bg-color-dark-faded) var(--sidebar-width-lg));
+    background-size: var(--sidebar-width-lg) 1px;
+    background-repeat: repeat-y;
+    */
+  }
+
+  .Site-sidebar {
+    background:#444;
+    border-top: .4em solid #222;
+    box-shadow: none;
+    overflow: visible;
+    position: static;
+    -webkit-transition: none;
+            transition: none;
+    z-index: 0;
+  }
+
+  .Site.is-expanded .Site-sidebar {
+    -webkit-transform: none;
+        -ms-transform: none;
+            transform: none;
+  }
+
+  .Site-main {
+    border-top: .4em solid #f7991c;
+    box-shadow: 0 0 1em rgba(0,0,0,.3);
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    position: relative; /* To get it stacked above the sidebar */
+
+    /* TODO(philipwalton): fallback for non-flexbox
+    margin-left: var(--sidebar-width-lg);
+    */
+  }
+}
+
+
+.Box {
+  background: #fff;
+  border:1px solid #d4d2d0;
+  border-radius: 4px;
+  margin-bottom:1.5em;
+  padding:1.5em;
+}
+
+
+.Box-header {
+  border-bottom:1px solid #d4d2d0;
+  margin:-1.5em -1.5em 1.5em;
+  padding:1.5em;
+}
+
+.Box-footer {
+  border-top:1px solid #d4d2d0;
+  margin:1.5em -1.5em -1.5em;
+  padding:1.5em;
+}
+
+@media (min-width: 1024px) {
+  .Box {
+    margin-bottom:2em;
+    padding:2em;
+  }
+  .Box-header {
+    margin:-2em -2em 2em;
+    padding:2em;
+  }
+  .Box-footer {
+    margin:2em -2em -2em;
+    padding:2em;
+  }
+}
+
+
+
+.Button {
+  background: hsla(0,0%,0%, .075);
+  border: 1px solid transparent;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: inherit;
+  cursor: pointer;
+  display: inline-block;
+  font: inherit;
+  font-weight: 400;
+  line-height: 1.42857em; /* 20px @ 14px body font */
+  padding: 0.42857em 1em; /* 6px @ 14px body font */
+  -webkit-transition:background-color .2s cubic-bezier(.4,0,.2,1),
+              border-color .2s cubic-bezier(.4,0,.2,1);
+          transition:background-color .2s cubic-bezier(.4,0,.2,1),
+              border-color .2s cubic-bezier(.4,0,.2,1);
+}
+
+.Button:disabled {
+  opacity: .4;
+}
+
+.Button:active:enabled,.Button:focus:enabled,.Button:hover:enabled {
+  background: hsla(0,0%,0%, .15);
+  outline: none;
+  text-decoration: none;
+}
+
+
+.Button-iconWrapper {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Button-icon {
+  margin-right: .6em;
+}
+
+.Button--action {
+  color: #fff;
+  background:hsl(217,91%,63%);
+  border-color: transparent;
+}
+.Button--action:active:enabled,.Button--action:focus:enabled,.Button--action:hover:enabled {
+  background:hsl(217,91%,53%);
+}
+
+.Button--success {
+  color: #fff;
+  background:hsl(135,60%,40%);
+  border-color: transparent;
+}
+.Button--success:active:enabled,.Button--success:focus:enabled,.Button--success:hover:enabled {
+  background:hsl(135,60%,33%);
+}
+/*
+Copyright 2014 Google Inc. All rights reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+
+.ButtonSet {
+  margin: 0 -1em -1em;
+}
+
+.ButtonSet .Button {
+  margin: 0 0 1em 1em;
+}
+/*
+Copyright 2014 Google Inc. All rights reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+
+.Chartjs {
+  font-size: .85em;
+}
+
+.Chartjs-figure {
+  height: 250px;
+}
+
+.Chartjs-legend {
+  list-style: none;
+  margin: 0;
+  padding: 1em 0 0;
+  text-align: center;
+}
+
+.Chartjs-legend > li {
+  display: inline-block;
+  padding: .25em .5em
+}
+
+.Chartjs-legend > li > i {
+  display: inline-block;
+  height: 1em;
+  margin-right: .5em;
+  vertical-align: -.1em;
+  width: 1em;
+}
+
+@media (min-width: 570px) {
+  .Chartjs-figure {
+    /* Add some breathing room. */
+    margin-right:1.5em;
+  }
+}
+/*
+Copyright 2015 Google Inc. All rights reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+
+.Checkbox {
+  display: inline-block;
+  margin-right: .5em;
+}
+/*
+Copyright 2014 Google Inc. All rights reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+
+.Content {
+  margin:1.5em;
+  max-width: 1060px;
+  -webkit-transition:opacity .5s cubic-bezier(.4,0,.2,1);
+          transition:opacity .5s cubic-bezier(.4,0,.2,1);
+}
+
+.Site.is-loading .Content,.Site.is-needingAuthorization .Content {
+  pointer-events: none;
+  opacity: .333;
+}
+
+@media (min-width: 1024px) {
+  .Content {
+    margin:3em;
+  }
+}
+/*
+Copyright 2014 Google Inc. All rights reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+.Dashboard {
+  background: #fff;
+  border:1px solid #d4d2d0;
+  border-radius: 4px;
+  max-width:52em;
+  padding:1.5em;
+}
+
+.Dashboard-header {
+  border-bottom:1px solid #d4d2d0;
+}
+
+.Dashboard-footer,.Dashboard-header{margin:-1.5em -1.5em 1.5em;padding:1.5em;}
+
+.Dashboard-footer {
+  border-top:1px solid #d4d2d0;
+}
+
+.Dashboard--full {
+  max-width: 100%;
+}
+
+@media (min-width: 1024px) {.Dashboard,.Dashboard-header{padding:2em;}.Dashboard-footer,.Dashboard-header{margin:-2em -2em 2em;}
+  .Dashboard-footer {
+    padding:1.5em;
+  }
+}
+/*
+Copyright 2014 Google Inc. All rights reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+/**
+ * DateRangeSelector Component
+ */
+
+.DateRangeSelector {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  margin: 0 0 -1em -1em;
+}
+
+.DateRangeSelector-item {
+  margin: 0 0 1em 1em;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 0 -webkit-calc(100% - 1em);
+      -ms-flex: 1 0 calc(100% - 1em);
+          flex: 1 0 calc(100% - 1em);
+}
+
+.DateRangeSelector-item > label {
+  font-weight: 700;
+  margin: 0 .25em .25em 0;
+  display: block;
+}
+
+.DateRangeSelector-item > input {
+  width: 100%;
+}
+
+@media (min-width: 570px) {
+  .DateRangeSelector-item {
+    -webkit-flex-basis: auto;
+        -ms-flex-preferred-size: auto;
+            flex-basis: auto;
+    min-width:150px;
+  }
+}
+/*
+Copyright 2015 Google Inc. All rights reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+
+.Error {
+  background: hsl(0,100%,98%);
+  border: 1px solid hsla(0, 70%, 55%, .5);
+  border-radius: 4px;
+  color: hsla(0, 0%, 0%, 0.5);
+  margin: 2em 0px;
+  padding: 1em 1.5em;
+}
+
+.Error-title {
+  color: hsl(0,70%,55%);
+  display: inline-block;
+  font-size: 1.1em;
+  line-height: 1.5;
+  margin: 0 .5em 0 0;
+}
+
+.Error-message {
+  display: inline-block;
+  margin: 0;
+}
+/*
+Copyright 2015 Google Inc. All rights reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+.FlexGrid {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  list-style: none;
+  margin:0 0 -1.5em -1.5em;
+  padding: 0;
+}
+
+.FlexGrid-item {
+  -webkit-box-flex:1;
+  -webkit-flex:1 0 -webkit-calc(100% - 1.5em);
+      -ms-flex:1 0 calc(100% - 1.5em);
+          flex:1 0 calc(100% - 1.5em);
+  margin:0 0 1.5em 1.5em;
+}
+
+.FlexGrid-item--fixed {
+  /* An `auto` flex-basis will use the size of the contents. */
+  -webkit-box-flex: 0!important;
+  -webkit-flex: 0 0 auto!important;
+      -ms-flex: 0 0 auto!important;
+          flex: 0 0 auto!important;
+}
+
+
+/**
+ * --halves modifier.
+ * Ensures that an item never takes up more than half of the width, i.e.
+ * no more that two items will ever be in a row.
+ */
+.FlexGrid--halves .FlexGrid-item {
+  -webkit-flex-basis: 34%;
+      -ms-flex-preferred-size: 34%;
+          flex-basis: 34%;
+}
+
+
+@media (min-width: 570px) {
+  .FlexGrid-item {
+    -webkit-flex-basis:300px;
+        -ms-flex-preferred-size:300px;
+            flex-basis:300px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .FlexGrid {
+    margin:0 0 -2em -2em;
+  }
+  .FlexGrid-item {
+    -webkit-flex-basis:360px;
+        -ms-flex-preferred-size:360px;
+            flex-basis:360px;
+    margin:0 0 2em 2em;
+  }
+}
+/*
+Copyright 2015 Google Inc. All rights reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+
+
+.FlexLine {
+  /* display: flex; */
+
+  /*
+   * TODO(philipwalton): replace the below with the above once this FF bug is
+   * fixed: https://bugzilla.mozilla.org/show_bug.cgi?id=1146442
+   */
+   display: -webkit-inline-box;
+   display: -webkit-inline-flex;
+   display: -ms-inline-flexbox;
+   display: inline-flex;
+   width: 100%;
+}
+
+.FlexLine > [data-flex] {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 0 0%;
+      -ms-flex: 1 0 0%;
+          flex: 1 0 0%;
+}
+
+
+.Titles {
+  font-weight: 300;
+  letter-spacing:.03em;
+  line-height: 1.2;
+  margin:0 0 1.5em;
+  word-spacing: .2em;
+}
+.Titles-main,.Titles-sub {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+.Titles-main {
+  font-size: 1.4em;
+}
+.Titles-sub {
+  opacity: .6;
+  margin-top: .2em;
+}
+.Titles-action {
+  background:hsl(16,87%,54%);
+  border-radius: .25em;
+  color: #fff;
+  display: inline-block;
+  font-weight: 400;
+  margin-top: .8em;
+  padding: .3em .6em .2em;
+  vertical-align: .4em;
+}
+.Titles-action:focus,.Titles-action:hover {
+  text-decoration: none;
+}
+
+
+/**
+ * `--hero` modifer
+ * Creates a bigger set of titles for use in page headers. Also
+ * inlines the main and subtitle in larger medias.
+ */
+
+.Titles--hero {
+  color:#75787d;
+}
+
+.Titles--hero .Titles-main {
+  font-size: 2.25em;
+}
+.Titles--hero .Titles-sub {
+  font-size: 1.25em;
+}
+
+@media (min-width: 570px) {
+  .Titles--hero {
+    margin:1em 0 1.5em;
+  }
+  .Titles--hero .Titles-main {
+    margin-right: .25em;
+  }.Titles--hero .Titles-main,.Titles--hero .Titles-sub{display:inline-block;}
+}
+
+@media (min-width: 1024px) {
+  .Titles--hero {
+    margin: 4em 0 0;
+  }
+  .Titles--hero .Titles-main {
+    font-size: 3em;
+    margin-right: .5em;
+  }
+  .Titles--hero .Titles-sub {
+    font-size: 1.75em;
+  }
+}
+/*
+Copyright 2015 Google Inc. All rights reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+
+
+
+
+/*
+Copyright 2014 Google Inc. All rights reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+.u-hidden {
+  display: none;
+}
+.u-block {
+  display: block;
+}
+
+@media (min-width: 420px) {
+  .u-sm-hidden {
+    display: none;
+  }
+  .u-sm-block {
+    display: block;
+  }
+}
+
+@media (min-width: 570px) {
+  .u-md-hidden {
+    display: none;
+  }
+  .u-md-block {
+    display: block;
+  }
+}
+
+@media (min-width: 1024px) {
+  .u-lg-hidden {
+    display: none;
+  }
+  .u-lg-block {
+    display: block;
+  }
+}
+/*
+Copyright 2014 Google Inc. All rights reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+
+.u-spaceDouble {
+  margin:0 0 3em;
+}
