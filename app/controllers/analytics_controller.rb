@@ -22,7 +22,7 @@ class AnalyticsController < ApplicationController
 
   def data
     this_week = weekly((Date.today - 6).strftime('%Y-%m-%d'), Date.today.strftime('%Y-%m-%d'))
-    last_week = weekly((Date.today - 7).strftime('%Y-%m-%d'), (Date.today - 15).strftime('%Y-%m-%d'))
+    last_week = weekly((Date.today - 13).strftime('%Y-%m-%d'),(Date.today - 7).strftime('%Y-%m-%d'))
     views = stats('pageviews')
     render json: {'thisWeek' => this_week, 'lastWeek' => last_week, 'views' => views}
   end

@@ -17,78 +17,64 @@ gapi.analytics.ready(function() {
             ids: 'ga:78185827'
         }
         //rendering charts
-    renderWeekOverWeekChart(data.ids);
     renderYearOverYearChart(data.ids);
     renderTopBrowsersChart(data.ids);
     renderTopCountriesChart(data.ids);
+    remoteData();
     //get stats
     //stats(data.ids);
-    /**
-     *Get stats
-     */
+    function remoteData() {
+        var url = "http://" + window.location.host + "/data";
+        $.get(url, function(data) {
+            renderWeekOverWeekChart(data);
+        }).done(function() {
+            console.log("API call successful")
+        }).error(function(error) {
+            alert(error)
+        })
+        return data;
+    }
     /**
      * Draw the a chart.js line chart with data from the specified view that
      * overlays session data for the current week over session data for the
      * previous week.
      */
-    function renderWeekOverWeekChart(ids) {
-        // Adjust `now` to experiment with different days, for testing only...
-        var now = moment(); // .subtract(3, 'day');
-        var thisWeek = query({
-            'ids': ids,
-            'dimensions': 'ga:date,ga:nthDay',
-            'metrics': 'ga:sessions',
-            'start-date': moment(now).subtract(1, 'day').day(0).format('YYYY-MM-DD'),
-            'end-date': moment(now).format('YYYY-MM-DD')
+    function renderWeekOverWeekChart(results) {
+         console.log(results)
+        var data1 = results.thisWeek.map(function(row) {
+            return +row[2];
         });
-        var lastWeek = query({
-            'ids': ids,
-            'dimensions': 'ga:date,ga:nthDay',
-            'metrics': 'ga:sessions',
-            'start-date': moment(now).subtract(1, 'day').day(0).subtract(1, 'week').format('YYYY-MM-DD'),
-            'end-date': moment(now).subtract(1, 'day').day(6).subtract(1, 'week').format('YYYY-MM-DD')
+        var data2 = results.lastWeek.map(function(row) {
+            return +row[2];
         });
-        var pageViews = query({
-            'ids': ids,
-            'metrics': 'ga:pageviews',
-            'start-date': moment(now).subtract(30, 'days').format('YYYY-MM-DD'),
-            'end-date': moment(now).format('YYYY-MM-DD')
+
+        var labels = results.thisWeek.map(function(row) {
+            return +row[0];
         });
-        Promise.all([thisWeek, lastWeek, pageViews]).then(function(results) {
-            console.log(results)
-            var data1 = results[0].rows.map(function(row) {
-                return +row[2];
-            });
-            var data2 = results[1].rows.map(function(row) {
-                return +row[2];
-            });
-            var labels = results[1].rows.map(function(row) {
-                return +row[0];
-            });
-            labels = labels.map(function(label) {
-                return moment(label, 'YYYYMMDD').format('ddd');
-            });
-            var data = {
-                labels: labels,
-                datasets: [{
-                    label: 'Last Week',
-                    fillColor: 'rgba(220,220,220,0.5)',
-                    strokeColor: 'rgba(220,220,220,1)',
-                    pointColor: 'rgba(220,220,220,1)',
-                    pointStrokeColor: '#fff',
-                    data: data2
-                }, {
-                    label: 'This Week',
-                    fillColor: 'rgba(151,187,205,0.5)',
-                    strokeColor: 'rgba(151,187,205,1)',
-                    pointColor: 'rgba(151,187,205,1)',
-                    pointStrokeColor: '#fff',
-                    data: data1
-                }]
-            };
-            new Chart(makeCanvas('chart-1-container')).Line(data);
-            generateLegend('legend-1-container', data.datasets);
+
+        labels = labels.map(function(label) {
+            return moment(label, 'YYYYMMDD').format('ddd');
         });
+        var data = {
+            labels: labels,
+            datasets: [{
+                label: 'Last Week',
+                fillColor: 'rgba(220,220,220,0.5)',
+                strokeColor: 'rgba(220,220,220,1)',
+                pointColor: 'rgba(220,220,220,1)',
+                pointStrokeColor: '#fff',
+                data: data2
+            }, {
+                label: 'This Week',
+                fillColor: 'rgba(151,187,205,0.5)',
+                strokeColor: 'rgba(151,187,205,1)',
+                pointColor: 'rgba(151,187,205,1)',
+                pointStrokeColor: '#fff',
+                data: data1
+            }]
+        };
+        new Chart(makeCanvas('chart-1-container')).Line(data);
+        generateLegend('legend-1-container', data.datasets);
     }
     /**
      * Draw the a chart.js bar chart with data from the specified view that
@@ -98,7 +84,6 @@ gapi.analytics.ready(function() {
     function renderYearOverYearChart(ids) {
         // Adjust `now` to experiment with different days, for testing only...
         var now = moment(); // .subtract(3, 'day');
-
         var thisYear = query({
             'ids': ids,
             'dimensions': 'ga:date,ga:nthDay',
@@ -106,16 +91,13 @@ gapi.analytics.ready(function() {
             'start-date': moment(now).subtract(30, 'days').format('YYYY-MM-DD'),
             'end-date': moment(now).format('YYYY-MM-DD')
         });
-
         Promise.all([thisYear]).then(function(results) {
             var data1 = results[0].rows.map(function(row) {
                 return +row[2];
             });
-
             var labels = results[0].rows.map(function(row) {
                 return +row[0];
             });
-
             labels = labels.map(function(label) {
                 return moment(label, 'YYYYMMDD').format('DD');
             });
