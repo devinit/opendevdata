@@ -5,6 +5,7 @@ Opendataportal::Application.routes.draw do
   post 'send_mail', to: 'contact#send_mail', as: 'email_send'
 
   get 'index', to: 'analytics#index', as: 'analytics'
+  get 'data', to: 'analytics#data', as: 'analytics_data'
 
   root 'pages#index'
   get 'about', to: 'pages#about', as: :about

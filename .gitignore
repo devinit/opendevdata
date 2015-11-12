@@ -22,3 +22,6 @@ opendevdata-lock
 /public/uploads/
 /public/system/*
 /config/environments/production.rb
+
+# Ignore application configuration
+/config/application.yml

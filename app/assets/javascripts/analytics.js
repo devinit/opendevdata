@@ -61,7 +61,6 @@ gapi.analytics.ready(function() {
             var data2 = results[1].rows.map(function(row) {
                 return +row[2];
             });
-            console.log(results);
             var labels = results[1].rows.map(function(row) {
                 return +row[0];
             });
@@ -98,49 +97,37 @@ gapi.analytics.ready(function() {
     function renderYearOverYearChart(ids) {
         // Adjust `now` to experiment with different days, for testing only...
         var now = moment(); // .subtract(3, 'day');
+
         var thisYear = query({
             'ids': ids,
-            'dimensions': 'ga:month,ga:nthMonth',
-            'metrics': 'ga:users',
-            'start-date': moment(now).date(1).month(0).format('YYYY-MM-DD'),
+            'dimensions': 'ga:date,ga:nthDay',
+            'metrics': 'ga:sessions',
+            'start-date': moment(now).subtract(30, 'days').format('YYYY-MM-DD'),
             'end-date': moment(now).format('YYYY-MM-DD')
         });
-        var lastYear = query({
-            'ids': ids,
-            'dimensions': 'ga:month,ga:nthMonth',
-            'metrics': 'ga:users',
-            'start-date': moment(now).subtract(1, 'year').date(1).month(0).format('YYYY-MM-DD'),
-            'end-date': moment(now).date(1).month(0).subtract(1, 'day').format('YYYY-MM-DD')
-        });
-        Promise.all([thisYear, lastYear]).then(function(results) {
+
+        Promise.all([thisYear]).then(function(results) {
             var data1 = results[0].rows.map(function(row) {
                 return +row[2];
             });
-            var data2 = results[1].rows.map(function(row) {
-                return +row[2];
+
+            var labels = results[0].rows.map(function(row) {
+                return +row[0];
             });
-            var labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-            // Ensure the data arrays are at least as long as the labels array.
-            // Chart.js bar charts don't (yet) accept sparse datasets.
-            for (var i = 0, len = labels.length; i < len; i++) {
-                if (data1[i] === undefined) data1[i] = null;
-                if (data2[i] === undefined) data2[i] = null;
-            }
+
+            labels = labels.map(function(label) {
+                return moment(label, 'YYYYMMDD').format('DD');
+            });
             var data = {
                 labels: labels,
                 datasets: [{
-                    label: 'Last Year',
-                    fillColor: 'rgba(220,220,220,0.5)',
-                    strokeColor: 'rgba(220,220,220,1)',
-                    data: data2
-                }, {
-                    label: 'This Year',
+                    label: 'This Month',
                     fillColor: 'rgba(151,187,205,0.5)',
                     strokeColor: 'rgba(151,187,205,1)',
                     data: data1
                 }]
             };
-            new Chart(makeCanvas('chart-2-container')).Bar(data);
+            new Chart(makeCanvas('chart-2-container')).Line(data);
             generateLegend('legend-2-container', data.datasets);
         }).catch(function(err) {
             console.error(err.stack);
