@@ -8,34 +8,6 @@ audio,canvas,progress,video {
   vertical-align: baseline; /* 2 */
 }
 
-
-
-
-
-
-
-
-
-
-
-
-/*
-Copyright 2015 Google Inc. All rights reserved.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
-
-
 /**
  * Styles for gapi analytics table.
  */
@@ -52,112 +24,17 @@ limitations under the License.
   background: hsl(30,15%,93.3%)!important;
 }
 
-/* Components. */
-/*
-Copyright 2014 Google Inc. All rights reserved.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
-
-
-
-/*
-Copyright 2014 Google Inc. All rights reserved.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-
-/*
-Copyright 2014 Google Inc. All rights reserved.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
-
-
-/*
-Copyright 2014 Google Inc. All rights reserved.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
-
 .Site {
   background:hsl(30,10%,95%);
   min-height: 100%;
   min-width:260px;
 }
 
-.Site-sidebar {
-  background:#444;
-  bottom: 0;
-  box-shadow:0 0 1.5em rgba(0, 0, 0, 0);
-  left:-260px;
-  max-width: 100%;
-  min-width:260px;
-  overflow-y: auto;
-  position: fixed;
-  top: 0;
-  -webkit-transform: translate3d(0,0,0);
-          transform: translate3d(0,0,0);
-  -webkit-transition: -webkit-transform .3s cubic-bezier(.4,0,.2,1);
-          transition: transform .3s cubic-bezier(.4,0,.2,1);
-  width:260px;
-  z-index: 1;
-}
-
-.Site.is-expanded {
-  overflow: hidden;
-}
-
-.Site.is-expanded .Site-sidebar {
-  box-shadow:0 0 1.5em rgba(0, 0, 0, 0.5);
-  -webkit-transform:translate3d(260px,0,0);
-          transform:translate3d(260px,0,0);
-}
 
 
-.Site-main {
-  /* TODO(philipwalton): fallback for non-flexbox.
-  min-height: 100%;
-  */
-}
 
 @media (min-width: 570px) {
-  .Site {
-    /* TODO(philipwalton): remove this once Query Explorer is responsive. */
-    /* min-width: 768px; */
-  }
+
   .Site-sidebar {
     left:-280px;
     min-width:280px;
@@ -175,28 +52,9 @@ limitations under the License.
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-
-    /* TODO(philipwalton): add fallback for non-supporting browsers; */
-    /* TODO(philipwalton): Two column, equal height hack for fallback.
-    background-image: linear-gradient(
-      to right,
-      var(--bg-color-dark-faded) 0%,
-      var(--bg-color-dark-faded) var(--sidebar-width-lg));
-    background-size: var(--sidebar-width-lg) 1px;
-    background-repeat: repeat-y;
-    */
   }
 
-  .Site-sidebar {
-    background:#444;
-    border-top: .4em solid #222;
-    box-shadow: none;
-    overflow: visible;
-    position: static;
-    -webkit-transition: none;
-            transition: none;
-    z-index: 0;
-  }
+
 
   .Site.is-expanded .Site-sidebar {
     -webkit-transform: none;
@@ -205,17 +63,11 @@ limitations under the License.
   }
 
   .Site-main {
-    border-top: .4em solid #f7991c;
-    box-shadow: 0 0 1em rgba(0,0,0,.3);
     -webkit-box-flex: 1;
     -webkit-flex: 1;
         -ms-flex: 1;
             flex: 1;
-    position: relative; /* To get it stacked above the sidebar */
-
-    /* TODO(philipwalton): fallback for non-flexbox
-    margin-left: var(--sidebar-width-lg);
-    */
+    position: relative;
   }
 }
 
@@ -319,21 +171,6 @@ limitations under the License.
 .Button--success:active:enabled,.Button--success:focus:enabled,.Button--success:hover:enabled {
   background:hsl(135,60%,33%);
 }
-/*
-Copyright 2014 Google Inc. All rights reserved.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
 
 
 .ButtonSet {
@@ -343,21 +180,6 @@ limitations under the License.
 .ButtonSet .Button {
   margin: 0 0 1em 1em;
 }
-/*
-Copyright 2014 Google Inc. All rights reserved.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
 
 
 .Chartjs {
@@ -394,42 +216,14 @@ limitations under the License.
     margin-right:1.5em;
   }
 }
-/*
-Copyright 2015 Google Inc. All rights reserved.
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
 
 
 .Checkbox {
   display: inline-block;
   margin-right: .5em;
 }
-/*
-Copyright 2014 Google Inc. All rights reserved.
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
 
 
 .Content {
@@ -449,21 +243,6 @@ limitations under the License.
     margin:3em;
   }
 }
-/*
-Copyright 2014 Google Inc. All rights reserved.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
 
 .Dashboard {
   background: #fff;
@@ -492,25 +271,7 @@ limitations under the License.
     padding:1.5em;
   }
 }
-/*
-Copyright 2014 Google Inc. All rights reserved.
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
-
-/**
- * DateRangeSelector Component
- */
 
 .DateRangeSelector {
   display: -webkit-box;
@@ -549,59 +310,7 @@ limitations under the License.
     min-width:150px;
   }
 }
-/*
-Copyright 2015 Google Inc. All rights reserved.
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
-
-
-.Error {
-  background: hsl(0,100%,98%);
-  border: 1px solid hsla(0, 70%, 55%, .5);
-  border-radius: 4px;
-  color: hsla(0, 0%, 0%, 0.5);
-  margin: 2em 0px;
-  padding: 1em 1.5em;
-}
-
-.Error-title {
-  color: hsl(0,70%,55%);
-  display: inline-block;
-  font-size: 1.1em;
-  line-height: 1.5;
-  margin: 0 .5em 0 0;
-}
-
-.Error-message {
-  display: inline-block;
-  margin: 0;
-}
-/*
-Copyright 2015 Google Inc. All rights reserved.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
 
 .FlexGrid {
   display: -webkit-box;
@@ -664,31 +373,9 @@ limitations under the License.
     margin:0 0 2em 2em;
   }
 }
-/*
-Copyright 2015 Google Inc. All rights reserved.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
-
 
 
 .FlexLine {
-  /* display: flex; */
-
-  /*
-   * TODO(philipwalton): replace the below with the above once this FF bug is
-   * fixed: https://bugzilla.mozilla.org/show_bug.cgi?id=1146442
-   */
    display: -webkit-inline-box;
    display: -webkit-inline-flex;
    display: -ms-inline-flexbox;
@@ -738,12 +425,6 @@ limitations under the License.
 }
 
 
-/**
- * `--hero` modifer
- * Creates a bigger set of titles for use in page headers. Also
- * inlines the main and subtitle in larger medias.
- */
-
 .Titles--hero {
   color:#75787d;
 }
@@ -776,92 +457,10 @@ limitations under the License.
     font-size: 1.75em;
   }
 }
-/*
-Copyright 2015 Google Inc. All rights reserved.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
-
-
-
-
-
-/*
-Copyright 2014 Google Inc. All rights reserved.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
 
 .u-hidden {
   display: none;
 }
 .u-block {
   display: block;
-}
-
-@media (min-width: 420px) {
-  .u-sm-hidden {
-    display: none;
-  }
-  .u-sm-block {
-    display: block;
-  }
-}
-
-@media (min-width: 570px) {
-  .u-md-hidden {
-    display: none;
-  }
-  .u-md-block {
-    display: block;
-  }
-}
-
-@media (min-width: 1024px) {
-  .u-lg-hidden {
-    display: none;
-  }
-  .u-lg-block {
-    display: block;
-  }
-}
-/*
-Copyright 2014 Google Inc. All rights reserved.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
-
-
-.u-spaceDouble {
-  margin:0 0 3em;
 }

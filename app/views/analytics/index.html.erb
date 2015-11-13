@@ -9,15 +9,16 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
 <section class="Site-main">
-<%= link_to "data", analytics_data_path %>
-<div id= "embed-api-auth-container"></div>
 <div class="Dashboard Dashboard--full">
   <header class="Dashboard-header">
     <ul class="FlexGrid">
       <li class="FlexGrid-item">
         <div class="Titles">
-          <h1 class="Titles-main" id="view-name">OpenDev Data Uganda </h1>
-          <div class="Titles-sub">Various visualizations</div>
+          <h1 class="Titles-main" id="view-name">Opendev Data Analytics </h1>
+          <hr>
+          <div class="Titles-sub" style="padding-right:4em">
+          <span>Page views for past 60 days: <span id="page-views"></span> </span>
+          <span style="float:right">Sessions for past 60 days: <span id="page-sessions"></span> </span>
         </div>
       </li>
     </ul>
@@ -25,6 +26,27 @@
   </header>
 
   <ul class="FlexGrid FlexGrid--halves">
+    <li class="FlexGrid-item">
+        <div class="Chartjs">
+          <header class="Titles">
+            <h1 class="Titles-main">Over view</h1>
+            <div class="Titles-sub">By page views</div>
+          </header>
+          <figure class="Chartjs-figure" id="chart-5-container"></figure>
+          <ol class="Chartjs-legend" id="legend-5-container"></ol>
+        </div>
+      </li>
+    <li class="FlexGrid-item">
+        <div class="Chartjs">
+          <header class="Titles">
+            <h1 class="Titles-main">Visitors</h1>
+            <div class="Titles-sub">By page views</div>
+          </header>
+          <figure class="Chartjs-figure" id="chart-6-container"></figure>
+          <ol class="Chartjs-legend" id="legend-6-container"></ol>
+        </div>
+      </li>
+
     <li class="FlexGrid-item">
       <div class="Chartjs">
         <header class="Titles">
@@ -35,6 +57,7 @@
         <ol class="Chartjs-legend" id="legend-1-container"></ol>
       </div>
     </li>
+
     <li class="FlexGrid-item">
       <div class="Chartjs">
         <header class="Titles">
@@ -45,6 +68,7 @@
         <ol class="Chartjs-legend" id="legend-2-container"></ol>
       </div>
     </li>
+
     <li class="FlexGrid-item">
       <div class="Chartjs">
         <header class="Titles">

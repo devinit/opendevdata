@@ -1,38 +1,70 @@
 gapi.analytics.ready(function() {
-    /**
-     * Authorize the user immediately if the user has already granted access.
-     * If no access has been created, render an authorize button inside the
-     * element with the ID "embed-api-auth-container".
-     */
-    var CLIENT_ID = '234938918280-nimcc64pmik65e05s003na432ttsi6bt.apps.googleusercontent.com';
-    gapi.analytics.auth.authorize({
-        container: 'embed-api-auth-container',
-        clientid: CLIENT_ID
-    });
-    gapi.analytics.auth.on('success', function(response) {
-        //hide the auth-button
-        document.querySelector("#embed-api-auth-container").style.display = 'none';
-    });
-    var data = {
-            ids: 'ga:78185827'
-        }
-        //rendering charts
-    renderYearOverYearChart(data.ids);
-    renderTopBrowsersChart(data.ids);
-    renderTopCountriesChart(data.ids);
-    remoteData();
+    //run anlytics dashboard
+    init();
     //get stats
-    //stats(data.ids);
+    function init() {
+        //get fresh data or use session data
+        //check if session data exists
+        var data = sessionStorage.getItem('analytics');
+        data ? visualize(JSON.parse(data)) : remoteData(visualize);
+    }
+
+    function visualize(data) {
+        renderWeekOverWeekChart(data)
+        renderYearOverYearChart(data);
+        renderTopBrowsersChart(data);
+        renderTopCountriesChart(data);
+        renderVisitors(data);
+        renderOverView(data)
+        $("#page-views").text(data.stats[0][0]);
+        $("#page-sessions").text(data.stats[0][1]);
+    }
+
     function remoteData() {
         var url = "http://" + window.location.host + "/data";
         $.get(url, function(data) {
-            renderWeekOverWeekChart(data);
+            storage(data)
+            visualize(data);
         }).done(function() {
             console.log("API call successful")
         }).error(function(error) {
-            alert(error)
+            alert(error);
         })
-        return data;
+    }
+    //local data storage
+    function storage(data) {
+        session_data = JSON.stringify(data);
+        sessionStorage.setItem('analytics', session_data);
+    }
+
+    function renderOverView(results) {
+        var data1 = results.overview.map(function(row) {
+            return +row[1];
+        });
+        var labels = results.overview.map(function(row) {
+            return +row[0];
+        });
+        labels = labels.map(function(label, index) {
+            if (index % 4 === 0) {
+                return moment(label, 'YYYYMMDD').format('DD');
+            } else {
+                return "";
+            }
+        });
+        var data = {
+            labels: labels,
+            showTooltips: false,
+            datasets: [{
+                label: 'OverView',
+                fillColor: 'rgba(220,220,220,0.5)',
+                strokeColor: 'rgba(220,220,220,1)',
+                pointColor: 'rgba(220,220,220,1)',
+                pointStrokeColor: '#fff',
+                data: data1
+            }]
+        };
+        new Chart(makeCanvas('chart-5-container')).Line(data);
+        generateLegend('legend-5-container', data.datasets);
     }
     /**
      * Draw the a chart.js line chart with data from the specified view that
@@ -40,18 +72,15 @@ gapi.analytics.ready(function() {
      * previous week.
      */
     function renderWeekOverWeekChart(results) {
-         console.log(results)
         var data1 = results.thisWeek.map(function(row) {
             return +row[2];
         });
         var data2 = results.lastWeek.map(function(row) {
             return +row[2];
         });
-
         var labels = results.thisWeek.map(function(row) {
             return +row[0];
         });
-
         labels = labels.map(function(label) {
             return moment(label, 'YYYYMMDD').format('ddd');
         });
@@ -81,109 +110,86 @@ gapi.analytics.ready(function() {
      * overlays session data for the current year over session data for the
      * previous year, grouped by month.
      */
-    function renderYearOverYearChart(ids) {
+    function renderYearOverYearChart(results) {
         // Adjust `now` to experiment with different days, for testing only...
-        var now = moment(); // .subtract(3, 'day');
-        var thisYear = query({
-            'ids': ids,
-            'dimensions': 'ga:date,ga:nthDay',
-            'metrics': 'ga:sessions',
-            'start-date': moment(now).subtract(30, 'days').format('YYYY-MM-DD'),
-            'end-date': moment(now).format('YYYY-MM-DD')
+        var data1 = results.thisYear.map(function(row) {
+            return +row[2];
         });
-        Promise.all([thisYear]).then(function(results) {
-            var data1 = results[0].rows.map(function(row) {
-                return +row[2];
-            });
-            var labels = results[0].rows.map(function(row) {
-                return +row[0];
-            });
-            labels = labels.map(function(label) {
-                return moment(label, 'YYYYMMDD').format('DD');
-            });
-            var data = {
-                labels: labels,
-                datasets: [{
-                    label: 'This Month',
-                    fillColor: 'rgba(151,187,205,0.5)',
-                    strokeColor: 'rgba(151,187,205,1)',
-                    data: data1
-                }]
-            };
-            new Chart(makeCanvas('chart-2-container')).Line(data);
-            generateLegend('legend-2-container', data.datasets);
-        }).catch(function(err) {
-            console.error(err.stack);
+        var data2 = results.lastYear.map(function(row) {
+            return +row[2];
         });
+        var labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        // Ensure the data arrays are at least as long as the labels array.
+        // Chart.js bar charts don't (yet) accept sparse datasets.
+        for (var i = 0, len = labels.length; i < len; i++) {
+            if (data1[i] === undefined) data1[i] = null;
+            if (data2[i] === undefined) data2[i] = null;
+        }
+        var data = {
+            labels: labels,
+            datasets: [{
+                label: 'Last Year',
+                fillColor: 'rgba(220,220,220,0.5)',
+                strokeColor: 'rgba(220,220,220,1)',
+                data: data2
+            }, {
+                label: 'This Year',
+                fillColor: 'rgba(151,187,205,0.5)',
+                strokeColor: 'rgba(151,187,205,1)',
+                data: data1
+            }]
+        };
+        new Chart(makeCanvas('chart-2-container')).Bar(data);
+        generateLegend('legend-2-container', data.datasets);
     }
     /**
      * Draw the a chart.js doughnut chart with data from the specified view that
      * show the top 5 browsers over the past seven days.
      */
-    function renderTopBrowsersChart(ids) {
-        query({
-            'ids': ids,
-            'dimensions': 'ga:operatingSystem',
-            'metrics': 'ga:pageviews',
-            'sort': '-ga:pageviews',
-            'max-results': 5
-        }).then(function(response) {
-            var data = [];
-            var colors = ['#4D5360', '#949FB1', '#D4CCC5', '#E2EAE9', '#F7464A'];
-            response.rows.forEach(function(row, i) {
-                data.push({
-                    value: +row[1],
-                    color: colors[i],
-                    label: row[0]
-                });
+    function renderTopBrowsersChart(response) {
+        var data = [];
+        var colors = ['#4D5360', '#949FB1', '#D4CCC5', '#E2EAE9', '#F7464A'];
+        response.os.forEach(function(row, i) {
+            data.push({
+                value: +row[1],
+                color: colors[i],
+                label: row[0]
             });
-            new Chart(makeCanvas('chart-3-container')).Doughnut(data);
-            generateLegend('legend-3-container', data);
         });
+        new Chart(makeCanvas('chart-3-container')).Doughnut(data);
+        generateLegend('legend-3-container', data);
     }
     /**
      * Draw the a chart.js doughnut chart with data from the specified view that
      * compares sessions from mobile, desktop, and tablet over the past seven
      * days.
      */
-    function renderTopCountriesChart(ids) {
-        query({
-            'ids': ids,
-            'dimensions': 'ga:country',
-            'metrics': 'ga:sessions',
-            'sort': '-ga:sessions',
-            'max-results': 5
-        }).then(function(response) {
-            var data = [];
-            var colors = ['#4D5360', '#949FB1', '#D4CCC5', '#E2EAE9', '#F7464A'];
-            response.rows.forEach(function(row, i) {
-                data.push({
-                    label: row[0],
-                    value: +row[1],
-                    color: colors[i]
-                });
+    function renderTopCountriesChart(response) {
+        var data = [];
+        var colors = ['#4D5360', '#949FB1', '#D4CCC5', '#E2EAE9', '#F7464A'];
+        response.countries.forEach(function(row, i) {
+            data.push({
+                label: row[0],
+                value: +row[1],
+                color: colors[i]
             });
-            new Chart(makeCanvas('chart-4-container')).Doughnut(data);
-            generateLegend('legend-4-container', data);
         });
+        new Chart(makeCanvas('chart-4-container')).Doughnut(data);
+        generateLegend('legend-4-container', data);
     }
-    /**
-     * Extend the Embed APIs `gapi.analytics.report.Data` component to
-     * return a promise the is fulfilled with the value returned by the API.
-     * @param {Object} params The request parameters.
-     * @return {Promise} A promise.
-     */
-    function query(params) {
-        return new Promise(function(resolve, reject) {
-            var data = new gapi.analytics.report.Data({
-                query: params
+
+    function renderVisitors(response) {
+        var data = [];
+        var colors = ['#4D5360', '#949FB1'];
+        response.visitors.forEach(function(row, i) {
+            data.push({
+                label: row[0],
+                value: +row[1],
+                color: colors[i]
             });
-            data.once('success', function(response) {
-                resolve(response);
-            }).once('error', function(response) {
-                reject(response);
-            }).execute();
         });
+        new Chart(makeCanvas('chart-6-container')).Doughnut(data);
+        generateLegend('legend-6-container', data);
     }
     /**
      * Create a new canvas inside the specified element. Set it to be the width
