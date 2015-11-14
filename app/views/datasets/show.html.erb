@@ -185,7 +185,8 @@
           <input type="text" id="feedback-organisation" placeholder="organisation">
           <label>Reason</label>
           <textarea id="feedback-reason" rows=3></textarea>
-          <button type="submit" id="feedback" class="small button">Submit Feedback</button>
+          <button type="submit" class="submit-feedback" id="submit" class="small button">Submit Feedback</button>
+          <button type="submit" class="submit-feedback" id="skip" class="small button">Skip</button>
       </fieldset>
   </form>
   <a class="close-reveal-modal">&#215;</a>
@@ -205,7 +206,7 @@
         e.preventDefault();
     });
 
-    $('#feedback').click(function(event){
+    $('.submit-feedback').click(function(event){
       var url = "http://" + window.location.host+"<%= download_path %>";
       var email = $('input#feedback-email').val();
       var organisation = $('input#feedback-organisation').val();

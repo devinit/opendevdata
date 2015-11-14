@@ -33,16 +33,13 @@ Opendataportal::Application.configure do
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
-  ActionMailer::Base.smtp_settings = {
-    :user_name => 'katotodeveloper',
-    :password => 'katoto2015',
-    :domain => 'opendevdata.ug',
-    :address => 'smtp.sendgrid.net',
-    :port => 587,
+  #config.action_mailer.delivery_method = :mailgun
+  config.action_mailer.smtp_settings = {
     :authentication => :plain,
-    :enable_starttls_auto => true
+    :address => "smtp.mailgun.org",
+    :port => 587,
+    :domain => "https://api.mailgun.net/v3/sandboxecc68e19013f41e99582d8f6e9312bcb.mailgun.org",
+    :user_name => "postmaster@sandboxecc68e19013f41e99582d8f6e9312bcb.mailgun.org",
+    :password => "e85e03b2220d48857c5c02f09d97c522"
   }
-
-
-
 end

@@ -9,7 +9,7 @@
         <div>
             <h3 class='left'><%= @workspace.organization_name %></h3>
             <hr>
-            Administrators:
+            <h5>Administrators</h5>
             <% if @admins %>
             <ul>
                 <% @admins.each do |admin| %>
@@ -20,12 +20,14 @@
                     </li>
                 <% end %>
             </ul>
+            <h5>Description</h5>
+            <p><%= @workspace.description %></p><!--description -->
             <% if signed_in? && has_access?(@workspace, current_user) %>
-            <tt>
+           <!--  <tt>
                 Blog tag id: <strong style='font-size: 1.5em;'><%= @workspace.blog_tag_id %></strong>
-            </tt>
+            </tt> -->
             <% end %>
-            <%= link_to '>> Blogs', blog_path(@workspace) %>
+            <%= link_to 'Workspace Blogs', blog_path(@workspace) %>
             <% else %>
                 <span style='color:red'>No Admin</span>
             <% end %>
@@ -92,11 +94,11 @@
             <% end %>
         <% end %>
 
-        <p class='right panel callout'>
+     <!--    <p class='right panel callout'>
         <a href="#" data-reveal-id="feedbackModal">
           <%= image_tag "feedback-icon.png", alt: "Feedback" %>
         </a>
-        </p>
+        </p> -->
             <!-- <div class='right panel callout'>
                 <p class='lead'>You can download all datasets as:</p>
                 <ul>

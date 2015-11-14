@@ -22,6 +22,7 @@ class AnalyticsController < ApplicationController
   end
 
   def data
+  	#TODO store in DB
   	#weekly comparison
     this_week = weekly((Date.today - 6).strftime('%Y-%m-%d'), Date.today.strftime('%Y-%m-%d'))
     last_week = weekly((Date.today - 13).strftime('%Y-%m-%d'),(Date.today - 7).strftime('%Y-%m-%d'))

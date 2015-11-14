@@ -155,6 +155,8 @@ GEM
     devise-token_authenticatable (0.3.0)
       devise (~> 3.4.0)
     diff-lcs (1.2.5)
+    domain_name (0.5.25)
+      unf (>= 0.0.5, < 1.0.0)
     email_spec (1.6.0)
       launchy (~> 2.1)
       mail (~> 2.2)
@@ -200,6 +202,8 @@ GEM
     highline (1.6.21)
     hike (1.2.3)
     htmlentities (4.3.3)
+    http-cookie (1.0.2)
+      domain_name (~> 0.5)
     i18n (0.7.0)
     iconv (1.0.4)
     jbuilder (2.2.12)
@@ -231,6 +235,9 @@ GEM
       hash-deep-merge
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    mailgun-ruby (1.0.3)
+      json (~> 1.8)
+      rest-client (~> 1.6)
     method_source (0.8.2)
     mime-types (2.4.3)
     mini_magick (4.2.0)
@@ -265,6 +272,7 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.2)
+    netrc (0.11.0)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     oj (2.12.1)
@@ -321,6 +329,10 @@ GEM
     request_store (1.1.0)
     responders (1.1.2)
       railties (>= 3.2, < 4.2)
+    rest-client (1.8.0)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 3.0)
+      netrc (~> 0.7)
     retriable (1.4.1)
     rgeo (0.3.20)
     rgeo-shapefile (0.2.3)
@@ -424,6 +436,9 @@ GEM
     uglifier (2.7.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.1)
     unicorn (4.8.3)
       kgio (~> 2.6)
       rack
@@ -480,6 +495,7 @@ DEPENDENCIES
   kaminari
   launchy
   lazy_high_charts
+  mailgun-ruby (~> 1.0.3)
   mini_magick
   mongo
   mongoid (= 4.0.0.rc2)

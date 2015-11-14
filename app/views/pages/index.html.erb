@@ -43,7 +43,7 @@
 </div>
 <div class="row">
     <div>
-        <h5 class="text-center">Mapping Uganda's Open Data players: Who is doing what, where in the Open Data Ecosystem</h5>
+        <h5 class="text-center">Mapping Uganda's Open Data players: Who is doing what, where in the Open Data Ecosystem ?`</h5>
     </div>
     <br>
     <div id='maps' class="partner-map"></div>
@@ -97,4 +97,447 @@
         </div>
     </div>
 </div>
- <script type="text/javascript" src="http://petty.io.s3-website-eu-west-1.amazonaws.com/maps.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUDyZ1SEd-B81mhHFnOnQZh3hlBkoN0uY"></script>
+<!--TODO move to asset folder -->
+<script>
+    $(function() {
+    function initialize() {
+        var map = new google.maps.Map(document.getElementById('maps'), {
+            center: new google.maps.LatLng(0.347484, 32.588136),
+            zoom: 6
+        });
+        var markers = [{
+            position: new google.maps.LatLng(0.316837, 32.586142),
+            map: map,
+            title: 'Ministry of Finace',
+            html:"<h5>Intiatives Under Ministry of Finace</h5><hr>"+
+               "<p>Budget Monitoring Portal </p>"+
+               "<p>Established by the Ministry of Finance, Planning and Economic Development, the portal enables citizens "+
+               "to access and give feedback on budget performance at both the national and local levels.</p>"+
+                "<p>Website: <a href='http://www.budget.go.ug'>www.budget.go.ug</a></p><hr>"+
+                  "<p>Development Assistance Management System</p>"+
+                  "<p>Is Uganda Government’s official online database of aid funded projects and programs in Uganda. "+
+                  "It is managed by the Aid Liaison Department in the Ministry of finance </p>"+
+                "<p>Website: <a href='http://www.finance.go.ug/amp/portal '>www.finance.go.ug/amp/portal</a></p><hr>"+
+                "<p>Address: Plot 2/12 Apollo Kaggwa Road/ P.O.Box 8147 Kampala Shimoni Rd 1, Kampala, Uganda</p>"+
+                "<p>Tel:   +256 41 4235051</p>",
+            color: "red"
+        }, {
+            position: new google.maps.LatLng(0.281370, 32.610714),
+            map: map,
+            title: 'Open dev data',
+            color: 'red',
+            html:"<h5>Open dev data</h5>"+
+             "<hr><p>Under Development Reaseach and Training in partnership with Developement Initiatives</p>"+
+             "<p>Establishing and maintaining a learning space for players in open development in Uganda    </p>"+
+             "<p>Website: <a href='http://opendevdata.ug/'>opendevdata.ug</a></p>"+
+             "<p>Website: <a href='http://www.drt-ug.org/'>DRT</a></p>"+
+             "<p>Address: P.O. Box 22459 Lukka Mayanja Stretch(Off Ggaba RD., Opp Wavzend) Kampala, Uganda</p>"+
+             "<p>Tel: +256-41-4269495 / +256-39-3263629</p>",
+        }, {
+            position: new google.maps.LatLng(0.320250, 32.589137),
+            map: map,
+            title: 'Ask Your Government Uganda',
+            color: 'red',
+            html:"<h5>Ask Your Government Uganda</h5><hr>"+
+            "<p>Under Cipesa uganda/ministry of information, Office of the Prime Minister</p>"+
+            "<p>Portal enables citizens to make information requests to Information officers from"+
+            " the different Government ministries, departments and agencies.  "+
+            "Registered users are able to send information requests to various government departments and receive responses. </p>"+
+             "<p>Website: <a href='http://www.askyou.ug/'> www.askyou.ug</a></p>"+
+             "<p>Address: Postel Building, Yusuf Lule Road/P.O Box 341, Kampala Clement Hill Rd, Kampala, Uganda</p>"+
+             "<p>Tel: +256 41 4232575</p>",
+        }, {
+            position: new google.maps.LatLng(0.316356, 32.584640),
+            map: map,
+            title: 'UBOS',
+            color: 'red',
+               html:"<h5>Initiatives under UBOS</h5><hr>"+
+               "<h5>Integrated Management Information System</h5>"+
+               "<p>Portal enables citizens to make information requests to Information officers from the different Government ministries,"+
+               " departments and agencies.  Registered users are able to send information requests to various government departments and receive responses. </p>"+
+             "<p>Website: <a href='http://ugandadata.org/imis/'>ugandadata.org</a></p><hr>"+
+             "<h5>UgandaInfo</h5>"+
+             "<p>UgandaInfo is an adaptation of DevInfo7 for the dissemination of MDG and national indicators for Uganda ."+
+              "Provides statistics to monitor progress made on national development frameworks</p>"+
+             "<p><a href='http://www.ugandadata.org/ugandainfo/libraries/aspx/Home.aspx'>www.ugandadata.org</a></p>"+
+              "<h5>Uganda Bureau of Statistics National Data Archive</h5>"+
+              "<p>The Uganda National Data Archive provides a catalog of surveys that have been documented and released for "+
+              "user access across the national statistical system according to the PNSD- Plan for National Statistical Development. <p>"+
+             "<p>Website: <a href='http://www.ubos.org/unda/index.php/catalog/central/about '>www.ubos.org/unda/index.php/catalog/central/about</a></p><hr>"+
+             "<p>Address: Statistics House, Plot 9 Colville Street/Box 7186,Kampala Colville St, Kampala, Uganda</p>"+
+             "<p>Tel: +256 41 4706000</p>",
+        }, {
+            position: new google.maps.LatLng(0.330603, 32.578015),
+            map: map,
+            title: 'CountrySTAT',
+            color: "red",
+            html:"<h5>CountrySTAT </h5><hr>"+
+            "<p>Under Ministry of Agriculture Animal Industry and Fisheries  and UBOS </p>"+
+            "<p>CountrySTAT is a statistical framework and applied information system for analysis and policy-making designed in order to organize, integrate"+
+            " and disseminate statistical data and metadata on food and agriculture coming from different sources.  Owned by Minstry of Agriculture</p>"+
+             "<p>Website: <a href='http://countrystat.org/home.aspx?c=UGA'>countrystat</a></p>"+
+            "<p>Address: P.O. Box 102  Lugard Avenue ENTEBBE Ministry of Agriculture, Animal Industry and Fisheries </p>"+
+            "<p>Tel: +256 (0) 414 320 006 </p>",
+
+        }, {
+            position: new google.maps.LatLng(0.298751, 32.648880),
+            map: map,
+            title: ' Ministry of Water and Environment ',
+            color: "red",
+            html:"<h5>Intiatives under Ministry of Water and Environment</h5><hr>"+
+                    "<p>Uganda Water supply database </p>"+
+                    "<p>Provides citizens with data on current safe water supply coverage, functionality and distribution of water among others. </p>"+
+                    "<p>Website: <a href='http://ipsanad.com'>ipsanad.com</a></p><hr>"+
+                    "<p>Inventory of Public Sanitation Facilities</p>"+
+                    "<p>This is a web-based database containing information on all public toilets in Small Towns and Rural Growth Centres in Uganda. "+
+                    "managed by the Ministry of Water and Environment through the Urban Water and Sewerage Department (UWSD) </p>"+
+                    "<p>Website: <a href='http://www.publicsan.ug/index.php '>www.publicsan.ug</a></p><hr>"+
+                    "<p>Address: Plot 21/28 Port Bell Road, Luzira/P.O. Box 20026 Kampala,  Uganda </p>"+
+                    "<p>Tel: +256 41 4505942</p>",
+        },{
+         position: new google.maps.LatLng(0.318018, 32.588549),
+            map: map,
+            title: 'Open data Uganda',
+            color: "red",
+            html:"<h5>Open data Uganda</h5><hr>"+
+            "<p>Developed by the Africa development Bank, the portal provides data on the bank’s projects in Uganda </p>"+
+             "<p>Website: <a href='http://www.afdb.org/'>afdb.org</a></p>"+
+            "<p>Address: P.O.Box 28509, Kampala Kintu Road (Siad Barre) Avenue, Kampala, Uganda</p>"+
+            "<p>Tel: +256 41 4234009</p>",
+        },
+
+        {
+         position: new google.maps.LatLng(0.29205,32.61730),
+            map: map,
+            title: 'Fruit of thought, Mountbatten uganda',
+            color: "green",
+            html:"<h5>Intiatives under Fruits of Thought </h5><hr>"+
+            "<p>Mapping Day Uganda</p>"+
+            "<p>Mapping Day Uganda is an initiative that generates maps using OpenStreetMap (OSM). "+
+            "The initiative is run by <a href='http://www.fruitsofthought.org/'>Fruits of Thought</a>"+
+            "with support from <a href=' http://www.mountbatten.net/'>Mountbatten</a></p>"+
+             "<p>Website: <a href='http://mappingday.com/home'>mappingday.com/home</a></p></hr>"+
+               "<p>Open Data Uganda </p>"+
+               "<p>Provides data on datasets sourced from different sources. The portal is managed by <a href=' http://www.mountbatten.net/'>Mountbatten</a> </p>"+
+             "<p>Website: <a href='http://www.data.ug/'>data.ug</a></p>"+
+            "<p>Address: Plot 7669 Tank Hill Road Muyenga P.O. Box 25435 Kampala Uganda</p>"+
+              "<p>Email: <a href='mailto:info@fruitsofthought.org'>info@fruitsofthought.org</a></p>"+
+            "<p>Tel: +256 031 2283937 </p>",
+        },
+          {
+         position: new google.maps.LatLng(0.3142729,32.5880778),
+            map: map,
+            title: 'Environmental Information Network Uganda ',
+            color: "red",
+            html:"<h5>Environmental Information Network in Uganda </h5><hr>"+
+             "<p>Under National Environment Management Authority</p>"+
+             "<p>Portal contains environmental information in form of maps. Run by the National Environmental Management Authority <p>"+
+             "<p>Website: <a href='http://maps.nemaug.org/'>maps.nemaug.org/</a></p>"+
+             "<p>Email: <a href='mailto:info@nemaug.org'>NEMA</a></p>"+
+            "<p>Address:NEMA HOUSE, PLOT 17/19/21 JINJA ROAD, P. O. BOX 22255 Kaggwa,Uganda. </p>"+
+            "<p>Tel: +256 031 2283937 </p>",
+        },
+            {
+         position: new google.maps.LatLng(0.314304, 32.579998),
+            map: map,
+            title: 'Bank of Uganda',
+            color: "blue",
+            html:"<h5>Bank of Uganda</h5><hr>"+
+            "<p>Has Responsibility for collecting, processing, and disseminating statistics on  BOP estimates from various "+
+            "data-producing agencies, and data on monetary and financial industry </p>"+
+             "<p>Website: <a href='https://www.bou.or.ug/bou/rates_statistics/statistics.html'>bou.or.ug/bou/rates_statistics/statistics.html</a></p>"+
+            "<p>Address: Palm Courts, Plot 7A, Rotary Avenue (Former Lugogo Bypass) P.O. Box 33151, Kampala - Uganda</p>"+
+            "<p>Tel:+256-414-258-441/6 +256-414-258-060/9 +256-414-259-090+256-417-302-000</p>",
+        },
+          {
+         position: new google.maps.LatLng(0.3331902,32.5994181),
+            map: map,
+            title: 'National IT Authority (NITA)',
+            color: "blue",
+            html:"<h5>National IT Authority</h5><hr>"+
+              "<p>The Government regulatory body for ICT industry and one setting the policy agenda for open data in Uganda</p>"+
+              "<p>Website: <a href='http://www.nita.go.ug/'>nita.go.ug</a></p>"+
+              "<p>Address: Palm Courts, Plot 7A, Rotary Avenue (Former Lugogo Bypass) Box 33151, Kampala - Uganda  </p>"+
+              "<p>Tel: +256-417-801038</p>"+
+              "<p>Email: <a href='mailto:info@nita.go.ug'>info@nita.go.ug</a></p>"
+        },
+         {
+         position: new google.maps.LatLng(0.3133001,32.5830831),
+            map: map,
+            title: 'Ministry of Trade, Industry  and cooperatives',
+            color: "red",
+            html:"<h5>Uganda Manufacturers Association</h5><hr>"+
+            "<p>Aggregates key agencies on trade and business issues that are key sources of economic data.</p>"+
+                  "<p>Initiatives</p>"+
+                  "<ul>"+
+                  "<li><a href='http://www.ugandaexportsonline.com/'>ugandaexportsonline.com</a></li>"+
+                  "<li><a href='http://www.udc.go.ug'>udc.go.ug</a></li>"+
+                  "<li><a href='www.uce.co.ug'>uce.co.ug</a></li>"+
+                  "<li><a href='http://www.unbs.go.ug/'>unbs.go.ug</a></li>"+
+                  "<li><a href='http://www.uiri.org/'>uiri.org</a></li>"+
+                   "<li><a href='www.mtac.ac.ug '>mtac.ac.ug</a></li>"+
+                   "</ul>"+
+              "<p>Address: Plot 6/8, Parliamentary Avenue P.O. Box 7103 Kampala,"+
+            "<p>Tel:  256-41-314000</p>"
+        },
+        {
+         position: new google.maps.LatLng(0.3360141,32.5768852),
+            map: map,
+            title: 'Uganda Chamber of Commerce and Industry',
+            color: "green",
+            html:"<h5>Uganda Chamber of Commerce and Industry</h5><hr>"+
+            "<p>Major channel of information on business and trade </p>"+
+                  "<p>Website: <a href='http://www.chamberuganda.com/'>chamberuganda.com</a></p>"+
+              "<p>Address: Plot 1A, Kiira Road Kira Road, Kampala P.O.Box 3809, Kampala</p>"+
+            "<p>Tel: 031 2266323</p>"
+        },
+          {
+            position: new google.maps.LatLng(0.3137055,32.5862989),
+            map: map,
+            title: 'Uganda Commodities exchange ',
+            color: "green",
+            html:"<h5>Uganda Commodities exchange </h5><hr>"+
+                "<p>To provide market information and services to buyers and sellers of commodities by establishing and operating a commodity exchange of "+
+                "the highest integrity available to Ugandans as well as regional and international buyers and sellers, "+
+                "based upon an open and free market system for the mutual benefit of the sellers and buyers; "+
+                "and to facilitate the procurement of and marketing of any commodity provided or desired by any consenting parties through the auspices of the exchange. "+
+                "and operating a commodity exchange of the highest integrity available to Ugandans </p>"+
+                "<p>Website: <a href='http://www.uce.co.ug/'>uce.co.ug</a></p>"+
+                "<p>Address: Plot 4 Jinja Road, Social Security House ( Former Udyam House), 1st Floor, Nothern Wing, P. O. Box 35998, Kampala, Uganda</p>"+
+                "<p>Tel: +256 31 262922</p>"
+              },
+                {
+            position: new google.maps.LatLng(0.348109,32.615756),
+            map: map,
+            title: 'Collaboration on International ICT Policy in East and Southern Africa',
+            color: "yellow",
+            html:"<h5>Collaboration on International ICT Policy in East and Southern Africa</h5><hr>"+
+                "<p>centre for research and analysis of information aimed to enable policy makers in the"+
+                " region to understand ICT policy issues, and for various multi-stakeholders to use ICT to improve livelihoods. </p>"+
+                "<p>Website: <a href='http://www.cipesa.org/'>www.cipesa.org/</a></p>"+
+                "<p>Address: Plot 156-158 Mutesa II Road, Ntinda Kampala, Uganda</p>"+
+                "<p>Tel: +256 414 289 502, +256 790 860 084 </p>"
+              },
+                   {
+            position: new google.maps.LatLng(0.693889,30.2664),
+            map: map,
+            title: 'Toro Development Network',
+            color: "yellow",
+            html:"<h5>Toro Development Network</h5><hr>"+
+            "<p>centre for research and analysis of information aimed to enable policy makers in the region to understand ICT policy issues, "+
+            "and for various multi-stakeholders to use ICT to improve livelihoods. </p>"+
+                "<p>Website: <a href='http://www.torodev.co.ug/'>torodev.co.ug</a></p>"+
+                "<p>Address: Plot 46 Mugurusi Road, P.O Box 161 Fort Portal</p>"+
+                "<p>Tel: +256 464 660 034, +256 774 197 155</p>"
+              },
+               {
+            position: new google.maps.LatLng(0.33001,32.5804981),
+            map: map,
+            title: 'Africa Freedom of Information centre',
+            color: "yellow",
+            html:"<h5>Africa Freedom of Information centre</h5><hr>"+
+                "<p>Promotes access to information initiatives in Africa</p>"+
+                "<p>Website: <a href='http://www.africafoicentre.org/'>www.africafoicentre.org</a></p>"+
+                "<p>Address: Plot 5 Katego Road, Kamokya (Near Save the Children) P.O Box 35643,Kampala, Uganda</p>"+
+                "<p>Tel:  +256 414 533554</p>"
+              },
+                 {
+            position: new google.maps.LatLng(0.654552, 30.278814),
+            map: map,
+            title: 'Rwenzori Information centers network',
+            color: "yellow",
+            html:"<h5>Rwenzori Information centers network</h5><hr>"+
+                "<p>Promotes access to information in the Rwenzori region of western uganda, supporting rural ICT centres to provide data to citizens</p>"+
+                "<p>Website: <a href='http://www.ricnet.co.ug/'>www.ricnet.co.ug/</a></p>"+
+                "<p>Address: Butangwa road, Fortportal P.O Box 916, "+
+                "Fort Portal. Butebe Parish, Karambi sub-county, Kabarole district.</p>"+
+                "<p>Tel:  038 2277994</p>"
+              },
+        {   position: new google.maps.LatLng(0.363669, 32.625657),
+            map: map,
+            title: 'Agrinet Uganda',
+            color: "yellow",
+            html:"<h5>Agrinet Uganda</h5><hr>"+
+                "<p>'agricultural market intelligence' and data on agroproduce markets</p>"+
+                "<p>Website: <a href='http://www.agrinetug.net/ '>www.agrinetug.net</a></p>"+
+                "<p>Address: Plot 163 Ntinda Nalya Road, Mount Olive country Mall , 2nd floor Suite No.6 </p>"+
+                "<p>Tel: +256 776 808 182, +256 757 495 </p>"+
+                 "<p>Email: <a href='mailto:admin@agrinetug.net'>admin@agrinetug.net</a></p>"
+              },
+       {   position: new google.maps.LatLng(0.3264619,32.5670298),
+            map: map,
+            title: 'Infotrade uganda  ',
+            color: "yellow",
+            html:"<h5>Infotrade uganda  </h5><hr>"+
+                "<p>promoting Business and agricultural marketing Information in the country. This service involves collecting,"+
+                " analyzing, tabulating and disseminating data from 22 major markets covering a total of 46 commodities.</p>"+
+                "<p>Website: <a href='http://www.infotradeuganda.com/'>www.infotradeuganda.com/</a></p>"+
+                "<p>Address: Plot 175/176 A, Kyadondo II Road, Kagugube Zone, Makerere, P. O. BOX 24060 Kampala - Uganda,  </p>"+
+                "<p>Tel: +256 776 808 182, +256 757 495 </p>"+
+                 "<p>Email: <a href='mailto:admin@agrinetug.net'>admin@agrinetug.net</a></p>"
+              },
+           {
+            position: new google.maps.LatLng(0.031930, 29.760967),
+            map: map,
+            title: 'Bwera Information Centre',
+            color: "yellow",
+            html:"<h5>Bwera Information Centre</h5><hr>"+
+                "<p>Providing data on climate, markets to rural farmers in Bwera, Kasese district</p>"+
+                "<p>Website: <a href='http://bicbwera1.blogspot.com'>bicbwera1.blogspot.com</a></p>"+
+                "<p>Website: <a href='http://ricnet.co.ug/?page_id=36'>bwera</a></p>"+
+                "<p>Address: Plot 4 Bwera Hospital road P.O Box 507 Mpondwe Lhubiriha Town Council</p>"+
+                "<p>Tel: +256 392707151</p>"
+              },
+              {
+            position: new google.maps.LatLng(2.7826522,32.2998905),
+            map: map,
+            title: 'Northern Uganda Media Club',
+            color: "yellow",
+            html:"<h5>Northern Uganda Media Club</h5><hr>"+
+                "<p>Promoting good media practices using data journalism</p>"+
+                "<p>Website: <a href='http://www.numec.ug/'>www.numec.ug/</a></p>"+
+                "<p>Address: Upper Churcil Drive, Senior Quarters, Gulu municipality P.0. Box 736, Gulu, Uganda </p>"+
+                "<p>Tel:  +256 (0) 471 660363 ,+256 312 291830 ,+256 (0) 712 262244</p>"
+              },
+
+                {
+            position: new google.maps.LatLng(2.7789928,32.2938306),
+            map: map,
+            title: 'U-Touch',
+            color: "yellow",
+            html:"<h5>U-Touch</h5><hr>"+
+                "<p>A technology innovation hub that is Bridging the digital divide to transform lives</p>"+
+                "<p>Website: <a href='http://www.u-touch.org/'>www.u-touch.org</a></p>"+
+                "<p>Address: Located in Gulu town, Plot 3, princess road</p>"
+              },
+                {
+            position: new google.maps.LatLng(2.7718127,32.2990805),
+            map: map,
+            title: 'Media Association of Northern Uganda',
+            color: "yellow",
+            html:"<h5>Media Association of Northern Uganda</h5><hr>"+
+                "<p>Promoting citizen journalism through info access</p>"+
+                "<p>Website: <a href='http://www.medianorthernuganda.com/'>www.medianorthernuganda.com</a></p>"+
+                "<p>Address: Plot 1/3 Post office building, Airfield Road, Po.box 931, Gulu. Tell +256772519641</p>"+
+                "<p>Tel:  +256772519641</p>"
+              },
+                {
+            position: new google.maps.LatLng(0.1718328,30.0668287),
+            map: map,
+            title: 'Kasese District E-society centre',
+            color: "yellow",
+            html:"<h5>Kasese District E-society centre</h5><hr>"+
+                "<p>Provides kaseses District local government with ICT services,"+
+                " and disseminates kasese district sectoral data to stakeholders</p>"+
+                "<p>Website: <a href='http://www.kasese.go.ug/'>www.kasese.go.ug</a></p>"+
+                "<p>Address: Kasese District Local Government P.O Box 250, Rukooki, Kasese, Uganda </p>"+
+                "<p>Tel:  +256 392888974, +256 772 424623 , +256 705 199116, +256 753 273 329 </p>"
+              },
+               {
+            position: new google.maps.LatLng(0.322817,32.576543),
+            map: map,
+            title: 'Outbox',
+            color: "purple",
+            html:"<h5>Outbox</h5><hr>"+
+                "<p>An innovation hub providing space and expertise to young digital innovators </p>"+
+                "<p>Website: <a href='http://www.outbox.co.ug/contact'>www.outbox.co.ug/contact</a></p>"+
+                "<p>Address: Outbox 4th Floor - Soliz House Plot 23 Lumumba Ave Kampala</p>"+
+                "<p>Tel:  + 256 752 624 006 </p>"
+              },
+                {
+            position: new google.maps.LatLng(0.316747, 32.579527),
+            map: map,
+            title: 'World bank',
+            color: "purple",
+            html:"<h5>World Bank</h5><hr>"+
+                "<p>Major funder of open data in uganda. Runs a number of open data initiatives</p>"+
+                "<p>Website: <a href='http://data.worldbank.org/country/uganda '>data.worldbank.org/country/uganda </a></p>"+
+                "<p>Address: Rwenzori House, Plo1, Lumumba Avenue P.O. Box 4463, Kampala Lumumba Ave, Kampala</p>"+
+                "<p>Tel:  +031 2221416</p>"
+              },
+                    {
+            position: new google.maps.LatLng(0.3185439,32.5769087),
+            map: map,
+            title: 'UNICEF',
+            color: "purple",
+            html:"<h5>UNICEF</h5><hr>"+
+                "<p>Major projects on open data including U-report, Data on education, and Health</p>"+
+                 "<p>Initiatives</p>"+
+                  "<ul>"+
+                      "<li><a href='http://www.unicef.org/infobycountry/uganda_statistics.html'>www.unicef.org/infobycountry/uganda_statistics.html </a></li>"+
+                       "<li><a href='http://www.ureport.ug/'>ureport.ug</a></li>"+
+                  "</ul>"+
+                "<p>Address:  P.O. Box 7047 UNICEF Plot 9, George Street Kampala, Uganda  </p>"+
+                "<p>Tel:  +414 17 171000</p>"
+              },
+            {
+            position: new google.maps.LatLng(0.3219023,32.6215571),
+            map: map,
+            title: 'Uganda Technology and Management University',
+            color: "orange",
+            html:"<h5>Uganda Technology and Management University</h5><hr>"+
+                "<p>University focuses on ICT. Boasts key faculty and students active on the open data scene, "+
+                "including as app developers, ICT policy analysts, and data evangelists.</p>"+
+
+                   "<p>Website: <a href='http://www.utamu.ac.ug/'>www.utamu.ac.ug</a></p>"+
+                "<p>Address: UTAMU Resource Centre, Plot 6 and 8, Erisa Road, Kiswa, Bugolobi;</p>"+
+                "<p>Tel: +256-414-696-887, +256-790-914-427</p>"
+              },
+                 {
+            position: new google.maps.LatLng(0.334859,32.56885),
+            map: map,
+            title: 'Economic Policy Reaseach Centre',
+            color: "orange",
+            html:"<h5>Economic Policy Reaseach Centre</h5><hr>"+
+                "<p>Major producer and user of data, regular analysis on economics</p>"+
+                    "<p>Website: <a href='http://www.eprcug.org/'>www.eprcug.org</a></p>"+
+                "<p>Address:PO Box 7841, Kampala, Plot 51, Pool Road, Makerere University Kampala, Uganda</p>"+
+                "<p>Tel: +256-414-541-023/4</p>"
+              },
+                 {
+            position: new google.maps.LatLng(0.329162, 32.571007),
+            map: map,
+            title: 'Makerere University School of Computing and ICT',
+            color: "orange",
+            html:"<h5>Makerere University School of Computing and ICT</h5><hr>"+
+                "<p>Training centre for computer studies. Graduates key app developers, data scientists and analysts</p>"+
+                    "<p>Website: <a href='http://cit.mak.ac.ug/'>cit.mak.ac.ug</a></p>"+
+                "<p>Address: School of Computing and Informatics Technology Plot 56, Makerere University Pool Road, "+
+                "Wandegeya Kampala Makerere University, P.O.Box 7062, Kampala, Uganda </p>"
+
+              }
+            ];
+
+        var infowindow = new google.maps.InfoWindow({
+            content: "loading...",
+            maxWidth: 400
+        });
+
+        markers.forEach(function(marker) {
+            var icon = "http://maps.google.com/mapfiles/ms/icons/" + marker.color + ".png";
+            marker.icon = new google.maps.MarkerImage(icon);
+            var point = new google.maps.Marker(marker);
+            google.maps.event.addListener(point, "click", function() {
+                infowindow.setContent(this.html);
+                infowindow.open(map, this);
+            });
+        });
+        //center markers
+        autoCenter(map,markers);
+    }
+    function autoCenter() {
+        //  Create a new viewpoint bound
+        var bounds = new google.maps.LatLngBounds();
+        //  Go through each...
+        $.each(markers, function (index, marker) {
+        bounds.extend(marker.position);
+        });
+        //  Fit these bounds to the map
+        map.fitBounds(bounds);
+    }
+    //if home page
+    google.maps.event.addDomListener(window, "load", initialize);
+});
+
+</script>

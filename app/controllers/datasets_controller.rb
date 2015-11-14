@@ -41,20 +41,20 @@ class DatasetsController < ApplicationController
     @dataset.download_count +=1
     @dataset.save # save download count
     @feedback = Feedback.new
-    @feedback.email = params[:email]
-    @feedback.organisation = params[:organisation]
-    @feedback.remarks =  params[:remarks]
-    @feedback.dataset = @dataset
-
-    if @feedback.save
-      if params[:format] == 'json'
+    if params[:email] && params[:remarks]
+      @feedback.email = params[:email]
+      @feedback.organisation = params[:organisation]
+      @feedback.remarks =  params[:remarks]
+      @feedback.dataset = @dataset
+      @feedback.save
+     end
+    #should supply download link even if no feedback
+    if params[:format] == 'json'
         render json: { 'url' => dataset_url(@dataset)+".json"}
       else
         render json: { 'url' => @dataset.attachment.url}
-      end
-    else
-      render json: { 'error' => false}
     end
+
   end
 
 
