@@ -8,6 +8,11 @@ class AnalyticsController < ApplicationController
   def index
   end
 
+  def sidekiq
+    AnalyticsWorker.perform_async()
+    render json:{'result':'success'}
+  end
+
   def authentication
     @client = Google::APIClient.new(:application_name => ENV['GA_APP_NAME'], :application_version => '1.0')
     key_file = File.join('config', ENV['GA_KEY_FILE_NAME'])
@@ -22,29 +27,11 @@ class AnalyticsController < ApplicationController
   end
 
   def data
-  	#TODO store in DB
-  	#weekly comparison
-    this_week = weekly((Date.today - 6).strftime('%Y-%m-%d'), Date.today.strftime('%Y-%m-%d'))
-    last_week = weekly((Date.today - 13).strftime('%Y-%m-%d'),(Date.today - 7).strftime('%Y-%m-%d'))
-    #over view
-    overview = overView()
-    #year end and year end values
-    year_start = Date.today.beginning_of_year
-    year_end = Date.today.end_of_year
-    this_year = yearly(year_start.strftime('%Y-%m-%d'),year_end.strftime('%Y-%m-%d'))
- 		last_year = yearly((Date.civil( year_start.year-1, year_start.month, year_start.day )).strftime('%Y-%m-%d'),
- 												(Date.civil(year_end.year-1, year_end.month,year_end.day )).strftime('%Y-%m-%d'))
- 		#browser chart
- 		countries = pieChart('country')
- 		#os chart
- 		os = pieChart('operatingSystem')
- 		#visitors chart
- 		visitors = pieChart('userType')
- 		#single value stats
-    stats_count = stats()
+  	#get data from Db
+    @data = GoogleAnalytics.where(name:'analytics').last
+    puts"GoogleAnalytics #{@data}"
     #json
-    render json: {'thisWeek' => this_week, 'lastWeek' => last_week,'countries'=>countries,'os'=>os,'overview'=>overview,
-    							'stats' =>stats_count,'thisYear' => this_year,'lastYear' => last_year,'visitors'=>visitors}
+    render json: @data
   end
 
   private

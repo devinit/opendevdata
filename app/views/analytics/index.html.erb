@@ -1,5 +1,6 @@
 <section class="Site-main">
 <div class="Dashboard Dashboard--full">
+<div style="display:none"> <%= link_to "sidekiq", analytics_sidekiq_path %></div>
   <header class="Dashboard-header">
     <ul class="FlexGrid">
       <li class="FlexGrid-item">
@@ -118,8 +119,8 @@
     function remoteData() {
         var url = "http://" + window.location.host + "/data";
         $.get(url, function(data) {
-            storage(data)
-            visualize(data);
+            storage(data.json);
+            visualize(data.json);
         }).done(function() {
             console.log("API call successful")
         }).error(function(error) {

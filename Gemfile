@@ -77,6 +77,8 @@ end
 gem 'google-api-client', '0.8.2', require: 'google/api_client'
 #mailgun
 gem 'mailgun-ruby', '~>1.0.3', require: 'mailgun'
+#scheduling tasks
+gem 'sidetiq'
 
 group :development, :test do
   gem 'mongoid-rspec'#, '~> 2.0.0.rc1'

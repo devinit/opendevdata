@@ -7,6 +7,7 @@ Opendataportal::Application.routes.draw do
 
   get 'index', to: 'analytics#index', as: 'analytics'
   get 'data', to: 'analytics#data', as: 'analytics_data'
+  get 'sidekiq', to: 'analytics#sidekiq', as: 'analytics_sidekiq'
 
   root 'pages#index'
   get 'about', to: 'pages#about', as: :about
