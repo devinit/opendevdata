@@ -93,7 +93,7 @@ class AnalyticsWorker
         'metrics': 'ga:pageviews',
         'sort': '-ga:pageviews',
         'start-date'=>'60daysAgo',
-        'end-date'=> (Date.today).strftime('%Y-%m-%d')
+        'end-date'=> (Date.today).strftime('%Y-%m-%d'),
         'max-results': 5
         }
     results = @client.execute(:api_method => @analytics.data.ga.get, :parameters => parameters)

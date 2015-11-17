@@ -8,7 +8,7 @@ class AnalyticsController < ApplicationController
   def index
   end
 
-  def sidekiq
+  def sidekiq_start
     AnalyticsWorker.perform_async()
     render json:{'result':'success'}
   end

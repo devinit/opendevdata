@@ -12,7 +12,6 @@
 
 # You will need to modify these
 
-
 SIDEKIQ="sidekiq"
 APP="opendevdata"
 APP_DIR="/var/www/${APP}"
@@ -25,10 +24,6 @@ LOCK_FILE="$APP_DIR/${APP}-lock"
 APP_CONFIG="${APP_DIR}/config"
 PID_FILE="$APP_DIR/tmp/${APP}.pid"
 GEMFILE="$APP_DIR/Gemfile"
-
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 
 START_CMD="$BUNDLE exec $SIDEKIQ -e $APP_ENV -P $PID_FILE"
 CMD="cd ${APP_DIR}; ${START_CMD} >> ${LOG_FILE} 2>&1 &"
