@@ -11,8 +11,30 @@
       <li class="active"><i class='fa fa-cloud-download'></i> <%= @dataset.name %></li>
     </ul>
 
-    <h4 class='text-center'><%= @dataset.name %></h4>
+  <% if !current_user.nil? and current_user.is_admin?%>
+    <p>
+        <h4 class='text-center' style='float:left;'><%= @dataset.name %></h4>
+        <span style='float: right;'><button href="#" data-dropdown="drop1" aria-controls="drop1" aria-expanded="false" class="button dropdown">Admin Tasks</button><br/>
+                <ul id="drop1" data-dropdown-content class="f-dropdown" aria-hidden="true" tabindex="-1">
+                <% if !@dataset.approved or @dataset.nil? %>
+                  <li>
+                  <%= link_to approve_dataset_path(@dataset), method: :post do %>
+                    Approve Dataset
+                            <% end %>
+                  </li>
+                <% end %>
+                  <li><%= link_to "Delete", delete_dataset_path(@dataset.id) %></li>
+                  <li><%= link_to "view feedback", feedbacks_path(@dataset.id) %></li>
+                </ul></span>
+    </p>
+    <% else %>
+       <h4 class='text-center'><%= @dataset.name %></h4>
+    <% end %>
     <hr>
+
+
+
+
     <div class='row'>
         <div class='large-9 columns'>
             <span class='radius secondary label'>Description</span><br/>
@@ -66,10 +88,12 @@
                 Download
               </a>
               <ul id='options1' data-dropdown-content class='f-dropdown'>
-                <li><%= link_to "Excel", @dataset.attachment.url %></li>
-                <li><%= link_to "JSON", "#{dataset_url(@dataset)}.json" %></li>
-                <!-- <li><%= link_to "CSV", dataset_path(@dataset, format: 'csv') %></li> -->
-              </ul>
+
+                 <li><a href="#<%= @dataset.id %>" class ="feedback_link" format="csv"  data-reveal-id="feedbackModal">Excel</a></li>
+
+                <li><a href="#<%= @dataset.id %>" class="feedback_link" format="json"  data-reveal-id="feedbackModal">JSON</a></li>
+
+            </ul>
             </div>
         <% end %>
     </p>
@@ -78,7 +102,7 @@
             Comment on this dataset <i class='fa fa-comment-o'></i>
         <% end %>
     </p>
-</div>
+    </div>
 
     <% if !@dataset.no_viz %>
         <div class='row panel callout'>
@@ -127,3 +151,61 @@
 
     </div>
 </div>
+<div id='feedbackModal' class='reveal-modal small' data-reveal>
+  <h3>Why is this data important to you?</h3>
+  <form class="custom">
+      <fieldset>
+          <input type="email" id="feedback-email" placeholder="email">
+          <input type="text" id="feedback-organisation" placeholder="organisation">
+          <label>Reason</label>
+          <textarea id="feedback-reason" rows=3></textarea>
+          <button type="submit" class="submit-feedback" id="submit" class="small button">Submit Feedback</button>
+          <button type="submit" class="submit-feedback" id="skip" class="small button">Skip</button>
+      </fieldset>
+  </form>
+  <a class="close-reveal-modal">&#215;</a>
+</div>
+
+<script>
+ $(document).ready(function(){
+
+    var id = null;
+    var format = null;
+
+
+    $(".feedback_link").click(function(e){
+        id = $(this).attr("href").substring(1);
+        format =$(this).attr("format");
+        e.preventDefault();
+    });
+
+    $('.submit-feedback').click(function(event){
+      var url = "http://" + window.location.host+"<%= download_path %>";
+      var email = $('input#feedback-email').val();
+      var organisation = $('input#feedback-organisation').val();
+      var remarks = $('textarea#feedback-reason').val();
+
+      var obj = {
+        remarks: remarks,
+        organisation: organisation,
+        format: format,
+        email:email,
+        id: id
+      }
+      $.post(url, obj)
+        .done(function(data){
+          if (data){
+            $('#feedbackModal').foundation('reveal', 'close');
+            console.log(data.url)
+            //window.open(data.url);
+            window.location.href = data.url;
+
+          }
+        }).fail(function(error){
+            console.log(error)
+        });
+        event.preventDefault();
+      });
+
+  })
+</script>

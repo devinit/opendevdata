@@ -3,10 +3,11 @@ set -e
 
 # Feel free to change any of the following variables for your app:
 TIMEOUT=${TIMEOUT-60}
-APP_ROOT=/var/www/develop/opendevdata
+APP_ROOT=/var/www/opendevdata
 PID=$APP_ROOT/tmp/pids/unicorn.pid
 # CMD="$APP_ROOT/bin/unicorn -D -c $APP_ROOT/config/unicorn.rb -E production"
-CMD="cd $APP_ROOT && RAILS_ENV=production /root/.rbenv/shims/bundle exec $APP_ROOT/bin/unicorn -D -c $APP_ROOT/config/unicorn_dev.rb"
+CMD="cd $APP_ROOT; /home/allan/.rbenv/bin/rbenv exec bundle exec unicorn -D -c $APP_ROOT/config/unicorn.rb -E production"
+#CMD="cd $APP_ROOT && RAILS_ENV=development /root/.rbenv/shims/bundle exec $APP_ROOT/bin/unicorn -D -c $APP_ROOT/config/unicorn_dev.rb"
 INIT_CONF=$APP_ROOT/config/init.conf
 action="$1"
 set -u

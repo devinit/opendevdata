@@ -1,49 +1,57 @@
-  <nav class="top-bar" data-topbar>
-    <ul class="title-area">
-      <li class="name">
-        <h1><%= link_to 'Open Dev Data', root_path %></h1>
-      </li>
-      <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
-    </ul>
+<nav class="top-bar" data-topbar>
+  <ul class="title-area">
+    <li class="name">
+      <h1><%= link_to 'The home of Open Development Data in Uganda', root_path %></h1>
+    </li>
+    <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+  </ul>
 
   <section class="top-bar-section">
     <!-- Right Nav Section -->
     <ul class="right">
       <!-- li><%# link_to 'About', about_path %></li> -->
       <li><a href='http://blog.opendevdata.ug'>Blog</a></li>
-        <% if signed_in? %>
+      <% if signed_in? %>
           <% if current_user.has_role? :admin %>
-          <li>
-          <%= link_to admin_path do %>
-            Admin <i class='fa fa-laptop'></i>
+              <li>
+                <%= link_to admin_path do %>
+                    Admin <i class='fa fa-laptop'></i>
+                <% end %>
+              </li>
           <% end %>
-          </li>
-          <% end %>
-        <% end %>
+      <% end %>
       <li class="has-dropdown">
         <a href="#">
           <% if signed_in? %>
-            Hi <%= current_user.first_name %>
+              Hi <%= current_user.first_name %>
           <% else %>
-            Welcome
+              Welcome
           <% end %>
         </a>
         <ul class="dropdown">
-        <% if signed_in? %>
-          <li>
-            <%= link_to my_workspaces_path do %>
-              <i class='fa fa-users'></i> My Workspaces
-            <% end %>
-          </li>
-          <li>
-            <%= link_to edit_user_registration_path do%>
-             <i class='fa fa-cogs'></i> Account settings
-            <% end %>
-          </li>
-          <li class='divider'></li>
-          <li>
-            <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
-          </li>
+          <% if signed_in? %>
+              <li>
+                <%= link_to my_workspaces_path do %>
+                    <i class='fa fa-users'></i> My Workspaces
+                <% end %>
+              </li>
+              <li>
+                <%= link_to edit_user_registration_path do %>
+                    <i class='fa fa-cogs'></i> Account settings
+                <% end %>
+              </li>
+              <% if current_user.has_role? :admin %>
+                <li>
+                  <%= link_to analytics_path do %>
+                      <i class='fa fa-line-chart'></i> Analytics
+                  <% end %>
+
+                </li>
+              <% end %>
+            <li class='divider'></li>
+              <li>
+                <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+              </li>
           <% else %>
               <li><%= link_to "Login", new_user_session_path %></li>
           <% end %>
@@ -68,15 +76,64 @@
 </nav>
 
 <div class='large-12 columns hide-for-small'>
-    <dl class='sub-nav colorize round'>
-        <dd class='active'>
-            <%= link_to 'Welcome >>>', root_path %>
-        </dd>
-        <dd><%= link_to 'Standalone Datasets', datasets_path %></dd>
-        <dd><%= link_to 'Joined up Datasets', judus_path %></dd>
-        <dd><%= link_to 'Documents', documents_path %></dd>
-        <dd><%= link_to 'Workspaces', open_workspaces_path %></dd>
-        <dd><%= link_to 'API', developer_path %></dd>
-        <dd><%= link_to 'Data Series', data_series_index_path %></dd>
-    </dl>
+  <dl class='sub-nav colorize round'>
+    <dd class='active'>
+      <%= link_to 'Welcome >>>', root_path %>
+    </dd>
+    <dd><%= link_to 'Standalone Datasets', datasets_path %></dd>
+    <dd><%= link_to 'Joined up Datasets', judus_path %></dd>
+    <dd><%= link_to 'Documents', documents_path %></dd>
+    <dd><%= link_to 'Workspaces', open_workspaces_path %></dd>
+    <dd><%= link_to 'API', developer_path %></dd>
+    <dd><%= link_to 'Data Series', data_series_index_path %></dd>
+    <dd><a href="#" data-reveal-id="contactModal">Contact us</a></dd>
+  </dl>
 </div>
+<div id='contactModal' class='reveal-modal small' data-reveal>
+  <h3>Contact Us</h3>
+
+  <form class="custom">
+    <fieldset>
+      <input type="email" id="contact-email" placeholder="email">
+      <label>Message</label>
+      <textarea id="contact-content" rows=3></textarea>
+      <button type="submit" id="contact-us" class="small button">Submit</button>
+    </fieldset>
+    <fieldset>
+      <h3>Physical Address</h3>
+      <p>Development Research and Training Lukka Mayanja Stretch(Off Ggaba RD., Opp Wavzend)P.O. Box 22459 Kampala, Uganda</p>
+      <h3>Telephone<h3>
+      <p> +256-41-4269495 / +256-39-3263629 </p>
+      <h3>Email Address<h3>
+      <p><a href="mailto:info@drt-ug.org" target="_top">info@drt-ug.org</a></p>
+      <h3>Web Address</h3>
+      <p><a href="http://www.drt-ug.org">drt-ug.org</a></p>
+    </fieldset>
+  </form>
+  <a class="close-reveal-modal">&#215;</a>
+</div>
+<script>
+  $(document).ready(function () {
+    $('#contact-us').click(function (event) {
+      var url = "http://" + window.location.host + "<%= email_send_path %>";
+      console.log(url)
+      var email = $('input#contact-email').val();
+      var content = $('textarea#contact-content').val();
+      var obj = {
+        email: email,
+        content: content
+      }
+      console.log(obj);
+      $.post(url, obj)
+          .done(function (data) {
+            if (data) {
+              $('#contactModal').foundation('reveal', 'close');
+              console.log(data)
+            }
+          }).fail(function (error) {
+        alert(error)
+      });
+      event.preventDefault();
+    })
+  })
+</script>

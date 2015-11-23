@@ -9,7 +9,7 @@
         <div>
             <h3 class='left'><%= @workspace.organization_name %></h3>
             <hr>
-            Administrators:
+            <h5>Administrators</h5>
             <% if @admins %>
             <ul>
                 <% @admins.each do |admin| %>
@@ -20,12 +20,14 @@
                     </li>
                 <% end %>
             </ul>
+            <h5>Description</h5>
+            <p><%= @workspace.description %></p><!--description -->
             <% if signed_in? && has_access?(@workspace, current_user) %>
-            <tt>
+           <!--  <tt>
                 Blog tag id: <strong style='font-size: 1.5em;'><%= @workspace.blog_tag_id %></strong>
-            </tt>
+            </tt> -->
             <% end %>
-            <%= link_to '>> Blogs', blog_path(@workspace) %>
+            <%= link_to 'Workspace Blogs', blog_path(@workspace) %>
             <% else %>
                 <span style='color:red'>No Admin</span>
             <% end %>
@@ -92,11 +94,11 @@
             <% end %>
         <% end %>
 
-        <p class='right panel callout'>
+     <!--    <p class='right panel callout'>
         <a href="#" data-reveal-id="feedbackModal">
           <%= image_tag "feedback-icon.png", alt: "Feedback" %>
         </a>
-        </p>
+        </p> -->
             <!-- <div class='right panel callout'>
                 <p class='lead'>You can download all datasets as:</p>
                 <ul>
@@ -195,6 +197,7 @@
                   <thead class='colorize'>
                       <tr><th width="550">Dataset Title</th>
                                           <th width="100">Views</th>
+                                          <th width="100">Downloads</th>
                                           <th width="220">Release date</th></tr>
                   </thead>
                   <tbody>
@@ -212,6 +215,7 @@
                               <span class='short-description-table'><%= use_dataset.description %></span>
                           </td>
                           <td><%= use_dataset.view_count %></td>
+                          <td><%= use_dataset.download_count %></td>
                           <td><%= use_dataset.created_at.strftime("%B %d, %Y") %></td>
                       </tr>
                   <% end %>

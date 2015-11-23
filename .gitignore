@@ -7,6 +7,7 @@
 # Ignore bundler config.
 devise.rb
 .secret
+.idea
 opendevdata-lock
 /.bundle
 /vendor/bundle/
@@ -21,3 +22,6 @@ opendevdata-lock
 /public/uploads/
 /public/system/*
 /config/environments/production.rb
+
+# Ignore application configuration
+/config/application.yml

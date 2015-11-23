@@ -1,0 +1,33 @@
+<h3>Feedback</h3>
+<div class='row'>
+  <table>
+    <thead>
+      <tr>
+        <th>
+          Organisation
+        </th>
+        <th>
+          Email
+        </th>
+        <th>
+          Reason
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @feedbacks.each do |feedback| %>
+      <tr>
+        <td>
+          <%= feedback.organisation %>
+        </td>
+        <td>
+          <%= feedback.email %>
+        </td>
+        <td>
+          <%= feedback.remarks %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

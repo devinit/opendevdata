@@ -5,6 +5,7 @@ class DatasetsController < ApplicationController
 
   def get_dataset
     @dataset = Dataset.find(slugs=params[:id]) # we are using slugs!
+
     # @dataset = Dataset.find_by_slug! params[:id]
     rescue Mongoid::Errors::DocumentNotFound
       flash[:alert] = "The dataset you were looking for could not be found."
@@ -35,6 +36,36 @@ class DatasetsController < ApplicationController
   #   @dataset = Dataset.to_csv
   # end
 
+  def download
+    @dataset = Dataset.find(slugs=params[:id]) # we are using slugs!
+    @dataset.download_count +=1
+    @dataset.save # save download count
+    @feedback = Feedback.new
+    if params[:email] && params[:remarks]
+      @feedback.email = params[:email]
+      @feedback.organisation = params[:organisation]
+      @feedback.remarks =  params[:remarks]
+      @feedback.dataset = @dataset
+      @feedback.save
+     end
+    #should supply download link even if no feedback
+    if params[:format] == 'json'
+        render json: { 'url' => dataset_url(@dataset)+".json"}
+      else
+        render json: { 'url' => @dataset.attachment.url}
+    end
+
+  end
+
+
+  def feedbacks
+    id = params[:id]
+    puts "dataset id: #{id}"
+    @feedbacks = Feedback.where(dataset_id:id)
+    puts "Boolean : #{Feedback.where(dataset_id:id).exists?}"
+    # render json: @feedbacks
+  end
+
   def show
     data_extract = @dataset.data_extract
     @chart_type ||= @dataset.chart_type
@@ -64,10 +95,12 @@ class DatasetsController < ApplicationController
     if signed_in?
       if @dataset.user != current_user
         @dataset.view_count += 1
+        @dataset.download_count +=1
         @dataset.save # save view count
       end
     else
       @dataset.view_count += 1
+      @dataset.download_count +=1
       @dataset.save # save view count
     end
 
@@ -137,11 +170,7 @@ class DatasetsController < ApplicationController
   end
 
   def delete_page
-    @dataset = Dataset.find params[:id]
-  end
-
-  def destroy
-    @dataset = Dataset.find params[:id]
+   @dataset = Dataset.find params[:id]
     if current_user.is_admin? or is_owner_of(@dataset)
       @dataset.delete
       flash[:notice] = 'Successfully deleted dataset.'
@@ -149,6 +178,10 @@ class DatasetsController < ApplicationController
       flash[:alert] = "Could not delete this dataset because you don't have the permission to."
     end
     redirect_to datasets_path
+  end
+
+  def destroy
+
   end
 
   def unapproved

@@ -33,7 +33,7 @@ gem 'sinatra', require: false
 gem 'slim'
 gem "redis"
 gem "foreman"
-gem 'faraday', '<= 0.8.8'
+gem 'faraday','~> 0.9'
 gem 'faraday-http-cache'
 gem "chartkick"
 gem 'lazy_high_charts'
@@ -72,6 +72,13 @@ group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
+
+#google analytics
+gem 'google-api-client', '0.8.2', require: 'google/api_client'
+#mailgun
+gem 'mailgun-ruby', '~>1.0.3', require: 'mailgun'
+#scheduling tasks
+gem 'sidetiq'
 
 group :development, :test do
   gem 'mongoid-rspec'#, '~> 2.0.0.rc1'

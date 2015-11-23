@@ -2,18 +2,25 @@ require 'sidekiq/web'
 require 'api_constraints'
 
 Opendataportal::Application.routes.draw do
+
+  post 'send_mail', to: 'emailer#send_mail', as: 'email_send'
+
+  get 'index', to: 'analytics#index', as: 'analytics'
+  get 'data', to: 'analytics#data', as: 'analytics_data'
+  get 'sidekiq', to: 'analytics#sidekiq_start', as: 'analytics_sidekiq'
+
   root 'pages#index'
-  get "about", to: 'pages#about', as: :about
-  get "developer", to: 'pages#developer', as: :developer
+  get 'about', to: 'pages#about', as: :about
+  get 'developer', to: 'pages#developer', as: :developer
+
 
   devise_for :users
 
   devise_scope :user do
-    get "register", to: "devise/registrations#new", as: :register
-    get "login", to: "devise/sessions#new", as: :login
-    get "logout", to: "devise/sessions#destroy", as: :logout
+    get 'register', to: 'devise/registrations#new', as: :register
+    get 'login', to: 'devise/sessions#new', as: :login
+    get 'logout', to: 'devise/sessions#destroy', as: :logout
   end
-
 
   # API Stuff
   resource :api_token
@@ -56,6 +63,16 @@ Opendataportal::Application.routes.draw do
   concern :sociable, Sociable
 
   resources :datasets, concerns: :sociable, path: 'standalone-datasets' # all datasets
+
+  match 'datasets/download', to: 'datasets#download', via: :post,as: :download
+
+  match 'datasets/feedbacks/:id', to: 'datasets#feedbacks', via: :get,as: :feedbacks
+
+  get 'delete_dataset/:id', to: 'datasets#delete_page', as: 'delete_dataset'
+
+
+
+
 
   get 'my-workspaces', to: 'open_workspaces#my_workspaces', as: :my_workspaces
 
@@ -103,10 +120,6 @@ Opendataportal::Application.routes.draw do
     post 'joined-up-datasets/:id/add-data-series', to: 'open_workspaces/joined_up_datasets#add_data_series', as: :add_data_series
     post 'joined-up-datasets/:data_series_id/process-data-series', to: 'open_workspaces/joined_up_datasets#process_final_stage_of_upload'
   end
-
-  get "delete_dataset/:id", to: 'datasets#delete_page', as: 'delete_dataset'
-
   resources :documents, concerns: :sociable
   get 'activity', to: 'pages#activities', as: 'activity'
-
 end

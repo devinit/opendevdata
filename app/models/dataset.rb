@@ -4,7 +4,7 @@ class Dataset
   include Mongoid::Taggable
   include PublicActivity::Model
   tracked
-
+  has_many :feedbacks
   before_save :set_time
 
   field :name, type: String
@@ -25,6 +25,7 @@ class Dataset
   field :approved, type: Boolean, default: false
 
   field :view_count, type: Integer, default: 0
+  field :download_count, type: Integer, default: 0
 
   mount_uploader :attachment, DatasetFileUploader
 
