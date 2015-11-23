@@ -1,19 +1,35 @@
-<div class='row'>
+<div class="row">
     <div class='panel panel-warning'>
-        <div class='panel-heading'>
-            <div class='row'>
-                <div class='col-xs-6'>
-                    <i class='fa fa-book fa-5x'></i>
-                </div>
-                <div class='col-xs-6 text-right'>
-                    <%= @document.name %>
-                </div>
+        <div row class='panel-heading'>
+            <div class="medium-2 columns">
+                <a style='font-size:3em' id='doc-link' href="<%= @document.attachment.url%>">
+                    <i id ='file-icon' class='fa'></i>
+                </a>
+            </div>
+            <div class="medium-10 columns">
+                 <h5 style="line-height:2"> <%= @document.name %></h5>
             </div>
         </div>
-
-        <div class='panel-footer announcement-bottom'>
-            <div class='col-xs-6'><%= @document.description %></div>
-            <div class='col-xs-6 text-right'><%= link_to @document.attachment.url do %><span class='fa fa-arrow-circle-right'></span><% end %></div>
+        <div style='margin-top:2em' class='row panel-footer announcement-bottom'>
+            <div class='medium-12 columns'><%= @document.description %></div>
         </div>
     </div>
 </div>
+<script>
+  $(document).ready(function(){
+    //finds out what type of file we have
+    (function(){
+        var link = $("#doc-link").attr("href");
+        //split by dots and get the last segment
+        var ext = link.split('.').pop();
+        var icon = $('#file-icon');
+        if(ext == 'pdf'){
+            icon.addClass('fa-file-pdf-o');
+        }else{
+            icon.addClass('fa-file-word-o');
+        }
+
+    })();
+
+  });
+</script>
